@@ -58,27 +58,16 @@ to_sign <- function(x){
   x_sign_obj
 }
 
-##########################
-comp_lda <- function(x, indices_response){
-  if(class(x)[1] != 'merged_compositional') stop('Input must be of class <merged_compositional>')
-
-}
-
-
 ###################################
 ############# CURRENT #############
-
-comp_lm <- function(x, indices_predictor){
-  ## the composition is the response
-
+comp_lda <- function(x, indices_response){
   if(class(x)[1] != 'merged_compositional') stop('Input must be of class <merged_compositional>')
-
-  #require(compositions)
-  apply(compositions::ilr(compositions::acomp(x@count_matrix)), 2, function(it_ilr){
-   model_compReg <- lm(unlist(it_ilr~(x@df)[,indices_predictor]))
-   list(summary(model_compReg), anova(model_compReg))
-  })
+  model_compReg <- lm(compositions::ilr(compositions::acomp(x@count_matrix))~as.matrix((x@df)[,indices_predictor]))
+  list(summary(model_compReg))
 }
+############# CURRENT #############
+###################################
+
 comp_lm <- function(x, indices_predictor){
   ## the composition is the response
 
@@ -91,8 +80,6 @@ comp_lm <- function(x, indices_predictor){
        )
 }
 
-############# CURRENT #############
-###################################
 
 
 ##########################

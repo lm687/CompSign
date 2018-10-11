@@ -49,4 +49,12 @@ tmp_merged_compositional <- new("merged_compositional",
                                 df=data.frame(a=c(3,4,1), b=c(10, 10, 10)))
 comp_lm(tmp_merged_compositional)
 @
+
+\section{Importing data}
+<<>>=
+
+
+
+@
+
 \end{document}
