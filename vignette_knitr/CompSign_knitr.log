@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.22)  11 OCT 2018 15:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.22)  11 OCT 2018 16:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -186,9 +186,9 @@ ite-file
  []
 
 
-Overfull \hbox (263.99469pt too wide) in paragraph at lines 83--84
+Overfull \hbox (269.24464pt too wide) in paragraph at lines 83--84
 \OT1/cmtt/m/it/10 ##  '/private/var/folders/22/nzk7280n61jd5qrjhqm5cwph0000gn/T
-/Rtmpude4DO/devtoolsfc44523264e/lm687-CompSign-a1fd6b7'
+/RtmpceWJPx/devtools11ad37713d31/lm687-CompSign-bbca195'
  []
 
 
@@ -209,158 +209,158 @@ Package color Info: Redefining color shadecolor on input line 108.
 [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (38.24666pt too wide) in paragraph at lines 149--149
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 154--154
 []\OT1/cmtt/m/n/10 ##  [1] "s1"  "s2"  "s3"  "s4"  "s5"  "s6"  "s7"  "s8"  "s9"
   "s10" "s11"[] 
  []
 
 
-Overfull \hbox (38.24666pt too wide) in paragraph at lines 149--149
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 154--154
 []\OT1/cmtt/m/n/10 ## [12] "s12" "s13" "s14" "s15" "s16" "s17" "s18" "s19" "s20
 " "s21" "s22"[] 
  []
 
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ##              s1         s2        s3        s4        s5 
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ##              s1        s2         s3        s4        s5 
        s6[] 
  []
 
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam1 0.57565830 0.43841183 0.4008968 0.3076494 0.3229086 
-0.7499751[] 
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam1 0.04494607 0.9459326 0.88127565 0.3946659 0.9847367 
+0.5334726[] 
  []
 
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam2 0.19714433 0.58468167 0.2681107 0.2013544 0.8086603 
-0.8574493[] 
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam2 0.85108295 0.1652019 0.41478690 0.3770054 0.9848871 
+0.8588562[] 
  []
 
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam3 0.04012587 0.20440907 0.7500883 0.4753724 0.5023724 
-0.9230279[] 
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam3 0.16437774 0.1669872 0.21936464 0.8102820 0.4609778 
+0.7109929[] 
  []
 
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam4 0.29369066 0.01188221 0.7564156 0.1531327 0.0826434 
-0.8665005[] 
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam4 0.09260736 0.4681254 0.04536973 0.3224658 0.1482561 
+0.2590526[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ##             s7        s8        s9       s10       s11   
-    s12       s13[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ##             s7         s8        s9       s10       s11  
+     s12[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam1 0.9078592 0.6734733 0.8567646 0.8545546 0.7283661 0.
-9760212 0.9929017[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam1 0.7796631 0.11324627 0.4737555 0.3660501 0.2542280 0
+.2927717[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam2 0.2538150 0.5642225 0.7433936 0.3209805 0.2527283 0.
-6632294 0.6069549[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam2 0.3743002 0.42067263 0.1832577 0.4582543 0.1223438 0
+.2661635[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam3 0.5312044 0.9311652 0.9700212 0.7434652 0.4290070 0.
-4713822 0.3061882[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam3 0.2568477 0.07727454 0.6250180 0.8761233 0.1428893 0
+.4881740[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam4 0.0110569 0.1930629 0.3448909 0.5225740 0.8325209 0.
-6467054 0.5844162[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam4 0.4979492 0.17051955 0.2249406 0.9196784 0.4623768 0
+.1407447[] 
  []
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ##            s14       s15       s16       s17        s18  
-     s19[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ##            s13       s14       s15       s16       s17   
+     s18[] 
  []
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam1 0.3600841 0.4396899 0.7245471 0.9165410 0.15895290 0
-.2450278[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam1 0.7688104 0.5593506 0.5991378 0.2567221 0.3007133 0.
+64456791[] 
  []
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam2 0.6609636 0.2523587 0.4004014 0.8189681 0.58187297 0
-.2803102[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam2 0.3116331 0.4513631 0.9762848 0.9834179 0.1796476 0.
+91491317[] 
  []
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam3 0.3070374 0.3151407 0.2964818 0.2791626 0.64876625 0
-.4825279[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam3 0.5135778 0.2974684 0.4756830 0.8267806 0.2941601 0.
+94181612[] 
  []
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam4 0.5716370 0.2868293 0.4452123 0.2865703 0.03295695 0
-.5651676[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam4 0.6126832 0.8479827 0.5370032 0.9067558 0.3266194 0.
+08701186[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ##             s20       s21        s22       s23        s24
-        s25[] 
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ##             s19        s20       s21        s22       s23
+        s24[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam1 0.80130799 0.5250635 0.02655553 0.4815083 0.43074812
- 0.36418650[] 
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam1 0.26302844 0.41389117 0.9079563 0.08464190 0.4967340
+ 0.81036391[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam2 0.07725346 0.7186432 0.08732918 0.9140912 0.36130165
- 0.03541891[] 
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam2 0.78164722 0.86066560 0.7922283 0.39374352 0.8150022
+ 0.64902957[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam3 0.64145169 0.8174649 0.84424209 0.7476501 0.00975025
- 0.38198717[] 
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam3 0.02185266 0.60821777 0.5645052 0.01485438 0.2569835
+ 0.38201556[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam4 0.44501709 0.9719827 0.22280426 0.2310962 0.49727901
- 0.72284429[] 
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam4 0.31598495 0.08136767 0.8527674 0.51505592 0.1944197
+ 0.08814193[] 
  []
 
-[2] (./CompSign_knitr.aux) ) 
+[2] [3] (./CompSign_knitr.aux) ) 
 Here is how much of TeX's memory you used:
  1651 strings out of 492995
  24174 string characters out of 6132704
- 87346 words of memory out of 5000000
+ 88346 words of memory out of 5000000
  5193 multiletter control sequences out of 15000+600000
  7923 words of font info for 29 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,6n,25p,584b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmtt10.pfb>
-Output written on CompSign_knitr.pdf (2 pages, 76568 bytes).
+ 39i,6n,25p,585b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmtt10.pfb>
+Output written on CompSign_knitr.pdf (3 pages, 77726 bytes).
 PDF statistics:
- 39 PDF objects out of 1000 (max. 8388607)
- 27 compressed objects within 1 object stream
+ 42 PDF objects out of 1000 (max. 8388607)
+ 29 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

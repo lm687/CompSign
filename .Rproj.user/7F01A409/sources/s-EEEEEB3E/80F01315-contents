@@ -1,4 +1,0 @@
-library(NMF)
-
-tmp <- matrix(runif(100), 10, 10)
-deconv <- nmf(nmfObject(tmp), 3, seed=12356)
