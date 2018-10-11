@@ -1,6 +1,6 @@
 ##https://github.com/lgatto/TeachingMaterial/blob/master/_roo/roo.pdf
 
-#require(compositions)
+require(compositions)
 #require(MCMCpack)
 #require(NMF)
 

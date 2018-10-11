@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\title{Package \textbf{CompSign}}
+\author{Lena Morrill}
+\date{October 2017}
+
+\begin{document}
+
+\maketitle
+
+<<>>=
+## knitr preferences
+## no chache
+@
+
+<<>>=
+## install latest version
+library(devtools)
+devtools::install_github("lm687/CompSign")
+library(CompSign)
+@
+
+<<>>=
+##########################
+####### Dummy data #######
+##########################
+
+### Example of matrix transformed into sign object
+input_dummy <- matrix(runif(100), 4)
+colnames(input_dummy) <- paste0('s', 1:25); rownames(input_dummy) <- paste0('sam', 1:4)
+sign_dummy <- to_sign(input_dummy)
+
+@
+
+\section{Summarise the signature matrix}
+<<>>=
+add_together_matrix(sign_dummy)
+summarise(add_together_matrix(sign_dummy))
+@
+
+\end{document}

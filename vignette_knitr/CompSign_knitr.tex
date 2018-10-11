@@ -1,0 +1,159 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+\title{Package \textbf{CompSign}}
+\author{Lena Morrill}
+\date{October 2017}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\maketitle
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## knitr preferences}
+\hlcom{## no chache}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## install latest version}
+\hlkwd{library}\hlstd{(devtools)}
+\hlstd{devtools}\hlopt{::}\hlkwd{install_github}\hlstd{(}\hlstr{"lm687/CompSign"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Downloading GitHub repo lm687/CompSign@master\\\#\# from URL https://api.github.com/repos/lm687/CompSign/zipball/master}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Installing CompSign}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file\ \ \textbackslash{}\\\#\#\ \  --no-environ --no-save --no-restore --quiet CMD INSTALL\ \ \textbackslash{}\\\#\#\ \  '/private/var/folders/22/nzk7280n61jd5qrjhqm5cwph0000gn/T/Rtmpude4DO/devtoolsfc44523264e/lm687-CompSign-a1fd6b7'\ \ \textbackslash{}\\\#\#\ \  --library='/Library/Frameworks/R.framework/Versions/3.4/Resources/library'\ \ \textbackslash{}\\\#\#\ \  --install-tests}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# }}\begin{alltt}
+\hlkwd{library}\hlstd{(CompSign)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{##########################}
+\hlcom{####### Dummy data #######}
+\hlcom{##########################}
+
+\hlcom{### Example of matrix transformed into sign object}
+\hlstd{input_dummy} \hlkwb{<-} \hlkwd{matrix}\hlstd{(}\hlkwd{runif}\hlstd{(}\hlnum{100}\hlstd{),} \hlnum{4}\hlstd{)}
+\hlkwd{colnames}\hlstd{(input_dummy)} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{'s'}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{25}\hlstd{);} \hlkwd{rownames}\hlstd{(input_dummy)} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{'sam'}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{4}\hlstd{)}
+\hlstd{sign_dummy} \hlkwb{<-} \hlkwd{to_sign}\hlstd{(input_dummy)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\section{Summarise the signature matrix}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{add_together_matrix}\hlstd{(sign_dummy)}
+\end{alltt}
+\begin{verbatim}
+## An object of class "sign"
+## Slot "id":
+## [1] "input_dummy"
+## 
+## Slot "id_samples":
+## [1] "sam1" "sam2" "sam3" "sam4"
+## 
+## Slot "id_signatures":
+##  [1] "s1"  "s2"  "s3"  "s4"  "s5"  "s6"  "s7"  "s8"  "s9"  "s10" "s11"
+## [12] "s12" "s13" "s14" "s15" "s16" "s17" "s18" "s19" "s20" "s21" "s22"
+## [23] "s23" "s24" "s25"
+## 
+## Slot "count_matrix":
+##              s1         s2        s3        s4        s5        s6
+## sam1 0.57565830 0.43841183 0.4008968 0.3076494 0.3229086 0.7499751
+## sam2 0.19714433 0.58468167 0.2681107 0.2013544 0.8086603 0.8574493
+## sam3 0.04012587 0.20440907 0.7500883 0.4753724 0.5023724 0.9230279
+## sam4 0.29369066 0.01188221 0.7564156 0.1531327 0.0826434 0.8665005
+##             s7        s8        s9       s10       s11       s12       s13
+## sam1 0.9078592 0.6734733 0.8567646 0.8545546 0.7283661 0.9760212 0.9929017
+## sam2 0.2538150 0.5642225 0.7433936 0.3209805 0.2527283 0.6632294 0.6069549
+## sam3 0.5312044 0.9311652 0.9700212 0.7434652 0.4290070 0.4713822 0.3061882
+## sam4 0.0110569 0.1930629 0.3448909 0.5225740 0.8325209 0.6467054 0.5844162
+##            s14       s15       s16       s17        s18       s19
+## sam1 0.3600841 0.4396899 0.7245471 0.9165410 0.15895290 0.2450278
+## sam2 0.6609636 0.2523587 0.4004014 0.8189681 0.58187297 0.2803102
+## sam3 0.3070374 0.3151407 0.2964818 0.2791626 0.64876625 0.4825279
+## sam4 0.5716370 0.2868293 0.4452123 0.2865703 0.03295695 0.5651676
+##             s20       s21        s22       s23        s24        s25
+## sam1 0.80130799 0.5250635 0.02655553 0.4815083 0.43074812 0.36418650
+## sam2 0.07725346 0.7186432 0.08732918 0.9140912 0.36130165 0.03541891
+## sam3 0.64145169 0.8174649 0.84424209 0.7476501 0.00975025 0.38198717
+## sam4 0.44501709 0.9719827 0.22280426 0.2310962 0.49727901 0.72284429
+## 
+## Slot "modified":
+## [1] TRUE
+\end{verbatim}
+\begin{alltt}
+\hlkwd{summarise}\hlstd{(}\hlkwd{add_together_matrix}\hlstd{(sign_dummy))}
+\end{alltt}
+\begin{verbatim}
+## NULL
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\end{document}

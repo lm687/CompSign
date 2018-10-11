@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.22)  11 OCT 2018 12:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.22)  11 OCT 2018 15:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**CompSign_knitr.Rmw.tex
-(./CompSign_knitr.Rmw.tex
+**CompSign_knitr.tex
+(./CompSign_knitr.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
@@ -78,8 +78,8 @@ Package: alltt 1997/06/16 v2.0g defines alltt environment
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
-(./CompSign_knitr.Rmw.aux)
-\openout1 = `CompSign_knitr.Rmw.aux'.
+(./CompSign_knitr.aux)
+\openout1 = `CompSign_knitr.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
 LaTeX Font Info:    ... okay on input line 57.
@@ -163,31 +163,204 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 59.
 Package color Info: Redefining color shadecolor on input line 62.
-Package color Info: Redefining color shadecolor on input line 70.
+Package color Info: Redefining color shadecolor on input line 71.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 74.
 
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 79--80
+\OT1/cmtt/m/it/10 ## from URL https://api.github.com/repos/lm687/CompSign/zipba
+ll/master[] 
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 83.
+
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/omscmtt.fd
+File: omscmtt.fd 
+)
+LaTeX Font Info:    Font shape `OMS/cmtt/m/it' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 83.
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 83--84
+[]\OT1/cmtt/m/it/10 ## '/Library/Frameworks/R.framework/Resources/bin/R' --no-s
+ite-file
+ []
+
+
+Overfull \hbox (263.99469pt too wide) in paragraph at lines 83--84
+\OT1/cmtt/m/it/10 ##  '/private/var/folders/22/nzk7280n61jd5qrjhqm5cwph0000gn/T
+/Rtmpude4DO/devtoolsfc44523264e/lm687-CompSign-a1fd6b7'
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 83--84
+\OT1/cmtt/m/it/10 ##  --library='/Library/Frameworks/R.framework/Versions/3.4/R
+esources/library'
+ []
+
+Package color Info: Redefining color shadecolor on input line 92.
+
+Overfull \hbox (111.74602pt too wide) in paragraph at lines 100--100
+[][]\OT1/cmtt/m/n/10 colnames[][](input_dummy)[] []<-[] []paste0[][]([][]^^Ms^^
+M[][],[] []1[][]:[][]25[][]);[] []rownames[][](input_dummy)[] []<-[] []paste0[]
+[]([][]^^Msam^^M[][],[] []1[][]:[][]4[][])[][] 
+ []
+
+Package color Info: Redefining color shadecolor on input line 108.
 [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./CompSign_knitr.Rmw.aux) ) 
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ##  [1] "s1"  "s2"  "s3"  "s4"  "s5"  "s6"  "s7"  "s8"  "s9"
+  "s10" "s11"[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## [12] "s12" "s13" "s14" "s15" "s16" "s17" "s18" "s19" "s20
+" "s21" "s22"[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ##              s1         s2        s3        s4        s5 
+       s6[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam1 0.57565830 0.43841183 0.4008968 0.3076494 0.3229086 
+0.7499751[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam2 0.19714433 0.58468167 0.2681107 0.2013544 0.8086603 
+0.8574493[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam3 0.04012587 0.20440907 0.7500883 0.4753724 0.5023724 
+0.9230279[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam4 0.29369066 0.01188221 0.7564156 0.1531327 0.0826434 
+0.8665005[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ##             s7        s8        s9       s10       s11   
+    s12       s13[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam1 0.9078592 0.6734733 0.8567646 0.8545546 0.7283661 0.
+9760212 0.9929017[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam2 0.2538150 0.5642225 0.7433936 0.3209805 0.2527283 0.
+6632294 0.6069549[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam3 0.5312044 0.9311652 0.9700212 0.7434652 0.4290070 0.
+4713822 0.3061882[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam4 0.0110569 0.1930629 0.3448909 0.5225740 0.8325209 0.
+6467054 0.5844162[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ##            s14       s15       s16       s17        s18  
+     s19[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam1 0.3600841 0.4396899 0.7245471 0.9165410 0.15895290 0
+.2450278[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam2 0.6609636 0.2523587 0.4004014 0.8189681 0.58187297 0
+.2803102[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam3 0.3070374 0.3151407 0.2964818 0.2791626 0.64876625 0
+.4825279[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam4 0.5716370 0.2868293 0.4452123 0.2865703 0.03295695 0
+.5651676[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ##             s20       s21        s22       s23        s24
+        s25[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam1 0.80130799 0.5250635 0.02655553 0.4815083 0.43074812
+ 0.36418650[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam2 0.07725346 0.7186432 0.08732918 0.9140912 0.36130165
+ 0.03541891[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam3 0.64145169 0.8174649 0.84424209 0.7476501 0.00975025
+ 0.38198717[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam4 0.44501709 0.9719827 0.22280426 0.2310962 0.49727901
+ 0.72284429[] 
+ []
+
+[2] (./CompSign_knitr.aux) ) 
 Here is how much of TeX's memory you used:
- 1629 strings out of 492995
- 23743 string characters out of 6132704
- 82346 words of memory out of 5000000
- 5175 multiletter control sequences out of 15000+600000
- 7318 words of font info for 27 fonts, out of 8000000 for 9000
+ 1651 strings out of 492995
+ 24174 string characters out of 6132704
+ 87346 words of memory out of 5000000
+ 5193 multiletter control sequences out of 15000+600000
+ 7923 words of font info for 29 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,6n,25p,296b,234s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,6n,25p,584b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmtt10.pfb>
-Output written on CompSign_knitr.Rmw.pdf (1 page, 48252 bytes).
+fonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmtt10.pfb>
+Output written on CompSign_knitr.pdf (2 pages, 76568 bytes).
 PDF statistics:
- 32 PDF objects out of 1000 (max. 8388607)
- 22 compressed objects within 1 object stream
+ 39 PDF objects out of 1000 (max. 8388607)
+ 27 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
