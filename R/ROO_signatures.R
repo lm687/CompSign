@@ -162,9 +162,9 @@ setMethod("summarise", "sign", function(obj, ...){
 ## Function 2 signature-co-oc ##
 ################################
 setGeneric("within_signature_analysis", function(obj, ...) standardGeneric("summarise"))
-setMethod("summarise", "sign", function(obj, ...){
+#setMethod("summarise", "sign", function(obj, ...){
   ### calculate the co-ocurrence of mutationl signatures in samples
-})
+#})
 
 ############################################
 ## Function 3 comparison with other signs ##
@@ -240,3 +240,48 @@ link_to_clinical_data <- function(predictors, response){
 #
 # comp_lm(tmp_merged_compositional, 1)
 #
+
+dum_sign <- new("sign",
+                id="dum1",
+                id_samples=c("sam1", "sam2", "sam3"),
+                id_signatures= c('s1', 's2', 's3', 's4'), ## signature names
+                count_matrix=MCMCpack::rdirichlet(3, c(1,1,1,1)),
+                modified=FALSE)
+d <- readRDS("~/Desktop/tcga_ov_signature_exposures_20180926.rds")
+many_tcga <- new("sign",
+                 id='many_tcga',
+                 id_samples=rownames(d),
+                 id_signatures= colnames(d), ## signature names
+                 count_matrix=d,
+                 modified=FALSE)
+
+## TODO: add types of response (categorical, numerical, ...)
+dum_metadata <- new("metadata",
+                    id="dum1",
+                    id_samples=c("sam1", "sam2", "sam3"),
+                    df=data.frame(age=sample(1L:100L,3),
+                                  some_cat=as.character(letters[sample(1L:length(letters), 3)]),
+                                  stringsAsFactors = FALSE)
+)
+
+### Example of matrix transformed into sign object
+aaa <- matrix(runif(100), 4)
+colnames(aaa) <- paste0('s', 1:25); rownames(aaa) <- paste0('sam', 1:4)
+to_sign(aaa)
+
+input_dummy <- matrix(runif(100), 4)
+colnames(input_dummy) <- paste0('s', 1:25); rownames(input_dummy) <- paste0('sam', 1:4)
+sign_dummy <- to_sign(input_dummy)
+add_together_matrix(sign_dummy)
+summarise(add_together_matrix(sign_dummy))
+
+obj <- add_together_matrix(sign_dummy)
+list(General=paste0("Object of class ", class(obj)),
+     `Number of signatures` = ncol(obj@count_matrix),
+     `Number of samples` = nrow(obj@count_matrix),
+     `Geometric means of signatures`= sort(apply(obj@count_matrix, 2, function(x) exp(mean(log(x)))), decreasing=TRUE),
+     `Covariance` = compositions::var.acomp(obj@count_matrix))
+summarise(obj)
+
+
+summarise(to_sign(aaa))

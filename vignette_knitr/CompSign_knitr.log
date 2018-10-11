@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.22)  11 OCT 2018 16:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.22)  11 OCT 2018 16:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -188,7 +188,7 @@ ite-file
 
 Overfull \hbox (269.24464pt too wide) in paragraph at lines 83--84
 \OT1/cmtt/m/it/10 ##  '/private/var/folders/22/nzk7280n61jd5qrjhqm5cwph0000gn/T
-/RtmpceWJPx/devtools11ad37713d31/lm687-CompSign-bbca195'
+/RtmpaRfI49/devtools126035f4dffb/lm687-CompSign-9e7e0f6'
  []
 
 
@@ -228,116 +228,116 @@ Overfull \hbox (17.24684pt too wide) in paragraph at lines 154--154
 
 
 Overfull \hbox (17.24684pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam1 0.04494607 0.9459326 0.88127565 0.3946659 0.9847367 
-0.5334726[] 
+[]\OT1/cmtt/m/n/10 ## sam1 0.69062282 0.9672219 0.62562710 0.4690275 0.3792405 
+0.3305052[] 
  []
 
 
 Overfull \hbox (17.24684pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam2 0.85108295 0.1652019 0.41478690 0.3770054 0.9848871 
-0.8588562[] 
+[]\OT1/cmtt/m/n/10 ## sam2 0.86800022 0.5374467 0.76568801 0.4322634 0.2753126 
+0.8415556[] 
  []
 
 
 Overfull \hbox (17.24684pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam3 0.16437774 0.1669872 0.21936464 0.8102820 0.4609778 
-0.7109929[] 
+[]\OT1/cmtt/m/n/10 ## sam3 0.64362621 0.9752237 0.00378284 0.7490750 0.3070121 
+0.5930544[] 
  []
 
 
 Overfull \hbox (17.24684pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam4 0.09260736 0.4681254 0.04536973 0.3224658 0.1482561 
-0.2590526[] 
+[]\OT1/cmtt/m/n/10 ## sam4 0.04847638 0.3489585 0.62147883 0.6541067 0.7884039 
+0.1149209[] 
  []
 
 
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ##             s7         s8        s9       s10       s11  
+[]\OT1/cmtt/m/n/10 ##             s7        s8        s9       s10       s11   
      s12[] 
  []
 
 
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam1 0.7796631 0.11324627 0.4737555 0.3660501 0.2542280 0
-.2927717[] 
+[]\OT1/cmtt/m/n/10 ## sam1 0.2476189 0.2671283 0.9350574 0.1607936 0.9829997 0.
+74849315[] 
  []
 
 
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam2 0.3743002 0.42067263 0.1832577 0.4582543 0.1223438 0
-.2661635[] 
+[]\OT1/cmtt/m/n/10 ## sam2 0.9642939 0.1429171 0.8887744 0.5944088 0.3479853 0.
+01735148[] 
  []
 
 
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam3 0.2568477 0.07727454 0.6250180 0.8761233 0.1428893 0
-.4881740[] 
+[]\OT1/cmtt/m/n/10 ## sam3 0.6558196 0.7022031 0.7404642 0.9200056 0.1216139 0.
+10969063[] 
  []
 
 
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam4 0.4979492 0.17051955 0.2249406 0.9196784 0.4623768 0
-.1407447[] 
+[]\OT1/cmtt/m/n/10 ## sam4 0.3796913 0.9544759 0.0389055 0.1701060 0.1088946 0.
+79154432[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ##            s13       s14       s15        s16       s17  
+       s18[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam1 0.2468711 0.2528405 0.1091815 0.47610287 0.4663671 0
+.568263970[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam2 0.7659235 0.4322539 0.4948362 0.01784807 0.4699570 0
+.686851704[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam3 0.5319617 0.7745123 0.9250779 0.75015802 0.6404996 0
+.967007244[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 154--154
+[]\OT1/cmtt/m/n/10 ## sam4 0.2284532 0.5147217 0.0573016 0.68066105 0.9029872 0
+.006497333[] 
  []
 
 
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ##            s13       s14       s15       s16       s17   
-     s18[] 
+[]\OT1/cmtt/m/n/10 ##             s19       s20       s21       s22       s23  
+     s24[] 
  []
 
 
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam1 0.7688104 0.5593506 0.5991378 0.2567221 0.3007133 0.
-64456791[] 
+[]\OT1/cmtt/m/n/10 ## sam1 0.02072342 0.5540116 0.1666626 0.9759731 0.9222873 0
+.9100258[] 
  []
 
 
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam2 0.3116331 0.4513631 0.9762848 0.9834179 0.1796476 0.
-91491317[] 
+[]\OT1/cmtt/m/n/10 ## sam2 0.26439342 0.8918922 0.0970714 0.5567672 0.3699065 0
+.1574611[] 
  []
 
 
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam3 0.5135778 0.2974684 0.4756830 0.8267806 0.2941601 0.
-94181612[] 
+[]\OT1/cmtt/m/n/10 ## sam3 0.70919774 0.4136969 0.1278325 0.5543108 0.2466200 0
+.5141574[] 
  []
 
 
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam4 0.6126832 0.8479827 0.5370032 0.9067558 0.3266194 0.
-08701186[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ##             s19        s20       s21        s22       s23
-        s24[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam1 0.26302844 0.41389117 0.9079563 0.08464190 0.4967340
- 0.81036391[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam2 0.78164722 0.86066560 0.7922283 0.39374352 0.8150022
- 0.64902957[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam3 0.02185266 0.60821777 0.5645052 0.01485438 0.2569835
- 0.38201556[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 154--154
-[]\OT1/cmtt/m/n/10 ## sam4 0.31598495 0.08136767 0.8527674 0.51505592 0.1944197
- 0.08814193[] 
+[]\OT1/cmtt/m/n/10 ## sam4 0.72029902 0.7122125 0.4794626 0.4493202 0.1392915 0
+.6068766[] 
  []
 
 [2] [3] (./CompSign_knitr.aux) ) 
@@ -357,7 +357,7 @@ blic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmtt10.pfb>
-Output written on CompSign_knitr.pdf (3 pages, 77726 bytes).
+Output written on CompSign_knitr.pdf (3 pages, 77257 bytes).
 PDF statistics:
  42 PDF objects out of 1000 (max. 8388607)
  29 compressed objects within 1 object stream
