@@ -1,0 +1,36 @@
+original_mat_gen <- read.table("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/data/ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/mutational_catalogs/tmp/all_genomes",
+                                stringsAsFactors = FALSE, fill = TRUE, sep='\t')
+original_mat_gen_clean <- read.table("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/data/ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/mutational_catalogs/tmp/all_genomes_clean",
+                               stringsAsFactors = FALSE, fill = FALSE, sep=' ')
+# names_samples <- original_mat_gen[1,]
+
+sign_emu <- read.table("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/out/signatures_out/EMu_out/alexv_ftp_genomes/_8_ml_spectra.txt")
+assigned <- read.table("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/out/signatures_out/EMu_out/alexv_ftp_genomes/_8_assigned.txt")
+sign_emu
+
+dim(sign_emu)
+dim(assigned)
+
+par(mfrow=c(2,4))
+apply(assigned, 2, plot, type='h')
+
+colnames(sign_emu) <- names_samples[-1]
+colnames(sign_emu)
+
+library(compositions)
+
+plot(ccomp(t(sign_emu)), pch=19, cex=0.1)
+
+header_genomes <- read.table("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/data/ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/mutational_catalogs/tmp/all_genomes",
+                     sep = '\t', fill = TRUE, stringsAsFactors = FALSE)
+header_exomes <- read.table("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/data/ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/mutational_catalogs/tmp/all_exomes",
+                     sep = '\t', fill = TRUE, stringsAsFactors = FALSE)
+
+plot(ccomp(t(sign_emu)), pch=19, cex=0.1, col=)
+
+
+## why aren't
+dim(original_mat_gen_clean)[2]
+## and
+dim(original_mat_gen)[2]
+## the same?

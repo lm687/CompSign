@@ -1,0 +1,49 @@
+##https://github.com/lgatto/TeachingMaterial/blob/master/_roo/roo.pdf
+
+require(compositions)
+
+setClass("sign",
+         representation = representation(
+           id = "character",
+           id_samples = "character",
+           id_categories = "character",
+           count_matrix = "matrix"
+         ))
+
+dum_sign <- new("sign",
+                id='dum1',
+                id_samples=c("s1", "s2", "s3"),
+                id_categories=c("c1", "c2", "c3"),
+                count_matrix=matrix(sample(1:100, 9), 3)
+                )
+
+dum_sign@id
+
+setGeneric("to_aitchison", function(x) standardGeneric("to_aitchison"))
+setMethod("to_aitchison", "sign", function(x)
+  acomp(x@count_matrix))
+
+setGeneric("id", function(obj, ...) standardGeneric("id"))
+setMethod("id", "sign", function(obj, ...)
+  obj@id)
+
+
+setGeneric("id<-",
+           function(object, value) standardGeneric("id<-"))
+setReplaceMethod("id",
+                 signature(object="sign",
+                           value="character"),
+                 function(object, value){
+                   object@id <- value
+                   return(object)
+                 })
+id(dum_sign) <- "some other id" ##??
+
+
+setMethod("show",
+          "sign",
+          function(object){
+            cat("Object of class", class(object), "\n")
+            cat(" Id:", id(object), "\n")
+          })
+dum_sign

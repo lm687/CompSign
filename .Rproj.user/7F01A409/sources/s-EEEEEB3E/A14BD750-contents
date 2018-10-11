@@ -1,0 +1,237 @@
+rm(list = ls())
+
+library(compositions)
+
+join_with_clinical_raw <- readRDS("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/code/objects/join_with_clinical_raw")
+
+signature_cols_join_with_clinical <- grepl('Signature',colnames(join_with_clinical_raw))
+
+### join_with_clinical_raw from cda_560BRCA needs to be loaded
+
+par(mfrow=c(1,2))
+plot(rcompmargin(acomp(join_with_clinical_raw[,signature_cols_join_with_clinical]), d=c('Signature.3', 'Signature.1')),
+     col=alpha(colorRampPalette(c("blue", "red"))(length(unique(join_with_clinical_raw[,'donor_age_at_diagnosis'])))[as.factor(join_with_clinical_raw[,'donor_age_at_diagnosis'])], 0.3), pch=19, cex=1)
+#plot(rcompmargin(acomp(join_with_clinical_norm[,signature_cols_join_with_clinical]), d=c('Signature.3', 'Signature.1')),
+#     col=alpha(colorRampPalette(c("blue", "red"))(length(unique(join_with_clinical_raw[,'donor_age_at_diagnosis'])))[as.factor(join_with_clinical_norm[,'donor_age_at_diagnosis'])], 0.3), pch=19, cex=1)
+
+par(mfrow=c(1,1))
+plot(clr(acomp(join_with_clinical_raw[,signature_cols_join_with_clinical]))[,'Signature.1'],
+     as.numeric(join_with_clinical_raw[,'donor_age_at_diagnosis']))
+
+ggplot(cbind.data.frame(clrs=clr(acomp(join_with_clinical_raw[,signature_cols_join_with_clinical]))[,'Signature.1'],
+                 age=as.numeric(join_with_clinical_raw[,'donor_age_at_diagnosis'])),
+        aes(x=clrs, y=age))+
+  geom_point()+
+  geom_smooth(method='lm')
+
+
+plot(((join_with_clinical_raw[,signature_cols_join_with_clinical]))[,'Signature.1'],
+     as.numeric(join_with_clinical_raw[,'donor_age_at_diagnosis']))
+
+
+plot(rcomp(join_with_clinical_raw[,signature_cols_join_with_clinical]),
+     col=alpha(colorRampPalette(c("blue", "red"))(length(unique(join_with_clinical_raw[,'donor_age_at_diagnosis'])))[as.factor(join_with_clinical_raw[,'donor_age_at_diagnosis'])], 0.3), pch=19, cex=1)
+
+## signature #1 vs signature #4
+## signature #2 vs signature #4
+## signature #4 vs signature #6
+colnames(join_with_clinical_raw)[c(1,2,4,6)]
+
+par(mfrow=c(1,1))
+plot(rcompmargin(acomp(join_with_clinical_raw[,signature_cols_join_with_clinical]), d = c(1,2)),
+     col=alpha(colorRampPalette(c("blue", "red"))(length(unique(join_with_clinical_raw[,'tumour_grade'])))[as.factor(join_with_clinical_raw[,'tumour_grade'])], 0.3), pch=19, cex=1)
+
+alr(acomp(join_with_clinical_raw[,signature_cols_join_with_clinical]))
+
+plot(acomp(join_with_clinical_raw[,c(1,6,4)]),
+     col=alpha(colorRampPalette(c("blue", "red"))(length(unique(join_with_clinical_raw[,'tumour_grade'])))[as.factor(join_with_clinical_raw[,'tumour_grade'])], 0.3),
+     pch=19, cex=0.6)
+legend(0.1, 0, levels(as.factor(join_with_clinical_raw[,'tumour_grade'])),
+       col = colorRampPalette(c("blue", "red"))(length(unique(join_with_clinical_raw[,'tumour_grade']))))
+
+###########################
+# Tobacco and signature 4 and 5 # not in this dataset
+###########################
+colnames(join_with_clinical_raw[signature_cols_join_with_clinical])
+unlist(t(colnames(join_with_clinical_raw[!signature_cols_join_with_clinical])))
+
+unique(join_with_clinical_raw$smoking.history) # what does 'ever' mean?!
+
+## Here there seems to be a pattern
+plot(rcompmargin(acomp(join_with_clinical_raw[,signature_cols_join_with_clinical]), d = c(1,4)),
+     col=alpha(colorRampPalette(c("green", "red"))(length(unique(join_with_clinical_raw[,'tumour_grade'])))[as.factor(join_with_clinical_raw[,'tumour_grade'])], 0.3),
+     pch=19, cex=0.6)
+
+plot(acompmargin(acomp(join_with_clinical_raw[,signature_cols_join_with_clinical]), d = c(1,2,4)),
+     col=alpha(colorRampPalette(c("blue", "red"))(length(unique(join_with_clinical_raw[,'tumour_grade'])))[as.factor(join_with_clinical_raw[,'tumour_grade'])], 0.3), pch=19, cex=1)
+
+plot(acomp(join_with_clinical_raw[,c(1,6,4)]),
+     col=alpha(colorRampPalette(c("green", "red"))(length(unique(join_with_clinical_raw[,'smoking.history'])))[as.factor(join_with_clinical_raw[,'smoking.history'])], 0.3),
+     pch=19, cex=0.6)
+
+## represent y against all pairwise log ratios of X
+## (analysisng com data with r pg 104)
+
+join_with_clinical_raw_with_pseudocount <- join_with_clinical_raw
+join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical] <- join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]+1e-7
+
+log(join_with_clinical_raw_with_pseudocount[,1]/join_with_clinical_raw_with_pseudocount[,2])
+
+tmp_plot_x <- outer(1:sum(signature_cols_join_with_clinical),
+      1:sum(signature_cols_join_with_clinical),
+      function(x,y) log(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical][,x]/join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical][,y]))
+
+boxplot(as.factor(join_with_clinical_raw_with_pseudocount$smoking.history),
+        tmp_plot_x[,2]) #??
+
+join_with_clinical_raw_with_pseudocount$donor_age_at_diagnosis[join_with_clinical_raw_with_pseudocount$donor_age_at_diagnosis == "over_80"] <- 80
+join_with_clinical_raw_with_pseudocount$donor_age_at_diagnosis <- as.numeric(join_with_clinical_raw_with_pseudocount$donor_age_at_diagnosis)
+resp_cols <- which(!signature_cols_join_with_clinical)
+resp_cols <- which(colnames(join_with_clinical_raw_with_pseudocount)=='donor_age_at_diagnosis')
+for(resp in resp_cols){
+  summary(lm(join_with_clinical_raw_with_pseudocount[,resp]~alr(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]))))
+}
+
+## sign for signature 2 and signature #D
+plot(alr(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]))[,2],
+     join_with_clinical_raw_with_pseudocount[,resp])
+library(ggplot2)
+
+random_colours <- sample(colors()[-c(1, 253, 361)], 10L)
+ugly <- define_palette(
+  swatch = random_colours,
+  gradient = c(lower = random_colours[1L], upper = random_colours[2L])
+)
+
+ggthemr('pale')
+#ggthemr(ugly)
+ggplot(cbind.data.frame(x=alr(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]))[,2],
+                       y=join_with_clinical_raw_with_pseudocount[,resp]), aes(x=x,y=y))+
+  geom_point(alpha=0.2)+
+  geom_smooth(method='lm',formula=y~x)+
+  labs(x='alr with respect to last composition', y='response (age)')
+ggsave("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/text/progress/progress_figures/cor_age_sign2.png")
+
+png("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/text/progress/progress_figures/140918_contribution_signatures.png")
+heatmap(log(t(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]))), scale = 'none')
+dev.off()
+
+library(pheatmap)
+to_pheat <- (t(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical])))
+colnames(to_pheat) <- NULL
+png("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/text/progress/progress_figures/140918_contribution_signatures.png")
+pheatmap(to_pheat, scale = 'none')
+dev.off()
+
+## Here there seems to be a pattern
+cols_list <- colorRampPalette(c("green", "red"))(length(unique(join_with_clinical_raw_with_pseudocount[,'donor_age_at_diagnosis'])))
+png("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/text/progress/progress_figures/140918_ternary_age_sign2.png")
+plot(rcompmargin(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]), d = c(2,12)),
+     col=alpha(cols_list[as.factor(join_with_clinical_raw_with_pseudocount[,'donor_age_at_diagnosis'])], 0.3),
+     pch=19, cex=1.6)
+legend(-0.1, 1, legend=levels(factor(join_with_clinical_raw_with_pseudocount[,'donor_age_at_diagnosis'][c(1,length(cols_list))])),
+       col=cols_list[c(1,length(cols_list))],
+       lty=1:2, x.intersp=0.3, y.intersp=0.3,
+       cex = 0.9, text.width=0.05, bty = "n", seg.len=0.5)
+dev.off()
+## issues with that above:
+## - pseudocounts
+## - all over 80 have been set to 80 (without it it would have been an even clearer trend)
+
+
+
+### 2nd and 7th seem to be correlated
+plot(rcompmargin(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]), d = c(2,7)))
+plot(acompmargin(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]), d = c(2,7)),
+     col=alpha('red', 0.1), pch=19)
+
+plot(alr(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]))[,c(2,7)],
+     pch=19, cex=0.3, col=alpha('black', 0.2),
+     xlab='alr signature #2',  ylab='alr signature #7')
+
+## remove samples with zeroes
+join_with_clinical_raw_curated_27 <- join_with_clinical_raw_with_pseudocount[!apply(join_with_clinical_raw[,c(2,7)], 1, function(x) any(x == 0)),]
+plot(alr(acomp(join_with_clinical_raw_curated_27[,signature_cols_join_with_clinical]))[,c(2,7)],
+     pch=19, cex=0.3, col=alpha('black', 0.2),
+     xlab='alr signature #2 (2)',  ylab='alr signature #7 (13)')
+
+
+### for random
+par(mfrow=c(3,3))
+for(i in 1:9){
+  sam <- sample(x = 1:(sum(signature_cols_join_with_clinical)-1), size = 2, replace = FALSE)
+  plot(alr(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]))[,c(sam[1], sam[2])],
+       pch=19, cex=0.3, col=alpha('black', 0.2),
+       xlab=paste0('alr signature # ', sam[1]),  ylab=paste0('alr signature # ', sam[2]))
+
+}
+## fit model?
+
+png("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/text/progress/progress_figures/140918_pairs_alr_56_BRCA.png")
+pairs(alr(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical])),
+      cex=0.2, pch=19, col=alpha('black', 0.3))
+dev.off()
+cat("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/text/progress/progress_figures/140918_pairs_alr_56_BRCA.png created")
+
+
+par(mfrow=c(2,2))
+plot(alr(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]))[,c(4,10)],
+     pch=19, cex=0.3, col=alpha('black', 0.2),
+     xlab='alr signature #4',  ylab='alr signature #1')
+plot(rcompmargin(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]), d = c(4,10)),
+     pch=19, col=alpha('black', 0.05))
+
+plot(acompmargin(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]), d = c(4,10)),
+     pch=19, col=alpha('black', 0.1))
+
+################################
+#           (#1, #2)           #
+################################
+
+n <- 60
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = rev(unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals))))
+
+plot(rcompmargin(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]), d = c(1,2)),
+     pch=19, col=alpha('black', 0.1))
+
+par(mfrow=c(3,3))
+for(i in which(!signature_cols_join_with_clinical)){
+  plot(rcompmargin(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]), d = c(1,2)),
+       col=alpha(col_vector[as.factor(join_with_clinical_raw_with_pseudocount[,i])], 0.2),
+       pch=19)
+  text(0.2,1, colnames(join_with_clinical_raw_with_pseudocount)[i])
+}
+
+#par(mfrow=c(3,3))
+pdf("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/text/progress/progress_figures/140918_pairs12.pdf")
+for(i in which(!signature_cols_join_with_clinical)){
+  plot(rcompmargin(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]), d = c(1,2)),
+       col=alpha(col_vector[as.factor(join_with_clinical_raw_with_pseudocount[,i])], 0.2),
+       pch=19, col.lab='white', col.axis='white')
+  text(0.2,1, colnames(join_with_clinical_raw_with_pseudocount)[i],
+       col='white')
+}
+dev.off()
+
+pdf("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/text/progress/progress_figures/140918_pairs13.pdf")
+for(i in which(!signature_cols_join_with_clinical)){
+  plot(rcompmargin(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical]), d = c(1,3)),
+       col=alpha(col_vector[as.factor(join_with_clinical_raw_with_pseudocount[,i])], 0.2),
+       pch=19, col.lab='black', col.axis='black')
+  text(0.2,1, colnames(join_with_clinical_raw_with_pseudocount)[i],
+       col='black')
+}
+dev.off()
+
+plot(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical][,c(1,2,3)]),
+     pch=19, col=alpha(col_vector[as.factor(join_with_clinical_raw_with_pseudocount$final.ER)], 0.2))
+plot(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical][,c(1,2,3)]),
+     pch=19, col=alpha(col_vector[as.factor(join_with_clinical_raw_with_pseudocount$final.PR)], 0.2))
+
+###############
+par(mfrow=c(1,2))
+plot(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical][,c(4,10,sum(signature_cols_join_with_clinical))]),
+     pch=19, col=alpha('black', 0.1))
+plot(acomp(join_with_clinical_raw_with_pseudocount[,signature_cols_join_with_clinical][,c(2,10,sum(signature_cols_join_with_clinical))]),
+     pch=19, col=alpha('black', 0.1))

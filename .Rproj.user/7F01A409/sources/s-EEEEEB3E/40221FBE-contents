@@ -1,0 +1,189 @@
+### Cosmic probabilitities
+rm(list = ls())
+
+library(compositions)
+library(graphics)
+library(ggplot2)
+library(R.matlab)
+library(gtools)
+library(gdata)
+library(gplots)
+library(RColorBrewer)
+
+script_folder <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(script_folder)
+
+cosmic <- read.table("../../data/cosmic/signatures_probabilities.txt",
+                     sep = '\t', header = TRUE)
+head(cosmic)
+
+cosmic <- cosmic[,!(apply(cosmic, 2, function(x) sum(is.na(x))/nrow(cosmic)) == 1)]
+
+compositions_cosmic <- acomp(t(cosmic[,-c(1:3)]))
+head(compositions_cosmic)
+rowSums(compositions_cosmic)
+
+
+plot(hclust(dist(acomp(compositions_cosmic))))
+colLab <- function(n) {
+  if(is.leaf(n)) {
+    a <- attributes(n)
+    attr(n, "label") <- gsub('Signature.', '', a$label)             #  change the node label 
+    attr(n, "nodePar") <- c(a$nodePar, lab.col = 'red') #   change the node color
+  }
+  n
+}
+clusDendro <- dendrapply(as.dendrogram(hclust(dist(compositions_cosmic))), colLab)
+plot(clusDendro,horiz=T)
+
+plot(acomp(t(compositions_cosmic[4:7,])), pch=19, cex=0.4)
+
+### Comparing COSMIC signatures to those from Alexandrov et at
+###   (maybe COSMIC is based on those analyses anyway?)
+
+read_in_other_signatures <- function(type_alexandrov){
+  ## within the alexandrov folder
+  
+  if(type_alexandrov == 'WES100BRCA'){
+  type <- c('100_WES_BRCA',
+            '100_breast_WES_substitutions_strand_bias.mat')
+  }else if(type_alexandrov == 'WGS21BRCA'){
+    type <- c('21_WGS_BRCA',
+              '21_breast_WGS_substitutions.mat')
+  }else{
+    stop('specify WES100BRCA/WGS21BRCA')
+  }
+  tmpfolder <- paste0("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/data/alexandrov/Archive/output/", type[1], "/full/")
+  tmp_input <- readMat(paste0("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/data/alexandrov/Archive/input/", type[2]))
+  tmp_mat <- lapply(mixedsort(list.files(tmpfolder,
+                                               full.names = TRUE)),
+                          readMat)
+  tmp_mat <- lapply(tmp_mat, function(x) {colnames(x$exposures) <- as.vector(unlist(tmp_input$sampleNames));
+  x})
+  #tmp_mat <- lapply(tmp_mat, function(x) {rownames(x$processes) <- as.vector(unlist(tmp_input$subtypes));
+  #colnames(x$processes) <- as.vector(unlist(tmp_input$subtypes));
+  #x})
+  tmp_mat
+}
+
+
+######################################################
+############### nature12477 signatures ###############
+######################################################
+
+WES100BRCA <- read_in_other_signatures('WES100BRCA')
+WGS21BRCA <- read_in_other_signatures('WGS21BRCA')
+input_21WGS <- readMat("/Users/lena/Documents/CantabPhD/CDA_in_Cancer/data/alexandrov/Archive/input/21_breast_WGS_substitutions.mat")
+
+
+######################################################
+############### nature17676 signatures ###############
+######################################################
+
+gitfolder <- '/Users/lena/Documents/CantabPhD/CDA_in_Cancer/'
+
+signatures560BRCA = read.xls(paste0(gitfolder,
+                      "data/nature17676-s3/Supplementary.Table.21.Signatures.v3.xlsx"),
+               sheet = 2, header = TRUE, stringsAsFactors=FALSE)
+cols_label <- 1:2
+cols_prop <- 3:ncol(signatures560BRCA)
+for(l in cols_label){
+  signatures560BRCA[,l] <- sapply(signatures560BRCA[,l], as.character)
+}
+
+## Remove percentage sign
+for(p in cols_prop){
+  signatures560BRCA[,p] <- sapply(signatures560BRCA[,p], gsub, patter="%", replacement="")
+  signatures560BRCA[,p] <- sapply(signatures560BRCA[,p], as.numeric)
+}
+
+colSums(signatures560BRCA[,cols_prop])
+
+head(signatures560BRCA)
+nrow(signatures560BRCA)
+
+#############################################
+################### MATCH ###################
+#############################################
+
+colnames(signatures560BRCA) <- paste0('BRCA560_', colnames(signatures560BRCA))
+colnames(WGS21BRCA[[10]]$processes) <- paste0('BRCA21_', 1:ncol(WGS21BRCA[[10]]$processes))
+
+rownames(WGS21BRCA[[10]]$processes) <- apply(cbind(unlist(input_21WGS$subtypes),
+                                           unlist(input_21WGS$types)), 1, paste0, collapse='_')
+
+rownames(signatures560BRCA) <- apply(cbind(signatures560BRCA$BRCA560_Sequence.Context,
+                                           signatures560BRCA$BRCA560_Substitution),
+                                     1, paste0, collapse='_')
+
+signatures560BRCA <- signatures560BRCA[match(rownames(WGS21BRCA[[10]]$processes),
+                                       rownames(signatures560BRCA)),]
+all(rownames(signatures560BRCA) == rownames(WGS21BRCA[[10]]$processes))
+signatures560BRCA <- signatures560BRCA[,-c(1,2)]
+
+both_signatures <- cbind(signatures560BRCA, WGS21BRCA[[10]]$processes)
+
+##########
+cosmic_tidy <- cosmic[,4:ncol(cosmic)]
+rownames(cosmic_tidy) <- apply(cbind(as.character(unlist(cosmic$Trinucleotide)),
+                                     as.character(unlist(cosmic$Substitution.Type))), 1, paste0, collapse='_')
+colnames(cosmic_tidy) <- sapply(colnames(cosmic_tidy), function(x) paste0(x, '_cosmic'))
+################
+
+if(!all(match(rownames(cosmic_tidy), rownames(both_signatures)) == 1:96)){
+  stop('sorting incorrect')
+}
+
+all_signatures <- cbind(both_signatures, cosmic_tidy)
+
+
+par(mfrow=c(1,1))
+plot(hclust(dist(acomp(t(all_signatures)))))
+
+library(ggdendro)
+require(dendextend)
+
+give_colour <- function(x){
+  if(grepl('BRCA21', x)){
+    'BRCA21'
+  }else if(grepl('BRCA560', x)){
+    'BRCA560'
+  }else if(grepl('cosmic', x)){
+    'cosmic'
+  }else{
+    'error'
+  }
+}
+
+tmp_toplot_dendro <- as.dendrogram(hclust(dist(acomp(t(all_signatures)))))
+d1=color_branches(tmp_toplot_dendro,k=ncol(all_signatures), col =as.factor(sapply(colnames(all_signatures),
+                                                      give_colour)))
+plot(d1, rotate=90) ## didn't work!
+
+#tmp_toplot_dendro <- cbind.data.frame(tmp_toplot_dendro,
+#                                      col=rep('red', nrow(tmp_toplot_dendro)))
+ggplot(as.ggdend(tmp_toplot_dendro), horiz=TRUE)
+
+
+### cosine distance (same as Aitchison)
+cos.dist <- function(ix) 
+{
+  A = all_signatures[ix[1],]
+  B = all_signatures[ix[2],]
+  tmp <- sum(A*B)/sqrt(sum(A^2)*sum(B^2))
+  sqrt(2*(1-tmp))
+}
+
+cos_res <- outer(1:ncol(all_signatures), 1:ncol(all_signatures),
+                 Vectorize(function(x,y) {cos.dist(c(x,y))}))
+rownames(cos_res) <- colnames(cos_res) <- colnames(all_signatures)
+
+col1 <- brewer.pal(8, "Set2")
+png("../../text/progress/progress_figures/brca_and_COSMIC_cosine.png")
+heatmap.2(cos_res,
+          RowSideColors = col1[as.factor(sapply(colnames(cos_res), give_colour))],
+          ColSideColors = col1[as.factor(sapply(colnames(cos_res), give_colour))],
+          trace = 'none', margins=c(12,12))
+dev.off()
+
+#, trace = NULL)

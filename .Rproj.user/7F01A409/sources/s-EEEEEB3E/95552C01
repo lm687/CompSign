@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538737585070.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3104522151",
+    "id" : "95552C01",
+    "lastKnownWriteTime" : 1539014436,
+    "last_content_update" : 1539014436936,
+    "path" : "~/Documents/CantabPhD/CDA_in_Cancer/code/exploratory/EMu_spectra/emu_spectra.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "35,12",
+        "scrollLine" : "0",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

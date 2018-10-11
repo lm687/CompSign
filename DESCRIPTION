@@ -1,0 +1,18 @@
+Package: CompSign
+Type: Package
+Title: Study of mutational signatures using compositional data analysis (CoDA) techniques
+Version: 0.1.0
+Author: Lena Morrill
+Maintainer: The package maintainer <lm687@cam.ac.uk>
+Description: It is generally overlooked that mutational signatures are compositional in
+    nature. It follows that their analysis warrants techniques alternative to euclidean
+    space multivariate analysis. In this package a matrix of signatures of type 'sign'
+    can be subject to descriptive analysis, ... (cont.)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+    ggplot2,
+    compositions,
+    MASS,
+    MCMCpack

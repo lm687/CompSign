@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538667661440.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1448706273",
+    "id" : "F6E56AD2",
+    "lastKnownWriteTime" : 1539077043,
+    "last_content_update" : 1539077043960,
+    "path" : "~/Documents/CantabPhD/CDA_in_Cancer/code/simulations/package_compositions_with_sim_data.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "77,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

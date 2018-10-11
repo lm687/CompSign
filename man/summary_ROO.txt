@@ -1,0 +1,25 @@
+input:
+	- matrix of counts (per mutational category), or matrix of counts/frations (per signature)
+	- clinical data
+
+output:
+	- summary (highest signature, etc.)
+	- relation between signatures
+	- similarity between signatures
+	- relation to clinical data
+		- comparisons with logcontrasts
+	- biplot (logcontrasts)
+	- create summary markdown
+	- correlation between signatures: with relative variance
+	- regression/LDA
+	- prediction: pg 110, 111
+
+functions
+- nmf can be a c implementation
+
+
+other:
+	- simulated datasets http://r-pkgs.had.co.nz/data.html
+
+Analyses to repeat:
+- logistic normal regression with logcontrast as the regressor, as in http://ima.udg.edu/Activitats/CoDaWork03/paper_Thomas_and_Aitchsion.pdf

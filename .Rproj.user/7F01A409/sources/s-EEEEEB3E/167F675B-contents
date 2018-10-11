@@ -1,0 +1,20 @@
+\documentclass{article}
+
+\title{Package \textbf{CompSign}}
+\author{Lena Morrill}
+\date{October 2017}
+
+\begin{document}
+
+\maketitle
+
+<<>>=
+## load package
+@
+
+<<>>=
+x <- 8
+@
+
+
+\end{document}
