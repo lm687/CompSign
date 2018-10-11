@@ -35,7 +35,18 @@ sign_dummy <- to_sign(input_dummy)
 \section{Summarise the signature matrix}
 <<>>=
 add_together_matrix(sign_dummy)
-summarise(add_together_matrix(sign_dummy))
+results_sumarise <- summarise(add_together_matrix(sign_dummy))
+results_sumarise$General
 @
 
+\section{Linear model for numerical predictors}
+<<>>=
+tmp_merged_compositional <- new("merged_compositional",
+                                id='adas',
+                                id_samples=c("sam1", "sam2", "sam3"),
+                                id_signatures= c('s1', 's2', 's3', 's4'), ## signature names
+                                count_matrix=MCMCpack::rdirichlet(3, c(1,1,1,1)),
+                                df=data.frame(a=c(3,4,1), b=c(10, 10, 10)))
+comp_lm(tmp_merged_compositional)
+@
 \end{document}
