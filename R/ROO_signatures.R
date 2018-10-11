@@ -233,54 +233,54 @@ link_to_clinical_data <- function(predictors, response){
 #########################################
 ############### DEBUGGING ###############
 #########################################
-
-link_to_clinical_data(dum_sign, dum_metadata)
-
-comp_lm(tmp_merged_compositional, 1)
-
-
-dum_sign <- new("sign",
-                id="dum1",
-                id_samples=c("sam1", "sam2", "sam3"),
-                id_signatures= c('s1', 's2', 's3', 's4'), ## signature names
-                count_matrix=MCMCpack::rdirichlet(3, c(1,1,1,1)),
-                modified=FALSE)
-d <- readRDS("~/Desktop/tcga_ov_signature_exposures_20180926.rds")
-many_tcga <- new("sign",
-                 id='many_tcga',
-                 id_samples=rownames(d),
-                 id_signatures= colnames(d), ## signature names
-                 count_matrix=d,
-                 modified=FALSE)
-
-## TODO: add types of response (categorical, numerical, ...)
-dum_metadata <- new("metadata",
-                    id="dum1",
-                    id_samples=c("sam1", "sam2", "sam3"),
-                    df=data.frame(age=sample(1L:100L,3),
-                                  some_cat=as.character(letters[sample(1L:length(letters), 3)]),
-                                  stringsAsFactors = FALSE)
-)
-
-## Example of matrix transformed into sign object
-aaa <- matrix(runif(100), 4)
-colnames(aaa) <- paste0('s', 1:25); rownames(aaa) <- paste0('sam', 1:4)
-to_sign(aaa)
-
-input_dummy <- matrix(runif(100), 4)
-colnames(input_dummy) <- paste0('s', 1:25); rownames(input_dummy) <- paste0('sam', 1:4)
-sign_dummy <- to_sign(input_dummy)
-add_together_matrix(sign_dummy)
-summarise(add_together_matrix(sign_dummy))
-
-summarise(to_sign(aaa))
-
-
-## example of comp_lm
-tmp_merged_compositional <- new("merged_compositional",
-                                id='adas',
-                                id_samples=c("sam1", "sam2", "sam3"),
-                                id_signatures= c('s1', 's2', 's3', 's4'), ## signature names
-                                count_matrix=MCMCpack::rdirichlet(3, c(1,1,1,1)),
-                                df=data.frame(a=c(3,4,1), b=c(10, 10, 10)))
-comp_lm(tmp_merged_compositional)
+#
+# link_to_clinical_data(dum_sign, dum_metadata)
+#
+# comp_lm(tmp_merged_compositional, 1)
+#
+#
+# dum_sign <- new("sign",
+#                 id="dum1",
+#                 id_samples=c("sam1", "sam2", "sam3"),
+#                 id_signatures= c('s1', 's2', 's3', 's4'), ## signature names
+#                 count_matrix=MCMCpack::rdirichlet(3, c(1,1,1,1)),
+#                 modified=FALSE)
+# d <- readRDS("~/Desktop/tcga_ov_signature_exposures_20180926.rds")
+# many_tcga <- new("sign",
+#                  id='many_tcga',
+#                  id_samples=rownames(d),
+#                  id_signatures= colnames(d), ## signature names
+#                  count_matrix=d,
+#                  modified=FALSE)
+#
+# ## TODO: add types of response (categorical, numerical, ...)
+# dum_metadata <- new("metadata",
+#                     id="dum1",
+#                     id_samples=c("sam1", "sam2", "sam3"),
+#                     df=data.frame(age=sample(1L:100L,3),
+#                                   some_cat=as.character(letters[sample(1L:length(letters), 3)]),
+#                                   stringsAsFactors = FALSE)
+# )
+#
+# ## Example of matrix transformed into sign object
+# aaa <- matrix(runif(100), 4)
+# colnames(aaa) <- paste0('s', 1:25); rownames(aaa) <- paste0('sam', 1:4)
+# to_sign(aaa)
+#
+# input_dummy <- matrix(runif(100), 4)
+# colnames(input_dummy) <- paste0('s', 1:25); rownames(input_dummy) <- paste0('sam', 1:4)
+# sign_dummy <- to_sign(input_dummy)
+# add_together_matrix(sign_dummy)
+# summarise(add_together_matrix(sign_dummy))
+#
+# summarise(to_sign(aaa))
+#
+#
+# ## example of comp_lm
+# tmp_merged_compositional <- new("merged_compositional",
+#                                 id='adas',
+#                                 id_samples=c("sam1", "sam2", "sam3"),
+#                                 id_signatures= c('s1', 's2', 's3', 's4'), ## signature names
+#                                 count_matrix=MCMCpack::rdirichlet(3, c(1,1,1,1)),
+#                                 df=data.frame(a=c(3,4,1), b=c(10, 10, 10)))
+# comp_lm(tmp_merged_compositional)
