@@ -48,6 +48,8 @@ setClass("merged_compositional",
 ##   if (!is.numeric(x)) stop("X must be numeric")
 ##   structure(list(x), class = "foo")
 ## }
+
+#' Converts a matrix to a sign object
 to_sign <- function(x){
   x_sign_obj <- new("sign",
       id=deparse(substitute(x)), ## get name
@@ -58,8 +60,20 @@ to_sign <- function(x){
   x_sign_obj
 }
 
+#' Convert a 'sign' object to a 'merged_compositional_to_sign'
+#' (note loss of information)
+merged_compositional_to_sign <- function(x){
+  x_sign_obj <- new("sign",
+                    id=x@id, ## get name
+                    id_samples=x@id_samples,
+                    id_signatures= x@id_signatures,
+                    count_matrix=x@count_matrix)
+  x_sign_obj
+}
+
 ###################################
 ############# CURRENT #############
+#' It computes the LDA for categorical responses (??? need to change? they are actually the predictors)
 comp_lda <- function(x, indices_response){
   if(class(x)[1] != 'merged_compositional') stop('Input must be of class <merged_compositional>')
   model_compReg <- lm(compositions::ilr(compositions::acomp(x@count_matrix))~as.matrix((x@df)[,indices_predictor]))
@@ -67,7 +81,7 @@ comp_lda <- function(x, indices_response){
 }
 ############# CURRENT #############
 ###################################
-
+#' It computes a linear regression with some numerical value as the predictor and the compositions as response
 comp_lm <- function(x, indices_predictor){
   ## the composition is the response
 
