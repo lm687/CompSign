@@ -16,3 +16,4 @@ Imports:
     compositions,
     MASS,
     MCMCpack
+RoxygenNote: 6.0.1

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.22)  11 OCT 2018 16:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.4.22)  12 OCT 2018 14:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -186,9 +186,9 @@ ite-file
  []
 
 
-Overfull \hbox (258.74474pt too wide) in paragraph at lines 83--84
+Overfull \hbox (263.99469pt too wide) in paragraph at lines 83--84
 \OT1/cmtt/m/it/10 ##  '/private/var/folders/22/nzk7280n61jd5qrjhqm5cwph0000gn/T
-/RtmpOZuhi3/devtools14d0ed7a9f/lm687-CompSign-cc9190e'
+/RtmptScku8/devtools66f18b07add/lm687-CompSign-9f50572'
  []
 
 
@@ -221,123 +221,123 @@ Overfull \hbox (38.24666pt too wide) in paragraph at lines 149--149
  []
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ##             s1        s2         s3        s4        s5  
-      s6[] 
- []
-
-
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam1 0.1987315 0.5638199 0.91801670 0.6796169 0.8894069 0
-.3519896[] 
- []
-
-
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam2 0.8128805 0.6593104 0.18514303 0.1053678 0.5611413 0
-.2590321[] 
- []
-
-
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam3 0.6050001 0.2540923 0.25940428 0.8213403 0.5969080 0
-.9449074[] 
- []
-
-
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam4 0.9104714 0.3458921 0.04514874 0.2078522 0.3835074 0
-.9169413[] 
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ##             s1        s2        s3        s4        s5   
+     s6        s7[] 
  []
 
 
 Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ##             s7        s8        s9       s10       s11   
-    s12       s13[] 
+[]\OT1/cmtt/m/n/10 ## sam1 0.6907831 0.8228524 0.2524015 0.2744543 0.3000512 0.
+1322686 0.2194736[] 
  []
 
 
 Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam1 0.8305910 0.1972703 0.2954425 0.1842939 0.2053968 0.
-1337796 0.5980837[] 
+[]\OT1/cmtt/m/n/10 ## sam2 0.8818848 0.9148024 0.4953640 0.3326483 0.8978098 0.
+9684040 0.5022404[] 
  []
 
 
 Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam2 0.5058662 0.2439515 0.1381540 0.4998761 0.9886769 0.
-3826237 0.9692546[] 
+[]\OT1/cmtt/m/n/10 ## sam3 0.6368819 0.1914090 0.8556098 0.7969298 0.1121239 0.
+7307226 0.7358153[] 
  []
 
 
 Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam3 0.1657199 0.5982735 0.9320994 0.1410417 0.5063486 0.
-9906361 0.3989435[] 
- []
-
-
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam4 0.8693266 0.3740830 0.1440873 0.6437422 0.7980912 0.
-3529153 0.3447031[] 
- []
-
-
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ##            s14       s15        s16        s17       s18 
-      s19[] 
- []
-
-
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam1 0.7414813 0.6337050 0.48060115 0.84909583 0.9185874 
-0.8105136[] 
- []
-
-
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam2 0.3634842 0.4203783 0.07598475 0.86363441 0.4137671 
-0.8931221[] 
- []
-
-
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam3 0.3259484 0.9021382 0.45760978 0.26811933 0.9363666 
-0.6860977[] 
- []
-
-
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam4 0.5211474 0.9044891 0.31324170 0.02960415 0.8244890 
-0.8680906[] 
+[]\OT1/cmtt/m/n/10 ## sam4 0.2607221 0.4356568 0.2446198 0.6252434 0.5345280 0.
+7105411 0.4965340[] 
  []
 
 
 Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ##            s20        s21       s22        s23         s2
+[]\OT1/cmtt/m/n/10 ##              s8          s9       s10       s11        s1
+2       s13[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam1 0.01923001 0.007304247 0.8551043 0.8121970 0.1298083
+9 0.2961542[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam2 0.26354396 0.649942506 0.2710597 0.2352673 0.0913987
+7 0.6805692[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam3 0.20337556 0.786678446 0.8520911 0.6531096 0.1111469
+7 0.4819755[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam4 0.98687697 0.839449452 0.4043220 0.1414012 0.8239733
+3 0.3746479[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ##            s14       s15       s16        s17         s18
+       s19[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam1 0.9559235 0.8283332 0.4244773 0.62294107 0.543067955
+ 0.9656360[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam2 0.7063705 0.5644384 0.2842755 0.51062850 0.711746154
+ 0.1414930[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam3 0.6775065 0.9901806 0.6629162 0.43285737 0.529813803
+ 0.4695726[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ## sam4 0.5806252 0.3017961 0.6773294 0.02001661 0.001374035
+ 0.6979142[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
+[]\OT1/cmtt/m/n/10 ##            s20        s21        s22        s23        s2
 4       s25[] 
  []
 
 
 Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam1 0.3247066 0.79162196 0.2435041 0.25040330 0.04336299
-7 0.5839870[] 
+[]\OT1/cmtt/m/n/10 ## sam1 0.9658056 0.92127553 0.38571641 0.19556602 0.0686706
+5 0.7349321[] 
  []
 
 
 Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam2 0.6031947 0.65683798 0.1394422 0.86029437 0.65210286
-6 0.3367025[] 
+[]\OT1/cmtt/m/n/10 ## sam2 0.7008028 0.05619648 0.87290842 0.19533150 0.0358367
+6 0.4261994[] 
  []
 
 
 Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam3 0.1124012 0.27429140 0.5805026 0.08558455 0.76227093
-1 0.9938002[] 
+[]\OT1/cmtt/m/n/10 ## sam3 0.9243638 0.43182421 0.24641396 0.01843368 0.2057488
+7 0.3837493[] 
  []
 
 
 Overfull \hbox (27.74675pt too wide) in paragraph at lines 149--149
-[]\OT1/cmtt/m/n/10 ## sam4 0.5557001 0.03076965 0.3851658 0.99501856 0.00127565
-2 0.9788973[] 
+[]\OT1/cmtt/m/n/10 ## sam4 0.4448937 0.57538916 0.04109801 0.72449780 0.7033323
+5 0.5251124[] 
  []
 
 LaTeX Font Info:    Font shape `OMS/cmtt/bx/n' in size <10> not available
@@ -357,12 +357,6 @@ rise' not
 [2]
 Package color Info: Redefining color shadecolor on input line 165.
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 169--169
-[]                                []\OT1/cmtt/m/n/10 id_samples[][]=[][]c[][]([
-][]"sam1"[][],[] []"sam2"[][],[] []"sam3"[][]),[][] 
- []
-
-
 Overfull \hbox (139.7319pt too wide) in paragraph at lines 170--170
 []                                []\OT1/cmtt/m/n/10 id_signatures[][]=[] []c[]
 []([][]^^Ms1^^M[][],[] []^^Ms2^^M[][],[] []^^Ms3^^M[][],[] []^^Ms4^^M[][]),[] [
@@ -370,113 +364,115 @@ Overfull \hbox (139.7319pt too wide) in paragraph at lines 170--170
  []
 
 
-Overfull \hbox (80.24629pt too wide) in paragraph at lines 171--171
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 171--171
 []                                []\OT1/cmtt/m/n/10 count_matrix[][]=MCMCpack[
-][]::[][]rdirichlet[][]([][]3[][],[] []c[][]([][]1[][],[][]1[][],[][]1[][],[][]
-1[][])),[][] 
+][]::[][]rdirichlet[][]([][]30[][],[] []c[][]([][]1[][],[][]1[][],[][]1[][],[][
+]1[][])),[][] 
  []
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 172--172
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 172--172
 []                                []\OT1/cmtt/m/n/10 df[][]=[][]data.frame[][](
-[][]a[][]=[][]c[][]([][]3[][],[][]4[][],[][]1[][]),[] []b[][]=[][]c[][]([][]10[
-][],[] []10[][],[] []10[][])))[][] 
+[][]a[][]=[][]sample[][]([][]1[][]:[][]1e4[][],[] []30[][]),[] []b[][]=[][]rep[
+][]([][]10[][],[] []30[][])))[][] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ##                                         Estimate Std. Err
-or t value[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ##                                           Estimate Std. E
+rror t value[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ## (Intercept)                              0.25050    0.858
-73   0.292[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ## (Intercept)                             -1.0977949  0.541
+2697  -2.028[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a -0.09151    0.291
-70  -0.314[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a  0.0001310  0.000
+0846   1.549[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])b       NA         
-NA      NA[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])b         NA       
+  NA      NA[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ##                                         Estimate Std. Err
-or t value[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ##                                           Estimate Std. E
+rror t value[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ## (Intercept)                              0.06221    1.689
-95   0.037[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ## (Intercept)                              4.103e-01  5.494
+e-01   0.747[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a  0.16497    0.574
-05   0.287[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a -9.292e-05  8.587
+e-05  -1.082[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])b       NA         
-NA      NA[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])b         NA       
+  NA      NA[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ##                                         Estimate Std. Err
-or t value[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ##                                           Estimate Std. E
+rror t value[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ## (Intercept)                              -1.3904     1.84
-53  -0.753[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ## (Intercept)                             -1.590e-01  6.170
+e-01  -0.258[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a   0.4634     0.62
-68   0.739[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a  4.871e-06  9.644
+e-05   0.051[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 247--247
-[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])b       NA         
-NA      NA[] 
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 249--249
+[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])b         NA       
+  NA      NA[] 
  []
 
-[3] [4] (./CompSign_knitr.aux) ) 
+[3]
+Package color Info: Redefining color shadecolor on input line 255.
+ [4] [5] (./CompSign_knitr.aux) ) 
 Here is how much of TeX's memory you used:
  1656 strings out of 492995
  24247 string characters out of 6132704
- 95346 words of memory out of 5000000
+ 96346 words of memory out of 5000000
  5197 multiletter control sequences out of 15000+600000
  8178 words of font info for 30 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,6n,25p,583b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmbsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmtt10.pfb>
-Output written on CompSign_knitr.pdf (4 pages, 90311 bytes).
+ 39i,6n,25p,584b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmtt10.pfb>
+Output written on CompSign_knitr.pdf (5 pages, 92039 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 52 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

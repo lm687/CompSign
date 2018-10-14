@@ -43,17 +43,17 @@ results_sumarise$General
 <<>>=
 tmp_merged_compositional <- new("merged_compositional",
                                 id='adas',
-                                id_samples=c("sam1", "sam2", "sam3"),
+                                id_samples=paste0("sam", 1:30),
                                 id_signatures= c('s1', 's2', 's3', 's4'), ## signature names
-                                count_matrix=MCMCpack::rdirichlet(3, c(1,1,1,1)),
-                                df=data.frame(a=c(3,4,1), b=c(10, 10, 10)))
+                                count_matrix=MCMCpack::rdirichlet(30, c(1,1,1,1)),
+                                df=data.frame(a=sample(1:1e4, 30), b=rep(10, 30)))
 comp_lm(tmp_merged_compositional)
 @
 
 \section{Importing data}
 <<>>=
 
-
+#biplot(princomp(acomp(MCMCpack::rdirichlet(30, rep(1, 4)))))
 
 @
 
