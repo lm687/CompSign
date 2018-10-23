@@ -1,5 +1,7 @@
 \documentclass{article}
 
+\usepackage{hyperref}
+
 \title{Package \textbf{CompSign}}
 \author{Lena Morrill}
 \date{October 2017}
@@ -7,6 +9,8 @@
 \begin{document}
 
 \maketitle
+
+\textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{here}{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}
 
 <<>>=
 ## knitr preferences
@@ -18,6 +22,7 @@
 library(devtools)
 devtools::install_github("lm687/CompSign")
 library(CompSign)
+library(compositions)
 @
 
 <<>>=
@@ -53,8 +58,19 @@ comp_lm(tmp_merged_compositional)
 \section{Importing data}
 <<>>=
 
-#biplot(princomp(acomp(MCMCpack::rdirichlet(30, rep(1, 4)))))
+biplot(princomp(acomp(MCMCpack::rdirichlet(30, rep(1, 4)))))
 
 @
+
+\section{Other}
+\begin{enumerate}
+\item Test for normality as follows:
+<<>>=
+data(two_normal_pops)
+par(mfrow=c(1,2))
+qqnorm.acomp(acomp(two_normal_pops@count_matrix), pch=19, cex=0.2)
+qqnorm.acomp(acomp(two_normal_pops@count_matrix[1:1000,]), pch=19, cex=0.2)
+@
+\end{enumerate}
 
 \end{document}

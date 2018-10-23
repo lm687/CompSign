@@ -15,5 +15,6 @@ Imports:
     ggplot2,
     compositions,
     MASS,
-    MCMCpack
+    MCMCpack,
+    dendextend
 RoxygenNote: 6.0.1
