@@ -191,6 +191,14 @@ setGeneric("within_signature_analysis", function(obj, ...) standardGeneric("with
 # dum_metadata@df
 #
 
+#' Compare two groups
+compare_populations <- function(predictors, response, ...){
+  require(Compositional)
+  tmp_response <- response[1]
+  Compositional::comp.test(x = predictors[,-1],
+                           ina = tmp_response, ...)
+}
+
 link_to_clinical_data <- function(predictors, response){
   ## the predictors are the signatures (compositional)
   ## the response is a non-compositional dataframe
@@ -215,6 +223,7 @@ link_to_clinical_data <- function(predictors, response){
   print(typeof(merged_object))
 
   ## character response ##
+  ## or mauybe it should be logistic regression?
   if(!is.null(idx_types_col$character)){
     for(idx in idx_types_col$character){
       comp_lda(merged_object)
