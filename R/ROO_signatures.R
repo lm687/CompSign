@@ -193,8 +193,11 @@ setGeneric("within_signature_analysis", function(obj, ...) standardGeneric("with
 
 #' Compare two groups
 compare_populations <- function(predictors, response, ...){
+  if(length(unique(response))>2){stop('Only two categories in response')}
   require(Compositional)
   tmp_response <- response[1]
+  tmp_response <- factor(tmp_response)
+  levels(tmp_response) <- c(1,2)
   Compositional::comp.test(x = predictors[,-1],
                            ina = tmp_response, ...)
 }

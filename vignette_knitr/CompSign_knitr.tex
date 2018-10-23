@@ -50,6 +50,8 @@
 
 \usepackage{alltt}
 
+\usepackage{hyperref}
+
 \title{Package \textbf{CompSign}}
 \author{Lena Morrill}
 \date{October 2017}
@@ -57,6 +59,8 @@
 \begin{document}
 
 \maketitle
+
+\textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{here}{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -76,13 +80,7 @@
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Downloading GitHub repo lm687/CompSign@master\\\#\# from URL https://api.github.com/repos/lm687/CompSign/zipball/master}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Installing CompSign}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file\ \ \textbackslash{}\\\#\#\ \  --no-environ --no-save --no-restore --quiet CMD INSTALL\ \ \textbackslash{}\\\#\#\ \  '/private/var/folders/22/nzk7280n61jd5qrjhqm5cwph0000gn/T/RtmpSMQhvs/devtools84327ba40b8/lm687-CompSign-5577fa5'\ \ \textbackslash{}\\\#\#\ \  --library='/Library/Frameworks/R.framework/Versions/3.4/Resources/library'\ \ \textbackslash{}\\\#\#\ \  --install-tests}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# }}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Skipping install of 'CompSign' from a github remote, the SHA1 (61cbadcb) has not changed since last install.\\\#\#\ \  Use `force = TRUE` to force installation}}\begin{alltt}
 \hlkwd{library}\hlstd{(CompSign)}
 \hlkwd{library}\hlstd{(compositions)}
 \end{alltt}
@@ -144,31 +142,31 @@
 ## [23] "s23" "s24" "s25"
 ## 
 ## Slot "count_matrix":
-##              s1        s2         s3        s4        s5        s6
-## sam1 0.04858211 0.8317766 0.05256749 0.3409959 0.5204520 0.7224081
-## sam2 0.50588321 0.5770588 0.92585154 0.6151534 0.6980990 0.4591961
-## sam3 0.54916562 0.8884311 0.18074831 0.4806562 0.0623873 0.1348595
-## sam4 0.98579154 0.5938418 0.64554445 0.2983224 0.6354810 0.2453148
-##             s7         s8        s9       s10        s11        s12
-## sam1 0.1330572 0.74518787 0.2781470 0.7011675 0.03245983 0.64248301
-## sam2 0.2722230 0.07501031 0.1886666 0.9067959 0.31114464 0.17275723
-## sam3 0.5477834 0.66165313 0.1308051 0.8027359 0.07929365 0.07382778
-## sam4 0.3757639 0.50000232 0.1606468 0.1952131 0.01551060 0.80239360
-##             s13       s14       s15       s16        s17       s18
-## sam1 0.64639791 0.5083813 0.6308606 0.7773304 0.65004224 0.7755878
-## sam2 0.87854826 0.1266760 0.9119379 0.5181562 0.94692289 0.1243538
-## sam3 0.05928518 0.1794574 0.8778418 0.9441995 0.22104930 0.1547693
-## sam4 0.43216915 0.4294558 0.4622663 0.2422564 0.09119018 0.6248315
-##            s19       s20        s21       s22       s23        s24
-## sam1 0.7065150 0.6640117 0.35042408 0.6759364 0.5638160 0.03573475
-## sam2 0.9014284 0.6012351 0.70919785 0.3100722 0.1514624 0.66245107
-## sam3 0.6548523 0.2860429 0.03763259 0.5321743 0.6405682 0.54845881
-## sam4 0.8955548 0.9146842 0.94123500 0.5437059 0.9597871 0.20470684
-##            s25
-## sam1 0.7183756
-## sam2 0.5841280
-## sam3 0.7387282
-## sam4 0.3237947
+##              s1         s2         s3        s4        s5         s6
+## sam1 0.91779376 0.02385303 0.23876339 0.9712870 0.5408566 0.66646516
+## sam2 0.01276465 0.34940536 0.63061196 0.6900336 0.3018326 0.60664123
+## sam3 0.50539042 0.36147988 0.04297495 0.1056115 0.4906120 0.76086449
+## sam4 0.70298904 0.03583288 0.65580700 0.4148143 0.5538498 0.07630959
+##             s7        s8        s9        s10       s11       s12
+## sam1 0.3374145 0.4773106 0.9515823 0.32474048 0.5656766 0.4174376
+## sam2 0.9262440 0.7558482 0.6446747 0.54491706 0.5338909 0.8887019
+## sam3 0.4919054 0.5217433 0.6016393 0.09456215 0.3792113 0.3280545
+## sam4 0.8834992 0.1588780 0.4867555 0.19865778 0.3253180 0.3400624
+##             s13        s14       s15       s16       s17       s18
+## sam1 0.57315953 0.73772051 0.7100046 0.6773222 0.4430465 0.8818602
+## sam2 0.82091263 0.49757104 0.7250833 0.7779467 0.8043129 0.3487173
+## sam3 0.95243050 0.07723305 0.7091111 0.1253123 0.8933768 0.2195923
+## sam4 0.09944258 0.17252315 0.4020018 0.2020037 0.2721947 0.3008867
+##            s19         s20       s21       s22       s23       s24
+## sam1 0.8509031 0.477927554 0.7759270 0.4968509 0.3611036 0.3978248
+## sam2 0.3235608 0.008046405 0.2447500 0.5041135 0.3593709 0.2207983
+## sam3 0.1355410 0.703507220 0.2849771 0.7882534 0.3600759 0.3927194
+## sam4 0.8579977 0.757115631 0.3605919 0.8781320 0.8303557 0.4997538
+##             s25
+## sam1 0.11169879
+## sam2 0.61510575
+## sam3 0.78184170
+## sam4 0.01722335
 ## 
 ## Slot "modified":
 ## [1] TRUE
@@ -204,21 +202,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.9902 -0.8037 -0.2422  0.7749  2.2555 
+## -2.9347 -0.6192  0.1741  0.8892  2.7811 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -4.108e-02  4.505e-01  -0.091
-## as.matrix((x@df)[, indices_predictor])a  7.397e-06  7.329e-05   0.101
+## (Intercept)                             -2.794e-01  4.741e-01  -0.589
+## as.matrix((x@df)[, indices_predictor])a  6.639e-05  7.658e-05   0.867
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.928
-## as.matrix((x@df)[, indices_predictor])a    0.920
+## (Intercept)                                0.560
+## as.matrix((x@df)[, indices_predictor])a    0.393
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.188 on 28 degrees of freedom
-## Multiple R-squared:  0.0003636,	Adjusted R-squared:  -0.03534 
-## F-statistic: 0.01018 on 1 and 28 DF,  p-value: 0.9203
+## Residual standard error: 1.333 on 28 degrees of freedom
+## Multiple R-squared:  0.02614,	Adjusted R-squared:  -0.008636 
+## F-statistic: 0.7517 on 1 and 28 DF,  p-value: 0.3933
 ## 
 ## 
 ## Response Y2 :
@@ -228,21 +226,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.1849 -0.9617  0.0916  0.8785  2.9278 
+## -3.1762 -0.8213 -0.0309  0.8489  2.9780 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              2.286e-01  5.084e-01   0.450
-## as.matrix((x@df)[, indices_predictor])a -4.409e-05  8.272e-05  -0.533
+## (Intercept)                             -2.596e-02  5.195e-01  -0.050
+## as.matrix((x@df)[, indices_predictor])a  1.697e-05  8.391e-05   0.202
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.656
-## as.matrix((x@df)[, indices_predictor])a    0.598
+## (Intercept)                                0.960
+## as.matrix((x@df)[, indices_predictor])a    0.841
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.341 on 28 degrees of freedom
-## Multiple R-squared:  0.01005,	Adjusted R-squared:  -0.02531 
-## F-statistic: 0.2841 on 1 and 28 DF,  p-value: 0.5982
+## Residual standard error: 1.46 on 28 degrees of freedom
+## Multiple R-squared:  0.001458,	Adjusted R-squared:  -0.0342 
+## F-statistic: 0.0409 on 1 and 28 DF,  p-value: 0.8412
 ## 
 ## 
 ## Response Y3 :
@@ -252,21 +250,23 @@
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -2.83013 -0.89995  0.06103  0.73338  2.73146 
+## -2.47089 -1.09373 -0.09707  0.98925  2.43186 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              2.544e-01  4.954e-01   0.514
-## as.matrix((x@df)[, indices_predictor])a -2.524e-05  8.060e-05  -0.313
+## (Intercept)                              7.672e-01  4.930e-01   1.556
+## as.matrix((x@df)[, indices_predictor])a -2.044e-04  7.963e-05  -2.566
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
-##                                         Pr(>|t|)
-## (Intercept)                                0.612
-## as.matrix((x@df)[, indices_predictor])a    0.756
-## as.matrix((x@df)[, indices_predictor])b       NA
+##                                         Pr(>|t|)  
+## (Intercept)                               0.1309  
+## as.matrix((x@df)[, indices_predictor])a   0.0159 *
+## as.matrix((x@df)[, indices_predictor])b       NA  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.306 on 28 degrees of freedom
-## Multiple R-squared:  0.003491,	Adjusted R-squared:  -0.0321 
-## F-statistic: 0.09809 on 1 and 28 DF,  p-value: 0.7565
+## Residual standard error: 1.386 on 28 degrees of freedom
+## Multiple R-squared:  0.1904,	Adjusted R-squared:  0.1615 
+## F-statistic: 6.586 on 1 and 28 DF,  p-value: 0.01591
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

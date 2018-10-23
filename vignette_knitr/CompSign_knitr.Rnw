@@ -10,7 +10,7 @@
 
 \maketitle
 
-\textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{here}{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}
+\textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
 
 <<>>=
 ## knitr preferences
@@ -72,5 +72,11 @@ qqnorm.acomp(acomp(two_normal_pops@count_matrix), pch=19, cex=0.2)
 qqnorm.acomp(acomp(two_normal_pops@count_matrix[1:1000,]), pch=19, cex=0.2)
 @
 \end{enumerate}
+
+\clearpage
+
+\section{Data for 560 breast cancer patients}
+
+
 
 \end{document}
