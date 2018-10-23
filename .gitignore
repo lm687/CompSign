@@ -2,4 +2,10 @@ gitcommands.sh
 .Rproj.user
 my_comments
 push_inputcommit.sh
+.gitignore
+.Rhistory
+.Rbuildignore
+.DS_Store
+
+
 
