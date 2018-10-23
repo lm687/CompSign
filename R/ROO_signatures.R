@@ -231,6 +231,35 @@ link_to_clinical_data <- function(predictors, response){
 
 }
 
+
+###################################################################
+## Function 5 comparison with clinical data: dendrogram of samples
+###################################################################
+
+#' Create a dendrogram, using Aithchison distance, of the samples in a merged
+#' object. The labels are coloured according to the one of the columns of its
+#' metadata dataframe (to be specified in name_clinical). There is also an
+#' option (bool_comparison) to add a second dendrogram using Euclidean distance,
+#' for comparison. Arguments for plot() are inherited (not tested).
+#' WARNING! colours for the second dendrogram need fixing
+createDendrogram <- function(merged_object, name_clinical, bool_comparison, ...){
+  require(dendextend)
+  require(RColorBrewer)
+  # to add: possibility to extend colour vector
+  col_vec <- brewer.pal(n = 8, name = "Set2")
+  tmp_toplot_dendro <- as.dendrogram(hclust(dist(acomp(merged_object@count_matrix))))
+  labels_colors(tmp_toplot_dendro) <- col_vec[as.factor(merged_object@df[,name_clinical][labels(tmp_toplot_dendro)])]
+  labels(tmp_toplot_dendro) <- rep('.', nrow(merged_object@df))
+  if(bool_comparison) par(mfrow=c(1,2))
+  plot(tmp_toplot_dendro, main='Aitchison distance')
+  if(bool_comparison){
+    tmp_toplot_dendro_nonComp <- as.dendrogram(hclust(dist(merged_object@count_matrix)))
+    labels(tmp_toplot_dendro_nonComp) <-  rep('.', nrow(merged_object@df))
+    labels_colors(tmp_toplot_dendro_nonComp) <- col_vec[as.factor(merged_object@df[,name_clinical][labels(tmp_toplot_dendro_nonComp)])]
+    plot(tmp_toplot_dendro_nonComp, main='Euclidean distance')
+  }
+}
+
 #########################################
 ############### DEBUGGING ###############
 #########################################
