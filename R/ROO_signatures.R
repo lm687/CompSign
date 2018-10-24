@@ -94,7 +94,45 @@ comp_lm <- function(x, indices_predictor){
        )
 }
 
+###########################################
+##### Functions to manipulate objects #####
+###########################################
 
+#' Retrieve count matrix from object of class sign.
+#' X is of class sign
+count_matrix <- function(X){
+  return(X@count_matrix)
+}
+
+#' Assign count matrix from object of class sign
+setGeneric("count_matrix<-",
+           function(object, value) standardGeneric("count_matrix<-"))
+
+setReplaceMethod("count_matrix",
+                 signature(object="sign",
+                           value="matrix"),
+                 function(object, value){
+                   object@count_matrix <- value
+                   return(object)
+                 })
+
+#' Retrieve count matrix from object of class sign.
+#' X is of class sign
+metadata <- function(X){
+  return(X@df)
+}
+
+#' Assign metadata to object of class sign
+setGeneric("metadata<-",
+           function(object, value) standardGeneric("metadata<-"))
+
+setReplaceMethod("metadata",
+                 signature(object="sign",
+                           value="data.frame"),
+                 function(object, value){
+                   object@df <- value
+                   return(object)
+                 })
 
 ##########################
 ####### Dummy data #######

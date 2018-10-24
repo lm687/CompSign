@@ -60,13 +60,12 @@
 
 \maketitle
 
-\textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{here}{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}
+\textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{## knitr preferences}
-\hlcom{## no chache}
+\hlstd{knitr}\hlopt{::}\hlstd{opts_chunk}\hlopt{$}\hlkwd{set}\hlstd{(}\hlkwc{cache} \hlstd{=} \hlnum{FALSE}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -74,13 +73,20 @@
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
+\hlcom{## This chunk was last ran in}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Wed Oct 24 09:51:46 2018 ------##
+\end{verbatim}
+\begin{alltt}
 \hlcom{## install latest version}
 \hlkwd{library}\hlstd{(devtools)}
 \hlstd{devtools}\hlopt{::}\hlkwd{install_github}\hlstd{(}\hlstr{"lm687/CompSign"}\hlstd{)}
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Skipping install of 'CompSign' from a github remote, the SHA1 (61cbadcb) has not changed since last install.\\\#\#\ \  Use `force = TRUE` to force installation}}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Skipping install of 'CompSign' from a github remote, the SHA1 (ae95502a) has not changed since last install.\\\#\#\ \  Use `force = TRUE` to force installation}}\begin{alltt}
 \hlkwd{library}\hlstd{(CompSign)}
 \hlkwd{library}\hlstd{(compositions)}
 \end{alltt}
@@ -110,6 +116,13 @@
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
+\hlcom{## This chunk was last ran in}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Wed Oct 24 09:51:48 2018 ------##
+\end{verbatim}
+\begin{alltt}
 \hlcom{##########################}
 \hlcom{####### Dummy data #######}
 \hlcom{##########################}
@@ -125,6 +138,13 @@
 \section{Summarise the signature matrix}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## This chunk was last ran in}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Wed Oct 24 09:51:48 2018 ------##
+\end{verbatim}
 \begin{alltt}
 \hlkwd{add_together_matrix}\hlstd{(sign_dummy)}
 \end{alltt}
@@ -142,31 +162,31 @@
 ## [23] "s23" "s24" "s25"
 ## 
 ## Slot "count_matrix":
-##              s1         s2         s3        s4        s5         s6
-## sam1 0.91779376 0.02385303 0.23876339 0.9712870 0.5408566 0.66646516
-## sam2 0.01276465 0.34940536 0.63061196 0.6900336 0.3018326 0.60664123
-## sam3 0.50539042 0.36147988 0.04297495 0.1056115 0.4906120 0.76086449
-## sam4 0.70298904 0.03583288 0.65580700 0.4148143 0.5538498 0.07630959
-##             s7        s8        s9        s10       s11       s12
-## sam1 0.3374145 0.4773106 0.9515823 0.32474048 0.5656766 0.4174376
-## sam2 0.9262440 0.7558482 0.6446747 0.54491706 0.5338909 0.8887019
-## sam3 0.4919054 0.5217433 0.6016393 0.09456215 0.3792113 0.3280545
-## sam4 0.8834992 0.1588780 0.4867555 0.19865778 0.3253180 0.3400624
-##             s13        s14       s15       s16       s17       s18
-## sam1 0.57315953 0.73772051 0.7100046 0.6773222 0.4430465 0.8818602
-## sam2 0.82091263 0.49757104 0.7250833 0.7779467 0.8043129 0.3487173
-## sam3 0.95243050 0.07723305 0.7091111 0.1253123 0.8933768 0.2195923
-## sam4 0.09944258 0.17252315 0.4020018 0.2020037 0.2721947 0.3008867
-##            s19         s20       s21       s22       s23       s24
-## sam1 0.8509031 0.477927554 0.7759270 0.4968509 0.3611036 0.3978248
-## sam2 0.3235608 0.008046405 0.2447500 0.5041135 0.3593709 0.2207983
-## sam3 0.1355410 0.703507220 0.2849771 0.7882534 0.3600759 0.3927194
-## sam4 0.8579977 0.757115631 0.3605919 0.8781320 0.8303557 0.4997538
-##             s25
-## sam1 0.11169879
-## sam2 0.61510575
-## sam3 0.78184170
-## sam4 0.01722335
+##             s1        s2        s3        s4         s5         s6
+## sam1 0.6764623 0.2729444 0.3436545 0.1002153 0.06561845 0.03094423
+## sam2 0.4520095 0.4091145 0.1040464 0.3355779 0.68618118 0.44924840
+## sam3 0.9363835 0.3928727 0.4027341 0.2753264 0.65121843 0.66822314
+## sam4 0.5446427 0.1544315 0.2462713 0.3190422 0.43053817 0.77015991
+##             s7        s8        s9       s10       s11       s12
+## sam1 0.3532618 0.8480522 0.7084803 0.8895526 0.6296052 0.4025335
+## sam2 0.8411673 0.7207060 0.8103149 0.1315620 0.8245883 0.5702180
+## sam3 0.9850511 0.5855240 0.5503083 0.8914260 0.8225037 0.9071219
+## sam4 0.7384766 0.2273273 0.7245602 0.1884538 0.2813367 0.4807784
+##             s13        s14       s15       s16        s17       s18
+## sam1 0.61211950 0.58389072 0.7192076 0.4294944 0.16047355 0.6105783
+## sam2 0.01719359 0.16899129 0.7834863 0.1660177 0.45931066 0.1057023
+## sam3 0.94706416 0.02446017 0.7819861 0.1789141 0.29158493 0.3087867
+## sam4 0.51996204 0.42566369 0.6535919 0.7844009 0.02664156 0.6373981
+##             s19       s20        s21        s22        s23       s24
+## sam1 0.30225377 0.9639017 0.79162225 0.02198544 0.08396833 0.6812706
+## sam2 0.07004629 0.7094089 0.70866945 0.43777464 0.78886873 0.6356862
+## sam3 0.27966923 0.8772923 0.04130497 0.82702003 0.41161577 0.2505033
+## sam4 0.65060962 0.9220265 0.16407478 0.60034012 0.54354101 0.4179587
+##              s25
+## sam1 0.193195837
+## sam2 0.036536185
+## sam3 0.607445674
+## sam4 0.006969308
 ## 
 ## Slot "modified":
 ## [1] TRUE
@@ -185,6 +205,13 @@
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
+\hlcom{## This chunk was last ran in}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Wed Oct 24 09:51:48 2018 ------##
+\end{verbatim}
+\begin{alltt}
 \hlstd{tmp_merged_compositional} \hlkwb{<-} \hlkwd{new}\hlstd{(}\hlstr{"merged_compositional"}\hlstd{,}
                                 \hlkwc{id}\hlstd{=}\hlstr{'adas'}\hlstd{,}
                                 \hlkwc{id_samples}\hlstd{=}\hlkwd{paste0}\hlstd{(}\hlstr{"sam"}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{30}\hlstd{),}
@@ -202,21 +229,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.9347 -0.6192  0.1741  0.8892  2.7811 
+## -1.7305 -0.6656 -0.1989  0.6349  2.8453 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -2.794e-01  4.741e-01  -0.589
-## as.matrix((x@df)[, indices_predictor])a  6.639e-05  7.658e-05   0.867
+## (Intercept)                              2.308e-01  3.747e-01   0.616
+## as.matrix((x@df)[, indices_predictor])a -2.947e-05  7.314e-05  -0.403
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.560
-## as.matrix((x@df)[, indices_predictor])a    0.393
+## (Intercept)                                0.543
+## as.matrix((x@df)[, indices_predictor])a    0.690
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.333 on 28 degrees of freedom
-## Multiple R-squared:  0.02614,	Adjusted R-squared:  -0.008636 
-## F-statistic: 0.7517 on 1 and 28 DF,  p-value: 0.3933
+## Residual standard error: 1.134 on 28 degrees of freedom
+## Multiple R-squared:  0.005766,	Adjusted R-squared:  -0.02974 
+## F-statistic: 0.1624 on 1 and 28 DF,  p-value: 0.69
 ## 
 ## 
 ## Response Y2 :
@@ -226,21 +253,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.1762 -0.8213 -0.0309  0.8489  2.9780 
+## -2.8634 -0.5298  0.2247  0.7899  1.9961 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -2.596e-02  5.195e-01  -0.050
-## as.matrix((x@df)[, indices_predictor])a  1.697e-05  8.391e-05   0.202
+## (Intercept)                              1.438e-01  3.704e-01   0.388
+## as.matrix((x@df)[, indices_predictor])a -3.753e-05  7.231e-05  -0.519
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.960
-## as.matrix((x@df)[, indices_predictor])a    0.841
+## (Intercept)                                0.701
+## as.matrix((x@df)[, indices_predictor])a    0.608
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.46 on 28 degrees of freedom
-## Multiple R-squared:  0.001458,	Adjusted R-squared:  -0.0342 
-## F-statistic: 0.0409 on 1 and 28 DF,  p-value: 0.8412
+## Residual standard error: 1.121 on 28 degrees of freedom
+## Multiple R-squared:  0.00953,	Adjusted R-squared:  -0.02584 
+## F-statistic: 0.2694 on 1 and 28 DF,  p-value: 0.6078
 ## 
 ## 
 ## Response Y3 :
@@ -249,24 +276,22 @@
 ## lm(formula = Y3 ~ as.matrix((x@df)[, indices_predictor]))
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.47089 -1.09373 -0.09707  0.98925  2.43186 
+##     Min      1Q  Median      3Q     Max 
+## -3.6174 -0.7001  0.2863  0.8532  2.6761 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              7.672e-01  4.930e-01   1.556
-## as.matrix((x@df)[, indices_predictor])a -2.044e-04  7.963e-05  -2.566
+## (Intercept)                             -4.560e-01  4.850e-01  -0.940
+## as.matrix((x@df)[, indices_predictor])a  8.054e-06  9.468e-05   0.085
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
-##                                         Pr(>|t|)  
-## (Intercept)                               0.1309  
-## as.matrix((x@df)[, indices_predictor])a   0.0159 *
-## as.matrix((x@df)[, indices_predictor])b       NA  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##                                         Pr(>|t|)
+## (Intercept)                                0.355
+## as.matrix((x@df)[, indices_predictor])a    0.933
+## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.386 on 28 degrees of freedom
-## Multiple R-squared:  0.1904,	Adjusted R-squared:  0.1615 
-## F-statistic: 6.586 on 1 and 28 DF,  p-value: 0.01591
+## Residual standard error: 1.468 on 28 degrees of freedom
+## Multiple R-squared:  0.0002584,	Adjusted R-squared:  -0.03545 
+## F-statistic: 0.007236 on 1 and 28 DF,  p-value: 0.9328
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -274,6 +299,13 @@
 \section{Importing data}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## This chunk was last ran in}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Wed Oct 24 09:51:49 2018 ------##
+\end{verbatim}
 \begin{alltt}
 \hlkwd{biplot}\hlstd{(}\hlkwd{princomp}\hlstd{(}\hlkwd{acomp}\hlstd{(MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{4}\hlstd{)))))}
 \end{alltt}
@@ -287,6 +319,13 @@
 \item Test for normality as follows:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## This chunk was last ran in}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Wed Oct 24 09:51:49 2018 ------##
+\end{verbatim}
 \begin{alltt}
 \hlkwd{data}\hlstd{(two_normal_pops)}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{))}
@@ -302,5 +341,69 @@
 
 \end{knitrout}
 \end{enumerate}
+
+\clearpage
+
+\subsection{Testing hypotheses about two populations}
+We might have our samples split into two categories; e.g. sex. As in Aithison 1986\cite{}, I follow a hierarchy of alternative hypotheses, from least to most complex.
+
+Our first question is whether two populations have the same covariance and structure and center (i.e. if there is any distributional difference)
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## This chunk was last ran in}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Wed Oct 24 09:51:50 2018 ------##
+\end{verbatim}
+\begin{alltt}
+\hlcom{##TODO!!}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+The next is whether the populations have a different center:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## This chunk was last ran in}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Wed Oct 24 09:51:50 2018 ------##
+\end{verbatim}
+\begin{alltt}
+\hlcom{## This dataset includes the two components above, as well as four others}
+\hlcom{## (a total of seven)}
+\hlkwd{data}\hlstd{(}\hlstr{"two_normal_pops_extended"}\hlstd{)}
+\hlkwd{compare_populations}\hlstd{(}\hlkwc{predictors} \hlstd{= two_normal_pops_extended}\hlopt{@}\hlkwc{count_matrix}\hlstd{,}
+                    \hlkwc{response} \hlstd{= two_normal_pops_extended}\hlopt{@}\hlkwc{df}\hlstd{[,}\hlnum{1}\hlstd{])}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: Compositional}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'Compositional'}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:compositions':\\\#\# \\\#\#\ \ \ \  alr}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in Compositional::comp.test(x = predictors[, -1], ina = tmp\_response, : object 'result' not found}}\end{kframe}
+\end{knitrout}
+
+
+\section{Data for 560 breast cancer patients}
+Data from 560 breast cancer patients is available as part of the document as well:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{##continue in save_560BRCA_rda.R}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
 
 \end{document}

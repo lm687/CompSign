@@ -6,7 +6,7 @@
 object. The labels are coloured according to the one of the columns of its
 metadata dataframe (to be specified in name_clinical). There is also an
 option (bool_comparison) to add a second dendrogram using Euclidean distance,
-for comparison.
+for comparison. Arguments for plot() are inherited (not tested).
 WARNING! colours for the second dendrogram need fixing}
 \usage{
 createDendrogram(merged_object, name_clinical, bool_comparison, ...)
@@ -16,6 +16,6 @@ Create a dendrogram, using Aithchison distance, of the samples in a merged
 object. The labels are coloured according to the one of the columns of its
 metadata dataframe (to be specified in name_clinical). There is also an
 option (bool_comparison) to add a second dendrogram using Euclidean distance,
-for comparison.
+for comparison. Arguments for plot() are inherited (not tested).
 WARNING! colours for the second dendrogram need fixing
 }
