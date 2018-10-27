@@ -127,7 +127,7 @@ setGeneric("metadata<-",
            function(object, value) standardGeneric("metadata<-"))
 
 setReplaceMethod("metadata",
-                 signature(object="sign",
+                 signature(object="merged_compositional",
                            value="data.frame"),
                  function(object, value){
                    object@df <- value
@@ -233,7 +233,7 @@ setGeneric("within_signature_analysis", function(obj, ...) standardGeneric("with
 compare_populations <- function(predictors, response, ...){
   if(length(unique(response))>2){stop('Only two categories in response')}
   require(Compositional)
-  tmp_response <- response[1]
+  tmp_response <- response
   tmp_response <- factor(tmp_response)
   levels(tmp_response) <- c(1,2)
   Compositional::comp.test(x = predictors[,-1],

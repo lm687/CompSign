@@ -13,7 +13,7 @@
 \textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
 
 <<>>=
-knitr::opts_chunk$set(cache = FALSE)
+knitr::opts_chunk$set(cache = TRUE)
 @
 
 <<>>=
@@ -89,7 +89,7 @@ qqnorm.acomp(acomp(two_normal_pops@count_matrix[1:1000,]), pch=19, cex=0.2, plot
 @
 \end{enumerate}
 
-\Section{Clustering of samples}
+\section{Clustering of samples}
 
 <<>>=
 
@@ -117,8 +117,28 @@ timestamp()
 ## This dataset includes the two components above, as well as four others
 ## (a total of seven)
 data("two_normal_pops_extended")
-compare_populations(predictors = count_matrix(two_normal_pops_extended),
-                    response = metadata(two_normal_pops_extended)[,1])
+
+## Data from the Landscape... paper
+data("Breast560")
+
+wrapper_compare_populations <- function(predictors, response, ...){
+  if(length(unique(response)) == 2){
+    tmp <- compare_populations(predictors, response, ...)
+    tmp <- tmp$info[1:2]
+    tmp
+  }
+}
+
+x <- do.call('rbind', lapply(1:ncol(metadata(Breast560)),
+       function(k){
+         wrapper_compare_populations(predictors = count_matrix(Breast560),
+                                     response = metadata(Breast560)[,k])
+         }
+       ))
+
+
+x
+
 @
 
 
@@ -126,7 +146,9 @@ compare_populations(predictors = count_matrix(two_normal_pops_extended),
 Data from 560 breast cancer patients is available as part of the document as well:
 
 <<>>=
-##continue in save_560BRCA_rda.R
+#data("Breast560")
+#metadata(Breast560)[1:4,1:5]
+#count_matrix(Breast560)[1:4,1:5]
 @
 
 
