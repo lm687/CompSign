@@ -152,4 +152,15 @@ Data from 560 breast cancer patients is available as part of the document as wel
 @
 
 
+\section{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
+
+<<>>=
+data("CNA_12K_TCGA")
+
+dim(metadata(CNA_12K_TCGA))
+dim(count_matrix(CNA_12K_TCGA))
+@
+
+
+
 \end{document}
