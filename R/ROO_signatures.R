@@ -112,6 +112,8 @@ setReplaceMethod("count_matrix",
                            value="matrix"),
                  function(object, value){
                    object@count_matrix <- value
+                   object@id_samples <- rownames(value)
+                   object@id_signatures <- colnames(value)
                    return(object)
                  })
 setReplaceMethod("count_matrix",
@@ -119,6 +121,26 @@ setReplaceMethod("count_matrix",
                            value="matrix"),
                  function(object, value){
                    object@count_matrix <- value
+                   object@id_samples <- rownames(value)
+                   object@id_signatures <- colnames(value)
+                   return(object)
+                 })
+
+#' Add name to object of class sign or merged_compositional
+setGeneric("id<-",
+           function(object, value) standardGeneric("id<-"))
+setReplaceMethod("id",
+                 signature(object="sign",
+                           value="character"),
+                 function(object, value){
+                   object@id <- value
+                   return(object)
+                 })
+setReplaceMethod("id",
+                 signature(object="merged_compositional",
+                           value="character"),
+                 function(object, value){
+                   object@id <- value
                    return(object)
                  })
 
