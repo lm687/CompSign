@@ -107,9 +107,15 @@ count_matrix <- function(X){
 #' Assign count matrix from object of class sign
 setGeneric("count_matrix<-",
            function(object, value) standardGeneric("count_matrix<-"))
-
 setReplaceMethod("count_matrix",
                  signature(object="sign",
+                           value="matrix"),
+                 function(object, value){
+                   object@count_matrix <- value
+                   return(object)
+                 })
+setReplaceMethod("count_matrix",
+                 signature(object="merged_compositional",
                            value="matrix"),
                  function(object, value){
                    object@count_matrix <- value
