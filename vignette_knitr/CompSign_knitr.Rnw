@@ -13,7 +13,7 @@
 \textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
 
 <<>>=
-knitr::opts_chunk$set(cache = TRUE)
+knitr::opts_chunk$set(cache = FALSE)
 @
 
 <<>>=
@@ -146,21 +146,34 @@ x
 Data from 560 breast cancer patients is available as part of the document as well:
 
 <<>>=
-#data("Breast560")
-#metadata(Breast560)[1:4,1:5]
-#count_matrix(Breast560)[1:4,1:5]
+data("Breast560")
+metadata(Breast560)[1:4,1:5]
+count_matrix(Breast560)[1:4,1:5]
 @
 
+Not sure if this is correct
+<<fig.width=3.5,fig.height=5>>=
+source("~/Documents/CantabPhD/CDA_in_Cancer/code/functions/various_functions.R")
+plotPCA(ilr(count_matrix(Breast560)), pch=4, col='blue')
+@
+
+\subsection{(ongoing) test for equality}
+
+<<>>=
+comp.test(x = count_matrix(Breast560),
+                              ina = as.numeric(as.factor(metadata(Breast560)$final.ER)),
+                              test = "james", R = 0)
+@
 
 \section{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
 
 <<>>=
+timestamp()
 data("CNA_12K_TCGA")
 
 dim(metadata(CNA_12K_TCGA))
 dim(count_matrix(CNA_12K_TCGA))
 @
-
 
 
 \end{document}

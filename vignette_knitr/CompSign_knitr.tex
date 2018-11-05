@@ -1,11 +1,61 @@
-\documentclass{article}
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 
 \usepackage{hyperref}
 
 \title{Package \textbf{CompSign}}
 \author{Lena Morrill}
 \date{October 2017}
-
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 \maketitle
@@ -15,7 +65,7 @@
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{knitr}\hlopt{::}\hlstd{opts_chunk}\hlopt{$}\hlkwd{set}\hlstd{(}\hlkwc{cache} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\hlstd{knitr}\hlopt{::}\hlstd{opts_chunk}\hlopt{$}\hlkwd{set}\hlstd{(}\hlkwc{cache} \hlstd{=} \hlnum{FALSE}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -27,7 +77,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Oct 23 16:07:05 2018 ------##
+## ##------ Tue Oct 30 15:28:24 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## install latest version}
@@ -36,31 +86,31 @@
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Downloading GitHub repo lm687/CompSign@master}}\begin{verbatim}
-## Rfast      (1.9.0  -> 1.9.1 ) [CRAN]
-## rlang      (0.2.2  -> 0.3.0 ) [CRAN]
-## robustbase (0.93-1 -> 0.93-3) [CRAN]
-\end{verbatim}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Installing 3 packages: Rfast, rlang, robustbase}}\begin{verbatim}
-## 
-##   There are binary versions available but the source versions are
-##   later:
-##              binary source needs_compilation
-## Rfast         1.9.0  1.9.1              TRUE
-## rlang         0.2.2  0.3.0              TRUE
-## robustbase 0.93-1.1 0.93-3              TRUE
-\end{verbatim}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# installing the source packages 'Rfast', 'rlang', 'robustbase'}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in i.p(...): (converted from warning) installation of package 'Rfast' had non-zero exit status}}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Skipping install of 'CompSign' from a github remote, the SHA1 (2d73ef33) has not changed since last install.\\\#\#\ \  Use `force = TRUE` to force installation}}\begin{alltt}
 \hlkwd{library}\hlstd{(CompSign)}
 \hlkwd{library}\hlstd{(compositions)}
 \end{alltt}
-\end{kframe}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: tensorA}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'tensorA'}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:base':\\\#\# \\\#\#\ \ \ \  norm}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: robustbase}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: energy}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: bayesm}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Welcome to compositions, a package for compositional data analysis.\\\#\# Find an intro with "{}? compositions"{}}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'compositions'}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:stats':\\\#\# \\\#\#\ \ \ \  cor, cov, dist, var}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:base':\\\#\# \\\#\#\ \ \ \  \%*\%, scale, scale.default}}\end{kframe}
 \end{knitrout}
 
 \begin{knitrout}
@@ -70,7 +120,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Oct 23 16:07:17 2018 ------##
+## ##------ Tue Oct 30 15:28:25 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##########################}
@@ -93,7 +143,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Oct 23 16:07:17 2018 ------##
+## ##------ Tue Oct 30 15:28:25 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{add_together_matrix}\hlstd{(sign_dummy)}
@@ -112,31 +162,31 @@
 ## [23] "s23" "s24" "s25"
 ## 
 ## Slot "count_matrix":
-##             s1        s2         s3         s4        s5        s6
-## sam1 0.6233436 0.4169807 0.42993493 0.05794318 0.5901997 0.4031462
-## sam2 0.3413632 0.9537744 0.40388599 0.77977055 0.3459038 0.6192916
-## sam3 0.7667998 0.5407284 0.41226984 0.52461156 0.8846929 0.0349309
-## sam4 0.2600229 0.1852972 0.08326648 0.72768078 0.4195605 0.2982445
-##             s7         s8        s9       s10       s11       s12
-## sam1 0.5173039 0.03627578 0.6358517 0.3560672 0.4794818 0.8603726
-## sam2 0.9682418 0.51997587 0.5762934 0.9463702 0.4856246 0.6810569
-## sam3 0.5646822 0.19521899 0.5881210 0.4894135 0.0917544 0.7878934
-## sam4 0.7432367 0.24150709 0.7345787 0.9173480 0.3879061 0.6024034
-##            s13        s14        s15       s16        s17        s18
-## sam1 0.9625107 0.64921463 0.51214372 0.2608192 0.01568284 0.07549878
-## sam2 0.4402104 0.59216471 0.54887152 0.3266606 0.35872920 0.54298686
-## sam3 0.9492627 0.24655105 0.44548164 0.2954519 0.90683456 0.54280131
-## sam4 0.3617747 0.08594473 0.04314753 0.5781598 0.24789950 0.09762706
-##            s19       s20        s21       s22        s23       s24
-## sam1 0.6848625 0.3172088 0.65449068 0.9566853 0.87854259 0.2507065
-## sam2 0.4230498 0.4200921 0.20150530 0.3688930 0.44524506 0.4808561
-## sam3 0.7456224 0.3255062 0.84818795 0.1185494 0.07345417 0.8769561
-## sam4 0.2665278 0.1624959 0.05967938 0.7779736 0.45255367 0.5115345
+##             s1        s2         s3        s4        s5        s6
+## sam1 0.4260863 0.2755039 0.08276189 0.6208283 0.8857211 0.5549314
+## sam2 0.1411205 0.8640290 0.73175191 0.1036485 0.2420634 0.8307967
+## sam3 0.4049222 0.4724351 0.09832678 0.7830958 0.1972511 0.7619885
+## sam4 0.3090491 0.4183054 0.91512885 0.5695176 0.6805209 0.6588088
+##             s7        s8        s9       s10        s11       s12
+## sam1 0.7470576 0.3506052 0.8857402 0.3951667 0.78707440 0.2070237
+## sam2 0.4229675 0.3203786 0.5956866 0.9977689 0.65447704 0.8519154
+## sam3 0.2811029 0.5965693 0.8706372 0.4038557 0.23177664 0.7540944
+## sam4 0.7962489 0.4228749 0.4271666 0.5252904 0.01935426 0.3826507
+##            s13        s14       s15        s16       s17       s18
+## sam1 0.6481574 0.52636785 0.8357955 0.25466215 0.9000820 0.8057467
+## sam2 0.5874839 0.04076431 0.5073318 0.61878639 0.5855561 0.7308849
+## sam3 0.5922528 0.70681435 0.9099575 0.23085795 0.8690805 0.2833331
+## sam4 0.1860448 0.30120701 0.7998575 0.03621599 0.1804691 0.6519621
+##            s19       s20       s21       s22        s23       s24
+## sam1 0.2507280 0.3409191 0.6532946 0.2509273 0.96859098 0.3243763
+## sam2 0.4975619 0.3582334 0.9787369 0.2323121 0.49452011 0.9581426
+## sam3 0.6919547 0.5571275 0.8511707 0.9243823 0.27759639 0.8038591
+## sam4 0.1117317 0.9430649 0.3228245 0.9384450 0.01049231 0.2159923
 ##            s25
-## sam1 0.2770414
-## sam2 0.9197584
-## sam3 0.5491871
-## sam4 0.8128649
+## sam1 0.8020041
+## sam2 0.4620849
+## sam3 0.8629497
+## sam4 0.9033385
 ## 
 ## Slot "modified":
 ## [1] TRUE
@@ -159,7 +209,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Oct 23 16:07:17 2018 ------##
+## ##------ Tue Oct 30 15:28:25 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlstd{tmp_merged_compositional} \hlkwb{<-} \hlkwd{new}\hlstd{(}\hlstr{"merged_compositional"}\hlstd{,}
@@ -179,21 +229,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.7931 -0.4757 -0.1486  0.7628  4.3697 
+## -3.1173 -0.7555  0.1894  0.6292  2.5870 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              3.596e-02  5.387e-01   0.067
-## as.matrix((x@df)[, indices_predictor])a -3.235e-05  8.739e-05  -0.370
+## (Intercept)                              4.905e-01  4.600e-01   1.066
+## as.matrix((x@df)[, indices_predictor])a -4.835e-05  7.609e-05  -0.635
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.947
-## as.matrix((x@df)[, indices_predictor])a    0.714
+## (Intercept)                                0.295
+## as.matrix((x@df)[, indices_predictor])a    0.530
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.377 on 28 degrees of freedom
-## Multiple R-squared:  0.004871,	Adjusted R-squared:  -0.03067 
-## F-statistic: 0.1371 on 1 and 28 DF,  p-value: 0.714
+## Residual standard error: 1.185 on 28 degrees of freedom
+## Multiple R-squared:  0.01421,	Adjusted R-squared:  -0.02099 
+## F-statistic: 0.4038 on 1 and 28 DF,  p-value: 0.5303
 ## 
 ## 
 ## Response Y2 :
@@ -203,21 +253,21 @@
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.94194 -0.73269  0.01492  0.57745  2.14031 
+## -1.86633 -0.66484 -0.09362  0.95891  2.05713 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -1.824e-01  4.317e-01  -0.422
-## as.matrix((x@df)[, indices_predictor])a  6.315e-05  7.002e-05   0.902
+## (Intercept)                             -1.111e-01  4.314e-01  -0.257
+## as.matrix((x@df)[, indices_predictor])a  5.307e-05  7.136e-05   0.744
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.676
-## as.matrix((x@df)[, indices_predictor])a    0.375
+## (Intercept)                                0.799
+## as.matrix((x@df)[, indices_predictor])a    0.463
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.103 on 28 degrees of freedom
-## Multiple R-squared:  0.02823,	Adjusted R-squared:  -0.006474 
-## F-statistic: 0.8135 on 1 and 28 DF,  p-value: 0.3748
+## Residual standard error: 1.111 on 28 degrees of freedom
+## Multiple R-squared:  0.01937,	Adjusted R-squared:  -0.01565 
+## F-statistic: 0.5531 on 1 and 28 DF,  p-value: 0.4633
 ## 
 ## 
 ## Response Y3 :
@@ -226,22 +276,24 @@
 ## lm(formula = Y3 ~ as.matrix((x@df)[, indices_predictor]))
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -3.0491 -0.3923 -0.0201  0.4309  3.3966 
+##      Min       1Q   Median       3Q      Max 
+## -1.98099 -0.55176 -0.07108  0.65533  1.88851 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              0.3396571  0.4531005   0.750
-## as.matrix((x@df)[, indices_predictor])a -0.0001075  0.0000735  -1.463
+## (Intercept)                             -7.433e-01  3.974e-01  -1.870
+## as.matrix((x@df)[, indices_predictor])a  1.424e-04  6.574e-05   2.166
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
-##                                         Pr(>|t|)
-## (Intercept)                                0.460
-## as.matrix((x@df)[, indices_predictor])a    0.155
-## as.matrix((x@df)[, indices_predictor])b       NA
+##                                         Pr(>|t|)  
+## (Intercept)                                0.072 .
+## as.matrix((x@df)[, indices_predictor])a    0.039 *
+## as.matrix((x@df)[, indices_predictor])b       NA  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.158 on 28 degrees of freedom
-## Multiple R-squared:  0.07102,	Adjusted R-squared:  0.03784 
-## F-statistic: 2.141 on 1 and 28 DF,  p-value: 0.1546
+## Residual standard error: 1.024 on 28 degrees of freedom
+## Multiple R-squared:  0.1435,	Adjusted R-squared:  0.1129 
+## F-statistic: 4.693 on 1 and 28 DF,  p-value: 0.03896
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -254,7 +306,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Oct 23 16:07:17 2018 ------##
+## ##------ Tue Oct 30 15:28:26 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{biplot}\hlstd{(}\hlkwd{princomp}\hlstd{(}\hlkwd{acomp}\hlstd{(MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{4}\hlstd{)))))}
@@ -274,7 +326,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Thu Oct 25 12:14:21 2018 ------##
+## ##------ Tue Oct 30 15:28:27 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{data}\hlstd{(two_normal_pops)}
@@ -388,7 +440,7 @@ Our first question is whether two populations have the same covariance and struc
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Thu Oct 25 12:14:22 2018 ------##
+## ##------ Tue Oct 30 15:28:27 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##TODO!!}
@@ -405,7 +457,7 @@ The next is whether the populations have a different center:
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Thu Oct 25 12:14:22 2018 ------##
+## ##------ Tue Oct 30 15:28:27 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## This dataset includes the two components above, as well as four others}
@@ -429,8 +481,14 @@ The next is whether the populations have a different center:
                                      \hlkwc{response} \hlstd{=} \hlkwd{metadata}\hlstd{(Breast560)[,k])}
          \hlstd{\}}
        \hlstd{))}
+\end{alltt}
 
 
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: Compositional}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'Compositional'}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:compositions':\\\#\# \\\#\#\ \ \ \  alr}}\begin{alltt}
 \hlstd{x}
 \end{alltt}
 \begin{verbatim}
@@ -450,15 +508,104 @@ Data from 560 breast cancer patients is available as part of the document as wel
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{#data("Breast560")}
-\hlcom{#metadata(Breast560)[1:4,1:5]}
-\hlcom{#count_matrix(Breast560)[1:4,1:5]}
+\hlkwd{data}\hlstd{(}\hlstr{"Breast560"}\hlstd{)}
+\hlkwd{metadata}\hlstd{(Breast560)[}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
 \end{alltt}
+\begin{verbatim}
+##         donor_gender donor_age_at_diagnosis donor_age_at_last_follow.up
+## PD10010       female                     56            no_data_supplied
+## PD10011       female                     75            no_data_supplied
+## PD10014       female                     64            no_data_supplied
+## PD11326       female                     38                          47
+##          specimen_type donor_vital_status
+## PD10010 tumour_primary              alive
+## PD10011 tumour_primary              alive
+## PD10014 tumour_primary           deceased
+## PD11326 tumour_primary              alive
+\end{verbatim}
+\begin{alltt}
+\hlkwd{count_matrix}\hlstd{(Breast560)[}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
+\end{alltt}
+\begin{verbatim}
+##          Signature.1  Signature.2  Signature.3 Signature.5 Signature.6
+## PD10010 0.0013656127 0.0002299146 0.0009201629 0.001224842           0
+## PD10011 0.0020433984 0.0000000000 0.0025729837 0.005577513           0
+## PD10014 0.0010016166 0.0000000000 0.0060192540 0.005093551           0
+## PD11326 0.0009765135 0.0005635162 0.0059827947 0.002310769           0
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Not sure if this is correct
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{source}\hlstd{(}\hlstr{"~/Documents/CantabPhD/CDA_in_Cancer/code/functions/various_functions.R"}\hlstd{)}
+\hlkwd{plotPCA}\hlstd{(}\hlkwd{ilr}\hlstd{(}\hlkwd{count_matrix}\hlstd{(Breast560)),} \hlkwc{pch}\hlstd{=}\hlnum{4}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{'blue'}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: ggplot2}}\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-12-1} 
+
+\end{knitrout}
+
+\subsection{(ongoing) test for equality}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{comp.test}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{count_matrix}\hlstd{(Breast560),}
+                              \hlkwc{ina} \hlstd{=} \hlkwd{as.numeric}\hlstd{(}\hlkwd{as.factor}\hlstd{(}\hlkwd{metadata}\hlstd{(Breast560)}\hlopt{$}\hlstd{final.ER)),}
+                              \hlkwc{test} \hlstd{=} \hlstr{"james"}\hlstd{,} \hlkwc{R} \hlstd{=} \hlnum{0}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## $note
+## [1] "James test"
+## 
+## $mesoi
+##                X1        X2         X3       X4         X5        X6
+## Sample 1 0.583829 -1.336900 -0.1776487 1.467427 -0.5977703 0.3018865
+## Sample 2 1.410313  1.626698 -1.0779649 1.773800 -0.0129786 0.7226163
+##                 X7         X8       X9       X10       X11
+## Sample 1 0.9095453 0.59145173 1.170214 0.9935606 0.9807331
+## Sample 2 1.2939339 0.04855843 1.241930 1.0600895 1.0444659
+## 
+## $info
+##               test            p-value         correction 
+##       2.797486e+02       6.279768e-51       1.046173e+00 
+## corrected.critical 
+##       2.058360e+01
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\section{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Tue Oct 30 15:28:28 2018 ------##
+\end{verbatim}
+\begin{alltt}
+\hlkwd{data}\hlstd{(}\hlstr{"CNA_12K_TCGA"}\hlstd{)}
+
+\hlkwd{dim}\hlstd{(}\hlkwd{metadata}\hlstd{(CNA_12K_TCGA))}
+\end{alltt}
+\begin{verbatim}
+## [1] 10899    37
+\end{verbatim}
+\begin{alltt}
+\hlkwd{dim}\hlstd{(}\hlkwd{count_matrix}\hlstd{(CNA_12K_TCGA))}
+\end{alltt}
+\begin{verbatim}
+## [1] 10899     7
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
 
 
-\section{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
-
-
-
+\end{document}

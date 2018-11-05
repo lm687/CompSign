@@ -27,12 +27,15 @@ setClass("sign",
 
 setClass("metadata",
          representation = representation(
-           id="character",
-           id_samples="character",
-           df= "data.frame"
+           id = "character",
+           id_samples = "character",
+           df = "data.frame"
          ))
 
-## both metadata and the mutational signatures
+#' Class whiuch inludes features of both metadata and
+#'  mutational signatures.
+#'  types_metadata is a vector indicating which type of data each
+#'  column in df (metadata) is.
 setClass("merged_compositional",
          representation = representation(
            id="character",
@@ -40,7 +43,8 @@ setClass("merged_compositional",
            id_signatures = "character",
            count_matrix = "matrix",
            df= "data.frame",
-           pseudocounts="logical"
+           pseudocounts="logical",
+           types_metadata = "character"
          ))
 
 ## alternative:
