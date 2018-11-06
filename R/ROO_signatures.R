@@ -103,7 +103,7 @@ comp_lm <- function(x, indices_predictor){
 ###########################################
 
 #' Retrieve count matrix from object of class sign.
-#' X is of class sign
+#' @param X object of class sign
 count_matrix <- function(X){
   return(X@count_matrix)
 }
@@ -149,7 +149,7 @@ setReplaceMethod("id",
                  })
 
 #' Retrieve count matrix from object of class sign.
-#' X is of class sign
+#' @param X object of class sign
 metadata <- function(X){
   return(X@df)
 }
