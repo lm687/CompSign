@@ -6,6 +6,6 @@ push_inputcommit.sh
 .Rhistory
 .Rbuildignore
 .DS_Store
-
+data/
 
 

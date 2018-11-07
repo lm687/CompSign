@@ -77,7 +77,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov  6 16:18:24 2018 ------##
+## ##------ Wed Nov  7 09:53:08 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## install latest version}
@@ -86,7 +86,22 @@
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Skipping install of 'CompSign' from a github remote, the SHA1 (2f8715ef) has not changed since last install.\\\#\#\ \  Use `force = TRUE` to force installation}}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Downloading GitHub repo lm687/CompSign@master}}\begin{verbatim}
+## 
+##      checking for file ‘/private/var/folders/22/gyg0hl2s7f73m8f05lb35080qz1b0n/T/RtmpQrj6E4/remotes3cb20486ec8/lm687-CompSign-5d2fe49/DESCRIPTION’ ...  v  checking for file ‘/private/var/folders/22/gyg0hl2s7f73m8f05lb35080qz1b0n/T/RtmpQrj6E4/remotes3cb20486ec8/lm687-CompSign-5d2fe49/DESCRIPTION’ (464ms)
+##   -  preparing ‘CompSign’:
+##      checking DESCRIPTION meta-information ...  v  checking DESCRIPTION meta-information
+##       -  excluding invalid files
+##      Subdirectory 'man' contains invalid file names:
+##      ‘summary_ROO.txt’
+##   -  checking for LF line-endings in source and make files and shell scripts
+##   -  checking for empty or unneeded directories
+##   -  building ‘CompSign_0.1.0.tar.gz’
+##      Warning: invalid uid value replaced by that for user 'nobody'
+##      
+## 
+\end{verbatim}
+\begin{alltt}
 \hlkwd{library}\hlstd{(CompSign)}
 \hlkwd{library}\hlstd{(compositions)}
 \end{alltt}
@@ -120,7 +135,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov  6 16:18:25 2018 ------##
+## ##------ Wed Nov  7 09:53:38 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##########################}
@@ -143,7 +158,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov  6 16:18:25 2018 ------##
+## ##------ Wed Nov  7 09:53:38 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{add_together_matrix}\hlstd{(sign_dummy)}
@@ -162,31 +177,31 @@
 ## [23] "s23" "s24" "s25"
 ## 
 ## Slot "count_matrix":
-##              s1        s2        s3        s4        s5        s6
-## sam1 0.07272969 0.9140327 0.4968223 0.5184914 0.4145388 0.1969778
-## sam2 0.50024880 0.8342635 0.5119216 0.7972444 0.1921037 0.1753118
-## sam3 0.38248952 0.3448541 0.5881578 0.1442695 0.3637460 0.1938514
-## sam4 0.41510238 0.2023308 0.5460272 0.7285554 0.7078948 0.6262570
-##             s7        s8        s9       s10       s11       s12
-## sam1 0.3525339 0.4488783 0.4694396 0.6789127 0.2526726 0.7649207
-## sam2 0.4708593 0.9900759 0.6184483 0.1181695 0.5974123 0.5006406
-## sam3 0.4106082 0.8226040 0.8818504 0.3184051 0.6330861 0.2058611
-## sam4 0.6488849 0.4297723 0.2651439 0.3967617 0.5279068 0.4998687
-##             s13       s14        s15        s16       s17        s18
-## sam1 0.79002042 0.3092334 0.96584926 0.41697016 0.3454698 0.53132524
-## sam2 0.09006762 0.9700768 0.04151968 0.91852417 0.4029363 0.68407133
-## sam3 0.77174884 0.9976588 0.59072908 0.52178241 0.6780246 0.05903725
-## sam4 0.56109056 0.5114064 0.05022707 0.08896006 0.1888010 0.06147117
-##            s19       s20        s21       s22       s23       s24
-## sam1 0.2332226 0.5597038 0.73399792 0.3430649 0.6219140 0.8483383
-## sam2 0.4414435 0.7630962 0.05136377 0.5325759 0.7028786 0.8466368
-## sam3 0.6789870 0.8356054 0.96469319 0.7010786 0.8402231 0.5877767
-## sam4 0.8066790 0.2289996 0.10104237 0.1947610 0.9714809 0.1344074
-##            s25
-## sam1 0.8395067
-## sam2 0.4334580
-## sam3 0.9234258
-## sam4 0.6953657
+##             s1        s2         s3        s4        s5         s6
+## sam1 0.6130077 0.6201001 0.02548431 0.9164084 0.2908617 0.07488885
+## sam2 0.9900551 0.3453004 0.80846802 0.6432645 0.7316618 0.92458896
+## sam3 0.2915941 0.4309228 0.75626895 0.5831739 0.8232874 0.15455563
+## sam4 0.7403550 0.3917636 0.78327104 0.4309776 0.1752640 0.94668388
+##             s7        s8        s9        s10       s11       s12
+## sam1 0.7811775 0.5824201 0.7072237 0.86595023 0.3520402 0.4358718
+## sam2 0.5869432 0.6389264 0.3450403 0.07703436 0.4722528 0.7467841
+## sam3 0.8196181 0.3919323 0.7823582 0.74613238 0.5338816 0.0846173
+## sam4 0.7044953 0.3257368 0.9367393 0.99475854 0.9464276 0.5732689
+##            s13       s14       s15       s16       s17       s18
+## sam1 0.9754523 0.6971351 0.5247873 0.5126980 0.5080613 0.8311513
+## sam2 0.5771914 0.9870072 0.4881304 0.8546315 0.5936254 0.6873601
+## sam3 0.7392869 0.5104545 0.1886795 0.3496769 0.6928111 0.6738743
+## sam4 0.9027598 0.3239889 0.9622762 0.2661097 0.3346391 0.6533321
+##             s19       s20       s21       s22       s23       s24
+## sam1 0.09571556 0.1549136 0.2458252 0.3138197 0.8134497 0.6355442
+## sam2 0.42322630 0.7672090 0.9687606 0.3592505 0.9477584 0.7051245
+## sam3 0.08214040 0.9420649 0.8997512 0.2251877 0.4940255 0.9120137
+## sam4 0.91560367 0.1443106 0.7358621 0.9465534 0.3667558 0.2882320
+##             s25
+## sam1 0.07286385
+## sam2 0.26951424
+## sam3 0.64187211
+## sam4 0.90365832
 ## 
 ## Slot "modified":
 ## [1] TRUE
@@ -209,7 +224,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov  6 16:18:25 2018 ------##
+## ##------ Wed Nov  7 09:53:38 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlstd{tmp_merged_compositional} \hlkwb{<-} \hlkwd{new}\hlstd{(}\hlstr{"merged_compositional"}\hlstd{,}
@@ -229,21 +244,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.0267 -0.6400  0.1642  0.6065  2.3522 
+## -1.8146 -0.7776  0.1236  0.6441  3.1480 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              5.607e-01  3.580e-01   1.566
-## as.matrix((x@df)[, indices_predictor])a -9.669e-05  6.908e-05  -1.400
+## (Intercept)                              3.258e-01  4.733e-01   0.688
+## as.matrix((x@df)[, indices_predictor])a -1.047e-04  8.822e-05  -1.187
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.129
-## as.matrix((x@df)[, indices_predictor])a    0.173
+## (Intercept)                                0.497
+## as.matrix((x@df)[, indices_predictor])a    0.245
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.067 on 28 degrees of freedom
-## Multiple R-squared:  0.0654,	Adjusted R-squared:  0.03202 
-## F-statistic: 1.959 on 1 and 28 DF,  p-value: 0.1726
+## Residual standard error: 1.137 on 28 degrees of freedom
+## Multiple R-squared:  0.04788,	Adjusted R-squared:  0.01388 
+## F-statistic: 1.408 on 1 and 28 DF,  p-value: 0.2453
 ## 
 ## 
 ## Response Y2 :
@@ -253,21 +268,23 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.6978 -0.4500  0.0375  0.7130  2.2381 
+## -2.4838 -1.1343  0.1275  1.1752  2.0129 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -3.687e-02  3.983e-01  -0.093
-## as.matrix((x@df)[, indices_predictor])a -3.878e-05  7.686e-05  -0.505
+## (Intercept)                             -1.0767141  0.5460040  -1.972
+## as.matrix((x@df)[, indices_predictor])a  0.0002004  0.0001018   1.969
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
-##                                         Pr(>|t|)
-## (Intercept)                                0.927
-## as.matrix((x@df)[, indices_predictor])a    0.618
-## as.matrix((x@df)[, indices_predictor])b       NA
+##                                         Pr(>|t|)  
+## (Intercept)                               0.0586 .
+## as.matrix((x@df)[, indices_predictor])a   0.0589 .
+## as.matrix((x@df)[, indices_predictor])b       NA  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.187 on 28 degrees of freedom
-## Multiple R-squared:  0.00901,	Adjusted R-squared:  -0.02638 
-## F-statistic: 0.2546 on 1 and 28 DF,  p-value: 0.6178
+## Residual standard error: 1.312 on 28 degrees of freedom
+## Multiple R-squared:  0.1216,	Adjusted R-squared:  0.09027 
+## F-statistic: 3.878 on 1 and 28 DF,  p-value: 0.0589
 ## 
 ## 
 ## Response Y3 :
@@ -276,24 +293,24 @@
 ## lm(formula = Y3 ~ as.matrix((x@df)[, indices_predictor]))
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -0.9387 -0.5832 -0.1760  0.3872  1.8835 
+##      Min       1Q   Median       3Q      Max 
+## -2.22997 -0.43382  0.07819  0.67836  1.85067 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              7.847e-01  2.663e-01   2.946
-## as.matrix((x@df)[, indices_predictor])a -1.137e-04  5.139e-05  -2.213
+## (Intercept)                              7.110e-01  3.814e-01   1.864
+## as.matrix((x@df)[, indices_predictor])a -1.294e-04  7.109e-05  -1.821
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
-##                                         Pr(>|t|)   
-## (Intercept)                              0.00641 **
-## as.matrix((x@df)[, indices_predictor])a  0.03523 * 
-## as.matrix((x@df)[, indices_predictor])b       NA   
+##                                         Pr(>|t|)  
+## (Intercept)                               0.0728 .
+## as.matrix((x@df)[, indices_predictor])a   0.0794 .
+## as.matrix((x@df)[, indices_predictor])b       NA  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.7935 on 28 degrees of freedom
-## Multiple R-squared:  0.1488,	Adjusted R-squared:  0.1184 
-## F-statistic: 4.897 on 1 and 28 DF,  p-value: 0.03523
+## Residual standard error: 0.9165 on 28 degrees of freedom
+## Multiple R-squared:  0.1058,	Adjusted R-squared:  0.07391 
+## F-statistic: 3.315 on 1 and 28 DF,  p-value: 0.07937
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -306,7 +323,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov  6 16:18:26 2018 ------##
+## ##------ Wed Nov  7 09:53:39 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{biplot}\hlstd{(}\hlkwd{princomp}\hlstd{(}\hlkwd{acomp}\hlstd{(MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{4}\hlstd{)))))}
@@ -326,99 +343,25 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov  6 16:18:26 2018 ------##
+## ##------ Wed Nov  7 09:53:39 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{data}\hlstd{(two_normal_pops)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data(two\_normal\_pops): data set 'two\_normal\_pops' not found}}\begin{alltt}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{))}
 \hlkwd{qqnorm.acomp}\hlstd{(}\hlkwd{acomp}\hlstd{(two_normal_pops}\hlopt{@}\hlkwc{count_matrix}\hlstd{),} \hlkwc{pch}\hlstd{=}\hlnum{19}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{0.2}\hlstd{)}
 \end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
-\begin{kframe}\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in acomp(two\_normal\_pops@count\_matrix): object 'two\_normal\_pops' not found}}\begin{alltt}
 \hlkwd{qqnorm.acomp}\hlstd{(}\hlkwd{acomp}\hlstd{(two_normal_pops}\hlopt{@}\hlkwc{count_matrix}\hlstd{[}\hlnum{1}\hlopt{:}\hlnum{1000}\hlstd{,]),} \hlkwc{pch}\hlstd{=}\hlnum{19}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{0.2}\hlstd{,} \hlkwc{plot.it}\hlstd{=}\hlnum{FALSE}\hlstd{)}
 \end{alltt}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-2} 
-
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in acomp(two\_normal\_pops@count\_matrix[1:1000, ]): object 'two\_normal\_pops' not found}}\end{kframe}
 \end{knitrout}
 \end{enumerate}
 
@@ -440,7 +383,7 @@ Our first question is whether two populations have the same covariance and struc
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov  6 16:18:27 2018 ------##
+## ##------ Wed Nov  7 09:53:40 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##TODO!!}
@@ -457,16 +400,22 @@ The next is whether the populations have a different center:
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov  6 16:18:27 2018 ------##
+## ##------ Wed Nov  7 09:53:40 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## This dataset includes the two components above, as well as four others}
 \hlcom{## (a total of seven)}
 \hlkwd{data}\hlstd{(}\hlstr{"two_normal_pops_extended"}\hlstd{)}
+\end{alltt}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}two\_normal\_pops\_extended"{}): data set 'two\_normal\_pops\_extended' not found}}\begin{alltt}
 \hlcom{## Data from the Landscape... paper}
 \hlkwd{data}\hlstd{(}\hlstr{"Breast560"}\hlstd{)}
+\end{alltt}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}Breast560"{}): data set 'Breast560' not found}}\begin{alltt}
 \hlstd{wrapper_compare_populations} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{predictors}\hlstd{,} \hlkwc{response}\hlstd{,} \hlkwc{...}\hlstd{)\{}
   \hlkwa{if}\hlstd{(}\hlkwd{length}\hlstd{(}\hlkwd{unique}\hlstd{(response))} \hlopt{==} \hlnum{2}\hlstd{)\{}
     \hlstd{tmp} \hlkwb{<-} \hlkwd{compare_populations}\hlstd{(predictors, response, ...)}
@@ -484,21 +433,12 @@ The next is whether the populations have a different center:
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: Compositional}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'Compositional'}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:compositions':\\\#\# \\\#\#\ \ \ \  alr}}\begin{alltt}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in metadata(Breast560): object 'Breast560' not found}}\begin{alltt}
 \hlstd{x}
 \end{alltt}
-\begin{verbatim}
-##          test      p-value
-## [1,] 223.6681 6.334800e-26
-## [2,] 237.6260 6.270514e-29
-## [3,] 237.4362 2.457445e-43
-## [4,]  78.3811 9.584122e-12
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'x' not found}}\end{kframe}
 \end{knitrout}
 
 
@@ -509,31 +449,20 @@ Data from 560 breast cancer patients is available as part of the document as wel
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{data}\hlstd{(}\hlstr{"Breast560"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}Breast560"{}): data set 'Breast560' not found}}\begin{alltt}
 \hlkwd{metadata}\hlstd{(Breast560)[}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
 \end{alltt}
-\begin{verbatim}
-##         donor_gender donor_age_at_diagnosis donor_age_at_last_follow.up
-## PD10010       female                     56            no_data_supplied
-## PD10011       female                     75            no_data_supplied
-## PD10014       female                     64            no_data_supplied
-## PD11326       female                     38                          47
-##          specimen_type donor_vital_status
-## PD10010 tumour_primary              alive
-## PD10011 tumour_primary              alive
-## PD10014 tumour_primary           deceased
-## PD11326 tumour_primary              alive
-\end{verbatim}
-\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in metadata(Breast560): object 'Breast560' not found}}\begin{alltt}
 \hlkwd{count_matrix}\hlstd{(Breast560)[}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
 \end{alltt}
-\begin{verbatim}
-##          Signature.1  Signature.2  Signature.3 Signature.5 Signature.6
-## PD10010 0.0013656127 0.0002299146 0.0009201629 0.001224842           0
-## PD10011 0.0020433984 0.0000000000 0.0025729837 0.005577513           0
-## PD10014 0.0010016166 0.0000000000 0.0060192540 0.005093551           0
-## PD11326 0.0009765135 0.0005635162 0.0059827947 0.002310769           0
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in count\_matrix(Breast560): object 'Breast560' not found}}\end{kframe}
 \end{knitrout}
 
 Not sure if this is correct
@@ -563,25 +492,9 @@ Not sure if this is correct
                               \hlkwc{ina} \hlstd{=} \hlkwd{as.numeric}\hlstd{(}\hlkwd{as.factor}\hlstd{(}\hlkwd{metadata}\hlstd{(Breast560)}\hlopt{$}\hlstd{final.ER)),}
                               \hlkwc{test} \hlstd{=} \hlstr{"james"}\hlstd{,} \hlkwc{R} \hlstd{=} \hlnum{0}\hlstd{)}
 \end{alltt}
-\begin{verbatim}
-## $note
-## [1] "James test"
-## 
-## $mesoi
-##                X1        X2         X3       X4         X5        X6
-## Sample 1 0.583829 -1.336900 -0.1776487 1.467427 -0.5977703 0.3018865
-## Sample 2 1.410313  1.626698 -1.0779649 1.773800 -0.0129786 0.7226163
-##                 X7         X8       X9       X10       X11
-## Sample 1 0.9095453 0.59145173 1.170214 0.9935606 0.9807331
-## Sample 2 1.2939339 0.04855843 1.241930 1.0600895 1.0444659
-## 
-## $info
-##               test            p-value         correction 
-##       2.797486e+02       6.279768e-51       1.046173e+00 
-## corrected.critical 
-##       2.058360e+01
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in comp.test(x = count\_matrix(Breast560), ina = as.numeric(as.factor(metadata(Breast560)\$final.ER)), : could not find function "{}comp.test"{}}}\end{kframe}
 \end{knitrout}
 
 \section{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
@@ -592,23 +505,24 @@ Not sure if this is correct
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov  6 16:18:28 2018 ------##
+## ##------ Wed Nov  7 09:53:40 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{data}\hlstd{(}\hlstr{"CNA_12K_TCGA"}\hlstd{)}
+\end{alltt}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}CNA\_12K\_TCGA"{}): data set 'CNA\_12K\_TCGA' not found}}\begin{alltt}
 \hlkwd{dim}\hlstd{(}\hlkwd{metadata}\hlstd{(CNA_12K_TCGA))}
 \end{alltt}
-\begin{verbatim}
-## [1] 10899    37
-\end{verbatim}
-\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in metadata(CNA\_12K\_TCGA): object 'CNA\_12K\_TCGA' not found}}\begin{alltt}
 \hlkwd{dim}\hlstd{(}\hlkwd{count_matrix}\hlstd{(CNA_12K_TCGA))}
 \end{alltt}
-\begin{verbatim}
-## [1] 10899     7
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in count\_matrix(CNA\_12K\_TCGA): object 'CNA\_12K\_TCGA' not found}}\end{kframe}
 \end{knitrout}
 
 
