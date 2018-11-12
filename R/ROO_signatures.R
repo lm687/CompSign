@@ -167,7 +167,7 @@ setReplaceMethod("metadata",
                  })
 
 #' Add pseudocounts; renormalise
-addPseudoCounts <- function(count_matrix, pseudocount){
+addPseudoCounts <- function(count_matrix, pseudocount=1e-5){
   count_matrix <- count_matrix + pseudocount
   count_matrix <- sweep(count_matrix, 1,
                         rowSums(count_matrix), '/')
