@@ -28,6 +28,11 @@ library(compositions)
 @
 
 <<>>=
+## if the folder data/ is not in github
+for(i in list.files("../data/", pattern = "*rda", full.names = TRUE)){load(i)}
+@
+
+<<>>=
 ## This chunk was last ran in
 timestamp()
 
@@ -153,7 +158,7 @@ count_matrix(Breast560)[1:4,1:5]
 
 Not sure if this is correct
 <<fig.width=3.5,fig.height=5>>=
-source("~/Documents/CantabPhD/CDA_in_Cancer/code/functions/various_functions.R")
+source("../../CDA_in_Cancer/code/functions/basic_functions.R")
 plotPCA(ilr(count_matrix(Breast560)), pch=4, col='blue')
 @
 
