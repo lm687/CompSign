@@ -345,8 +345,8 @@ createDendrogram <- function(merged_object, name_clinical, bool_comparison, ...)
   plot(tmp_toplot_dendro, main='Aitchison distance')
   if(bool_comparison){
     tmp_toplot_dendro_nonComp <- as.dendrogram(hclust(dist(merged_object@count_matrix)))
-    labels(tmp_toplot_dendro_nonComp) <-  rep('.', nrow(merged_object@df))
     labels_colors(tmp_toplot_dendro_nonComp) <- col_vec[as.factor(merged_object@df[,name_clinical][labels(tmp_toplot_dendro_nonComp)])]
+    labels(tmp_toplot_dendro_nonComp) <-  rep('.', nrow(merged_object@df))
     plot(tmp_toplot_dendro_nonComp, main='Euclidean distance')
   }
 }
