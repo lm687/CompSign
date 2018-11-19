@@ -2,12 +2,13 @@
 % Please edit documentation in R/ROO_signatures.R
 \name{count_matrix}
 \alias{count_matrix}
-\title{Retrieve count matrix from object of class sign.
-X is of class sign}
+\title{Retrieve count matrix from object of class sign.}
 \usage{
 count_matrix(X)
 }
+\arguments{
+\item{X}{object of class sign}
+}
 \description{
 Retrieve count matrix from object of class sign.
-X is of class sign
 }

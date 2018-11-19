@@ -2,10 +2,12 @@
 % Please edit documentation in R/ROO_signatures.R
 \name{comp_lm}
 \alias{comp_lm}
-\title{It computes a linear regression with some numerical value as the predictor and the compositions as response}
+\title{(ongoing) Linear regression with compositional data as the response
+It computes a linear regression with some numerical value as the predictor and the compositions as response}
 \usage{
 comp_lm(x, indices_predictor)
 }
 \description{
+(ongoing) Linear regression with compositional data as the response
 It computes a linear regression with some numerical value as the predictor and the compositions as response
 }

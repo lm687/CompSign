@@ -85,6 +85,7 @@ comp_lda <- function(x, indices_response){
 }
 ############# CURRENT #############
 ###################################
+#' (ongoing) Linear regression with compositional data as the response
 #' It computes a linear regression with some numerical value as the predictor and the compositions as response
 comp_lm <- function(x, indices_predictor){
   ## the composition is the response
@@ -96,6 +97,18 @@ comp_lm <- function(x, indices_predictor){
   list(summary(model_compReg)#,
        #anova(model_compReg)
        )
+}
+
+#' Perform logistic regression
+#'
+#' @param merged_obj a merged_compositional object
+#' @param colname either the name or the index of the column in metadata(merged_compositional) with which to perform logistic regression
+#' @return The summary of a logistic regression
+comp_logistic <- function(merged_obj, colname){
+  lab <- (as.numeric(as.factor(metadata(merged_obj)[,colname]))-1)
+  if(all(sort(lab) != c(0,1))){stop('Check labels of metadata!')}
+  summary(glm(formula = lab ~ ilr(acomp(count_matrix(merged_obj))),
+              family = binomial(link = "logit")))
 }
 
 ###########################################

@@ -2,12 +2,13 @@
 % Please edit documentation in R/ROO_signatures.R
 \name{metadata}
 \alias{metadata}
-\title{Retrieve count matrix from object of class sign.
-X is of class sign}
+\title{Retrieve count matrix from object of class sign.}
 \usage{
 metadata(X)
 }
+\arguments{
+\item{X}{object of class sign}
+}
 \description{
 Retrieve count matrix from object of class sign.
-X is of class sign
 }
