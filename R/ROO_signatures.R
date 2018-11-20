@@ -104,11 +104,61 @@ comp_lm <- function(x, indices_predictor){
 #' @param merged_obj a merged_compositional object
 #' @param colname either the name or the index of the column in metadata(merged_compositional) with which to perform logistic regression
 #' @return The summary of a logistic regression
-comp_logistic <- function(merged_obj, colname){
+deprecated_comp_logistic <- function(merged_obj, colname){
   lab <- (as.numeric(as.factor(metadata(merged_obj)[,colname]))-1)
   if(all(sort(lab) != c(0,1))){stop('Check labels of metadata!')}
   summary(glm(formula = lab ~ ilr(acomp(count_matrix(merged_obj))),
               family = binomial(link = "logit")))
+}
+
+#' Performs logistic regression, as explained in the reference
+#' @param m_obj merged_compositional object
+#' @param col_idx name or index of column of interest in metadata(m_obj)
+#' @references Van den Boogaart, K. Gerald, and Raimon Tolosana-Delgado. Analyzing compositional data with R. Vol. 122. Berlin: Springer, 2013.
+comp_logistic <- function(compData, binaryLabels, relax_binary_assumtion=FALSE){
+  require(nnet)
+  ## potential next: arguments are a merged_compositional object and the column
+
+  ## transform if necessary
+  if((length(unique(binaryLabels))>2) & !relax_binary_assumtion){
+    stop('There must be only two labels. Use cleanObject() if necessarys')
+  }
+  dat <- data.frame(binaryLabels, compData)
+  ncol(compData)
+  if(is.null(colnames(compData))){
+    frm <- paste0(deparse(substitute(binaryLabels)), '~', paste(paste0('X',1:ncol(compData)), collapse = '+'))
+  }else{
+    frm <- paste0(deparse(substitute(binaryLabels)), '~', paste(colnames(compData), collapse = '+'))
+  }
+  res <- multinom(formula = as.formula(frm), data = dat)
+  list(coefTransformed=coef(res),
+       ## coefsSimplex=ilr2clr(coef(res)[-1], x=compData), ## need to debugged
+       summary=summary(res),
+       res=res,
+       table(as.factor(binaryLabels), FP_FN_table=as.factor(round(fitted(res)[,1]))))
+}
+
+
+#' To be added in the package
+#' @param merged_obj a merged object
+#' @param colname column of interest
+#' @return a merged object of smaller size, with only the rows in which the column of interest is part of the binary classification
+cleanObject <- function(merged_obj, colname, expected_labels='', verbose=FALSE){
+  tmp <- merged_obj@df[,colname]
+  table(tmp)
+  if(expected_labels==''){
+    if(verbose) cat("No expected labels specified.\nLabels used: ")
+    used <- unique(unique(tmp))
+    not_used <- c('--')
+    used <- used[! (used %in% not_used)]
+    if(verbose) cat(paste0(used, collapse=', ' ))
+    if(verbose) cat("\nLabels not used: ")
+    if(verbose) cat(paste0(not_used, collapse=', ' ))
+    if(verbose) cat("\n")
+  }
+  merged_obj@df <- merged_obj@df[tmp %in% used,]
+  merged_obj@count_matrix <- merged_obj@count_matrix[tmp %in% used,]
+  merged_obj
 }
 
 ###########################################

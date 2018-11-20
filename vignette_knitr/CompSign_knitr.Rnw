@@ -22,7 +22,7 @@ timestamp()
 
 ## install latest version
 library(devtools)
-devtools::install_github("lm687/CompSign")
+#devtools::install_github("lm687/CompSign")
 library(CompSign)
 library(compositions)
 @
@@ -180,5 +180,39 @@ dim(metadata(CNA_12K_TCGA))
 dim(count_matrix(CNA_12K_TCGA))
 @
 
+\subsection{Logistic regression}
+Based on ACDWR pg 200
+
+<<>>=
+#setwd("~/Documents/PhD/CompSign/vignette_knitr/")
+load("../data/two_normal_pops_extended.rda")
+load("../data/CNA_12K_TCGA.rda")
+
+## avoid perfect separation
+L <- length((as.numeric(metadata(two_normal_pops_extended)[,1])))
+scramble <- sample(1:L, floor(L*0.05), replace = FALSE)
+
+scrambled_labels <- (as.numeric(metadata(two_normal_pops_extended)[,1]))
+scrambled_labels[scramble] <- 1-scrambled_labels[scramble]
+
+auxcomp <- scale(ilr(count_matrix(two_normal_pops_extended)),
+                 center = TRUE, scale = FALSE)
+
+summary(glm(formula = scrambled_labels ~ ilr(acomp(count_matrix(two_normal_pops_extended))),
+            family = binomial(link = "logit")))
+
+res <- comp_logistic(count_matrix(two_normal_pops), scrambled_labels)
+res
+
+resCNA_gender <- comp_logistic(count_matrix(cleanObject(CNA_12K_TCGA, 'gender')),
+                              metadata(cleanObject(CNA_12K_TCGA, 'gender'))[,'gender'])
+resCNA_gender
+
+## below: incorrect
+resCNA_race <- comp_logistic(count_matrix(cleanObject(CNA_12K_TCGA, 'race')),
+                              metadata(cleanObject(CNA_12K_TCGA, 'race'))[,'race'], relax_binary_assumtion = TRUE)
+
+resCNA_race
+@
 
 \end{document}

@@ -77,16 +77,12 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed Nov  7 10:09:57 2018 ------##
+## ##------ Tue Nov 20 14:37:32 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## install latest version}
 \hlkwd{library}\hlstd{(devtools)}
-\hlstd{devtools}\hlopt{::}\hlkwd{install_github}\hlstd{(}\hlstr{"lm687/CompSign"}\hlstd{)}
-\end{alltt}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Skipping install of 'CompSign' from a github remote, the SHA1 (d0c7784d) has not changed since last install.\\\#\#\ \  Use `force = TRUE` to force installation}}\begin{alltt}
+\hlcom{#devtools::install_github("lm687/CompSign")}
 \hlkwd{library}\hlstd{(CompSign)}
 \hlkwd{library}\hlstd{(compositions)}
 \end{alltt}
@@ -129,7 +125,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed Nov  7 10:10:00 2018 ------##
+## ##------ Tue Nov 20 14:37:33 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##########################}
@@ -152,7 +148,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed Nov  7 10:10:00 2018 ------##
+## ##------ Tue Nov 20 14:37:33 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{add_together_matrix}\hlstd{(sign_dummy)}
@@ -171,31 +167,31 @@
 ## [23] "s23" "s24" "s25"
 ## 
 ## Slot "count_matrix":
-##             s1         s2        s3        s4         s5        s6
-## sam1 0.7784261 0.01899545 0.2832337 0.7634464 0.47690738 0.4932939
-## sam2 0.8647305 0.54011930 0.7992423 0.8853640 0.82286212 0.9339099
-## sam3 0.6502008 0.44315965 0.3580316 0.9311900 0.43560483 0.9687104
-## sam4 0.1163561 0.54584555 0.1325613 0.1515711 0.04704713 0.5303048
-##             s7         s8        s9       s10        s11       s12
-## sam1 0.4447834 0.84069656 0.5091814 0.2069675 0.08193922 0.9733937
-## sam2 0.7258888 0.00198996 0.1395706 0.9629527 0.03750356 0.6127755
-## sam3 0.9675364 0.08431608 0.5187020 0.6895406 0.03911379 0.3846920
-## sam4 0.8527858 0.23624631 0.5573887 0.1506753 0.71586751 0.9165366
-##             s13        s14       s15        s16       s17        s18
-## sam1 0.53997656 0.18754798 0.7340085 0.73489632 0.3042449 0.07395421
-## sam2 0.67711458 0.20379231 0.7464848 0.55030052 0.2577085 0.35628649
-## sam3 0.02900615 0.22309559 0.3796148 0.05790401 0.7853138 0.10672071
-## sam4 0.85884574 0.03870028 0.6201593 0.24404868 0.6390459 0.71745306
-##            s19       s20       s21       s22       s23        s24
-## sam1 0.8204762 0.6920064 0.5414644 0.6441391 0.2410165 0.68262420
-## sam2 0.1553688 0.3970055 0.1269795 0.1329946 0.5596698 0.61172885
-## sam3 0.1293228 0.3754686 0.5026743 0.5166404 0.4180655 0.39536817
-## sam4 0.5733194 0.9927708 0.9557972 0.3777508 0.2864715 0.03293686
-##            s25
-## sam1 0.3438330
-## sam2 0.4738645
-## sam3 0.8433543
-## sam4 0.2386754
+##             s1        s2        s3           s4        s5        s6
+## sam1 0.4727530 0.7201406 0.8626873 3.136111e-01 0.9059268 0.4715935
+## sam2 0.4826859 0.9948616 0.8773814 3.650784e-05 0.5019962 0.7576524
+## sam3 0.2523774 0.9881778 0.3274175 2.680551e-01 0.5750464 0.1806003
+## sam4 0.3274017 0.9455770 0.8501642 7.948695e-01 0.3600513 0.9096839
+##             s7          s8        s9       s10        s11       s12
+## sam1 0.6978941 0.872510572 0.1561251 0.6240480 0.73754948 0.3603802
+## sam2 0.6557791 0.032059090 0.2069292 0.6067926 0.02658617 0.6702366
+## sam3 0.1816618 0.005489897 0.4276585 0.5450189 0.06333866 0.3877280
+## sam4 0.4866828 0.230437925 0.6783273 0.7602374 0.56992840 0.2220025
+##            s13        s14        s15       s16        s17       s18
+## sam1 0.2048943 0.24460129 0.75364351 0.2974315 0.80752923 0.4098196
+## sam2 0.8481758 0.64424103 0.65221243 0.4387976 0.18614973 0.4897189
+## sam3 0.8716103 0.17252595 0.50023542 0.0416386 0.08797126 0.3429558
+## sam4 0.9638690 0.07959214 0.05546313 0.6837526 0.06263779 0.1150085
+##            s19       s20       s21       s22       s23       s24
+## sam1 0.2600145 0.9672693 0.2792357 0.4716439 0.6954225 0.9449028
+## sam2 0.4587714 0.3095924 0.9354094 0.3902753 0.2834248 0.4680484
+## sam3 0.1881336 0.0212424 0.8787618 0.7476690 0.7910700 0.9811331
+## sam4 0.3040355 0.4355955 0.4403698 0.1664639 0.8771529 0.6486360
+##             s25
+## sam1 0.27511797
+## sam2 0.80813636
+## sam3 0.19301647
+## sam4 0.07873073
 ## 
 ## Slot "modified":
 ## [1] TRUE
@@ -218,7 +214,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed Nov  7 10:10:00 2018 ------##
+## ##------ Tue Nov 20 14:37:34 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlstd{tmp_merged_compositional} \hlkwb{<-} \hlkwd{new}\hlstd{(}\hlstr{"merged_compositional"}\hlstd{,}
@@ -238,21 +234,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.0235 -0.3696 -0.1226  0.2959  1.9088 
+## -4.0614 -0.8163 -0.1171  1.0808  2.2565 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -1.069e-01  3.268e-01  -0.327
-## as.matrix((x@df)[, indices_predictor])a  3.724e-06  5.745e-05   0.065
+## (Intercept)                             -1.056e-02  5.052e-01  -0.021
+## as.matrix((x@df)[, indices_predictor])a  1.538e-05  8.813e-05   0.174
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.746
-## as.matrix((x@df)[, indices_predictor])a    0.949
+## (Intercept)                                0.983
+## as.matrix((x@df)[, indices_predictor])a    0.863
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 0.8785 on 28 degrees of freedom
-## Multiple R-squared:  0.00015,	Adjusted R-squared:  -0.03556 
-## F-statistic: 0.0042 on 1 and 28 DF,  p-value: 0.9488
+## Residual standard error: 1.379 on 28 degrees of freedom
+## Multiple R-squared:  0.001086,	Adjusted R-squared:  -0.03459 
+## F-statistic: 0.03044 on 1 and 28 DF,  p-value: 0.8628
 ## 
 ## 
 ## Response Y2 :
@@ -262,21 +258,23 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.8314 -0.8996 -0.1323  0.9301  1.8544 
+## -3.0846 -0.9442 -0.1559  1.0345  2.3290 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              5.205e-01  3.918e-01   1.328
-## as.matrix((x@df)[, indices_predictor])a -2.985e-05  6.888e-05  -0.433
+## (Intercept)                             -8.977e-01  5.109e-01  -1.757
+## as.matrix((x@df)[, indices_predictor])a  1.912e-04  8.913e-05   2.145
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
-##                                         Pr(>|t|)
-## (Intercept)                                0.195
-## as.matrix((x@df)[, indices_predictor])a    0.668
-## as.matrix((x@df)[, indices_predictor])b       NA
+##                                         Pr(>|t|)  
+## (Intercept)                               0.0899 .
+## as.matrix((x@df)[, indices_predictor])a   0.0408 *
+## as.matrix((x@df)[, indices_predictor])b       NA  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.053 on 28 degrees of freedom
-## Multiple R-squared:  0.006661,	Adjusted R-squared:  -0.02881 
-## F-statistic: 0.1878 on 1 and 28 DF,  p-value: 0.6681
+## Residual standard error: 1.394 on 28 degrees of freedom
+## Multiple R-squared:  0.1411,	Adjusted R-squared:  0.1105 
+## F-statistic: 4.601 on 1 and 28 DF,  p-value: 0.04076
 ## 
 ## 
 ## Response Y3 :
@@ -286,21 +284,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.4651 -0.4461  0.1964  0.5655  2.0742 
+## -3.7103 -0.3316  0.1997  1.1198  2.3917 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              3.875e-01  4.612e-01   0.840
-## as.matrix((x@df)[, indices_predictor])a -8.795e-05  8.109e-05  -1.085
+## (Intercept)                             -4.082e-01  5.577e-01  -0.732
+## as.matrix((x@df)[, indices_predictor])a  4.784e-05  9.728e-05   0.492
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.408
-## as.matrix((x@df)[, indices_predictor])a    0.287
+## (Intercept)                                0.470
+## as.matrix((x@df)[, indices_predictor])a    0.627
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.24 on 28 degrees of freedom
-## Multiple R-squared:  0.04032,	Adjusted R-squared:  0.006049 
-## F-statistic: 1.176 on 1 and 28 DF,  p-value: 0.2873
+## Residual standard error: 1.522 on 28 degrees of freedom
+## Multiple R-squared:  0.008561,	Adjusted R-squared:  -0.02685 
+## F-statistic: 0.2418 on 1 and 28 DF,  p-value: 0.6268
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -313,7 +311,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed Nov  7 10:10:02 2018 ------##
+## ##------ Tue Nov 20 14:37:35 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{biplot}\hlstd{(}\hlkwd{princomp}\hlstd{(}\hlkwd{acomp}\hlstd{(MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{4}\hlstd{)))))}
@@ -333,14 +331,10 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed Nov  7 10:10:02 2018 ------##
+## ##------ Tue Nov 20 14:37:35 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{data}\hlstd{(two_normal_pops)}
-\end{alltt}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data(two\_normal\_pops): data set 'two\_normal\_pops' not found}}\begin{alltt}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{))}
 \hlkwd{qqnorm.acomp}\hlstd{(}\hlkwd{acomp}\hlstd{(two_normal_pops}\hlopt{@}\hlkwc{count_matrix}\hlstd{),} \hlkwc{pch}\hlstd{=}\hlnum{19}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{0.2}\hlstd{)}
 \end{alltt}
@@ -451,7 +445,7 @@ Our first question is whether two populations have the same covariance and struc
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed Nov  7 10:10:02 2018 ------##
+## ##------ Tue Nov 20 14:37:35 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##TODO!!}
@@ -468,22 +462,16 @@ The next is whether the populations have a different center:
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed Nov  7 10:10:02 2018 ------##
+## ##------ Tue Nov 20 14:37:35 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## This dataset includes the two components above, as well as four others}
 \hlcom{## (a total of seven)}
 \hlkwd{data}\hlstd{(}\hlstr{"two_normal_pops_extended"}\hlstd{)}
-\end{alltt}
 
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}two\_normal\_pops\_extended"{}): data set 'two\_normal\_pops\_extended' not found}}\begin{alltt}
 \hlcom{## Data from the Landscape... paper}
 \hlkwd{data}\hlstd{(}\hlstr{"Breast560"}\hlstd{)}
-\end{alltt}
 
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}Breast560"{}): data set 'Breast560' not found}}\begin{alltt}
 \hlstd{wrapper_compare_populations} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{predictors}\hlstd{,} \hlkwc{response}\hlstd{,} \hlkwc{...}\hlstd{)\{}
   \hlkwa{if}\hlstd{(}\hlkwd{length}\hlstd{(}\hlkwd{unique}\hlstd{(response))} \hlopt{==} \hlnum{2}\hlstd{)\{}
     \hlstd{tmp} \hlkwb{<-} \hlkwd{compare_populations}\hlstd{(predictors, response, ...)}
@@ -509,11 +497,11 @@ The next is whether the populations have a different center:
 \hlstd{x}
 \end{alltt}
 \begin{verbatim}
-##          test      p-value
-## [1,] 223.6681 6.334800e-26
-## [2,] 237.6260 6.270514e-29
-## [3,] 237.4362 2.457445e-43
-## [4,]  78.3811 9.584122e-12
+##           test      p-value
+## [1,] 215.35615 1.224333e-24
+## [2,] 161.50152 3.522373e-18
+## [3,] 235.90667 5.324172e-43
+## [4,]  77.27718 1.042179e-11
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -526,10 +514,6 @@ Data from 560 breast cancer patients is available as part of the document as wel
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{data}\hlstd{(}\hlstr{"Breast560"}\hlstd{)}
-\end{alltt}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}Breast560"{}): data set 'Breast560' not found}}\begin{alltt}
 \hlkwd{metadata}\hlstd{(Breast560)[}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
 \end{alltt}
 \begin{verbatim}
@@ -548,11 +532,11 @@ Data from 560 breast cancer patients is available as part of the document as wel
 \hlkwd{count_matrix}\hlstd{(Breast560)[}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
 \end{alltt}
 \begin{verbatim}
-##          Signature.1  Signature.2  Signature.3 Signature.5 Signature.6
-## PD10010 0.0013656127 0.0002299146 0.0009201629 0.001224842           0
-## PD10011 0.0020433984 0.0000000000 0.0025729837 0.005577513           0
-## PD10014 0.0010016166 0.0000000000 0.0060192540 0.005093551           0
-## PD11326 0.0009765135 0.0005635162 0.0059827947 0.002310769           0
+##         Signature.1 Signature.2 Signature.3 Signature.5 Signature.6
+## PD10010  0.22386831  0.04197531   0.2181070   0.3374486           0
+## PD10011  0.09840426  0.00000000   0.1791586   0.4514023           0
+## PD10014  0.03290722  0.00000000   0.2859381   0.2812371           0
+## PD11326  0.04040299  0.02596593   0.3579144   0.1606772           0
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -585,18 +569,18 @@ Not sure if this is correct
 ## [1] "James test"
 ## 
 ## $mesoi
-##                X1        X2         X3       X4         X5        X6
-## Sample 1 0.583829 -1.336900 -0.1776487 1.467427 -0.5977703 0.3018865
-## Sample 2 1.410313  1.626698 -1.0779649 1.773800 -0.0129786 0.7226163
-##                 X7         X8       X9       X10       X11
-## Sample 1 0.9095453 0.59145173 1.170214 0.9935606 0.9807331
-## Sample 2 1.2939339 0.04855843 1.241930 1.0600895 1.0444659
+##                 X1        X2         X3       X4         X5        X6
+## Sample 1 0.4947103 -1.717388 -0.8957869 1.702096 -0.1707924 0.1713026
+## Sample 2 1.2111720  1.423396 -2.3153991 2.010485  0.3004208 0.6587258
+##                X7       X8       X9       X10      X11
+## Sample 1 1.442203 1.255236 1.216817 0.9930453 1.012318
+## Sample 2 1.535435 1.119812 1.252353 1.0633045 1.044466
 ## 
 ## $info
 ##               test            p-value         correction 
-##       2.797486e+02       6.279768e-51       1.046173e+00 
+##       2.790161e+02       9.100067e-51       1.046438e+00 
 ## corrected.critical 
-##       2.058360e+01
+##       2.058881e+01
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -609,14 +593,11 @@ Not sure if this is correct
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed Nov  7 10:10:04 2018 ------##
+## ##------ Tue Nov 20 14:37:37 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{data}\hlstd{(}\hlstr{"CNA_12K_TCGA"}\hlstd{)}
-\end{alltt}
 
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}CNA\_12K\_TCGA"{}): data set 'CNA\_12K\_TCGA' not found}}\begin{alltt}
 \hlkwd{dim}\hlstd{(}\hlkwd{metadata}\hlstd{(CNA_12K_TCGA))}
 \end{alltt}
 \begin{verbatim}
@@ -631,5 +612,303 @@ Not sure if this is correct
 \end{kframe}
 \end{knitrout}
 
+\subsection{Logistic regression}
+Based on ACDWR pg 200
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{#setwd("~/Documents/PhD/CompSign/vignette_knitr/")}
+\hlkwd{load}\hlstd{(}\hlstr{"../data/two_normal_pops_extended.rda"}\hlstd{)}
+\hlkwd{load}\hlstd{(}\hlstr{"../data/CNA_12K_TCGA.rda"}\hlstd{)}
+
+\hlcom{## avoid perfect separation}
+\hlstd{L} \hlkwb{<-} \hlkwd{length}\hlstd{((}\hlkwd{as.numeric}\hlstd{(}\hlkwd{metadata}\hlstd{(two_normal_pops_extended)[,}\hlnum{1}\hlstd{])))}
+\hlstd{scramble} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlstd{L,} \hlkwd{floor}\hlstd{(L}\hlopt{*}\hlnum{0.05}\hlstd{),} \hlkwc{replace} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+
+\hlstd{scrambled_labels} \hlkwb{<-} \hlstd{(}\hlkwd{as.numeric}\hlstd{(}\hlkwd{metadata}\hlstd{(two_normal_pops_extended)[,}\hlnum{1}\hlstd{]))}
+\hlstd{scrambled_labels[scramble]} \hlkwb{<-} \hlnum{1}\hlopt{-}\hlstd{scrambled_labels[scramble]}
+
+\hlstd{auxcomp} \hlkwb{<-} \hlkwd{scale}\hlstd{(}\hlkwd{ilr}\hlstd{(}\hlkwd{count_matrix}\hlstd{(two_normal_pops_extended)),}
+                 \hlkwc{center} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{scale} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+
+\hlkwd{summary}\hlstd{(}\hlkwd{glm}\hlstd{(}\hlkwc{formula} \hlstd{= scrambled_labels} \hlopt{~} \hlkwd{ilr}\hlstd{(}\hlkwd{acomp}\hlstd{(}\hlkwd{count_matrix}\hlstd{(two_normal_pops_extended))),}
+            \hlkwc{family} \hlstd{=} \hlkwd{binomial}\hlstd{(}\hlkwc{link} \hlstd{=} \hlstr{"logit"}\hlstd{)))}
+\end{alltt}
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = scrambled_labels ~ ilr(acomp(count_matrix(two_normal_pops_extended))), 
+##     family = binomial(link = "logit"))
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.1008  -0.3067  -0.1343   0.3337   3.1135  
+## 
+## Coefficients:
+##                                                     Estimate Std. Error
+## (Intercept)                                          0.17669    0.29572
+## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.16946    0.08293
+## ilr(acomp(count_matrix(two_normal_pops_extended)))2  0.17045    0.20491
+## ilr(acomp(count_matrix(two_normal_pops_extended)))3 -0.04711    0.13539
+## ilr(acomp(count_matrix(two_normal_pops_extended)))4 -0.04876    0.11905
+## ilr(acomp(count_matrix(two_normal_pops_extended)))5 -0.15034    0.10905
+## ilr(acomp(count_matrix(two_normal_pops_extended)))6 -0.08281    0.10105
+## ilr(acomp(count_matrix(two_normal_pops_extended)))7 -0.02220    0.09876
+##                                                     z value Pr(>|z|)    
+## (Intercept)                                           0.597    0.550    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.160   <2e-16 ***
+## ilr(acomp(count_matrix(two_normal_pops_extended)))2   0.832    0.406    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))3  -0.348    0.728    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))4  -0.410    0.682    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))5  -1.379    0.168    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))6  -0.819    0.413    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))7  -0.225    0.822    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2772.46  on 1999  degrees of freedom
+## Residual deviance:  845.77  on 1992  degrees of freedom
+## AIC: 861.77
+## 
+## Number of Fisher Scoring iterations: 6
+\end{verbatim}
+\begin{alltt}
+\hlstd{res} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(two_normal_pops), scrambled_labels)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: nnet}}\begin{verbatim}
+## # weights:  5 (4 variable)
+## initial  value 1386.294361 
+## iter  10 value 436.460676
+## iter  10 value 436.460676
+## final  value 436.460676 
+## converged
+\end{verbatim}
+\begin{alltt}
+\hlstd{res}
+\end{alltt}
+\begin{verbatim}
+## $coefTransformed
+## (Intercept)          X1          X2          X3 
+##   0.2155614  -7.3456904   7.9497205  -0.3884687 
+## 
+## $summary
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+##                 Values Std. Err.
+## (Intercept)  0.2155614 0.1370176
+## X1          -7.3456904 0.4188397
+## X2           7.9497205 0.3840895
+## X3          -0.3884687 0.4370199
+## 
+## Residual Deviance: 872.9214 
+## AIC: 878.9214 
+## 
+## $res
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+## (Intercept)          X1          X2          X3 
+##   0.2155614  -7.3456904   7.9497205  -0.3884687 
+## 
+## Residual Deviance: 872.9214 
+## AIC: 878.9214 
+## 
+## [[4]]
+##    FP_FN_table
+##       0   1
+##   0 954  54
+##   1  46 946
+\end{verbatim}
+\begin{alltt}
+\hlstd{resCNA_gender} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'gender'}\hlstd{)),}
+                              \hlkwd{metadata}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'gender'}\hlstd{))[,}\hlstr{'gender'}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+## # weights:  9 (8 variable)
+## initial  value 7535.896147 
+## iter  10 value 7477.896938
+## final  value 7477.896342 
+## converged
+\end{verbatim}
+\begin{alltt}
+\hlstd{resCNA_gender}
+\end{alltt}
+\begin{verbatim}
+## $coefTransformed
+## (Intercept)          s1          s2          s3          s4          s5 
+##  -0.2991671   0.2381913  -1.5952762  -0.7137485  -0.3424139   1.1287220 
+##          s6          s7 
+##   1.1463550  -0.1609969 
+## 
+## $summary
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+##                 Values  Std. Err.
+## (Intercept) -0.2991671 0.04634220
+## s1           0.2381913 0.07069156
+## s2          -1.5952762 0.34187887
+## s3          -0.7137485 0.15918132
+## s4          -0.3424139 0.22213187
+## s5           1.1287220 0.15577367
+## s6           1.1463550 0.25201363
+## s7          -0.1609969 0.19798834
+## 
+## Residual Deviance: 14955.79 
+## AIC: 14969.79 
+## 
+## $res
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+## (Intercept)          s1          s2          s3          s4          s5 
+##  -0.2991671   0.2381913  -1.5952762  -0.7137485  -0.3424139   1.1287220 
+##          s6          s7 
+##   1.1463550  -0.1609969 
+## 
+## Residual Deviance: 14955.79 
+## AIC: 14969.79 
+## 
+## [[4]]
+##         FP_FN_table
+##             0    1
+##   female 4268 1385
+##   male   3520 1699
+\end{verbatim}
+\begin{alltt}
+\hlcom{## below: incorrect}
+\hlstd{resCNA_race} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'race'}\hlstd{)),}
+                              \hlkwd{metadata}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'race'}\hlstd{))[,}\hlstr{'race'}\hlstd{],} \hlkwc{relax_binary_assumtion} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## # weights:  54 (40 variable)
+## initial  value 19480.008949 
+## iter  10 value 9749.868694
+## iter  20 value 9542.043736
+## iter  30 value 9517.674549
+## iter  40 value 9516.466317
+## final  value 9516.429451 
+## converged
+\end{verbatim}
+\begin{alltt}
+\hlstd{resCNA_race}
+\end{alltt}
+\begin{verbatim}
+## $coefTransformed
+##                                           (Intercept)         s1        s2
+## asian                                        2.675822  0.9362561 -3.734532
+## black or african american                    3.126298  0.7315326 -2.226914
+## native hawaiian or other pacific islander   -2.905191 -0.9673919 -6.062152
+## not reported                                 3.312094  0.6140444 -1.617130
+## white                                        4.865439  1.4609214 -2.578245
+##                                                 s3         s4        s5
+## asian                                     1.690197 -0.5707642 -1.252844
+## black or african american                 2.138134  0.9178396 -2.071713
+## native hawaiian or other pacific islander 2.202370  8.4638717  4.265265
+## not reported                              2.954000  0.9466145 -1.448352
+## white                                     1.957366  0.1287871 -1.119340
+##                                                    s6       s7
+## asian                                       1.6057156 4.001795
+## black or african american                  -0.0760912 3.713510
+## native hawaiian or other pacific islander -12.1163351 1.309181
+## not reported                               -1.9068323 3.769750
+## white                                       1.0245549 3.991395
+## 
+## $summary
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+##                                           (Intercept)         s1        s2
+## asian                                        2.675822  0.9362561 -3.734532
+## black or african american                    3.126298  0.7315326 -2.226914
+## native hawaiian or other pacific islander   -2.905191 -0.9673919 -6.062152
+## not reported                                 3.312094  0.6140444 -1.617130
+## white                                        4.865439  1.4609214 -2.578245
+##                                                 s3         s4        s5
+## asian                                     1.690197 -0.5707642 -1.252844
+## black or african american                 2.138134  0.9178396 -2.071713
+## native hawaiian or other pacific islander 2.202370  8.4638717  4.265265
+## not reported                              2.954000  0.9466145 -1.448352
+## white                                     1.957366  0.1287871 -1.119340
+##                                                    s6       s7
+## asian                                       1.6057156 4.001795
+## black or african american                  -0.0760912 3.713510
+## native hawaiian or other pacific islander -12.1163351 1.309181
+## not reported                               -1.9068323 3.769750
+## white                                       1.0245549 3.991395
+## 
+## Std. Errors:
+##                                           (Intercept)        s1       s2
+## asian                                       0.3708243 0.7298643 2.416836
+## black or african american                   0.3649411 0.7246340 2.359150
+## native hawaiian or other pacific islander   1.0000360 2.0428540 5.431924
+## not reported                                0.3629791 0.7220111 2.338804
+## white                                       0.3589692 0.7159120 2.311800
+##                                                 s3       s4       s5
+## asian                                     1.478489 2.095677 1.280650
+## black or african american                 1.467926 2.074927 1.272645
+## native hawaiian or other pacific islander 2.601987 3.041292 2.183757
+## not reported                              1.459629 2.068598 1.261350
+## white                                     1.446293 2.050308 1.247049
+##                                                 s6       s7
+## asian                                     2.320487 1.965550
+## black or african american                 2.311944 1.954391
+## native hawaiian or other pacific islander 5.819587 3.151494
+## not reported                              2.311425 1.946600
+## white                                     2.278335 1.929741
+## 
+## Residual Deviance: 19032.86 
+## AIC: 19102.86 
+## 
+## $res
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+##                                           (Intercept)         s1        s2
+## asian                                        2.675822  0.9362561 -3.734532
+## black or african american                    3.126298  0.7315326 -2.226914
+## native hawaiian or other pacific islander   -2.905191 -0.9673919 -6.062152
+## not reported                                 3.312094  0.6140444 -1.617130
+## white                                        4.865439  1.4609214 -2.578245
+##                                                 s3         s4        s5
+## asian                                     1.690197 -0.5707642 -1.252844
+## black or african american                 2.138134  0.9178396 -2.071713
+## native hawaiian or other pacific islander 2.202370  8.4638717  4.265265
+## not reported                              2.954000  0.9466145 -1.448352
+## white                                     1.957366  0.1287871 -1.119340
+##                                                    s6       s7
+## asian                                       1.6057156 4.001795
+## black or african american                  -0.0760912 3.713510
+## native hawaiian or other pacific islander -12.1163351 1.309181
+## not reported                               -1.9068323 3.769750
+## white                                       1.0245549 3.991395
+## 
+## Residual Deviance: 19032.86 
+## AIC: 19102.86 
+## 
+## [[4]]
+##                                            FP_FN_table
+##                                                0
+##   american indian or alaska native            27
+##   asian                                      665
+##   black or african american                  910
+##   native hawaiian or other pacific islander   13
+##   not reported                              1296
+##   white                                     7961
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 
 \end{document}

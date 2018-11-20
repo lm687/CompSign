@@ -2,18 +2,18 @@
 % Please edit documentation in R/ROO_signatures.R
 \name{comp_logistic}
 \alias{comp_logistic}
-\title{Perform logistic regression}
+\title{Performs logistic regression, as explained in the reference}
 \usage{
-comp_logistic(merged_obj, colname)
+comp_logistic(compData, binaryLabels, relax_binary_assumtion = FALSE)
 }
 \arguments{
-\item{merged_obj}{a merged_compositional object}
+\item{m_obj}{merged_compositional object}
 
-\item{colname}{either the name or the index of the column in metadata(merged_compositional) with which to perform logistic regression}
-}
-\value{
-The summary of a logistic regression
+\item{col_idx}{name or index of column of interest in metadata(m_obj)}
 }
 \description{
-Perform logistic regression
+Performs logistic regression, as explained in the reference
+}
+\references{
+Van den Boogaart, K. Gerald, and Raimon Tolosana-Delgado. Analyzing compositional data with R. Vol. 122. Berlin: Springer, 2013.
 }
