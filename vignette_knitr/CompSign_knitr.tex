@@ -62,6 +62,8 @@
 
 \textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
 
+\tableofcontents
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -77,7 +79,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 14:37:32 2018 ------##
+## ##------ Tue Nov 20 15:44:49 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## install latest version}
@@ -125,7 +127,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 14:37:33 2018 ------##
+## ##------ Tue Nov 20 15:44:50 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##########################}
@@ -148,7 +150,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 14:37:33 2018 ------##
+## ##------ Tue Nov 20 15:44:50 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{add_together_matrix}\hlstd{(sign_dummy)}
@@ -167,31 +169,31 @@
 ## [23] "s23" "s24" "s25"
 ## 
 ## Slot "count_matrix":
-##             s1        s2        s3           s4        s5        s6
-## sam1 0.4727530 0.7201406 0.8626873 3.136111e-01 0.9059268 0.4715935
-## sam2 0.4826859 0.9948616 0.8773814 3.650784e-05 0.5019962 0.7576524
-## sam3 0.2523774 0.9881778 0.3274175 2.680551e-01 0.5750464 0.1806003
-## sam4 0.3274017 0.9455770 0.8501642 7.948695e-01 0.3600513 0.9096839
-##             s7          s8        s9       s10        s11       s12
-## sam1 0.6978941 0.872510572 0.1561251 0.6240480 0.73754948 0.3603802
-## sam2 0.6557791 0.032059090 0.2069292 0.6067926 0.02658617 0.6702366
-## sam3 0.1816618 0.005489897 0.4276585 0.5450189 0.06333866 0.3877280
-## sam4 0.4866828 0.230437925 0.6783273 0.7602374 0.56992840 0.2220025
-##            s13        s14        s15       s16        s17       s18
-## sam1 0.2048943 0.24460129 0.75364351 0.2974315 0.80752923 0.4098196
-## sam2 0.8481758 0.64424103 0.65221243 0.4387976 0.18614973 0.4897189
-## sam3 0.8716103 0.17252595 0.50023542 0.0416386 0.08797126 0.3429558
-## sam4 0.9638690 0.07959214 0.05546313 0.6837526 0.06263779 0.1150085
-##            s19       s20       s21       s22       s23       s24
-## sam1 0.2600145 0.9672693 0.2792357 0.4716439 0.6954225 0.9449028
-## sam2 0.4587714 0.3095924 0.9354094 0.3902753 0.2834248 0.4680484
-## sam3 0.1881336 0.0212424 0.8787618 0.7476690 0.7910700 0.9811331
-## sam4 0.3040355 0.4355955 0.4403698 0.1664639 0.8771529 0.6486360
+##             s1        s2         s3        s4        s5        s6
+## sam1 0.7541314 0.4970128 0.78211567 0.3915332 0.2738219 0.2005642
+## sam2 0.7812332 0.8232943 0.22102898 0.1358599 0.9786203 0.4597861
+## sam3 0.4351710 0.4052233 0.61169752 0.2982947 0.9425812 0.9734695
+## sam4 0.2483642 0.8148358 0.08488753 0.6137194 0.2942012 0.4174360
+##             s7        s8        s9       s10       s11        s12
+## sam1 0.7749699 0.9754341 0.7637598 0.6763901 0.0095364 0.52851290
+## sam2 0.6510488 0.8995055 0.1498146 0.8108928 0.8500328 0.52726926
+## sam3 0.0927079 0.4473260 0.7640837 0.3240883 0.1607237 0.04775178
+## sam4 0.7322792 0.3212439 0.4094843 0.5324957 0.9396786 0.31369197
+##            s13       s14       s15       s16        s17        s18
+## sam1 0.1959873 0.2996425 0.2547190 0.3659506 0.80996888 0.18370775
+## sam2 0.5323840 0.0236303 0.7940158 0.5731402 0.44363277 0.07648741
+## sam3 0.8032507 0.5102668 0.1292824 0.3150606 0.76647091 0.47437104
+## sam4 0.8661609 0.3289789 0.3239946 0.4355564 0.01661512 0.72830942
+##            s19        s20       s21       s22       s23       s24
+## sam1 0.8643979 0.20015968 0.7489268 0.6481179 0.6783852 0.4618235
+## sam2 0.5533880 0.34117733 0.5923476 0.6612199 0.4517486 0.8622700
+## sam3 0.6750658 0.29387013 0.3242528 0.7936309 0.7068090 0.8911294
+## sam4 0.3262684 0.08579528 0.1805006 0.3249219 0.3352801 0.2316338
 ##             s25
-## sam1 0.27511797
-## sam2 0.80813636
-## sam3 0.19301647
-## sam4 0.07873073
+## sam1 0.50067933
+## sam2 0.02525199
+## sam3 0.76196463
+## sam4 0.36252690
 ## 
 ## Slot "modified":
 ## [1] TRUE
@@ -214,7 +216,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 14:37:34 2018 ------##
+## ##------ Tue Nov 20 15:44:50 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlstd{tmp_merged_compositional} \hlkwb{<-} \hlkwd{new}\hlstd{(}\hlstr{"merged_compositional"}\hlstd{,}
@@ -234,21 +236,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -4.0614 -0.8163 -0.1171  1.0808  2.2565 
+## -3.2627 -1.0761  0.1978  0.8880  2.3941 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -1.056e-02  5.052e-01  -0.021
-## as.matrix((x@df)[, indices_predictor])a  1.538e-05  8.813e-05   0.174
+## (Intercept)                             -7.041e-01  5.485e-01  -1.284
+## as.matrix((x@df)[, indices_predictor])a  8.013e-05  9.474e-05   0.846
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.983
-## as.matrix((x@df)[, indices_predictor])a    0.863
+## (Intercept)                                0.210
+## as.matrix((x@df)[, indices_predictor])a    0.405
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.379 on 28 degrees of freedom
-## Multiple R-squared:  0.001086,	Adjusted R-squared:  -0.03459 
-## F-statistic: 0.03044 on 1 and 28 DF,  p-value: 0.8628
+## Residual standard error: 1.462 on 28 degrees of freedom
+## Multiple R-squared:  0.02491,	Adjusted R-squared:  -0.009916 
+## F-statistic: 0.7153 on 1 and 28 DF,  p-value: 0.4049
 ## 
 ## 
 ## Response Y2 :
@@ -258,23 +260,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.0846 -0.9442 -0.1559  1.0345  2.3290 
+## -2.2764 -0.6695 -0.0375  1.0616  1.6511 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -8.977e-01  5.109e-01  -1.757
-## as.matrix((x@df)[, indices_predictor])a  1.912e-04  8.913e-05   2.145
+## (Intercept)                             -4.633e-01  4.304e-01  -1.076
+## as.matrix((x@df)[, indices_predictor])a  8.057e-05  7.434e-05   1.084
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
-##                                         Pr(>|t|)  
-## (Intercept)                               0.0899 .
-## as.matrix((x@df)[, indices_predictor])a   0.0408 *
-## as.matrix((x@df)[, indices_predictor])b       NA  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##                                         Pr(>|t|)
+## (Intercept)                                0.291
+## as.matrix((x@df)[, indices_predictor])a    0.288
+## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.394 on 28 degrees of freedom
-## Multiple R-squared:  0.1411,	Adjusted R-squared:  0.1105 
-## F-statistic: 4.601 on 1 and 28 DF,  p-value: 0.04076
+## Residual standard error: 1.147 on 28 degrees of freedom
+## Multiple R-squared:  0.04026,	Adjusted R-squared:  0.005979 
+## F-statistic: 1.174 on 1 and 28 DF,  p-value: 0.2877
 ## 
 ## 
 ## Response Y3 :
@@ -284,21 +284,21 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.7103 -0.3316  0.1997  1.1198  2.3917 
+## -6.5523 -0.7553  0.2355  1.1816  2.9865 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -4.082e-01  5.577e-01  -0.732
-## as.matrix((x@df)[, indices_predictor])a  4.784e-05  9.728e-05   0.492
+## (Intercept)                             -0.6268989  0.7638802  -0.821
+## as.matrix((x@df)[, indices_predictor])a  0.0001010  0.0001319   0.766
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.470
-## as.matrix((x@df)[, indices_predictor])a    0.627
+## (Intercept)                                0.419
+## as.matrix((x@df)[, indices_predictor])a    0.450
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.522 on 28 degrees of freedom
-## Multiple R-squared:  0.008561,	Adjusted R-squared:  -0.02685 
-## F-statistic: 0.2418 on 1 and 28 DF,  p-value: 0.6268
+## Residual standard error: 2.036 on 28 degrees of freedom
+## Multiple R-squared:  0.02051,	Adjusted R-squared:  -0.01448 
+## F-statistic: 0.5862 on 1 and 28 DF,  p-value: 0.4503
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -311,7 +311,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 14:37:35 2018 ------##
+## ##------ Tue Nov 20 15:44:51 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{biplot}\hlstd{(}\hlkwd{princomp}\hlstd{(}\hlkwd{acomp}\hlstd{(MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{4}\hlstd{)))))}
@@ -331,7 +331,7 @@
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 14:37:35 2018 ------##
+## ##------ Tue Nov 20 15:44:52 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{data}\hlstd{(two_normal_pops)}
@@ -445,7 +445,7 @@ Our first question is whether two populations have the same covariance and struc
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 14:37:35 2018 ------##
+## ##------ Tue Nov 20 15:44:52 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##TODO!!}
@@ -462,7 +462,7 @@ The next is whether the populations have a different center:
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 14:37:35 2018 ------##
+## ##------ Tue Nov 20 15:44:52 2018 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## This dataset includes the two components above, as well as four others}
@@ -506,8 +506,8 @@ The next is whether the populations have a different center:
 \end{kframe}
 \end{knitrout}
 
-
-\section{Data for 560 breast cancer patients}
+\section{Datasets}
+\subsection{Data for 560 breast cancer patients}
 Data from 560 breast cancer patients is available as part of the document as well:
 
 \begin{knitrout}
@@ -555,6 +555,35 @@ Not sure if this is correct
 
 \end{knitrout}
 
+
+\subsection{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Tue Nov 20 15:44:53 2018 ------##
+\end{verbatim}
+\begin{alltt}
+\hlkwd{data}\hlstd{(}\hlstr{"CNA_12K_TCGA"}\hlstd{)}
+
+\hlkwd{dim}\hlstd{(}\hlkwd{metadata}\hlstd{(CNA_12K_TCGA))}
+\end{alltt}
+\begin{verbatim}
+## [1] 10899    37
+\end{verbatim}
+\begin{alltt}
+\hlkwd{dim}\hlstd{(}\hlkwd{count_matrix}\hlstd{(CNA_12K_TCGA))}
+\end{alltt}
+\begin{verbatim}
+## [1] 10899     7
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\section{Battery of tests}
 \subsection{(ongoing) test for equality}
 
 \begin{knitrout}
@@ -585,32 +614,6 @@ Not sure if this is correct
 \end{kframe}
 \end{knitrout}
 
-\section{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{timestamp}\hlstd{()}
-\end{alltt}
-\begin{verbatim}
-## ##------ Tue Nov 20 14:37:37 2018 ------##
-\end{verbatim}
-\begin{alltt}
-\hlkwd{data}\hlstd{(}\hlstr{"CNA_12K_TCGA"}\hlstd{)}
-
-\hlkwd{dim}\hlstd{(}\hlkwd{metadata}\hlstd{(CNA_12K_TCGA))}
-\end{alltt}
-\begin{verbatim}
-## [1] 10899    37
-\end{verbatim}
-\begin{alltt}
-\hlkwd{dim}\hlstd{(}\hlkwd{count_matrix}\hlstd{(CNA_12K_TCGA))}
-\end{alltt}
-\begin{verbatim}
-## [1] 10899     7
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
 
 \subsection{Logistic regression}
 Based on ACDWR pg 200
@@ -619,6 +622,7 @@ Based on ACDWR pg 200
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{#setwd("~/Documents/PhD/CompSign/vignette_knitr/")}
+\hlkwd{load}\hlstd{(}\hlstr{"../data/two_normal_pops_extended.rda"}\hlstd{)}
 \hlkwd{load}\hlstd{(}\hlstr{"../data/two_normal_pops_extended.rda"}\hlstd{)}
 \hlkwd{load}\hlstd{(}\hlstr{"../data/CNA_12K_TCGA.rda"}\hlstd{)}
 
@@ -643,35 +647,35 @@ Based on ACDWR pg 200
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -3.1008  -0.3067  -0.1343   0.3337   3.1135  
+## -2.8751  -0.2893  -0.1112   0.3276   3.0405  
 ## 
 ## Coefficients:
 ##                                                     Estimate Std. Error
-## (Intercept)                                          0.17669    0.29572
-## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.16946    0.08293
-## ilr(acomp(count_matrix(two_normal_pops_extended)))2  0.17045    0.20491
-## ilr(acomp(count_matrix(two_normal_pops_extended)))3 -0.04711    0.13539
-## ilr(acomp(count_matrix(two_normal_pops_extended)))4 -0.04876    0.11905
-## ilr(acomp(count_matrix(two_normal_pops_extended)))5 -0.15034    0.10905
-## ilr(acomp(count_matrix(two_normal_pops_extended)))6 -0.08281    0.10105
-## ilr(acomp(count_matrix(two_normal_pops_extended)))7 -0.02220    0.09876
+## (Intercept)                                          0.20991    0.29938
+## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.14865    0.08109
+## ilr(acomp(count_matrix(two_normal_pops_extended)))2 -0.28219    0.20526
+## ilr(acomp(count_matrix(two_normal_pops_extended)))3 -0.35257    0.13672
+## ilr(acomp(count_matrix(two_normal_pops_extended)))4 -0.10861    0.11951
+## ilr(acomp(count_matrix(two_normal_pops_extended)))5 -0.26914    0.11033
+## ilr(acomp(count_matrix(two_normal_pops_extended)))6 -0.13039    0.10264
+## ilr(acomp(count_matrix(two_normal_pops_extended)))7 -0.23026    0.10039
 ##                                                     z value Pr(>|z|)    
-## (Intercept)                                           0.597    0.550    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.160   <2e-16 ***
-## ilr(acomp(count_matrix(two_normal_pops_extended)))2   0.832    0.406    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))3  -0.348    0.728    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))4  -0.410    0.682    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))5  -1.379    0.168    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))6  -0.819    0.413    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))7  -0.225    0.822    
+## (Intercept)                                           0.701  0.48322    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.499  < 2e-16 ***
+## ilr(acomp(count_matrix(two_normal_pops_extended)))2  -1.375  0.16919    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))3  -2.579  0.00991 ** 
+## ilr(acomp(count_matrix(two_normal_pops_extended)))4  -0.909  0.36346    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))5  -2.439  0.01471 *  
+## ilr(acomp(count_matrix(two_normal_pops_extended)))6  -1.270  0.20395    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))7  -2.294  0.02181 *  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
 ##     Null deviance: 2772.46  on 1999  degrees of freedom
-## Residual deviance:  845.77  on 1992  degrees of freedom
-## AIC: 861.77
+## Residual deviance:  822.17  on 1992  degrees of freedom
+## AIC: 838.17
 ## 
 ## Number of Fisher Scoring iterations: 6
 \end{verbatim}
@@ -683,9 +687,7 @@ Based on ACDWR pg 200
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: nnet}}\begin{verbatim}
 ## # weights:  5 (4 variable)
 ## initial  value 1386.294361 
-## iter  10 value 436.460676
-## iter  10 value 436.460676
-## final  value 436.460676 
+## final  value 446.109216 
 ## converged
 \end{verbatim}
 \begin{alltt}
@@ -694,7 +696,7 @@ Based on ACDWR pg 200
 \begin{verbatim}
 ## $coefTransformed
 ## (Intercept)          X1          X2          X3 
-##   0.2155614  -7.3456904   7.9497205  -0.3884687 
+##   0.3018093  -7.0122987   8.0287960  -0.7146880 
 ## 
 ## $summary
 ## Call:
@@ -702,13 +704,13 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ##                 Values Std. Err.
-## (Intercept)  0.2155614 0.1370176
-## X1          -7.3456904 0.4188397
-## X2           7.9497205 0.3840895
-## X3          -0.3884687 0.4370199
+## (Intercept)  0.3018093 0.1344851
+## X1          -7.0122987 0.3980051
+## X2           8.0287960 0.3891784
+## X3          -0.7146880 0.4310429
 ## 
-## Residual Deviance: 872.9214 
-## AIC: 878.9214 
+## Residual Deviance: 892.2184 
+## AIC: 898.2184 
 ## 
 ## $res
 ## Call:
@@ -716,10 +718,68 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ## (Intercept)          X1          X2          X3 
-##   0.2155614  -7.3456904   7.9497205  -0.3884687 
+##   0.3018093  -7.0122987   8.0287960  -0.7146880 
 ## 
-## Residual Deviance: 872.9214 
-## AIC: 878.9214 
+## Residual Deviance: 892.2184 
+## AIC: 898.2184 
+## 
+## [[4]]
+##    FP_FN_table
+##       0   1
+##   0 954  54
+##   1  47 945
+\end{verbatim}
+\begin{alltt}
+\hlstd{resB} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(two_normal_pops_extended), scrambled_labels)}
+\end{alltt}
+\begin{verbatim}
+## # weights:  10 (9 variable)
+## initial  value 1386.294361 
+## iter  10 value 447.368111
+## final  value 447.368099 
+## converged
+\end{verbatim}
+\begin{alltt}
+\hlstd{resB}
+\end{alltt}
+\begin{verbatim}
+## $coefTransformed
+## (Intercept)          X1          X2          X3          X4          X5 
+##   0.3799636 -14.5095136  16.1858973  -1.4864019  -0.2664309   0.8591635 
+##          X6          X7          X8 
+##  -0.4274325   0.5919991  -0.5673174 
+## 
+## $summary
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+##                  Values Std. Err.
+## (Intercept)   0.3799636 0.1600125
+## X1          -14.5095136 0.7570415
+## X2           16.1858973 0.7528891
+## X3           -1.4864019 0.8965775
+## X4           -0.2664309 0.9044187
+## X5            0.8591635 0.8829952
+## X6           -0.4274325 0.8830860
+## X7            0.5919991 0.9177035
+## X8           -0.5673174 0.8781700
+## 
+## Residual Deviance: 894.7362 
+## AIC: 908.7362 
+## 
+## $res
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+## (Intercept)          X1          X2          X3          X4          X5 
+##   0.3799636 -14.5095136  16.1858973  -1.4864019  -0.2664309   0.8591635 
+##          X6          X7          X8 
+##  -0.4274325   0.5919991  -0.5673174 
+## 
+## Residual Deviance: 894.7362 
+## AIC: 908.7362 
 ## 
 ## [[4]]
 ##    FP_FN_table
@@ -788,7 +848,7 @@ Based on ACDWR pg 200
 \begin{alltt}
 \hlcom{## below: incorrect}
 \hlstd{resCNA_race} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'race'}\hlstd{)),}
-                              \hlkwd{metadata}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'race'}\hlstd{))[,}\hlstr{'race'}\hlstd{],} \hlkwc{relax_binary_assumtion} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+                              \hlkwd{metadata}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'race'}\hlstd{))[,}\hlstr{'race'}\hlstd{],} \hlkwc{relax_binary_assumption} \hlstd{=} \hlnum{TRUE}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
 ## # weights:  54 (40 variable)
@@ -907,6 +967,215 @@ Based on ACDWR pg 200
 ##   native hawaiian or other pacific islander   13
 ##   not reported                              1296
 ##   white                                     7961
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+With data from 560 BRCA:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{load}\hlstd{(}\hlstr{"../data/Breast560.rda"}\hlstd{)}
+
+\hlstd{resBRCA_finalER} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(}\hlkwd{cleanObject}\hlstd{(Breast560,} \hlstr{'final.ER'}\hlstd{)),}
+                              \hlkwd{metadata}\hlstd{(}\hlkwd{cleanObject}\hlstd{(Breast560,} \hlstr{'final.ER'}\hlstd{))[,}\hlstr{'final.ER'}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+## # weights:  14 (13 variable)
+## initial  value 388.162421 
+## iter  10 value 247.760067
+## iter  20 value 247.644411
+## final  value 247.613009 
+## converged
+\end{verbatim}
+\begin{alltt}
+\hlstd{resBRCA_finalER}
+\end{alltt}
+\begin{verbatim}
+## $coefTransformed
+##  (Intercept)  Signature.1  Signature.2  Signature.3  Signature.5 
+##  -1.37260416   6.87524489   6.08117930  -2.62251433   1.45209910 
+##  Signature.6  Signature.8 Signature.13 Signature.17 Signature.18 
+##  -4.32588363   1.61674367  -1.28298467  -3.96303199   0.04978287 
+## Signature.20 Signature.26 Signature.30 
+##  -0.08628501   2.83168183  -7.99863619 
+## 
+## $summary
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+##                   Values Std. Err.
+## (Intercept)  -1.37260416  3.251285
+## Signature.1   6.87524489  3.433278
+## Signature.2   6.08117930  3.539466
+## Signature.3  -2.62251433  3.308807
+## Signature.5   1.45209910  3.315171
+## Signature.6  -4.32588363  5.520552
+## Signature.8   1.61674367  3.367322
+## Signature.13 -1.28298467  3.412039
+## Signature.17 -3.96303199  5.302369
+## Signature.18  0.04978287  3.950056
+## Signature.20 -0.08628501  8.963178
+## Signature.26  2.83168183  3.620818
+## Signature.30 -7.99863619 38.183574
+## 
+## Residual Deviance: 495.226 
+## AIC: 519.226 
+## 
+## $res
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+##  (Intercept)  Signature.1  Signature.2  Signature.3  Signature.5 
+##  -1.37260416   6.87524489   6.08117930  -2.62251433   1.45209910 
+##  Signature.6  Signature.8 Signature.13 Signature.17 Signature.18 
+##  -4.32588363   1.61674367  -1.28298467  -3.96303199   0.04978287 
+## Signature.20 Signature.26 Signature.30 
+##  -0.08628501   2.83168183  -7.99863619 
+## 
+## Residual Deviance: 495.226 
+## AIC: 519.226 
+## 
+## [[4]]
+##           FP_FN_table
+##              0   1
+##   negative 125  69
+##   positive  40 326
+\end{verbatim}
+\begin{alltt}
+\hlstd{resBRCA_finalPR} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(}\hlkwd{cleanObject}\hlstd{(Breast560,} \hlstr{'final.PR'}\hlstd{)),}
+                                 \hlkwd{metadata}\hlstd{(}\hlkwd{cleanObject}\hlstd{(Breast560,} \hlstr{'final.PR'}\hlstd{))[,}\hlstr{'final.PR'}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+## # weights:  14 (13 variable)
+## initial  value 381.924096 
+## iter  10 value 286.749871
+## iter  20 value 286.622284
+## iter  30 value 286.593699
+## iter  40 value 286.591998
+## iter  50 value 286.591708
+## iter  60 value 286.590956
+## final  value 286.590900 
+## converged
+\end{verbatim}
+\begin{alltt}
+\hlstd{resBRCA_finalPR}
+\end{alltt}
+\begin{verbatim}
+## $coefTransformed
+##  (Intercept)  Signature.1  Signature.2  Signature.3  Signature.5 
+## -2.153476504  6.447772998  4.352131758 -1.669248002  2.473918774 
+##  Signature.6  Signature.8 Signature.13 Signature.17 Signature.18 
+## -2.429820875  1.398766627 -0.003181878 -2.594728791 -3.577849924 
+## Signature.20 Signature.26 Signature.30 
+## -0.411942687  3.502727024 -9.642021527 
+## 
+## $summary
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+##                    Values Std. Err.
+## (Intercept)  -2.153476504  5.783443
+## Signature.1   6.447772998  5.857258
+## Signature.2   4.352131758  5.887041
+## Signature.3  -1.669248002  5.816657
+## Signature.5   2.473918774  5.810631
+## Signature.6  -2.429820875  7.009770
+## Signature.8   1.398766627  5.841518
+## Signature.13 -0.003181878  5.856845
+## Signature.17 -2.594728791  7.104266
+## Signature.18 -3.577849924  6.084505
+## Signature.20 -0.411942687  9.928254
+## Signature.26  3.502727024  5.991856
+## Signature.30 -9.642021527 68.949229
+## 
+## Residual Deviance: 573.1818 
+## AIC: 597.1818 
+## 
+## $res
+## Call:
+## multinom(formula = as.formula(frm), data = dat)
+## 
+## Coefficients:
+##  (Intercept)  Signature.1  Signature.2  Signature.3  Signature.5 
+## -2.153476504  6.447772998  4.352131758 -1.669248002  2.473918774 
+##  Signature.6  Signature.8 Signature.13 Signature.17 Signature.18 
+## -2.429820875  1.398766627 -0.003181878 -2.594728791 -3.577849924 
+## Signature.20 Signature.26 Signature.30 
+## -0.411942687  3.502727024 -9.642021527 
+## 
+## Residual Deviance: 573.1818 
+## AIC: 597.1818 
+## 
+## [[4]]
+##           FP_FN_table
+##              0   1
+##   negative 146  92
+##   positive  49 264
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+How to get p-values? I don't think the below is correct
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{give_pval} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{summary_obj}\hlstd{)\{}
+  \hlstd{z} \hlkwb{<-} \hlstd{summary_obj}\hlopt{$}\hlstd{coefficients}\hlopt{/}\hlstd{summary_obj}\hlopt{$}\hlstd{standard.errors}
+  \hlcom{# 2-tailed Wald z tests to test significance of coefficients}
+  \hlstd{p} \hlkwb{<-} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlkwd{abs}\hlstd{(z),} \hlnum{0}\hlstd{,} \hlnum{1}\hlstd{))} \hlopt{*} \hlnum{2}
+  \hlstd{p}
+\hlstd{\}}
+
+\hlkwd{give_pval}\hlstd{(res}\hlopt{$}\hlstd{summary)}             \hlcom{## 1 and two are; the third one too (higher p-val) (third one wasn't expected, as far as I know?)}
+\end{alltt}
+\begin{verbatim}
+## (Intercept)          X1          X2          X3 
+##  0.02482058  0.00000000  0.00000000  0.09730864
+\end{verbatim}
+\begin{alltt}
+\hlkwd{give_pval}\hlstd{(resB}\hlopt{$}\hlstd{summary)}            \hlcom{## 1 and two are; the rest are not (as expected)}
+\end{alltt}
+\begin{verbatim}
+## (Intercept)          X1          X2          X3          X4          X5 
+##  0.01756863  0.00000000  0.00000000  0.09734531  0.76830864  0.33054812 
+##          X6          X7          X8 
+##  0.62837071  0.51887045  0.51826490
+\end{verbatim}
+\begin{alltt}
+\hlkwd{give_pval}\hlstd{(resCNA_gender}\hlopt{$}\hlstd{summary)}   \hlcom{## are are statistically significant for the copy number signatures}
+\end{alltt}
+\begin{verbatim}
+##  (Intercept)           s1           s2           s3           s4 
+## 1.077847e-10 7.531978e-04 3.068168e-06 7.330097e-06 1.231978e-01 
+##           s5           s6           s7 
+## 4.294343e-13 5.395732e-06 4.161242e-01
+\end{verbatim}
+\begin{alltt}
+\hlkwd{give_pval}\hlstd{(resBRCA_finalER}\hlopt{$}\hlstd{summary)} \hlcom{## signature 1 significant}
+\end{alltt}
+\begin{verbatim}
+##  (Intercept)  Signature.1  Signature.2  Signature.3  Signature.5 
+##   0.67289887   0.04522767   0.08577724   0.42801901   0.66137441 
+##  Signature.6  Signature.8 Signature.13 Signature.17 Signature.18 
+##   0.43327710   0.63113682   0.70690426   0.45481743   0.98994446 
+## Signature.20 Signature.26 Signature.30 
+##   0.99231920   0.43418178   0.83407475
+\end{verbatim}
+\begin{alltt}
+\hlkwd{give_pval}\hlstd{(resBRCA_finalPR}\hlopt{$}\hlstd{summary)} \hlcom{## none are negative}
+\end{alltt}
+\begin{verbatim}
+##  (Intercept)  Signature.1  Signature.2  Signature.3  Signature.5 
+##    0.7096308    0.2709760    0.4597411    0.7741298    0.6702847 
+##  Signature.6  Signature.8 Signature.13 Signature.17 Signature.18 
+##    0.7288667    0.8107547    0.9995665    0.7149358    0.5565145 
+## Signature.20 Signature.26 Signature.30 
+##    0.9669037    0.5588293    0.8887846
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

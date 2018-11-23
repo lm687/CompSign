@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.2)  20 NOV 2018 14:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.2)  20 NOV 2018 15:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -258,194 +258,203 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 62.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 62.
-Package color Info: Redefining color shadecolor on input line 66.
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 68.
-Package color Info: Redefining color shadecolor on input line 74.
+ (./CompSign_knitr.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 6.
+)
+\tf@toc=\write4
+\openout4 = `CompSign_knitr.toc'.
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 103--104
+Package color Info: Redefining color shadecolor on input line 68.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 70.
+Package color Info: Redefining color shadecolor on input line 76.
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 105--106
 []\OT1/cmtt/m/it/10 ## Welcome to compositions, a package for compositional dat
 a analysis. 
  []
 
-Package color Info: Redefining color shadecolor on input line 113.
 [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 116
+Package color Info: Redefining color shadecolor on input line 115.
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 118
 .
 
 (/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/omscmtt.fd
 File: omscmtt.fd 
 )
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 116.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 118.
 
-Overfull \hbox (63.99655pt too wide) in paragraph at lines 116--116
+Overfull \hbox (63.99655pt too wide) in paragraph at lines 118--118
 [][]\OT1/cmtt/m/n/10 for[][](i[] []in[] []list.files[][]([][]"../data/"[][],[] 
 []pattern[] []=[] []"*rda"[][],[] []full.names[] []=[] []TRUE[][]))\OMS/cmsy/m/
 n/10 f[][]\OT1/cmtt/m/n/10 load[][](i)\OMS/cmsy/m/n/10 g[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 122.
+Package color Info: Redefining color shadecolor on input line 124.
 
-Overfull \hbox (111.74602pt too wide) in paragraph at lines 137--137
+Overfull \hbox (111.74602pt too wide) in paragraph at lines 139--139
 [][]\OT1/cmtt/m/n/10 colnames[][](input_dummy)[] []<-[] []paste0[][]([][]^^Ms^^
 M[][],[] []1[][]:[][]25[][]);[] []rownames[][](input_dummy)[] []<-[] []paste0[]
 []([][]^^Msam^^M[][],[] []1[][]:[][]4[][])[][] 
  []
 
-Package color Info: Redefining color shadecolor on input line 145.
-
-Overfull \hbox (38.24666pt too wide) in paragraph at lines 198--198
+Package color Info: Redefining color shadecolor on input line 147.
+[2]
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 200--200
 []\OT1/cmtt/m/n/10 ##  [1] "s1"  "s2"  "s3"  "s4"  "s5"  "s6"  "s7"  "s8"  "s9"
   "s10" "s11"[] 
  []
 
 
-Overfull \hbox (38.24666pt too wide) in paragraph at lines 198--198
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 200--200
 []\OT1/cmtt/m/n/10 ## [12] "s12" "s13" "s14" "s15" "s16" "s17" "s18" "s19" "s20
 " "s21" "s22"[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ##             s1        s2        s3           s4        s5
-        s6[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ##             s1        s2         s3        s4        s5  
+      s6[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam1 0.4727530 0.7201406 0.8626873 3.136111e-01 0.9059268
- 0.4715935[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam1 0.7541314 0.4970128 0.78211567 0.3915332 0.2738219 0
+.2005642[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam2 0.4826859 0.9948616 0.8773814 3.650784e-05 0.5019962
- 0.7576524[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam2 0.7812332 0.8232943 0.22102898 0.1358599 0.9786203 0
+.4597861[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam3 0.2523774 0.9881778 0.3274175 2.680551e-01 0.5750464
- 0.1806003[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam3 0.4351710 0.4052233 0.61169752 0.2982947 0.9425812 0
+.9734695[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam4 0.3274017 0.9455770 0.8501642 7.948695e-01 0.3600513
- 0.9096839[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam4 0.2483642 0.8148358 0.08488753 0.6137194 0.2942012 0
+.4174360[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ##             s7          s8        s9       s10        s11
-       s12[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ##             s7        s8        s9       s10       s11   
+     s12[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam1 0.6978941 0.872510572 0.1561251 0.6240480 0.73754948
- 0.3603802[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam1 0.7749699 0.9754341 0.7637598 0.6763901 0.0095364 0.
+52851290[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam2 0.6557791 0.032059090 0.2069292 0.6067926 0.02658617
- 0.6702366[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam2 0.6510488 0.8995055 0.1498146 0.8108928 0.8500328 0.
+52726926[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam3 0.1816618 0.005489897 0.4276585 0.5450189 0.06333866
- 0.3877280[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam3 0.0927079 0.4473260 0.7640837 0.3240883 0.1607237 0.
+04775178[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam4 0.4866828 0.230437925 0.6783273 0.7602374 0.56992840
- 0.2220025[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam4 0.7322792 0.3212439 0.4094843 0.5324957 0.9396786 0.
+31369197[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ##            s13        s14        s15       s16        s17
-       s18[] 
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ##            s13       s14       s15       s16        s17  
+      s18[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam1 0.2048943 0.24460129 0.75364351 0.2974315 0.80752923
- 0.4098196[] 
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam1 0.1959873 0.2996425 0.2547190 0.3659506 0.80996888 0
+.18370775[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam2 0.8481758 0.64424103 0.65221243 0.4387976 0.18614973
- 0.4897189[] 
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam2 0.5323840 0.0236303 0.7940158 0.5731402 0.44363277 0
+.07648741[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam3 0.8716103 0.17252595 0.50023542 0.0416386 0.08797126
- 0.3429558[] 
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam3 0.8032507 0.5102668 0.1292824 0.3150606 0.76647091 0
+.47437104[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam4 0.9638690 0.07959214 0.05546313 0.6837526 0.06263779
- 0.1150085[] 
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam4 0.8661609 0.3289789 0.3239946 0.4355564 0.01661512 0
+.72830942[] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ##            s19       s20       s21       s22       s23   
-    s24[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ##            s19        s20       s21       s22       s23  
+     s24[] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam1 0.2600145 0.9672693 0.2792357 0.4716439 0.6954225 0.
-9449028[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam1 0.8643979 0.20015968 0.7489268 0.6481179 0.6783852 0
+.4618235[] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam2 0.4587714 0.3095924 0.9354094 0.3902753 0.2834248 0.
-4680484[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam2 0.5533880 0.34117733 0.5923476 0.6612199 0.4517486 0
+.8622700[] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam3 0.1881336 0.0212424 0.8787618 0.7476690 0.7910700 0.
-9811331[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam3 0.6750658 0.29387013 0.3242528 0.7936309 0.7068090 0
+.8911294[] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 198--198
-[]\OT1/cmtt/m/n/10 ## sam4 0.3040355 0.4355955 0.4403698 0.1664639 0.8771529 0.
-6486360[] 
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 ## sam4 0.3262684 0.08579528 0.1805006 0.3249219 0.3352801 0
+.2316338[] 
  []
 
-[2]
-Package color Info: Redefining color shadecolor on input line 211.
+[3]
+Package color Info: Redefining color shadecolor on input line 213.
 
-Overfull \hbox (139.7319pt too wide) in paragraph at lines 223--223
+Overfull \hbox (139.7319pt too wide) in paragraph at lines 225--225
 []                                []\OT1/cmtt/m/n/10 id_signatures[][]=[] []c[]
 []([][]^^Ms1^^M[][],[] []^^Ms2^^M[][],[] []^^Ms3^^M[][],[] []^^Ms4^^M[][]),[] [
 ]\OT1/cmtt/m/it/10 ## signature names[][] 
  []
 
 
-Overfull \hbox (85.49625pt too wide) in paragraph at lines 224--224
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 226--226
 []                                []\OT1/cmtt/m/n/10 count_matrix[][]=MCMCpack[
 ][]::[][]rdirichlet[][]([][]30[][],[] []c[][]([][]1[][],[][]1[][],[][]1[][],[][
 ]1[][])),[][] 
  []
 
 
-Overfull \hbox (85.49625pt too wide) in paragraph at lines 225--225
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 227--227
 []                                []\OT1/cmtt/m/n/10 df[][]=[][]data.frame[][](
 [][]a[][]=[][]sample[][]([][]1[][]:[][]1e4[][],[] []30[][]),[] []b[][]=[][]rep[
 ][]([][]10[][],[] []30[][])))[][] 
@@ -459,38 +468,14 @@ rror t value[]
 
 
 Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
-[]\OT1/cmtt/m/n/10 ## (Intercept)                             -1.056e-02  5.052
-e-01  -0.021[] 
+[]\OT1/cmtt/m/n/10 ## (Intercept)                             -7.041e-01  5.485
+e-01  -1.284[] 
  []
 
 
 Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
-[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a  1.538e-05  8.813
-e-05   0.174[] 
- []
-
-
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
-[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])b         NA       
-  NA      NA[] 
- []
-
-
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
-[]\OT1/cmtt/m/n/10 ##                                           Estimate Std. E
-rror t value[] 
- []
-
-
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
-[]\OT1/cmtt/m/n/10 ## (Intercept)                             -8.977e-01  5.109
-e-01  -1.757[] 
- []
-
-
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
-[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a  1.912e-04  8.913
-e-05   2.145[] 
+[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a  8.013e-05  9.474
+e-05   0.846[] 
  []
 
 
@@ -507,14 +492,14 @@ rror t value[]
 
 
 Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
-[]\OT1/cmtt/m/n/10 ## (Intercept)                             -4.082e-01  5.577
-e-01  -0.732[] 
+[]\OT1/cmtt/m/n/10 ## (Intercept)                             -4.633e-01  4.304
+e-01  -1.076[] 
  []
 
 
 Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
-[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a  4.784e-05  9.728
-e-05   0.492[] 
+[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a  8.057e-05  7.434
+e-05   1.084[] 
  []
 
 
@@ -523,17 +508,41 @@ Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
   NA      NA[] 
  []
 
-[3]
-Underfull \vbox (badness 10000) detected at line 303
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
+[]\OT1/cmtt/m/n/10 ##                                           Estimate Std. E
+rror t value[] 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 303
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
+[]\OT1/cmtt/m/n/10 ## (Intercept)                             -0.6268989  0.763
+8802  -0.821[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
+[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])a  0.0001010  0.000
+1319   0.766[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 302--302
+[]\OT1/cmtt/m/n/10 ## as.matrix((x@df)[, indices_predictor])b         NA       
+  NA      NA[] 
  []
 
 [4]
+Underfull \vbox (badness 10000) detected at line 303
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 303
+ []
+
+[5]
 Package color Info: Redefining color shadecolor on input line 308.
-<figure/unnamed-chunk-7-1.pdf, id=70, 505.89pt x 505.89pt>
+<figure/unnamed-chunk-7-1.pdf, id=96, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: figure/unnamed-chunk-7-1.pdf  used on input line 320.
@@ -543,7 +552,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 320--321
 [][] 
  []
 
-[5]
+[6]
 Package color Info: Redefining color shadecolor on input line 328.
 
 Overfull \hbox (26.49701pt too wide) in paragraph at lines 339--339
@@ -551,12 +560,12 @@ Overfull \hbox (26.49701pt too wide) in paragraph at lines 339--339
 nt_matrix[][]),[] []pch[][]=[][]19[][],[] []cex[][]=[][]0.2[][])[][] 
  []
 
-<figure/unnamed-chunk-8-1.pdf, id=75, 505.89pt x 505.89pt>
+<figure/unnamed-chunk-8-1.pdf, id=101, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-8-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: figure/unnamed-chunk-8-1.pdf  used on input line 342.
 (pdftex.def)             Requested size: 319.99997pt x 320.0015pt.
-[6 <./figure/unnamed-chunk-7-1.pdf>]
+[7 <./figure/unnamed-chunk-7-1.pdf>]
 Overfull \hbox (152.49591pt too wide) in paragraph at lines 344--344
 [][]\OT1/cmtt/m/n/10 qqnorm.acomp[][]([][]acomp[][](two_normal_pops[][]@[][]cou
 nt_matrix[][][[][]1[][]:[][]1000[][],]),[] []pch[][]=[][]19[][],[] []cex[][]=[]
@@ -797,13 +806,13 @@ Overfull \hbox (10.74715pt too wide) in paragraph at lines 424--424
 .):
  []
 
-[7 <./figure/unnamed-chunk-8-1.pdf>] [8]
-<figure/unnamed-chunk-8-2.pdf, id=100, 505.89pt x 505.89pt>
+[8 <./figure/unnamed-chunk-8-1.pdf>] [9]
+<figure/unnamed-chunk-8-2.pdf, id=126, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-8-2.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-8-2.pdf>
 Package pdftex.def Info: figure/unnamed-chunk-8-2.pdf  used on input line 425.
 (pdftex.def)             Requested size: 319.99997pt x 320.0015pt.
- [9] [10 <./figure/unnamed-chunk-8-2.pdf>]
+ [10] [11 <./figure/unnamed-chunk-8-2.pdf>]
 Package color Info: Redefining color shadecolor on input line 442.
 Package color Info: Redefining color shadecolor on input line 459.
 
@@ -830,7 +839,7 @@ Overfull \hbox (32.9967pt too wide) in paragraph at lines 486--486
 tadata[][](Breast560)[,k])[][] 
  []
 
-[11
+[12
 
 ]
 Package color Info: Redefining color shadecolor on input line 514.
@@ -895,539 +904,782 @@ Overfull \hbox (22.4968pt too wide) in paragraph at lines 540--540
  []
 
 Package color Info: Redefining color shadecolor on input line 546.
-<figure/unnamed-chunk-13-1.pdf, id=118, 252.945pt x 361.35pt>
+<figure/unnamed-chunk-13-1.pdf, id=144, 252.945pt x 361.35pt>
 File: figure/unnamed-chunk-13-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-13-1.pdf>
 Package pdftex.def Info: figure/unnamed-chunk-13-1.pdf  used on input line 554.
 
 (pdftex.def)             Requested size: 252.94438pt x 361.35463pt.
-[12]
-Package color Info: Redefining color shadecolor on input line 561.
+[13]
+Package color Info: Redefining color shadecolor on input line 562.
+ [14 <./figure/unnamed-chunk-13-1.pdf>]
+Package color Info: Redefining color shadecolor on input line 590.
 
-Overfull \hbox (116.99597pt too wide) in paragraph at lines 564--564
+Overfull \hbox (116.99597pt too wide) in paragraph at lines 593--593
 []                              []\OT1/cmtt/m/n/10 ina[] []=[] []as.numeric[][]
 ([][]as.factor[][]([][]metadata[][](Breast560)[][]$[][]final.ER)),[][] 
  []
 
 
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 584--584
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 613--613
 []\OT1/cmtt/m/n/10 ##                 X1        X2         X3       X4         
 X5        X6[] 
  []
 
 
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 584--584
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 613--613
 []\OT1/cmtt/m/n/10 ## Sample 1 0.4947103 -1.717388 -0.8957869 1.702096 -0.17079
 24 0.1713026[] 
  []
 
 
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 584--584
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 613--613
 []\OT1/cmtt/m/n/10 ## Sample 2 1.2111720  1.423396 -2.3153991 2.010485  0.30042
 08 0.6587258[] 
  []
 
-[13 <./figure/unnamed-chunk-13-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 591.
-Package color Info: Redefining color shadecolor on input line 619.
+Package color Info: Redefining color shadecolor on input line 622.
 
-Overfull \hbox (32.9967pt too wide) in paragraph at lines 629--629
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 633--633
 [][]\OT1/cmtt/m/n/10 scrambled_labels[] []<-[] []([][]as.numeric[][]([][]metada
 ta[][](two_normal_pops_extended)[,[][]1[][]]))[][] 
  []
 
 
-Overfull \hbox (137.99579pt too wide) in paragraph at lines 635--635
+Overfull \hbox (137.99579pt too wide) in paragraph at lines 639--639
 [][]\OT1/cmtt/m/n/10 summary[][]([][]glm[][]([][]formula[] []= scrambled_labels
 [] []~[] []ilr[][]([][]acomp[][]([][]count_matrix[][](two_normal_pops_extended)
 )),[][] 
  []
 
 
-Overfull \hbox (111.74602pt too wide) in paragraph at lines 677--677
+Overfull \hbox (111.74602pt too wide) in paragraph at lines 681--681
 []\OT1/cmtt/m/n/10 ## glm(formula = scrambled_labels ~ ilr(acomp(count_matrix(t
 wo_normal_pops_extended))),[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 677--677
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 681--681
 []\OT1/cmtt/m/n/10 ##                                                     Estim
 ate Std. Error[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## (Intercept)                                          0.17
-669    0.29572[] 
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## (Intercept)                                          0.20
+991    0.29938[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.16
-946    0.08293[] 
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.14
+865    0.08109[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))2  0.17
-045    0.20491[] 
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))2 -0.28
+219    0.20526[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))3 -0.04
-711    0.13539[] 
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))3 -0.35
+257    0.13672[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))4 -0.04
-876    0.11905[] 
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))4 -0.10
+861    0.11951[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))5 -0.15
-034    0.10905[] 
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))5 -0.26
+914    0.11033[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))6 -0.08
-281    0.10105[] 
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))6 -0.13
+039    0.10264[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))7 -0.02
-220    0.09876[] 
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))7 -0.23
+026    0.10039[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 677--677
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 681--681
 []\OT1/cmtt/m/n/10 ##                                                     z val
 ue Pr(>|z|)[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## (Intercept)                                           0.5
-97    0.550[] 
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## (Intercept)                                           0.7
+01  0.48322[] 
  []
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.1
-60   <2e-16 ***[] 
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.4
+99  < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))2   0.8
-32    0.406[] 
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))2  -1.3
+75  0.16919[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))3  -0.3
-48    0.728[] 
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))3  -2.5
+79  0.00991 **[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))4  -0.4
-10    0.682[] 
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))4  -0.9
+09  0.36346[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))5  -1.3
-79    0.168[] 
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))5  -2.4
+39  0.01471 *[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))6  -0.8
-19    0.413[] 
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))6  -1.2
+70  0.20395[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 677--677
-[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))7  -0.2
-25    0.822[] 
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 681--681
+[]\OT1/cmtt/m/n/10 ## ilr(acomp(count_matrix(two_normal_pops_extended)))7  -2.2
+94  0.02181 *[] 
  []
 
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 679--679
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 683--683
 [][]\OT1/cmtt/m/n/10 res[] []<-[] []comp_logistic[][]([][]count_matrix[][](two_
 normal_pops), scrambled_labels)[][] 
  []
 
 
-Overfull \hbox (80.24629pt too wide) in paragraph at lines 731--731
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 733--733
+[][]\OT1/cmtt/m/n/10 resB[] []<-[] []comp_logistic[][]([][]count_matrix[][](two
+_normal_pops_extended), scrambled_labels)[][] 
+ []
+
+
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 789--789
+[]\OT1/cmtt/m/n/10 ## (Intercept)          X1          X2          X3          
+X4          X5[] 
+ []
+
+
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 789--789
+[]\OT1/cmtt/m/n/10 ##   0.3799636 -14.5095136  16.1858973  -1.4864019  -0.26643
+09   0.8591635[] 
+ []
+
+
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 789--789
+[]\OT1/cmtt/m/n/10 ## (Intercept)          X1          X2          X3          
+X4          X5[] 
+ []
+
+
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 789--789
+[]\OT1/cmtt/m/n/10 ##   0.3799636 -14.5095136  16.1858973  -1.4864019  -0.26643
+09   0.8591635[] 
+ []
+
+
+Overfull \hbox (80.24629pt too wide) in paragraph at lines 791--791
 [][]\OT1/cmtt/m/n/10 resCNA_gender[] []<-[] []comp_logistic[][]([][]count_matri
 x[][]([][]cleanObject[][](CNA_12K_TCGA,[] []^^Mgender^^M[][])),[][] 
  []
 
 
-Overfull \hbox (111.74602pt too wide) in paragraph at lines 732--732
+Overfull \hbox (111.74602pt too wide) in paragraph at lines 792--792
 []                              []\OT1/cmtt/m/n/10 metadata[][]([][]cleanObject
 [][](CNA_12K_TCGA,[] []^^Mgender^^M[][]))[,[][]^^Mgender^^M[][]])[][] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 787--787
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 847--847
 []\OT1/cmtt/m/n/10 ## (Intercept)          s1          s2          s3          
 s4          s5[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 787--787
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 847--847
 []\OT1/cmtt/m/n/10 ##  -0.2991671   0.2381913  -1.5952762  -0.7137485  -0.34241
 39   1.1287220[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 787--787
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 847--847
 []\OT1/cmtt/m/n/10 ## (Intercept)          s1          s2          s3          
 s4          s5[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 787--787
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 847--847
 []\OT1/cmtt/m/n/10 ##  -0.2991671   0.2381913  -1.5952762  -0.7137485  -0.34241
 39   1.1287220[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 790--790
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 850--850
 [][]\OT1/cmtt/m/n/10 resCNA_race[] []<-[] []comp_logistic[][]([][]count_matrix[
 ][]([][]cleanObject[][](CNA_12K_TCGA,[] []^^Mrace^^M[][])),[][] 
  []
 
 
-Overfull \hbox (253.49478pt too wide) in paragraph at lines 791--791
+Overfull \hbox (258.74474pt too wide) in paragraph at lines 851--851
 []                              []\OT1/cmtt/m/n/10 metadata[][]([][]cleanObject
 [][](CNA_12K_TCGA,[] []^^Mrace^^M[][]))[,[][]^^Mrace^^M[][]],[] []relax_binary_
-assumtion[] []=[] []TRUE[][])[][] 
+assumption[] []=[] []TRUE[][])[][] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ##                                           (Intercept)    
      s1        s2[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## asian                                        2.675822  0.
 9362561 -3.734532[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## black or african american                    3.126298  0.
 7315326 -2.226914[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## native hawaiian or other pacific islander   -2.905191 -0.
 9673919 -6.062152[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## not reported                                 3.312094  0.
 6140444 -1.617130[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## white                                        4.865439  1.
 4609214 -2.578245[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ##                                                 s3       
   s4        s5[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## asian                                     1.690197 -0.570
 7642 -1.252844[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## black or african american                 2.138134  0.917
 8396 -2.071713[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## native hawaiian or other pacific islander 2.202370  8.463
 8717  4.265265[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## not reported                              2.954000  0.946
 6145 -1.448352[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## white                                     1.957366  0.128
 7871 -1.119340[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ##                                           (Intercept)    
      s1        s2[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## asian                                        2.675822  0.
 9362561 -3.734532[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## black or african american                    3.126298  0.
 7315326 -2.226914[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## native hawaiian or other pacific islander   -2.905191 -0.
 9673919 -6.062152[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## not reported                                 3.312094  0.
 6140444 -1.617130[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## white                                        4.865439  1.
 4609214 -2.578245[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ##                                                 s3       
   s4        s5[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## asian                                     1.690197 -0.570
 7642 -1.252844[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## black or african american                 2.138134  0.917
 8396 -2.071713[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## native hawaiian or other pacific islander 2.202370  8.463
 8717  4.265265[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## not reported                              2.954000  0.946
 6145 -1.448352[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## white                                     1.957366  0.128
 7871 -1.119340[] 
  []
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 910--910
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ##                                           (Intercept)    
     s1       s2[] 
  []
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 910--910
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## asian                                       0.3708243 0.7
 298643 2.416836[] 
  []
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 910--910
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## black or african american                   0.3649411 0.7
 246340 2.359150[] 
  []
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 910--910
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## native hawaiian or other pacific islander   1.0000360 2.0
 428540 5.431924[] 
  []
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 910--910
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## not reported                                0.3629791 0.7
 220111 2.338804[] 
  []
 
 
-Overfull \hbox (48.74657pt too wide) in paragraph at lines 910--910
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## white                                       0.3589692 0.7
 159120 2.311800[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 910--910
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ##                                                 s3       
 s4       s5[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 910--910
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## asian                                     1.478489 2.0956
 77 1.280650[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 910--910
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## black or african american                 1.467926 2.0749
 27 1.272645[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 910--910
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## native hawaiian or other pacific islander 2.601987 3.0412
 92 2.183757[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 910--910
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## not reported                              1.459629 2.0685
 98 1.261350[] 
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 910--910
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## white                                     1.446293 2.0503
 08 1.247049[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ##                                           (Intercept)    
      s1        s2[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## asian                                        2.675822  0.
 9362561 -3.734532[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## black or african american                    3.126298  0.
 7315326 -2.226914[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## native hawaiian or other pacific islander   -2.905191 -0.
 9673919 -6.062152[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## not reported                                 3.312094  0.
 6140444 -1.617130[] 
  []
 
 
-Overfull \hbox (59.24648pt too wide) in paragraph at lines 910--910
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## white                                        4.865439  1.
 4609214 -2.578245[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ##                                                 s3       
   s4        s5[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## asian                                     1.690197 -0.570
 7642 -1.252844[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## black or african american                 2.138134  0.917
 8396 -2.071713[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## native hawaiian or other pacific islander 2.202370  8.463
 8717  4.265265[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## not reported                              2.954000  0.946
 6145 -1.448352[] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 910--910
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 970--970
 []\OT1/cmtt/m/n/10 ## white                                     1.957366  0.128
 7871 -1.119340[] 
  []
 
-[14]
-Overfull \vbox (0.16667pt too high) detected at line 911
- []
-
-[15] [16] [17] [18]
-Underfull \vbox (badness 10000) detected at line 911
+[15] [16] [17] [18] [19] [20]
+Underfull \vbox (badness 10000) detected at line 971
  []
 
 
-Underfull \vbox (badness 10000) detected at line 911
+Underfull \vbox (badness 10000) detected at line 971
  []
 
-[19]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 914.
- [20]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 914.
+[21]
+Package color Info: Redefining color shadecolor on input line 977.
+
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 981--981
+[][]\OT1/cmtt/m/n/10 resBRCA_finalER[] []<-[] []comp_logistic[][]([][]count_mat
+rix[][]([][]cleanObject[][](Breast560,[] []^^Mfinal.ER^^M[][])),[][] 
+ []
+
+
+Overfull \hbox (116.99597pt too wide) in paragraph at lines 982--982
+[]                              []\OT1/cmtt/m/n/10 metadata[][]([][]cleanObject
+[][](Breast560,[] []^^Mfinal.ER^^M[][]))[,[][]^^Mfinal.ER^^M[][]])[][] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1047--1047
+[]\OT1/cmtt/m/n/10 ##  (Intercept)  Signature.1  Signature.2  Signature.3  Sign
+ature.5[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1047--1047
+[]\OT1/cmtt/m/n/10 ##  -1.37260416   6.87524489   6.08117930  -2.62251433   1.4
+5209910[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1047--1047
+[]\OT1/cmtt/m/n/10 ##  Signature.6  Signature.8 Signature.13 Signature.17 Signa
+ture.18[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1047--1047
+[]\OT1/cmtt/m/n/10 ##  -4.32588363   1.61674367  -1.28298467  -3.96303199   0.0
+4978287[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1047--1047
+[]\OT1/cmtt/m/n/10 ##  (Intercept)  Signature.1  Signature.2  Signature.3  Sign
+ature.5[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1047--1047
+[]\OT1/cmtt/m/n/10 ##  -1.37260416   6.87524489   6.08117930  -2.62251433   1.4
+5209910[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1047--1047
+[]\OT1/cmtt/m/n/10 ##  Signature.6  Signature.8 Signature.13 Signature.17 Signa
+ture.18[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1047--1047
+[]\OT1/cmtt/m/n/10 ##  -4.32588363   1.61674367  -1.28298467  -3.96303199   0.0
+4978287[] 
+ []
+
+
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 1049--1049
+[][]\OT1/cmtt/m/n/10 resBRCA_finalPR[] []<-[] []comp_logistic[][]([][]count_mat
+rix[][]([][]cleanObject[][](Breast560,[] []^^Mfinal.PR^^M[][])),[][] 
+ []
+
+
+Overfull \hbox (132.74583pt too wide) in paragraph at lines 1050--1050
+[]                                 []\OT1/cmtt/m/n/10 metadata[][]([][]cleanObj
+ect[][](Breast560,[] []^^Mfinal.PR^^M[][]))[,[][]^^Mfinal.PR^^M[][]])[][] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1119--1119
+[]\OT1/cmtt/m/n/10 ##  (Intercept)  Signature.1  Signature.2  Signature.3  Sign
+ature.5[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1119--1119
+[]\OT1/cmtt/m/n/10 ## -2.153476504  6.447772998  4.352131758 -1.669248002  2.47
+3918774[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1119--1119
+[]\OT1/cmtt/m/n/10 ##  Signature.6  Signature.8 Signature.13 Signature.17 Signa
+ture.18[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1119--1119
+[]\OT1/cmtt/m/n/10 ## -2.429820875  1.398766627 -0.003181878 -2.594728791 -3.57
+7849924[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1119--1119
+[]\OT1/cmtt/m/n/10 ##  (Intercept)  Signature.1  Signature.2  Signature.3  Sign
+ature.5[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1119--1119
+[]\OT1/cmtt/m/n/10 ## -2.153476504  6.447772998  4.352131758 -1.669248002  2.47
+3918774[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1119--1119
+[]\OT1/cmtt/m/n/10 ##  Signature.6  Signature.8 Signature.13 Signature.17 Signa
+ture.18[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1119--1119
+[]\OT1/cmtt/m/n/10 ## -2.429820875  1.398766627 -0.003181878 -2.594728791 -3.57
+7849924[] 
+ []
+
+[22] [23] [24]
+Package color Info: Redefining color shadecolor on input line 1125.
+
+Overfull \hbox (349.73007pt too wide) in paragraph at lines 1134--1134
+[][]\OT1/cmtt/m/n/10 give_pval[][](res[][]$[][]summary)[]             []\OT1/cm
+tt/m/it/10 ## 1 and two are; the third one too (higher p-val) (third one wasn^^
+Mt expected, as far as I know?)[][] 
+ []
+
+
+Overfull \hbox (92.48232pt too wide) in paragraph at lines 1141--1141
+[][]\OT1/cmtt/m/n/10 give_pval[][](resB[][]$[][]summary)[]            []\OT1/cm
+tt/m/it/10 ## 1 and two are; the rest are not (as expected)[][] 
+ []
+
+
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 1148--1148
+[]\OT1/cmtt/m/n/10 ## (Intercept)          X1          X2          X3          
+X4          X5[] 
+ []
+
+
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 1148--1148
+[]\OT1/cmtt/m/n/10 ##  0.01756863  0.00000000  0.00000000  0.09734531  0.768308
+64  0.33054812[] 
+ []
+
+
+Overfull \hbox (192.23145pt too wide) in paragraph at lines 1150--1150
+[][]\OT1/cmtt/m/n/10 give_pval[][](resCNA_gender[][]$[][]summary)[]   []\OT1/cm
+tt/m/it/10 ## are are statistically significant for the copy number signatures[
+][] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1157--1157
+[]\OT1/cmtt/m/n/10 ##  (Intercept)           s1           s2           s3      
+     s4[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1157--1157
+[]\OT1/cmtt/m/n/10 ## 1.077847e-10 7.531978e-04 3.068168e-06 7.330097e-06 1.231
+978e-01[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1168--1168
+[]\OT1/cmtt/m/n/10 ##  (Intercept)  Signature.1  Signature.2  Signature.3  Sign
+ature.5[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1168--1168
+[]\OT1/cmtt/m/n/10 ##   0.67289887   0.04522767   0.08577724   0.42801901   0.6
+6137441[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1168--1168
+[]\OT1/cmtt/m/n/10 ##  Signature.6  Signature.8 Signature.13 Signature.17 Signa
+ture.18[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1168--1168
+[]\OT1/cmtt/m/n/10 ##   0.43327710   0.63113682   0.70690426   0.45481743   0.9
+8994446[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1179--1179
+[]\OT1/cmtt/m/n/10 ##  (Intercept)  Signature.1  Signature.2  Signature.3  Sign
+ature.5[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1179--1179
+[]\OT1/cmtt/m/n/10 ##    0.7096308    0.2709760    0.4597411    0.7741298    0.
+6702847[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1179--1179
+[]\OT1/cmtt/m/n/10 ##  Signature.6  Signature.8 Signature.13 Signature.17 Signa
+ture.18[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1179--1179
+[]\OT1/cmtt/m/n/10 ##    0.7288667    0.8107547    0.9995665    0.7149358    0.
+5565145[] 
+ []
+
+[25]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1183.
+ [26]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1183.
  (./CompSign_knitr.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 914.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 914.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1183.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1183.
+
 Package rerunfilecheck Info: File `CompSign_knitr.out' has not changed.
-(rerunfilecheck)             Checksum: 6B7C14A2C7E1D6FA986978E755B80F50;692.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 914.
+(rerunfilecheck)             Checksum: 01580F9E1BCBAA25BF253BA8AF6ADA32;816.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1183.
  ) 
 Here is how much of TeX's memory you used:
- 5203 strings out of 492649
- 78040 string characters out of 6129622
- 224757 words of memory out of 5000000
- 9019 multiletter control sequences out of 15000+600000
+ 5220 strings out of 492649
+ 78228 string characters out of 6129622
+ 234695 words of memory out of 5000000
+ 9024 multiletter control sequences out of 15000+600000
  8538 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  28i,6n,28p,312b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1439,10 +1691,10 @@ usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
 local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
 ocal/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on CompSign_knitr.pdf (20 pages, 981790 bytes).
+Output written on CompSign_knitr.pdf (26 pages, 996176 bytes).
 PDF statistics:
- 199 PDF objects out of 1000 (max. 8388607)
- 159 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 250 PDF objects out of 1000 (max. 8388607)
+ 203 compressed objects within 3 object streams
+ 41 named destinations out of 1000 (max. 500000)
+ 117 words of extra memory for PDF output out of 10000 (max. 10000000)
 

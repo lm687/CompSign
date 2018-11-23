@@ -43,8 +43,8 @@ setClass("merged_compositional",
            id_signatures = "character",
            count_matrix = "matrix",
            df= "data.frame",
-           pseudocounts="logical",
-           types_metadata = "character"
+           pseudocounts="logical"#,
+           #types_metadata = "character" ## todo
          ))
 
 ## alternative:
@@ -115,12 +115,12 @@ deprecated_comp_logistic <- function(merged_obj, colname){
 #' @param m_obj merged_compositional object
 #' @param col_idx name or index of column of interest in metadata(m_obj)
 #' @references Van den Boogaart, K. Gerald, and Raimon Tolosana-Delgado. Analyzing compositional data with R. Vol. 122. Berlin: Springer, 2013.
-comp_logistic <- function(compData, binaryLabels, relax_binary_assumtion=FALSE){
+comp_logistic <- function(compData, binaryLabels, relax_binary_assumption=FALSE){
   require(nnet)
   ## potential next: arguments are a merged_compositional object and the column
 
   ## transform if necessary
-  if((length(unique(binaryLabels))>2) & !relax_binary_assumtion){
+  if((length(unique(binaryLabels))>2) & !relax_binary_assumption){
     stop('There must be only two labels. Use cleanObject() if necessarys')
   }
   dat <- data.frame(binaryLabels, compData)
@@ -149,7 +149,7 @@ cleanObject <- function(merged_obj, colname, expected_labels='', verbose=FALSE){
   if(expected_labels==''){
     if(verbose) cat("No expected labels specified.\nLabels used: ")
     used <- unique(unique(tmp))
-    not_used <- c('--')
+    not_used <- c('--', 'no_data_supplied', 'not reported')
     used <- used[! (used %in% not_used)]
     if(verbose) cat(paste0(used, collapse=', ' ))
     if(verbose) cat("\nLabels not used: ")
