@@ -22,7 +22,6 @@ setClass("sign",
            id_signatures = "character",
            count_matrix = "matrix",
            modified = "logical"#,
-           #ilr = "rmult" TODO: add ilr
          ))
 
 setClass("metadata",
@@ -44,7 +43,8 @@ setClass("merged_compositional",
            count_matrix = "matrix",
            df= "data.frame",
            pseudocounts="logical",
-           types_metadata = "character"
+           types_metadata = "character",
+           bool_empty_metadata = "logical"
          ))
 
 ## alternative:
@@ -161,10 +161,17 @@ setReplaceMethod("id",
                    return(object)
                  })
 
-#' Retrieve count matrix from object of class sign.
+#' Retrieve metadata from object of class sign.
 #' @param X object of class sign
 metadata <- function(X){
   return(X@df)
+}
+
+#' Retrieve names of metadata from object of class sign.
+#' Used to be called metadata_types()
+#' @param X object of class sign
+names_metadata <- function(X){
+  return(colnames(X@df))
 }
 
 #' Assign metadata to object of class sign
@@ -179,12 +186,18 @@ setReplaceMethod("metadata",
                    return(object)
                  })
 
+
+#' Get types of metadata, as a char vector
+types_metadata <- function(mergedComp_obj){
+  mergedComp_obj@types_metadata
+}
+
 #' Add pseudocounts; renormalise
 addPseudoCounts <- function(count_matrix, pseudocount=1e-5){
   count_matrix <- count_matrix + pseudocount
   count_matrix <- sweep(count_matrix, 1,
                         rowSums(count_matrix), '/')
-  cat('Pseudocount of', pseudocount, 'added')
+  cat('Pseudocount of', pseudocount, 'added\n')
   count_matrix
 }
 
