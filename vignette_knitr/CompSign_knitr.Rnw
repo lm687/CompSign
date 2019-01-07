@@ -12,6 +12,8 @@
 
 \textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
 
+\tableofcontents
+
 <<>>=
 knitr::opts_chunk$set(cache = FALSE)
 @
@@ -22,7 +24,7 @@ timestamp()
 
 ## install latest version
 library(devtools)
-devtools::install_github("lm687/CompSign")
+#devtools::install_github("lm687/CompSign")
 library(CompSign)
 library(compositions)
 @
@@ -146,8 +148,8 @@ x
 
 @
 
-
-\section{Data for 560 breast cancer patients}
+\section{Datasets}
+\subsection{Data for 560 breast cancer patients}
 Data from 560 breast cancer patients is available as part of the document as well:
 
 <<>>=
@@ -162,15 +164,8 @@ source("../../CDA_in_Cancer/code/functions/basic_functions.R")
 plotPCA(ilr(count_matrix(Breast560)), pch=4, col='blue')
 @
 
-\subsection{(ongoing) test for equality}
 
-<<>>=
-comp.test(x = count_matrix(Breast560),
-                              ina = as.numeric(as.factor(metadata(Breast560)$final.ER)),
-                              test = "james", R = 0)
-@
-
-\section{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
+\subsection{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
 
 <<>>=
 timestamp()
@@ -180,5 +175,138 @@ dim(metadata(CNA_12K_TCGA))
 dim(count_matrix(CNA_12K_TCGA))
 @
 
+\section{Battery of tests}
+\subsection{(ongoing) test for equality}
+
+<<>>=
+comp.test(x = count_matrix(Breast560),
+                              ina = as.numeric(as.factor(metadata(Breast560)$final.ER)),
+                              test = "james", R = 0)
+@
+
+
+\subsection{Logistic regression}
+Based on ACDWR pg 200
+
+<<>>=
+#setwd("~/Documents/PhD/CompSign/vignette_knitr/")
+load("../data/two_normal_pops_extended.rda")
+load("../data/two_normal_pops_extended.rda")
+load("../data/CNA_12K_TCGA.rda")
+
+## avoid perfect separation
+L <- length((as.numeric(metadata(two_normal_pops_extended)[,1])))
+scramble <- sample(1:L, floor(L*0.05), replace = FALSE)
+
+scrambled_labels <- (as.numeric(metadata(two_normal_pops_extended)[,1]))
+scrambled_labels[scramble] <- 1-scrambled_labels[scramble]
+
+auxcomp <- scale(ilr(count_matrix(two_normal_pops_extended)),
+                 center = TRUE, scale = FALSE)
+
+summary(glm(formula = scrambled_labels ~ ilr(acomp(count_matrix(two_normal_pops_extended))),
+            family = binomial(link = "logit")))
+
+res <- comp_logistic(count_matrix(two_normal_pops), scrambled_labels)
+res
+
+resB <- comp_logistic(count_matrix(two_normal_pops_extended), scrambled_labels)
+resB
+
+resCNA_gender <- comp_logistic(count_matrix(cleanObject(CNA_12K_TCGA, 'gender')),
+                              metadata(cleanObject(CNA_12K_TCGA, 'gender'))[,'gender'])
+resCNA_gender
+
+## below: incorrect
+resCNA_race <- comp_logistic(count_matrix(cleanObject(CNA_12K_TCGA, 'race')),
+                              metadata(cleanObject(CNA_12K_TCGA, 'race'))[,'race'], relax_binary_assumption = TRUE)
+
+resCNA_race
+
+@
+
+With data from 560 BRCA:
+
+<<>>=
+load("../data/Breast560.rda")
+
+resBRCA_finalER <- comp_logistic(count_matrix(cleanObject(Breast560, 'final.ER')),
+                              metadata(cleanObject(Breast560, 'final.ER'))[,'final.ER'])
+resBRCA_finalER
+resBRCA_finalPR <- comp_logistic(count_matrix(cleanObject(Breast560, 'final.PR')),
+                                 metadata(cleanObject(Breast560, 'final.PR'))[,'final.PR'])
+resBRCA_finalPR
+@
+
+How to get p-values? I don't think the below is correct
+<<>>=
+give_pval <- function(summary_obj){
+  z <- summary_obj$coefficients/summary_obj$standard.errors
+  # 2-tailed Wald z tests to test significance of coefficients
+  p <- (1 - pnorm(abs(z), 0, 1)) * 2
+  p
+}
+
+give_pval(res$summary)             ## 1 and two are; the third one too (higher p-val) (third one wasn't expected, as far as I know?)
+give_pval(resB$summary)            ## 1 and two are; the rest are not (as expected)
+give_pval(resCNA_gender$summary)   ## are are statistically significant for the copy number signatures
+give_pval(resBRCA_finalER$summary) ## signature 1 significant
+give_pval(resBRCA_finalPR$summary) ## none are statistically significant
+give_pval(resCNA_race$summary)     ## some statistically significant
+@
+
+<<>>=
+wrapper_single_logReg <- function(colname, Ddd){
+    print('asdsd2')
+    print(head(metadata((Ddd))))
+    Ddd <- cleanObject(Ddd, colname)
+    compData = count_matrix(Ddd)
+    binaryLabels = metadata(Ddd)[,colname]
+
+    tmp <- comp_logistic(compData = compData,
+                         binaryLabels = binaryLabels,
+                         relax_binary_assumption = TRUE)
+#    give_pval(tmp$summary)
+    print(give_pval(tmp$summary))
+    cbind.data.frame(rep(colname, nrow( give_pval(tmp$summary))), give_pval(tmp$summary))
+    cbind.data.frame(rep(colname, nrow( give_pval(tmp$summary))), give_pval(tmp$summary))
+}
+wrapper_multiple_logReg <- function(dataset, colnames){
+  print('asdsd')
+  head(metadata(dataset))
+  do.call('rbind', lapply(colnames, function(X) wrapper_single_logReg(colname = X, Ddd = dataset)))
+}
+
+wrapper_single_logReg('race', CNA_12K_TCGA)
+all_cna <- wrapper_multiple_logReg(dataset = CNA_12K_TCGA,
+                                 colnames = c('race', 'ethnicity', 'gender', 'alcohol_history'))
+
+all_cna_coefs <- lapply(c('race', 'ethnicity', 'gender', 'alcohol_history'), function(lab){
+  comp_logistic(compData = count_matrix(cleanObject(CNA_12K_TCGA)),
+                binaryLabels = metadata(cleanObject(CNA_12K_TCGA))[,lab],
+                relax_binary_assumption = TRUE)
+  })
+## cont...
+
+## 'tissue_or_organ_of_origin':  too many (1260) weights
+
+library(pheatmap)
+source("../../CDA_in_Cancer/code/functions/WrapperlikeFunctions.R")
+pheatmap0(all_cna[,-1], nonames = FALSE, annotation_row = data.frame(all_cna[,1], row.names = rownames(all_cna[,-1])))
+@
+
+<<>>=
+require(reshape2)
+require(ggplot2)
+molten_pvals <- melt(all_cna)
+colnames(molten_pvals) <- c('variable', 'signature', 'value')
+ggplot(molten_pvals, aes(x=interaction(variable,signature), y=-log(value), col=signature))+
+  geom_point()+
+  geom_hline(aes(yintercept=-log(0.05)))
+
+
+## if I want a sort of volcano plot I need the coefs (continue all_cna_coefs)
+
+@
 
 \end{document}
