@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+/Users/lena/Desktop/surv.R="ED737BA7"
+/Users/lena/Documents/CantabPhD/CDA_in_Cancer/code/current/Wed12Dec/automated_analyses.R="135C3EA9"
+/Users/lena/Documents/CantabPhD/CDA_in_Cancer/code/current/Wed12Dec/tmp_A0.R="9280F6D1"
+/Users/lena/Documents/CantabPhD/CDA_in_Cancer/code/exploratory/cda560/save_560BRCA_rda.R="732AFFF2"
+/Users/lena/Documents/CantabPhD/CDA_in_Cancer/code/exploratory/ov12k/clinical_tcga.R="AB8C6223"
+/Users/lena/Documents/CantabPhD/CDA_in_Cancer/code/exploratory/ov12k/co_ocurrence_ov12k.R="2EDC76D3"
+/Users/lena/Documents/CantabPhD/CompSign/R/data.R="44441226"
+/Users/lena/Documents/CantabPhD/CompSign/vignette_knitr/CompSign_knitr.Rnw="A81E306E"
+=======
+/Users/morril01/Desktop/Untitled.R="1BAAC962"
+/Users/morril01/Desktop/hessian_jacobean.R="751D0232"
+>>>>>>> 695f6811a1e2bcdf0f7bf38fa666c41a38147a0a
 /Users/morril01/Desktop/tmp_hmm.R="C3DD721C"
 /Users/morril01/Documents/PhD/CDA_in_Cancer/code/current/560breastcancer.R="6D97A411"
 /Users/morril01/Documents/PhD/CDA_in_Cancer/code/current/Wed12Dec/tmp_A0.R="EAD4D83F"
@@ -53,6 +68,10 @@
 /Users/morril01/Documents/PhD/cnsigs2-posdep/0_get_OV_exposures.R="8117BAF3"
 /Users/morril01/Documents/PhD/cnsigs2-posdep/1_get_event_signature_probability.R="C858A2BC"
 /Users/morril01/Documents/PhD/cnsigs2-posdep/1_get_event_signature_probability_functions.R="93E00FC1"
+<<<<<<< HEAD
 /Users/morril01/Downloads/norarefy-source/simulation-cluster-accuracy/simulation-cluster-accuracy-server.Rmd="A36D8049"
 /Users/morril01/Downloads/norarefy-source/simulation-design/simulation-design-figure-ex-matrix.R="2943805A"
 /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty="EBDFDD91"
+=======
+>>>>>>> 19d566617a86e78766065583ada3c5247c32c062
+>>>>>>> 695f6811a1e2bcdf0f7bf38fa666c41a38147a0a
