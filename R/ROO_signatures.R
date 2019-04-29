@@ -43,8 +43,8 @@ setClass("merged_compositional",
            id_signatures = "character",
            count_matrix = "matrix",
            df= "data.frame",
-           pseudocounts="logical"#,
-           #types_metadata = "character" ## todo
+           pseudocounts="logical",
+           types_metadata = "character" ## todo
          ))
 
 ## alternative:
