@@ -51,23 +51,39 @@
 \usepackage{alltt}
 
 \usepackage{hyperref}
+\usepackage[backend=bibtex, maxnames=10]{biblatex}
+\usepackage{xargs}
+\usepackage{xcolor}
+\usepackage{soul}
 
 \title{Package \textbf{CompSign}}
 \author{Lena Morrill}
 \date{October 2017}
+
+\bibliography{../../CDA_in_Cancer/text/progress_text/bibliography.bib}
+
+\newcommandx{\myemph}[2][1=]{\begin{center}\hl{#1}\end{center}}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 \maketitle
 
-\textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
+\textbf{CompSign} is a toolkit for the analysis of mutational signatures with an emphasis on the compositional analysis of exposures. An overview of the compositional nature of the exposures to mutational signatures, which has been often overlooked, is found elsewhere\footnote{cite myself}.
 
-\tableofcontents
+% The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
+
+% \tableofcontents
+
+
+
+\section{Installation}
+\texttt{CompSign} can be installed as usual from github:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{knitr}\hlopt{::}\hlstd{opts_chunk}\hlopt{$}\hlkwd{set}\hlstd{(}\hlkwc{cache} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+\hlkwd{library}\hlstd{(devtools)}
+\hlstd{devtools}\hlopt{::}\hlkwd{install_github}\hlstd{(}\hlstr{"lm687/CompSign"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -75,42 +91,14 @@
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{## This chunk was last ran in}
-\hlkwd{timestamp}\hlstd{()}
-\end{alltt}
-\begin{verbatim}
-## ##------ Tue Nov 20 15:44:49 2018 ------##
-\end{verbatim}
-\begin{alltt}
-\hlcom{## install latest version}
-\hlkwd{library}\hlstd{(devtools)}
-\hlcom{#devtools::install_github("lm687/CompSign")}
 \hlkwd{library}\hlstd{(CompSign)}
 \hlkwd{library}\hlstd{(compositions)}
 \end{alltt}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: tensorA}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'tensorA'}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:base':\\\#\# \\\#\#\ \ \ \  norm}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: robustbase}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: energy}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: bayesm}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Welcome to compositions, a package for compositional data analysis.\\\#\# Find an intro with "{}? compositions"{}}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'compositions'}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:stats':\\\#\# \\\#\#\ \ \ \  cor, cov, dist, var}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:base':\\\#\# \\\#\#\ \ \ \  \%*\%, scale, scale.default}}\end{kframe}
+\end{kframe}
 \end{knitrout}
 
+\clearpage
+\section{Datasets}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -120,226 +108,177 @@
 \end{kframe}
 \end{knitrout}
 
+The package contains several datasets of exposures to mutational signatures and metadata of the corresponding samples. These datasets are:
+\begin{itemize}
+\item SNV signatures
+\begin{itemize}
+\item Data for 560 breast cancer patients
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{## This chunk was last ran in}
-\hlkwd{timestamp}\hlstd{()}
+\hlcom{# data("Breast560")}
+\hlkwd{dim}\hlstd{(}\hlkwd{metadata}\hlstd{(Breast560))}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 15:44:50 2018 ------##
+## [1] 560  47
 \end{verbatim}
 \begin{alltt}
-\hlcom{##########################}
-\hlcom{####### Dummy data #######}
-\hlcom{##########################}
-
-\hlcom{### Example of matrix transformed into sign object}
-\hlstd{input_dummy} \hlkwb{<-} \hlkwd{matrix}\hlstd{(}\hlkwd{runif}\hlstd{(}\hlnum{100}\hlstd{),} \hlnum{4}\hlstd{)}
-\hlkwd{colnames}\hlstd{(input_dummy)} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{'s'}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{25}\hlstd{);} \hlkwd{rownames}\hlstd{(input_dummy)} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{'sam'}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{4}\hlstd{)}
-\hlstd{sign_dummy} \hlkwb{<-} \hlkwd{to_sign}\hlstd{(input_dummy)}
+\hlkwd{dim}\hlstd{(}\hlkwd{count_matrix}\hlstd{(Breast560))}
 \end{alltt}
+\begin{verbatim}
+## [1] 560  12
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
 
-\section{Summarise the signature matrix}
+\item Pan-cancer from EMu\cite{fischer2013emu} (cite dataset)
+\end{itemize}
+\item Copy Number signatures
+\begin{itemize}
+\item Ovarian cancer-derived signatures, as described in \cite{macintyre2018copy}. It contains data for 12k TCGA samples.
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{## This chunk was last ran in}
-\hlkwd{timestamp}\hlstd{()}
+\hlcom{#data("CNA_12K_TCGA")}
+\hlkwd{dim}\hlstd{(}\hlkwd{metadata}\hlstd{(CNA_12K_TCGA))}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 15:44:50 2018 ------##
+## [1] 10899    37
 \end{verbatim}
 \begin{alltt}
-\hlkwd{add_together_matrix}\hlstd{(sign_dummy)}
+\hlkwd{dim}\hlstd{(}\hlkwd{count_matrix}\hlstd{(CNA_12K_TCGA))}
+\end{alltt}
+\begin{verbatim}
+## [1] 10899     7
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\item Pan-cancer copy number signatures
+\end{itemize}
+\item Synthetic data
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{dim}\hlstd{(}\hlkwd{metadata}\hlstd{(two_normal_pops))}
+\end{alltt}
+\begin{verbatim}
+## [1] 2000    1
+\end{verbatim}
+\begin{alltt}
+\hlkwd{dim}\hlstd{(}\hlkwd{count_matrix}\hlstd{(two_normal_pops))}
+\end{alltt}
+\begin{verbatim}
+## [1] 2000    3
+\end{verbatim}
+\begin{alltt}
+\hlcom{#data(two_normal_pops)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{itemize}
+
+Data can be visualised as follows \hl{add this to the functions of the package}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{source}\hlstd{(}\hlstr{"../../CDA_in_Cancer/code/functions/meretricious/pretty_plots/prettySignatures.R"}\hlstd{,} \hlkwc{print.eval} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\hlkwd{createBarplot}\hlstd{(}\hlkwd{count_matrix}\hlstd{(Breast560),} \hlkwc{remove_labels} \hlstd{=} \hlnum{TRUE}\hlstd{,}
+              \hlkwc{order} \hlstd{=} \hlkwd{names}\hlstd{(}\hlkwd{sort}\hlstd{(}\hlkwd{count_matrix}\hlstd{(Breast560)[,}\hlnum{1}\hlstd{])))}
+\end{alltt}
+\begin{verbatim}
+## Creating plot... it might take some time if the data are large. Number of samples: 560
+\end{verbatim}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-1} 
+
+\end{knitrout}
+
+
+\section{Create a \texttt{CompSign} object}
+This is a minimal example for transforming a matrix into a \emph{sign} object
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{basic_matrix} \hlkwb{<-} \hlkwd{matrix}\hlstd{(}\hlkwd{runif}\hlstd{(}\hlnum{12}\hlstd{),} \hlkwc{nrow} \hlstd{=} \hlnum{4}\hlstd{)}
+\hlkwd{colnames}\hlstd{(basic_matrix)} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{'s'}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{3}\hlstd{)}
+\hlkwd{rownames}\hlstd{(basic_matrix)} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{'Sample '}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{4}\hlstd{)}
+\hlstd{basic_sign} \hlkwb{<-} \hlkwd{to_sign}\hlstd{(basic_matrix)}
+\hlstd{basic_sign}
 \end{alltt}
 \begin{verbatim}
 ## An object of class "sign"
 ## Slot "id":
-## [1] "input_dummy"
+## [1] "basic_matrix"
 ## 
 ## Slot "id_samples":
-## [1] "sam1" "sam2" "sam3" "sam4"
+## [1] "Sample 1" "Sample 2" "Sample 3" "Sample 4"
 ## 
 ## Slot "id_signatures":
-##  [1] "s1"  "s2"  "s3"  "s4"  "s5"  "s6"  "s7"  "s8"  "s9"  "s10" "s11"
-## [12] "s12" "s13" "s14" "s15" "s16" "s17" "s18" "s19" "s20" "s21" "s22"
-## [23] "s23" "s24" "s25"
+## [1] "s1" "s2" "s3"
 ## 
 ## Slot "count_matrix":
-##             s1        s2         s3        s4        s5        s6
-## sam1 0.7541314 0.4970128 0.78211567 0.3915332 0.2738219 0.2005642
-## sam2 0.7812332 0.8232943 0.22102898 0.1358599 0.9786203 0.4597861
-## sam3 0.4351710 0.4052233 0.61169752 0.2982947 0.9425812 0.9734695
-## sam4 0.2483642 0.8148358 0.08488753 0.6137194 0.2942012 0.4174360
-##             s7        s8        s9       s10       s11        s12
-## sam1 0.7749699 0.9754341 0.7637598 0.6763901 0.0095364 0.52851290
-## sam2 0.6510488 0.8995055 0.1498146 0.8108928 0.8500328 0.52726926
-## sam3 0.0927079 0.4473260 0.7640837 0.3240883 0.1607237 0.04775178
-## sam4 0.7322792 0.3212439 0.4094843 0.5324957 0.9396786 0.31369197
-##            s13       s14       s15       s16        s17        s18
-## sam1 0.1959873 0.2996425 0.2547190 0.3659506 0.80996888 0.18370775
-## sam2 0.5323840 0.0236303 0.7940158 0.5731402 0.44363277 0.07648741
-## sam3 0.8032507 0.5102668 0.1292824 0.3150606 0.76647091 0.47437104
-## sam4 0.8661609 0.3289789 0.3239946 0.4355564 0.01661512 0.72830942
-##            s19        s20       s21       s22       s23       s24
-## sam1 0.8643979 0.20015968 0.7489268 0.6481179 0.6783852 0.4618235
-## sam2 0.5533880 0.34117733 0.5923476 0.6612199 0.4517486 0.8622700
-## sam3 0.6750658 0.29387013 0.3242528 0.7936309 0.7068090 0.8911294
-## sam4 0.3262684 0.08579528 0.1805006 0.3249219 0.3352801 0.2316338
-##             s25
-## sam1 0.50067933
-## sam2 0.02525199
-## sam3 0.76196463
-## sam4 0.36252690
+##                   s1        s2        s3
+## Sample 1 0.300802582 0.2539395 0.7916191
+## Sample 2 0.007940389 0.1755893 0.9641138
+## Sample 3 0.977974179 0.2364882 0.6105332
+## Sample 4 0.776641885 0.9092960 0.8120827
 ## 
 ## Slot "modified":
-## [1] TRUE
+## [1] FALSE
 \end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+A \emph{sign} object can be summarised as follows:
+
+\hl{add\_together\_matrix?? what is this?}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{results_sumarise} \hlkwb{<-} \hlkwd{summarise}\hlstd{(}\hlkwd{add_together_matrix}\hlstd{(sign_dummy))}
-\hlstd{results_sumarise}\hlopt{$}\hlstd{General}
+\hlstd{results_sumarise} \hlkwb{<-} \hlkwd{summarise}\hlstd{(}\hlkwd{add_together_matrix}\hlstd{(basic_sign))}
+\hlstd{results_sumarise}
 \end{alltt}
 \begin{verbatim}
+## $General
 ## [1] "Object of class sign"
+## 
+## $`Number of signatures`
+## [1] 3
+## 
+## $`Number of samples`
+## [1] 4
+## 
+## $`Geometric means of signatures`
+##        s3        s2        s1 
+## 0.7843114 0.3129218 0.2063801 
+## 
+## $Covariance
+##             s1           s2            s3
+## s1  0.19526291 0.0675491810 -0.0553196690
+## s2  0.06754918 0.1192200062  0.0004651162
+## s3 -0.05531967 0.0004651162  0.0209766812
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
 
-\section{Linear model for numerical predictors}
+\clearpage
+\section{Battery of tests}
+This section takes largely from Aitchison's pioneering work\cite{aitchison1982statistical} and its succession\cite{pawlowsky2015modeling}.
+
+\subsection{Test for normality}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{## This chunk was last ran in}
-\hlkwd{timestamp}\hlstd{()}
-\end{alltt}
-\begin{verbatim}
-## ##------ Tue Nov 20 15:44:50 2018 ------##
-\end{verbatim}
-\begin{alltt}
-\hlstd{tmp_merged_compositional} \hlkwb{<-} \hlkwd{new}\hlstd{(}\hlstr{"merged_compositional"}\hlstd{,}
-                                \hlkwc{id}\hlstd{=}\hlstr{'adas'}\hlstd{,}
-                                \hlkwc{id_samples}\hlstd{=}\hlkwd{paste0}\hlstd{(}\hlstr{"sam"}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{30}\hlstd{),}
-                                \hlkwc{id_signatures}\hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{'s1'}\hlstd{,} \hlstr{'s2'}\hlstd{,} \hlstr{'s3'}\hlstd{,} \hlstr{'s4'}\hlstd{),} \hlcom{## signature names}
-                                \hlkwc{count_matrix}\hlstd{=MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{)),}
-                                \hlkwc{df}\hlstd{=}\hlkwd{data.frame}\hlstd{(}\hlkwc{a}\hlstd{=}\hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{1e4}\hlstd{,} \hlnum{30}\hlstd{),} \hlkwc{b}\hlstd{=}\hlkwd{rep}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{30}\hlstd{)))}
-\hlkwd{comp_lm}\hlstd{(tmp_merged_compositional)}
-\end{alltt}
-\begin{verbatim}
-## [[1]]
-## Response Y1 :
-## 
-## Call:
-## lm(formula = Y1 ~ as.matrix((x@df)[, indices_predictor]))
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -3.2627 -1.0761  0.1978  0.8880  2.3941 
-## 
-## Coefficients: (1 not defined because of singularities)
-##                                           Estimate Std. Error t value
-## (Intercept)                             -7.041e-01  5.485e-01  -1.284
-## as.matrix((x@df)[, indices_predictor])a  8.013e-05  9.474e-05   0.846
-## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
-##                                         Pr(>|t|)
-## (Intercept)                                0.210
-## as.matrix((x@df)[, indices_predictor])a    0.405
-## as.matrix((x@df)[, indices_predictor])b       NA
-## 
-## Residual standard error: 1.462 on 28 degrees of freedom
-## Multiple R-squared:  0.02491,	Adjusted R-squared:  -0.009916 
-## F-statistic: 0.7153 on 1 and 28 DF,  p-value: 0.4049
-## 
-## 
-## Response Y2 :
-## 
-## Call:
-## lm(formula = Y2 ~ as.matrix((x@df)[, indices_predictor]))
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.2764 -0.6695 -0.0375  1.0616  1.6511 
-## 
-## Coefficients: (1 not defined because of singularities)
-##                                           Estimate Std. Error t value
-## (Intercept)                             -4.633e-01  4.304e-01  -1.076
-## as.matrix((x@df)[, indices_predictor])a  8.057e-05  7.434e-05   1.084
-## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
-##                                         Pr(>|t|)
-## (Intercept)                                0.291
-## as.matrix((x@df)[, indices_predictor])a    0.288
-## as.matrix((x@df)[, indices_predictor])b       NA
-## 
-## Residual standard error: 1.147 on 28 degrees of freedom
-## Multiple R-squared:  0.04026,	Adjusted R-squared:  0.005979 
-## F-statistic: 1.174 on 1 and 28 DF,  p-value: 0.2877
-## 
-## 
-## Response Y3 :
-## 
-## Call:
-## lm(formula = Y3 ~ as.matrix((x@df)[, indices_predictor]))
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -6.5523 -0.7553  0.2355  1.1816  2.9865 
-## 
-## Coefficients: (1 not defined because of singularities)
-##                                           Estimate Std. Error t value
-## (Intercept)                             -0.6268989  0.7638802  -0.821
-## as.matrix((x@df)[, indices_predictor])a  0.0001010  0.0001319   0.766
-## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
-##                                         Pr(>|t|)
-## (Intercept)                                0.419
-## as.matrix((x@df)[, indices_predictor])a    0.450
-## as.matrix((x@df)[, indices_predictor])b       NA
-## 
-## Residual standard error: 2.036 on 28 degrees of freedom
-## Multiple R-squared:  0.02051,	Adjusted R-squared:  -0.01448 
-## F-statistic: 0.5862 on 1 and 28 DF,  p-value: 0.4503
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-\section{Importing data}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{## This chunk was last ran in}
-\hlkwd{timestamp}\hlstd{()}
-\end{alltt}
-\begin{verbatim}
-## ##------ Tue Nov 20 15:44:51 2018 ------##
-\end{verbatim}
-\begin{alltt}
-\hlkwd{biplot}\hlstd{(}\hlkwd{princomp}\hlstd{(}\hlkwd{acomp}\hlstd{(MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{4}\hlstd{)))))}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
-
-\end{knitrout}
-
-\section{Other}
-\begin{enumerate}
-\item Test for normality as follows:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{## This chunk was last ran in}
-\hlkwd{timestamp}\hlstd{()}
-\end{alltt}
-\begin{verbatim}
-## ##------ Tue Nov 20 15:44:52 2018 ------##
-\end{verbatim}
-\begin{alltt}
-\hlkwd{data}\hlstd{(two_normal_pops)}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{))}
 \hlkwd{qqnorm.acomp}\hlstd{(}\hlkwd{acomp}\hlstd{(two_normal_pops}\hlopt{@}\hlkwc{count_matrix}\hlstd{),} \hlkwc{pch}\hlstd{=}\hlnum{19}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{0.2}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-1} 
 \begin{kframe}\begin{alltt}
 \hlkwd{qqnorm.acomp}\hlstd{(}\hlkwd{acomp}\hlstd{(two_normal_pops}\hlopt{@}\hlkwc{count_matrix}\hlstd{[}\hlnum{1}\hlopt{:}\hlnum{1000}\hlstd{,]),} \hlkwc{pch}\hlstd{=}\hlnum{19}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{0.2}\hlstd{,} \hlkwc{plot.it}\hlstd{=}\hlnum{FALSE}\hlstd{)}
 \end{alltt}
@@ -422,10 +361,215 @@
 {\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
 
 {\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-2} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-2} 
 
 \end{knitrout}
-\end{enumerate}
+
+\subsection{Test for equality}
+Test for equality of means.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{compare_populations}\hlstd{(}\hlkwc{predictors} \hlstd{=} \hlkwd{count_matrix}\hlstd{(Breast560),}
+                    \hlkwc{response} \hlstd{=} \hlkwd{as.numeric}\hlstd{(}\hlkwd{as.factor}\hlstd{(}\hlkwd{metadata}\hlstd{(Breast560)}\hlopt{$}\hlstd{final.ER)))}
+\end{alltt}
+\begin{verbatim}
+## $note
+## [1] "James test"
+## 
+## $mesoi
+##                  X1         X2       X3           X4        X5       X6
+## Sample 1 -1.6969917 -0.9470633 1.923296 -0.103998542 0.2707288 1.528197
+## Sample 2  0.8022291 -3.6033765 2.143807  0.002721535 0.6369184 1.607875
+##                X7       X8       X9      X10
+## Sample 1 1.271388 1.248926 1.016479 1.017358
+## Sample 2 1.086473 1.283400 1.083742 1.048809
+## 
+## $info
+##               test            p-value         correction 
+##       2.359067e+02       5.324172e-43       1.042820e+00 
+## corrected.critical 
+##       1.909095e+01
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+
+\clearpage
+\printbibliography
+
+\clearpage
+\section{Session info}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlkwd{sessionInfo}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## R version 3.5.1 (2018-07-02)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS  10.14.4
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] Compositional_3.4   RColorBrewer_1.1-2  reshape2_1.4.3     
+##  [4] ggthemr_1.1.0       ggplot2_3.1.1       MCMCpack_1.4-4     
+##  [7] MASS_7.3-51.1       coda_0.19-2         compositions_1.40-2
+## [10] bayesm_3.1-1        energy_1.7-5        robustbase_0.93-4  
+## [13] tensorA_0.36.1      CompSign_0.1.0      knitr_1.22         
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_1.0.1         lattice_0.20-38    assertthat_0.2.1  
+##  [4] digest_0.6.18      foreach_1.4.4      R6_2.4.0          
+##  [7] plyr_1.8.4         MatrixModels_0.4-1 RcppZiggurat_0.1.5
+## [10] stats4_3.5.1       evaluate_0.13      spam_2.2-2        
+## [13] highr_0.8          pillar_1.3.1       rlang_0.3.4       
+## [16] lazyeval_0.2.2     SparseM_1.77       Matrix_1.2-16     
+## [19] labeling_0.3       stringr_1.4.0      emplik_1.0-4.3    
+## [22] munsell_0.5.0      compiler_3.5.1     numDeriv_2016.8-1 
+## [25] xfun_0.5           pkgconfig_2.0.2    mnormt_1.5-5      
+## [28] mcmc_0.9-6         tidyselect_0.2.5   tibble_2.1.1      
+## [31] codetools_0.2-16   crayon_1.3.4       dplyr_0.8.0.1     
+## [34] withr_2.1.2        grid_3.5.1         gtable_0.3.0      
+## [37] magrittr_1.5       scales_1.0.0       Rfast_1.9.3       
+## [40] stringi_1.4.3      sn_1.5-3           doParallel_1.0.14 
+## [43] boot_1.3-20        iterators_1.0.10   tools_3.5.1       
+## [46] glue_1.3.1         DEoptimR_1.0-8     purrr_0.3.2       
+## [49] maps_3.3.0         fields_9.7         parallel_3.5.1    
+## [52] mixture_1.5        colorspace_1.4-1   dotCall64_1.0-0   
+## [55] quantreg_5.38
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+\end{document}
+
+\section{Linear model for numerical predictors}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## This chunk was last ran in}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Thu Apr 25 12:57:43 2019 ------##
+\end{verbatim}
+\begin{alltt}
+\hlstd{tmp_merged_compositional} \hlkwb{<-} \hlkwd{new}\hlstd{(}\hlstr{"merged_compositional"}\hlstd{,}
+                                \hlkwc{id}\hlstd{=}\hlstr{'adas'}\hlstd{,}
+                                \hlkwc{id_samples}\hlstd{=}\hlkwd{paste0}\hlstd{(}\hlstr{"sam"}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{30}\hlstd{),}
+                                \hlkwc{id_signatures}\hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{'s1'}\hlstd{,} \hlstr{'s2'}\hlstd{,} \hlstr{'s3'}\hlstd{,} \hlstr{'s4'}\hlstd{),} \hlcom{## signature names}
+                                \hlkwc{count_matrix}\hlstd{=MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{)),}
+                                \hlkwc{df}\hlstd{=}\hlkwd{data.frame}\hlstd{(}\hlkwc{a}\hlstd{=}\hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{1e4}\hlstd{,} \hlnum{30}\hlstd{),} \hlkwc{b}\hlstd{=}\hlkwd{rep}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{30}\hlstd{)))}
+\hlkwd{comp_lm}\hlstd{(tmp_merged_compositional)}
+\end{alltt}
+\begin{verbatim}
+## [[1]]
+## Response Y1 :
+## 
+## Call:
+## lm(formula = Y1 ~ as.matrix((x@df)[, indices_predictor]))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.8528 -0.5506  0.1283  0.4883  2.3322 
+## 
+## Coefficients: (1 not defined because of singularities)
+##                                           Estimate Std. Error t value
+## (Intercept)                             -5.910e-02  3.650e-01  -0.162
+## as.matrix((x@df)[, indices_predictor])a  8.259e-05  6.782e-05   1.218
+## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
+##                                         Pr(>|t|)
+## (Intercept)                                0.873
+## as.matrix((x@df)[, indices_predictor])a    0.233
+## as.matrix((x@df)[, indices_predictor])b       NA
+## 
+## Residual standard error: 0.9454 on 28 degrees of freedom
+## Multiple R-squared:  0.05029,	Adjusted R-squared:  0.01638 
+## F-statistic: 1.483 on 1 and 28 DF,  p-value: 0.2335
+## 
+## 
+## Response Y2 :
+## 
+## Call:
+## lm(formula = Y2 ~ as.matrix((x@df)[, indices_predictor]))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.2867 -0.5890  0.1019  0.6377  1.7267 
+## 
+## Coefficients: (1 not defined because of singularities)
+##                                           Estimate Std. Error t value
+## (Intercept)                              4.849e-01  5.049e-01    0.96
+## as.matrix((x@df)[, indices_predictor])a -6.093e-05  9.381e-05   -0.65
+## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
+##                                         Pr(>|t|)
+## (Intercept)                                0.345
+## as.matrix((x@df)[, indices_predictor])a    0.521
+## as.matrix((x@df)[, indices_predictor])b       NA
+## 
+## Residual standard error: 1.308 on 28 degrees of freedom
+## Multiple R-squared:  0.01484,	Adjusted R-squared:  -0.02034 
+## F-statistic: 0.4219 on 1 and 28 DF,  p-value: 0.5213
+## 
+## 
+## Response Y3 :
+## 
+## Call:
+## lm(formula = Y3 ~ as.matrix((x@df)[, indices_predictor]))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.6712 -0.9675  0.3252  0.7976  1.7726 
+## 
+## Coefficients: (1 not defined because of singularities)
+##                                           Estimate Std. Error t value
+## (Intercept)                             -2.961e-01  4.993e-01  -0.593
+## as.matrix((x@df)[, indices_predictor])a  1.309e-05  9.277e-05   0.141
+## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
+##                                         Pr(>|t|)
+## (Intercept)                                0.558
+## as.matrix((x@df)[, indices_predictor])a    0.889
+## as.matrix((x@df)[, indices_predictor])b       NA
+## 
+## Residual standard error: 1.293 on 28 degrees of freedom
+## Multiple R-squared:  0.0007105,	Adjusted R-squared:  -0.03498 
+## F-statistic: 0.01991 on 1 and 28 DF,  p-value: 0.8888
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\section{Importing data}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## This chunk was last ran in}
+\hlkwd{timestamp}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## ##------ Thu Apr 25 12:57:43 2019 ------##
+\end{verbatim}
+\begin{alltt}
+\hlkwd{biplot}\hlstd{(}\hlkwd{princomp}\hlstd{(}\hlkwd{acomp}\hlstd{(MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{4}\hlstd{)))))}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-16-1} 
+
+\end{knitrout}
+
 
 \section{Clustering of samples}
 
@@ -445,7 +589,7 @@ Our first question is whether two populations have the same covariance and struc
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 15:44:52 2018 ------##
+## ##------ Thu Apr 25 12:57:43 2019 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##TODO!!}
@@ -462,16 +606,22 @@ The next is whether the populations have a different center:
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Tue Nov 20 15:44:52 2018 ------##
+## ##------ Thu Apr 25 12:57:43 2019 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## This dataset includes the two components above, as well as four others}
 \hlcom{## (a total of seven)}
 \hlkwd{data}\hlstd{(}\hlstr{"two_normal_pops_extended"}\hlstd{)}
+\end{alltt}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}two\_normal\_pops\_extended"{}): data set 'two\_normal\_pops\_extended' not found}}\begin{alltt}
 \hlcom{## Data from the Landscape... paper}
 \hlkwd{data}\hlstd{(}\hlstr{"Breast560"}\hlstd{)}
+\end{alltt}
 
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data("{}Breast560"{}): data set 'Breast560' not found}}\begin{alltt}
 \hlstd{wrapper_compare_populations} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{predictors}\hlstd{,} \hlkwc{response}\hlstd{,} \hlkwc{...}\hlstd{)\{}
   \hlkwa{if}\hlstd{(}\hlkwd{length}\hlstd{(}\hlkwd{unique}\hlstd{(response))} \hlopt{==} \hlnum{2}\hlstd{)\{}
     \hlstd{tmp} \hlkwb{<-} \hlkwd{compare_populations}\hlstd{(predictors, response, ...)}
@@ -486,14 +636,8 @@ The next is whether the populations have a different center:
                                      \hlkwc{response} \hlstd{=} \hlkwd{metadata}\hlstd{(Breast560)[,k])}
          \hlstd{\}}
        \hlstd{))}
-\end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: Compositional}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'Compositional'}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:compositions':\\\#\# \\\#\#\ \ \ \  alr}}\begin{alltt}
 \hlstd{x}
 \end{alltt}
 \begin{verbatim}
@@ -506,40 +650,6 @@ The next is whether the populations have a different center:
 \end{kframe}
 \end{knitrout}
 
-\section{Datasets}
-\subsection{Data for 560 breast cancer patients}
-Data from 560 breast cancer patients is available as part of the document as well:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{data}\hlstd{(}\hlstr{"Breast560"}\hlstd{)}
-\hlkwd{metadata}\hlstd{(Breast560)[}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
-\end{alltt}
-\begin{verbatim}
-##         donor_gender donor_age_at_diagnosis donor_age_at_last_follow.up
-## PD10010       female                     56            no_data_supplied
-## PD10011       female                     75            no_data_supplied
-## PD10014       female                     64            no_data_supplied
-## PD11326       female                     38                          47
-##          specimen_type donor_vital_status
-## PD10010 tumour_primary              alive
-## PD10011 tumour_primary              alive
-## PD10014 tumour_primary           deceased
-## PD11326 tumour_primary              alive
-\end{verbatim}
-\begin{alltt}
-\hlkwd{count_matrix}\hlstd{(Breast560)[}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
-\end{alltt}
-\begin{verbatim}
-##         Signature.1 Signature.2 Signature.3 Signature.5 Signature.6
-## PD10010  0.22386831  0.04197531   0.2181070   0.3374486           0
-## PD10011  0.09840426  0.00000000   0.1791586   0.4514023           0
-## PD10014  0.03290722  0.00000000   0.2859381   0.2812371           0
-## PD11326  0.04040299  0.02596593   0.3579144   0.1606772           0
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
 
 Not sure if this is correct
 \begin{knitrout}
@@ -548,71 +658,13 @@ Not sure if this is correct
 \hlkwd{source}\hlstd{(}\hlstr{"../../CDA_in_Cancer/code/functions/basic_functions.R"}\hlstd{)}
 \hlkwd{plotPCA}\hlstd{(}\hlkwd{ilr}\hlstd{(}\hlkwd{count_matrix}\hlstd{(Breast560)),} \hlkwc{pch}\hlstd{=}\hlnum{4}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{'blue'}\hlstd{)}
 \end{alltt}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: ggplot2}}\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-13-1} 
-
-\end{knitrout}
-
-
-\subsection{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{timestamp}\hlstd{()}
-\end{alltt}
-\begin{verbatim}
-## ##------ Tue Nov 20 15:44:53 2018 ------##
-\end{verbatim}
-\begin{alltt}
-\hlkwd{data}\hlstd{(}\hlstr{"CNA_12K_TCGA"}\hlstd{)}
-
-\hlkwd{dim}\hlstd{(}\hlkwd{metadata}\hlstd{(CNA_12K_TCGA))}
-\end{alltt}
-\begin{verbatim}
-## [1] 10899    37
-\end{verbatim}
-\begin{alltt}
-\hlkwd{dim}\hlstd{(}\hlkwd{count_matrix}\hlstd{(CNA_12K_TCGA))}
-\end{alltt}
-\begin{verbatim}
-## [1] 10899     7
-\end{verbatim}
 \end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-20-1} 
+
 \end{knitrout}
+
 
 \section{Battery of tests}
-\subsection{(ongoing) test for equality}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{comp.test}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{count_matrix}\hlstd{(Breast560),}
-                              \hlkwc{ina} \hlstd{=} \hlkwd{as.numeric}\hlstd{(}\hlkwd{as.factor}\hlstd{(}\hlkwd{metadata}\hlstd{(Breast560)}\hlopt{$}\hlstd{final.ER)),}
-                              \hlkwc{test} \hlstd{=} \hlstr{"james"}\hlstd{,} \hlkwc{R} \hlstd{=} \hlnum{0}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## $note
-## [1] "James test"
-## 
-## $mesoi
-##                 X1        X2         X3       X4         X5        X6
-## Sample 1 0.4947103 -1.717388 -0.8957869 1.702096 -0.1707924 0.1713026
-## Sample 2 1.2111720  1.423396 -2.3153991 2.010485  0.3004208 0.6587258
-##                X7       X8       X9       X10      X11
-## Sample 1 1.442203 1.255236 1.216817 0.9930453 1.012318
-## Sample 2 1.535435 1.119812 1.252353 1.0633045 1.044466
-## 
-## $info
-##               test            p-value         correction 
-##       2.790161e+02       9.100067e-51       1.046438e+00 
-## corrected.critical 
-##       2.058881e+01
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
 
 
 \subsection{Logistic regression}
@@ -647,35 +699,35 @@ Based on ACDWR pg 200
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -2.8751  -0.2893  -0.1112   0.3276   3.0405  
+## -2.9889  -0.2887  -0.1244   0.3399   2.9367  
 ## 
 ## Coefficients:
-##                                                     Estimate Std. Error
-## (Intercept)                                          0.20991    0.29938
-## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.14865    0.08109
-## ilr(acomp(count_matrix(two_normal_pops_extended)))2 -0.28219    0.20526
-## ilr(acomp(count_matrix(two_normal_pops_extended)))3 -0.35257    0.13672
-## ilr(acomp(count_matrix(two_normal_pops_extended)))4 -0.10861    0.11951
-## ilr(acomp(count_matrix(two_normal_pops_extended)))5 -0.26914    0.11033
-## ilr(acomp(count_matrix(two_normal_pops_extended)))6 -0.13039    0.10264
-## ilr(acomp(count_matrix(two_normal_pops_extended)))7 -0.23026    0.10039
+##                                                       Estimate Std. Error
+## (Intercept)                                          0.2291758  0.3007235
+## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.1790481  0.0832272
+## ilr(acomp(count_matrix(two_normal_pops_extended)))2 -0.0531453  0.2065535
+## ilr(acomp(count_matrix(two_normal_pops_extended)))3 -0.0001603  0.1363011
+## ilr(acomp(count_matrix(two_normal_pops_extended)))4 -0.1059098  0.1210142
+## ilr(acomp(count_matrix(two_normal_pops_extended)))5 -0.2222432  0.1115794
+## ilr(acomp(count_matrix(two_normal_pops_extended)))6 -0.1488437  0.1008784
+## ilr(acomp(count_matrix(two_normal_pops_extended)))7 -0.0337739  0.1002323
 ##                                                     z value Pr(>|z|)    
-## (Intercept)                                           0.701  0.48322    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.499  < 2e-16 ***
-## ilr(acomp(count_matrix(two_normal_pops_extended)))2  -1.375  0.16919    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))3  -2.579  0.00991 ** 
-## ilr(acomp(count_matrix(two_normal_pops_extended)))4  -0.909  0.36346    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))5  -2.439  0.01471 *  
-## ilr(acomp(count_matrix(two_normal_pops_extended)))6  -1.270  0.20395    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))7  -2.294  0.02181 *  
+## (Intercept)                                           0.762   0.4460    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.182   <2e-16 ***
+## ilr(acomp(count_matrix(two_normal_pops_extended)))2  -0.257   0.7970    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))3  -0.001   0.9991    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))4  -0.875   0.3815    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))5  -1.992   0.0464 *  
+## ilr(acomp(count_matrix(two_normal_pops_extended)))6  -1.475   0.1401    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))7  -0.337   0.7361    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 2772.46  on 1999  degrees of freedom
-## Residual deviance:  822.17  on 1992  degrees of freedom
-## AIC: 838.17
+##     Null deviance: 2772.1  on 1999  degrees of freedom
+## Residual deviance:  826.7  on 1992  degrees of freedom
+## AIC: 842.7
 ## 
 ## Number of Fisher Scoring iterations: 6
 \end{verbatim}
@@ -687,7 +739,7 @@ Based on ACDWR pg 200
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: nnet}}\begin{verbatim}
 ## # weights:  5 (4 variable)
 ## initial  value 1386.294361 
-## final  value 446.109216 
+## final  value 447.178605 
 ## converged
 \end{verbatim}
 \begin{alltt}
@@ -696,7 +748,7 @@ Based on ACDWR pg 200
 \begin{verbatim}
 ## $coefTransformed
 ## (Intercept)          X1          X2          X3 
-##   0.3018093  -7.0122987   8.0287960  -0.7146880 
+##   0.1367010  -7.3280799   7.7678830  -0.3031021 
 ## 
 ## $summary
 ## Call:
@@ -704,13 +756,13 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ##                 Values Std. Err.
-## (Intercept)  0.3018093 0.1344851
-## X1          -7.0122987 0.3980051
-## X2           8.0287960 0.3891784
-## X3          -0.7146880 0.4310429
+## (Intercept)  0.1367010 0.1342114
+## X1          -7.3280799 0.4214446
+## X2           7.7678830 0.3703522
+## X3          -0.3031021 0.4312107
 ## 
-## Residual Deviance: 892.2184 
-## AIC: 898.2184 
+## Residual Deviance: 894.3572 
+## AIC: 900.3572 
 ## 
 ## $res
 ## Call:
@@ -718,16 +770,16 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ## (Intercept)          X1          X2          X3 
-##   0.3018093  -7.0122987   8.0287960  -0.7146880 
+##   0.1367010  -7.3280799   7.7678830  -0.3031021 
 ## 
-## Residual Deviance: 892.2184 
-## AIC: 898.2184 
+## Residual Deviance: 894.3572 
+## AIC: 900.3572 
 ## 
 ## [[4]]
 ##    FP_FN_table
 ##       0   1
-##   0 954  54
-##   1  47 945
+##   0 958  58
+##   1  42 942
 \end{verbatim}
 \begin{alltt}
 \hlstd{resB} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(two_normal_pops_extended), scrambled_labels)}
@@ -735,8 +787,8 @@ Based on ACDWR pg 200
 \begin{verbatim}
 ## # weights:  10 (9 variable)
 ## initial  value 1386.294361 
-## iter  10 value 447.368111
-## final  value 447.368099 
+## iter  10 value 432.901441
+## final  value 432.900948 
 ## converged
 \end{verbatim}
 \begin{alltt}
@@ -744,48 +796,48 @@ Based on ACDWR pg 200
 \end{alltt}
 \begin{verbatim}
 ## $coefTransformed
-## (Intercept)          X1          X2          X3          X4          X5 
-##   0.3799636 -14.5095136  16.1858973  -1.4864019  -0.2664309   0.8591635 
-##          X6          X7          X8 
-##  -0.4274325   0.5919991  -0.5673174 
+##  (Intercept)           X1           X2           X3           X4 
+##   0.03334086 -15.95577196  15.62501953   0.34742286   1.25056827 
+##           X5           X6           X7           X8 
+##  -0.54866982  -0.77879194  -0.29782226   0.39138617 
 ## 
 ## $summary
 ## Call:
 ## multinom(formula = as.formula(frm), data = dat)
 ## 
 ## Coefficients:
-##                  Values Std. Err.
-## (Intercept)   0.3799636 0.1600125
-## X1          -14.5095136 0.7570415
-## X2           16.1858973 0.7528891
-## X3           -1.4864019 0.8965775
-## X4           -0.2664309 0.9044187
-## X5            0.8591635 0.8829952
-## X6           -0.4274325 0.8830860
-## X7            0.5919991 0.9177035
-## X8           -0.5673174 0.8781700
+##                   Values Std. Err.
+## (Intercept)   0.03334086 0.1637080
+## X1          -15.95577196 0.8575790
+## X2           15.62501953 0.7090152
+## X3            0.34742286 0.9196285
+## X4            1.25056827 0.9247634
+## X5           -0.54866982 0.8987120
+## X6           -0.77879194 0.8939545
+## X7           -0.29782226 0.9351710
+## X8            0.39138617 0.8886918
 ## 
-## Residual Deviance: 894.7362 
-## AIC: 908.7362 
+## Residual Deviance: 865.8019 
+## AIC: 879.8019 
 ## 
 ## $res
 ## Call:
 ## multinom(formula = as.formula(frm), data = dat)
 ## 
 ## Coefficients:
-## (Intercept)          X1          X2          X3          X4          X5 
-##   0.3799636 -14.5095136  16.1858973  -1.4864019  -0.2664309   0.8591635 
-##          X6          X7          X8 
-##  -0.4274325   0.5919991  -0.5673174 
+##  (Intercept)           X1           X2           X3           X4 
+##   0.03334086 -15.95577196  15.62501953   0.34742286   1.25056827 
+##           X5           X6           X7           X8 
+##  -0.54866982  -0.77879194  -0.29782226   0.39138617 
 ## 
-## Residual Deviance: 894.7362 
-## AIC: 908.7362 
+## Residual Deviance: 865.8019 
+## AIC: 879.8019 
 ## 
 ## [[4]]
 ##    FP_FN_table
 ##       0   1
-##   0 954  54
-##   1  46 946
+##   0 958  58
+##   1  42 942
 \end{verbatim}
 \begin{alltt}
 \hlstd{resCNA_gender} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'gender'}\hlstd{)),}
@@ -851,13 +903,13 @@ Based on ACDWR pg 200
                               \hlkwd{metadata}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'race'}\hlstd{))[,}\hlstr{'race'}\hlstd{],} \hlkwc{relax_binary_assumption} \hlstd{=} \hlnum{TRUE}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## # weights:  54 (40 variable)
-## initial  value 19480.008949 
-## iter  10 value 9749.868694
-## iter  20 value 9542.043736
-## iter  30 value 9517.674549
-## iter  40 value 9516.466317
-## final  value 9516.429451 
+## # weights:  45 (32 variable)
+## initial  value 15411.977449 
+## iter  10 value 5840.051105
+## iter  20 value 5603.221335
+## iter  30 value 5590.128772
+## iter  40 value 5589.864008
+## final  value 5589.860769 
 ## converged
 \end{verbatim}
 \begin{alltt}
@@ -866,23 +918,20 @@ Based on ACDWR pg 200
 \begin{verbatim}
 ## $coefTransformed
 ##                                           (Intercept)         s1        s2
-## asian                                        2.675822  0.9362561 -3.734532
-## black or african american                    3.126298  0.7315326 -2.226914
-## native hawaiian or other pacific islander   -2.905191 -0.9673919 -6.062152
-## not reported                                 3.312094  0.6140444 -1.617130
-## white                                        4.865439  1.4609214 -2.578245
+## asian                                        2.672068  0.9450276 -3.803121
+## black or african american                    3.115921  0.7428933 -2.324556
+## native hawaiian or other pacific islander   -2.901050 -1.0452138 -6.000538
+## white                                        4.861007  1.4719541 -2.635247
 ##                                                 s3         s4        s5
-## asian                                     1.690197 -0.5707642 -1.252844
-## black or african american                 2.138134  0.9178396 -2.071713
-## native hawaiian or other pacific islander 2.202370  8.4638717  4.265265
-## not reported                              2.954000  0.9466145 -1.448352
-## white                                     1.957366  0.1287871 -1.119340
+## asian                                     1.674742 -0.5989746 -1.248396
+## black or african american                 2.166487  0.9507823 -2.065123
+## native hawaiian or other pacific islander 2.378382  8.4160702  4.209867
+## white                                     1.954892  0.1143870 -1.117764
 ##                                                    s6       s7
-## asian                                       1.6057156 4.001795
-## black or african american                  -0.0760912 3.713510
-## native hawaiian or other pacific islander -12.1163351 1.309181
-## not reported                               -1.9068323 3.769750
-## white                                       1.0245549 3.991395
+## asian                                       1.6917138 4.011077
+## black or african american                  -0.0387949 3.684232
+## native hawaiian or other pacific islander -12.2816314 1.422015
+## white                                       1.0833213 3.989464
 ## 
 ## $summary
 ## Call:
@@ -890,46 +939,40 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ##                                           (Intercept)         s1        s2
-## asian                                        2.675822  0.9362561 -3.734532
-## black or african american                    3.126298  0.7315326 -2.226914
-## native hawaiian or other pacific islander   -2.905191 -0.9673919 -6.062152
-## not reported                                 3.312094  0.6140444 -1.617130
-## white                                        4.865439  1.4609214 -2.578245
+## asian                                        2.672068  0.9450276 -3.803121
+## black or african american                    3.115921  0.7428933 -2.324556
+## native hawaiian or other pacific islander   -2.901050 -1.0452138 -6.000538
+## white                                        4.861007  1.4719541 -2.635247
 ##                                                 s3         s4        s5
-## asian                                     1.690197 -0.5707642 -1.252844
-## black or african american                 2.138134  0.9178396 -2.071713
-## native hawaiian or other pacific islander 2.202370  8.4638717  4.265265
-## not reported                              2.954000  0.9466145 -1.448352
-## white                                     1.957366  0.1287871 -1.119340
+## asian                                     1.674742 -0.5989746 -1.248396
+## black or african american                 2.166487  0.9507823 -2.065123
+## native hawaiian or other pacific islander 2.378382  8.4160702  4.209867
+## white                                     1.954892  0.1143870 -1.117764
 ##                                                    s6       s7
-## asian                                       1.6057156 4.001795
-## black or african american                  -0.0760912 3.713510
-## native hawaiian or other pacific islander -12.1163351 1.309181
-## not reported                               -1.9068323 3.769750
-## white                                       1.0245549 3.991395
+## asian                                       1.6917138 4.011077
+## black or african american                  -0.0387949 3.684232
+## native hawaiian or other pacific islander -12.2816314 1.422015
+## white                                       1.0833213 3.989464
 ## 
 ## Std. Errors:
 ##                                           (Intercept)        s1       s2
-## asian                                       0.3708243 0.7298643 2.416836
-## black or african american                   0.3649411 0.7246340 2.359150
-## native hawaiian or other pacific islander   1.0000360 2.0428540 5.431924
-## not reported                                0.3629791 0.7220111 2.338804
-## white                                       0.3589692 0.7159120 2.311800
+## asian                                       0.3673940 0.7296476 2.413953
+## black or african american                   0.3615361 0.7244379 2.356048
+## native hawaiian or other pacific islander   0.9978657 2.0548757 5.411428
+## white                                       0.3555740 0.7157202 2.308680
 ##                                                 s3       s4       s5
-## asian                                     1.478489 2.095677 1.280650
-## black or african american                 1.467926 2.074927 1.272645
-## native hawaiian or other pacific islander 2.601987 3.041292 2.183757
-## not reported                              1.459629 2.068598 1.261350
-## white                                     1.446293 2.050308 1.247049
+## asian                                     1.493635 2.115974 1.274487
+## black or african american                 1.483318 2.095245 1.266690
+## native hawaiian or other pacific islander 2.632530 3.047898 2.174688
+## white                                     1.461269 2.070342 1.240876
 ##                                                 s6       s7
-## asian                                     2.320487 1.965550
-## black or african american                 2.311944 1.954391
-## native hawaiian or other pacific islander 5.819587 3.151494
-## not reported                              2.311425 1.946600
-## white                                     2.278335 1.929741
+## asian                                     2.345331 1.977182
+## black or african american                 2.337053 1.966071
+## native hawaiian or other pacific islander 5.880740 3.158845
+## white                                     2.302844 1.941439
 ## 
-## Residual Deviance: 19032.86 
-## AIC: 19102.86 
+## Residual Deviance: 11179.72 
+## AIC: 11235.72 
 ## 
 ## $res
 ## Call:
@@ -937,26 +980,23 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ##                                           (Intercept)         s1        s2
-## asian                                        2.675822  0.9362561 -3.734532
-## black or african american                    3.126298  0.7315326 -2.226914
-## native hawaiian or other pacific islander   -2.905191 -0.9673919 -6.062152
-## not reported                                 3.312094  0.6140444 -1.617130
-## white                                        4.865439  1.4609214 -2.578245
+## asian                                        2.672068  0.9450276 -3.803121
+## black or african american                    3.115921  0.7428933 -2.324556
+## native hawaiian or other pacific islander   -2.901050 -1.0452138 -6.000538
+## white                                        4.861007  1.4719541 -2.635247
 ##                                                 s3         s4        s5
-## asian                                     1.690197 -0.5707642 -1.252844
-## black or african american                 2.138134  0.9178396 -2.071713
-## native hawaiian or other pacific islander 2.202370  8.4638717  4.265265
-## not reported                              2.954000  0.9466145 -1.448352
-## white                                     1.957366  0.1287871 -1.119340
+## asian                                     1.674742 -0.5989746 -1.248396
+## black or african american                 2.166487  0.9507823 -2.065123
+## native hawaiian or other pacific islander 2.378382  8.4160702  4.209867
+## white                                     1.954892  0.1143870 -1.117764
 ##                                                    s6       s7
-## asian                                       1.6057156 4.001795
-## black or african american                  -0.0760912 3.713510
-## native hawaiian or other pacific islander -12.1163351 1.309181
-## not reported                               -1.9068323 3.769750
-## white                                       1.0245549 3.991395
+## asian                                       1.6917138 4.011077
+## black or african american                  -0.0387949 3.684232
+## native hawaiian or other pacific islander -12.2816314 1.422015
+## white                                       1.0833213 3.989464
 ## 
-## Residual Deviance: 19032.86 
-## AIC: 19102.86 
+## Residual Deviance: 11179.72 
+## AIC: 11235.72 
 ## 
 ## [[4]]
 ##                                            FP_FN_table
@@ -965,7 +1005,6 @@ Based on ACDWR pg 200
 ##   asian                                      665
 ##   black or african american                  910
 ##   native hawaiian or other pacific islander   13
-##   not reported                              1296
 ##   white                                     7961
 \end{verbatim}
 \end{kframe}
@@ -1135,16 +1174,16 @@ How to get p-values? I don't think the below is correct
 \end{alltt}
 \begin{verbatim}
 ## (Intercept)          X1          X2          X3 
-##  0.02482058  0.00000000  0.00000000  0.09730864
+##   0.3084170   0.0000000   0.0000000   0.4821121
 \end{verbatim}
 \begin{alltt}
 \hlkwd{give_pval}\hlstd{(resB}\hlopt{$}\hlstd{summary)}            \hlcom{## 1 and two are; the rest are not (as expected)}
 \end{alltt}
 \begin{verbatim}
 ## (Intercept)          X1          X2          X3          X4          X5 
-##  0.01756863  0.00000000  0.00000000  0.09734531  0.76830864  0.33054812 
+##   0.8386188   0.0000000   0.0000000   0.7055895   0.1762757   0.5415261 
 ##          X6          X7          X8 
-##  0.62837071  0.51887045  0.51826490
+##   0.3836579   0.7501298   0.6596423
 \end{verbatim}
 \begin{alltt}
 \hlkwd{give_pval}\hlstd{(resCNA_gender}\hlopt{$}\hlstd{summary)}   \hlcom{## are are statistically significant for the copy number signatures}
@@ -1167,7 +1206,7 @@ How to get p-values? I don't think the below is correct
 ##   0.99231920   0.43418178   0.83407475
 \end{verbatim}
 \begin{alltt}
-\hlkwd{give_pval}\hlstd{(resBRCA_finalPR}\hlopt{$}\hlstd{summary)} \hlcom{## none are negative}
+\hlkwd{give_pval}\hlstd{(resBRCA_finalPR}\hlopt{$}\hlstd{summary)} \hlcom{## none are statistically significant}
 \end{alltt}
 \begin{verbatim}
 ##  (Intercept)  Signature.1  Signature.2  Signature.3  Signature.5 
@@ -1177,7 +1216,405 @@ How to get p-values? I don't think the below is correct
 ## Signature.20 Signature.26 Signature.30 
 ##    0.9669037    0.5588293    0.8887846
 \end{verbatim}
+\begin{alltt}
+\hlkwd{give_pval}\hlstd{(resCNA_race}\hlopt{$}\hlstd{summary)}     \hlcom{## some statistically significant}
+\end{alltt}
+\begin{verbatim}
+##                                            (Intercept)         s1
+## asian                                     3.514966e-13 0.19525689
+## black or african american                 0.000000e+00 0.30513893
+## native hawaiian or other pacific islander 3.646162e-03 0.61099712
+## white                                     0.000000e+00 0.03972419
+##                                                  s2        s3          s4
+## asian                                     0.1151469 0.2621805 0.777121091
+## black or african american                 0.3238222 0.1441339 0.649986482
+## native hawaiian or other pacific islander 0.2674888 0.3662825 0.005757702
+## white                                     0.2536819 0.1809603 0.955939057
+##                                                   s5         s6         s7
+## asian                                     0.32731885 0.47071795 0.04249054
+## black or african american                 0.10303171 0.98675579 0.06094340
+## native hawaiian or other pacific islander 0.05288625 0.03675726 0.65258836
+## white                                     0.36770184 0.63804960 0.03988860
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
 
-\end{document}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{wrapper_single_logReg} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{colname}\hlstd{,} \hlkwc{Ddd}\hlstd{)\{}
+    \hlkwd{print}\hlstd{(}\hlstr{'asdsd2'}\hlstd{)}
+    \hlkwd{print}\hlstd{(}\hlkwd{head}\hlstd{(}\hlkwd{metadata}\hlstd{((Ddd))))}
+    \hlstd{Ddd} \hlkwb{<-} \hlkwd{cleanObject}\hlstd{(Ddd, colname)}
+    \hlstd{compData} \hlkwb{=} \hlkwd{count_matrix}\hlstd{(Ddd)}
+    \hlstd{binaryLabels} \hlkwb{=} \hlkwd{metadata}\hlstd{(Ddd)[,colname]}
+
+    \hlstd{tmp} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwc{compData} \hlstd{= compData,}
+                         \hlkwc{binaryLabels} \hlstd{= binaryLabels,}
+                         \hlkwc{relax_binary_assumption} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\hlcom{#    give_pval(tmp$summary)}
+    \hlkwd{print}\hlstd{(}\hlkwd{give_pval}\hlstd{(tmp}\hlopt{$}\hlstd{summary))}
+    \hlkwd{cbind.data.frame}\hlstd{(}\hlkwd{rep}\hlstd{(colname,} \hlkwd{nrow}\hlstd{(} \hlkwd{give_pval}\hlstd{(tmp}\hlopt{$}\hlstd{summary))),} \hlkwd{give_pval}\hlstd{(tmp}\hlopt{$}\hlstd{summary))}
+    \hlkwd{cbind.data.frame}\hlstd{(}\hlkwd{rep}\hlstd{(colname,} \hlkwd{nrow}\hlstd{(} \hlkwd{give_pval}\hlstd{(tmp}\hlopt{$}\hlstd{summary))),} \hlkwd{give_pval}\hlstd{(tmp}\hlopt{$}\hlstd{summary))}
+\hlstd{\}}
+\hlstd{wrapper_multiple_logReg} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{dataset}\hlstd{,} \hlkwc{colnames}\hlstd{)\{}
+  \hlkwd{print}\hlstd{(}\hlstr{'asdsd'}\hlstd{)}
+  \hlkwd{head}\hlstd{(}\hlkwd{metadata}\hlstd{(dataset))}
+  \hlkwd{do.call}\hlstd{(}\hlstr{'rbind'}\hlstd{,} \hlkwd{lapply}\hlstd{(colnames,} \hlkwa{function}\hlstd{(}\hlkwc{X}\hlstd{)} \hlkwd{wrapper_single_logReg}\hlstd{(}\hlkwc{colname} \hlstd{= X,} \hlkwc{Ddd} \hlstd{= dataset)))}
+\hlstd{\}}
+
+\hlkwd{wrapper_single_logReg}\hlstd{(}\hlstr{'race'}\hlstd{, CNA_12K_TCGA)}
+\end{alltt}
+\begin{verbatim}
+## [1] "asdsd2"
+##                                case_id submitter_id project_id gender
+## 1 3144f1fb-4342-4079-bfe8-940da4bfd88e TCGA-E2-A14V  TCGA-BRCA female
+## 2 4922cddc-575c-4b8a-8245-ce5f6876760c TCGA-E9-A1R3  TCGA-BRCA female
+## 3 b0f8d698-a30e-4d8d-b0a2-a5a01fac8406 TCGA-A2-A0T4  TCGA-BRCA female
+## 4 2b36853f-34d3-47c5-ba6a-e5a93233d2b1 TCGA-AC-A7VC  TCGA-BRCA female
+## 5 8c7e74e0-71ef-49b8-9217-94b8ef740ef9 TCGA-A7-A13E  TCGA-BRCA female
+## 6 bfa3dbc0-361c-400e-8c10-0aca7049fce9 TCGA-D8-A27W  TCGA-BRCA female
+##   year_of_birth  race              ethnicity year_of_death
+## 1          1955 white not hispanic or latino            --
+## 2          1940 white not hispanic or latino            --
+## 3          1947 white not hispanic or latino            --
+## 4          1957 white not hispanic or latino            --
+## 5          1948 white not hispanic or latino            --
+## 6          1956 white not hispanic or latino            --
+##   classification_of_tumor last_known_disease_status
+## 1            not reported              not reported
+## 2            not reported              not reported
+## 3            not reported              not reported
+## 4            not reported              not reported
+## 5            not reported              not reported
+## 6            not reported              not reported
+##                  primary_diagnosis tumor_stage age_at_diagnosis
+## 1 Infiltrating duct carcinoma, NOS   stage iib            19643
+## 2 Infiltrating duct carcinoma, NOS  stage iiic            25693
+## 3           Lobular carcinoma, NOS   stage iia            22849
+## 4       Metaplastic carcinoma, NOS   stage iib            20479
+## 5 Infiltrating duct carcinoma, NOS   stage iib            22690
+## 6          Mucinous adenocarcinoma  stage iiib            20173
+##   vital_status morphology days_to_death days_to_last_known_disease_status
+## 1        alive     8500/3            --                                --
+## 2        alive     8500/3            --                                --
+## 3        alive     8520/3            --                                --
+## 4        alive     8575/3            --                                --
+## 5         dead     8500/3         614.0                                --
+## 6        alive     8480/3            --                                --
+##   days_to_recurrence  tumor_grade tissue_or_organ_of_origin days_to_birth
+## 1                 -- not reported               Breast, NOS      -19643.0
+## 2                 -- not reported               Breast, NOS      -25693.0
+## 3                 -- not reported               Breast, NOS      -22849.0
+## 4                 -- not reported               Breast, NOS      -20479.0
+## 5                 -- not reported               Breast, NOS      -22690.0
+## 6                 -- not reported               Breast, NOS      -20173.0
+##   progression_or_recurrence prior_malignancy site_of_resection_or_biopsy
+## 1              not reported     not reported                 Breast, NOS
+## 2              not reported     not reported                 Breast, NOS
+## 3              not reported     not reported                 Breast, NOS
+## 4              not reported     not reported                 Breast, NOS
+## 5              not reported     not reported                 Breast, NOS
+## 6              not reported     not reported                 Breast, NOS
+##   days_to_last_follow_up therapeutic_agents treatment_intent_type
+## 1                 1042.0                 --                    --
+## 2                   78.0                 --                    --
+## 3                  624.0                 --                    --
+## 4                    1.0                 --                    --
+## 5                  326.0                 --                    --
+## 6                  373.0                 --                    --
+##   treatment_or_therapy submitter_id project_id cigarettes_per_day weight
+## 1                   -- TCGA-E2-A14V  TCGA-BRCA                 --     --
+## 2                   -- TCGA-E9-A1R3  TCGA-BRCA                 --     --
+## 3                   -- TCGA-A2-A0T4  TCGA-BRCA                 --     --
+## 4                   -- TCGA-AC-A7VC  TCGA-BRCA                 --     --
+## 5                   -- TCGA-A7-A13E  TCGA-BRCA                 --     --
+## 6                   -- TCGA-D8-A27W  TCGA-BRCA                 --     --
+##   alcohol_history alcohol_intensity bmi years_smoked height
+## 1              --                --  --           --     --
+## 2              --                --  --           --     --
+## 3              --                --  --           --     --
+## 4              --                --  --           --     --
+## 5              --                --  --           --     --
+## 6              --                --  --           --     --
+## # weights:  45 (32 variable)
+## initial  value 15411.977449 
+## iter  10 value 5840.051105
+## iter  20 value 5603.221335
+## iter  30 value 5590.128772
+## iter  40 value 5589.864008
+## final  value 5589.860769 
+## converged
+##                                            (Intercept)         s1
+## asian                                     3.514966e-13 0.19525689
+## black or african american                 0.000000e+00 0.30513893
+## native hawaiian or other pacific islander 3.646162e-03 0.61099712
+## white                                     0.000000e+00 0.03972419
+##                                                  s2        s3          s4
+## asian                                     0.1151469 0.2621805 0.777121091
+## black or african american                 0.3238222 0.1441339 0.649986482
+## native hawaiian or other pacific islander 0.2674888 0.3662825 0.005757702
+## white                                     0.2536819 0.1809603 0.955939057
+##                                                   s5         s6         s7
+## asian                                     0.32731885 0.47071795 0.04249054
+## black or african american                 0.10303171 0.98675579 0.06094340
+## native hawaiian or other pacific islander 0.05288625 0.03675726 0.65258836
+## white                                     0.36770184 0.63804960 0.03988860
+##                                           rep(colname, nrow(give_pval(tmp$summary)))
+## asian                                                                           race
+## black or african american                                                       race
+## native hawaiian or other pacific islander                                       race
+## white                                                                           race
+##                                            (Intercept)         s1
+## asian                                     3.514966e-13 0.19525689
+## black or african american                 0.000000e+00 0.30513893
+## native hawaiian or other pacific islander 3.646162e-03 0.61099712
+## white                                     0.000000e+00 0.03972419
+##                                                  s2        s3          s4
+## asian                                     0.1151469 0.2621805 0.777121091
+## black or african american                 0.3238222 0.1441339 0.649986482
+## native hawaiian or other pacific islander 0.2674888 0.3662825 0.005757702
+## white                                     0.2536819 0.1809603 0.955939057
+##                                                   s5         s6         s7
+## asian                                     0.32731885 0.47071795 0.04249054
+## black or african american                 0.10303171 0.98675579 0.06094340
+## native hawaiian or other pacific islander 0.05288625 0.03675726 0.65258836
+## white                                     0.36770184 0.63804960 0.03988860
+\end{verbatim}
+\begin{alltt}
+\hlstd{all_cna} \hlkwb{<-} \hlkwd{wrapper_multiple_logReg}\hlstd{(}\hlkwc{dataset} \hlstd{= CNA_12K_TCGA,}
+                                 \hlkwc{colnames} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{'race'}\hlstd{,} \hlstr{'ethnicity'}\hlstd{,} \hlstr{'gender'}\hlstd{,} \hlstr{'alcohol_history'}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## [1] "asdsd"
+## [1] "asdsd2"
+##                                case_id submitter_id project_id gender
+## 1 3144f1fb-4342-4079-bfe8-940da4bfd88e TCGA-E2-A14V  TCGA-BRCA female
+## 2 4922cddc-575c-4b8a-8245-ce5f6876760c TCGA-E9-A1R3  TCGA-BRCA female
+## 3 b0f8d698-a30e-4d8d-b0a2-a5a01fac8406 TCGA-A2-A0T4  TCGA-BRCA female
+## 4 2b36853f-34d3-47c5-ba6a-e5a93233d2b1 TCGA-AC-A7VC  TCGA-BRCA female
+## 5 8c7e74e0-71ef-49b8-9217-94b8ef740ef9 TCGA-A7-A13E  TCGA-BRCA female
+## 6 bfa3dbc0-361c-400e-8c10-0aca7049fce9 TCGA-D8-A27W  TCGA-BRCA female
+##   year_of_birth  race              ethnicity year_of_death
+## 1          1955 white not hispanic or latino            --
+## 2          1940 white not hispanic or latino            --
+## 3          1947 white not hispanic or latino            --
+## 4          1957 white not hispanic or latino            --
+## 5          1948 white not hispanic or latino            --
+## 6          1956 white not hispanic or latino            --
+##   classification_of_tumor last_known_disease_status
+## 1            not reported              not reported
+## 2            not reported              not reported
+## 3            not reported              not reported
+## 4            not reported              not reported
+## 5            not reported              not reported
+## 6            not reported              not reported
+##                  primary_diagnosis tumor_stage age_at_diagnosis
+## 1 Infiltrating duct carcinoma, NOS   stage iib            19643
+## 2 Infiltrating duct carcinoma, NOS  stage iiic            25693
+## 3           Lobular carcinoma, NOS   stage iia            22849
+## 4       Metaplastic carcinoma, NOS   stage iib            20479
+## 5 Infiltrating duct carcinoma, NOS   stage iib            22690
+## 6          Mucinous adenocarcinoma  stage iiib            20173
+##   vital_status morphology days_to_death days_to_last_known_disease_status
+## 1        alive     8500/3            --                                --
+## 2        alive     8500/3            --                                --
+## 3        alive     8520/3            --                                --
+## 4        alive     8575/3            --                                --
+## 5         dead     8500/3         614.0                                --
+## 6        alive     8480/3            --                                --
+##   days_to_recurrence  tumor_grade tissue_or_organ_of_origin days_to_birth
+## 1                 -- not reported               Breast, NOS      -19643.0
+## 2                 -- not reported               Breast, NOS      -25693.0
+## 3                 -- not reported               Breast, NOS      -22849.0
+## 4                 -- not reported               Breast, NOS      -20479.0
+## 5                 -- not reported               Breast, NOS      -22690.0
+## 6                 -- not reported               Breast, NOS      -20173.0
+##   progression_or_recurrence prior_malignancy site_of_resection_or_biopsy
+## 1              not reported     not reported                 Breast, NOS
+## 2              not reported     not reported                 Breast, NOS
+## 3              not reported     not reported                 Breast, NOS
+## 4              not reported     not reported                 Breast, NOS
+## 5              not reported     not reported                 Breast, NOS
+## 6              not reported     not reported                 Breast, NOS
+##   days_to_last_follow_up therapeutic_agents treatment_intent_type
+## 1                 1042.0                 --                    --
+## 2                   78.0                 --                    --
+## 3                  624.0                 --                    --
+## 4                    1.0                 --                    --
+## 5                  326.0                 --                    --
+## 6                  373.0                 --                    --
+##   treatment_or_therapy submitter_id project_id cigarettes_per_day weight
+## 1                   -- TCGA-E2-A14V  TCGA-BRCA                 --     --
+## 2                   -- TCGA-E9-A1R3  TCGA-BRCA                 --     --
+## 3                   -- TCGA-A2-A0T4  TCGA-BRCA                 --     --
+## 4                   -- TCGA-AC-A7VC  TCGA-BRCA                 --     --
+## 5                   -- TCGA-A7-A13E  TCGA-BRCA                 --     --
+## 6                   -- TCGA-D8-A27W  TCGA-BRCA                 --     --
+##   alcohol_history alcohol_intensity bmi years_smoked height
+## 1              --                --  --           --     --
+## 2              --                --  --           --     --
+## 3              --                --  --           --     --
+## 4              --                --  --           --     --
+## 5              --                --  --           --     --
+## 6              --                --  --           --     --
+## # weights:  45 (32 variable)
+## initial  value 15411.977449 
+## iter  10 value 5840.051105
+## iter  20 value 5603.221335
+## iter  30 value 5590.128772
+## iter  40 value 5589.864008
+## final  value 5589.860769 
+## converged
+##                                            (Intercept)         s1
+## asian                                     3.514966e-13 0.19525689
+## black or african american                 0.000000e+00 0.30513893
+## native hawaiian or other pacific islander 3.646162e-03 0.61099712
+## white                                     0.000000e+00 0.03972419
+##                                                  s2        s3          s4
+## asian                                     0.1151469 0.2621805 0.777121091
+## black or african american                 0.3238222 0.1441339 0.649986482
+## native hawaiian or other pacific islander 0.2674888 0.3662825 0.005757702
+## white                                     0.2536819 0.1809603 0.955939057
+##                                                   s5         s6         s7
+## asian                                     0.32731885 0.47071795 0.04249054
+## black or african american                 0.10303171 0.98675579 0.06094340
+## native hawaiian or other pacific islander 0.05288625 0.03675726 0.65258836
+## white                                     0.36770184 0.63804960 0.03988860
+## [1] "asdsd2"
+##                                case_id submitter_id project_id gender
+## 1 3144f1fb-4342-4079-bfe8-940da4bfd88e TCGA-E2-A14V  TCGA-BRCA female
+## 2 4922cddc-575c-4b8a-8245-ce5f6876760c TCGA-E9-A1R3  TCGA-BRCA female
+## 3 b0f8d698-a30e-4d8d-b0a2-a5a01fac8406 TCGA-A2-A0T4  TCGA-BRCA female
+## 4 2b36853f-34d3-47c5-ba6a-e5a93233d2b1 TCGA-AC-A7VC  TCGA-BRCA female
+## 5 8c7e74e0-71ef-49b8-9217-94b8ef740ef9 TCGA-A7-A13E  TCGA-BRCA female
+## 6 bfa3dbc0-361c-400e-8c10-0aca7049fce9 TCGA-D8-A27W  TCGA-BRCA female
+##   year_of_birth  race              ethnicity year_of_death
+## 1          1955 white not hispanic or latino            --
+## 2          1940 white not hispanic or latino            --
+## 3          1947 white not hispanic or latino            --
+## 4          1957 white not hispanic or latino            --
+## 5          1948 white not hispanic or latino            --
+## 6          1956 white not hispanic or latino            --
+##   classification_of_tumor last_known_disease_status
+## 1            not reported              not reported
+## 2            not reported              not reported
+## 3            not reported              not reported
+## 4            not reported              not reported
+## 5            not reported              not reported
+## 6            not reported              not reported
+##                  primary_diagnosis tumor_stage age_at_diagnosis
+## 1 Infiltrating duct carcinoma, NOS   stage iib            19643
+## 2 Infiltrating duct carcinoma, NOS  stage iiic            25693
+## 3           Lobular carcinoma, NOS   stage iia            22849
+## 4       Metaplastic carcinoma, NOS   stage iib            20479
+## 5 Infiltrating duct carcinoma, NOS   stage iib            22690
+## 6          Mucinous adenocarcinoma  stage iiib            20173
+##   vital_status morphology days_to_death days_to_last_known_disease_status
+## 1        alive     8500/3            --                                --
+## 2        alive     8500/3            --                                --
+## 3        alive     8520/3            --                                --
+## 4        alive     8575/3            --                                --
+## 5         dead     8500/3         614.0                                --
+## 6        alive     8480/3            --                                --
+##   days_to_recurrence  tumor_grade tissue_or_organ_of_origin days_to_birth
+## 1                 -- not reported               Breast, NOS      -19643.0
+## 2                 -- not reported               Breast, NOS      -25693.0
+## 3                 -- not reported               Breast, NOS      -22849.0
+## 4                 -- not reported               Breast, NOS      -20479.0
+## 5                 -- not reported               Breast, NOS      -22690.0
+## 6                 -- not reported               Breast, NOS      -20173.0
+##   progression_or_recurrence prior_malignancy site_of_resection_or_biopsy
+## 1              not reported     not reported                 Breast, NOS
+## 2              not reported     not reported                 Breast, NOS
+## 3              not reported     not reported                 Breast, NOS
+## 4              not reported     not reported                 Breast, NOS
+## 5              not reported     not reported                 Breast, NOS
+## 6              not reported     not reported                 Breast, NOS
+##   days_to_last_follow_up therapeutic_agents treatment_intent_type
+## 1                 1042.0                 --                    --
+## 2                   78.0                 --                    --
+## 3                  624.0                 --                    --
+## 4                    1.0                 --                    --
+## 5                  326.0                 --                    --
+## 6                  373.0                 --                    --
+##   treatment_or_therapy submitter_id project_id cigarettes_per_day weight
+## 1                   -- TCGA-E2-A14V  TCGA-BRCA                 --     --
+## 2                   -- TCGA-E9-A1R3  TCGA-BRCA                 --     --
+## 3                   -- TCGA-A2-A0T4  TCGA-BRCA                 --     --
+## 4                   -- TCGA-AC-A7VC  TCGA-BRCA                 --     --
+## 5                   -- TCGA-A7-A13E  TCGA-BRCA                 --     --
+## 6                   -- TCGA-D8-A27W  TCGA-BRCA                 --     --
+##   alcohol_history alcohol_intensity bmi years_smoked height
+## 1              --                --  --           --     --
+## 2              --                --  --           --     --
+## 3              --                --  --           --     --
+## 4              --                --  --           --     --
+## 5              --                --  --           --     --
+## 6              --                --  --           --     --
+## # weights:  9 (8 variable)
+## initial  value 5769.063984 
+## iter  10 value 1521.477007
+## final  value 1487.190321 
+## converged
+## (Intercept)          s1          s2          s3          s4          s5 
+##  0.00000000  0.28525451  0.01378871  0.76283633  0.13891494  0.07221901 
+##          s6          s7 
+##  0.05829716  0.51712552
+\end{verbatim}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in rep(colname, nrow(give\_pval(tmp\$summary))): invalid 'times' argument}}\begin{alltt}
+\hlstd{all_cna_coefs} \hlkwb{<-} \hlkwd{lapply}\hlstd{(}\hlkwd{c}\hlstd{(}\hlstr{'race'}\hlstd{,} \hlstr{'ethnicity'}\hlstd{,} \hlstr{'gender'}\hlstd{,} \hlstr{'alcohol_history'}\hlstd{),} \hlkwa{function}\hlstd{(}\hlkwc{lab}\hlstd{)\{}
+  \hlkwd{comp_logistic}\hlstd{(}\hlkwc{compData} \hlstd{=} \hlkwd{count_matrix}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA)),}
+                \hlkwc{binaryLabels} \hlstd{=} \hlkwd{metadata}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA))[,lab],}
+                \hlkwc{relax_binary_assumption} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+  \hlstd{\})}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in table(tmp): attempt to make a table with >= 2\textasciicircum{}31 elements}}\begin{alltt}
+\hlcom{## cont...}
+
+\hlcom{## 'tissue_or_organ_of_origin':  too many (1260) weights}
+
+\hlkwd{library}\hlstd{(pheatmap)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'pheatmap' was built under R version 3.5.2}}\begin{alltt}
+\hlkwd{source}\hlstd{(}\hlstr{"../../CDA_in_Cancer/code/functions/WrapperlikeFunctions.R"}\hlstd{)}
+\hlkwd{pheatmap0}\hlstd{(all_cna[,}\hlopt{-}\hlnum{1}\hlstd{],} \hlkwc{nonames} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{annotation_row} \hlstd{=} \hlkwd{data.frame}\hlstd{(all_cna[,}\hlnum{1}\hlstd{],} \hlkwc{row.names} \hlstd{=} \hlkwd{rownames}\hlstd{(all_cna[,}\hlopt{-}\hlnum{1}\hlstd{])))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in rownames(mat): object 'all\_cna' not found}}\end{kframe}
+\end{knitrout}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{require}\hlstd{(reshape2)}
+\hlkwd{require}\hlstd{(ggplot2)}
+\hlstd{molten_pvals} \hlkwb{<-} \hlkwd{melt}\hlstd{(all_cna)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in melt(all\_cna): object 'all\_cna' not found}}\begin{alltt}
+\hlkwd{colnames}\hlstd{(molten_pvals)} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{'variable'}\hlstd{,} \hlstr{'signature'}\hlstd{,} \hlstr{'value'}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in colnames(molten\_pvals) <- c("{}variable"{}, "{}signature"{}, "{}value"{}): object 'molten\_pvals' not found}}\begin{alltt}
+\hlkwd{ggplot}\hlstd{(molten_pvals,} \hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=}\hlkwd{interaction}\hlstd{(variable,signature),} \hlkwc{y}\hlstd{=}\hlopt{-}\hlkwd{log}\hlstd{(value),} \hlkwc{col}\hlstd{=signature))}\hlopt{+}
+  \hlkwd{geom_point}\hlstd{()}\hlopt{+}
+  \hlkwd{geom_hline}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{yintercept}\hlstd{=}\hlopt{-}\hlkwd{log}\hlstd{(}\hlnum{0.05}\hlstd{)))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(molten\_pvals, aes(x = interaction(variable, signature), : object 'molten\_pvals' not found}}\begin{alltt}
+\hlcom{## if I want a sort of volcano plot I need the coefs (continue all_cna_coefs)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+

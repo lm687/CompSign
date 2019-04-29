@@ -1,0 +1,204 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\sortlist[entry]{nty/global/}
+  \entry{aitchison1982statistical}{article}{}
+    \name{author}{1}{}{%
+      {{hash=AJ}{%
+         family={Aitchison},
+         familyi={A\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {JSTOR}%
+    }
+    \strng{namehash}{AJ1}
+    \strng{fullhash}{AJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{pages}{139\bibrangedash 177}
+    \field{title}{The statistical analysis of compositional data}
+    \field{journaltitle}{Journal of the Royal Statistical Society. Series B
+  (Methodological)}
+    \field{year}{1982}
+  \endentry
+
+  \entry{fischer2013emu}{article}{}
+    \name{author}{4}{}{%
+      {{hash=FA}{%
+         family={Fischer},
+         familyi={F\bibinitperiod},
+         given={Andrej},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=ICJ}{%
+         family={Illingworth},
+         familyi={I\bibinitperiod},
+         given={Christopher\bibnamedelima JR},
+         giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=CPJ}{%
+         family={Campbell},
+         familyi={C\bibinitperiod},
+         given={Peter\bibnamedelima J},
+         giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=MV}{%
+         family={Mustonen},
+         familyi={M\bibinitperiod},
+         given={Ville},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {BioMed Central}%
+    }
+    \strng{namehash}{FAICJCPJMV1}
+    \strng{fullhash}{FAICJCPJMV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{number}{4}
+    \field{pages}{R39}
+    \field{title}{EMu: probabilistic inference of mutational processes and
+  their localization in the cancer genome}
+    \field{volume}{14}
+    \field{journaltitle}{Genome biology}
+    \field{year}{2013}
+  \endentry
+
+  \entry{macintyre2018copy}{article}{}
+    \true{moreauthor}
+    \name{author}{10}{}{%
+      {{hash=MG}{%
+         family={Macintyre},
+         familyi={M\bibinitperiod},
+         given={Geoff},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=GTE}{%
+         family={Goranova},
+         familyi={G\bibinitperiod},
+         given={Teodora\bibnamedelima E},
+         giveni={T\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=DSD}{%
+         family={De\bibnamedelima Silva},
+         familyi={D\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={Dilrini},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=ED}{%
+         family={Ennis},
+         familyi={E\bibinitperiod},
+         given={Darren},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=PAM}{%
+         family={Piskorz},
+         familyi={P\bibinitperiod},
+         given={Anna\bibnamedelima M},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=EM}{%
+         family={Eldridge},
+         familyi={E\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Sie},
+         familyi={S\bibinitperiod},
+         given={Daoud},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=LLA}{%
+         family={Lewsley},
+         familyi={L\bibinitperiod},
+         given={Liz-Anne},
+         giveni={L\bibinitperiod-A\bibinitperiod},
+      }}%
+      {{hash=HA}{%
+         family={Hanif},
+         familyi={H\bibinitperiod},
+         given={Aishah},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=WC}{%
+         family={Wilson},
+         familyi={W\bibinitperiod},
+         given={Cheryl},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nature Publishing Group}%
+    }
+    \strng{namehash}{MGGTEDSDEDPAMEMSDLLAHAWC+1}
+    \strng{fullhash}{MGGTEDSDEDPAMEMSDLLAHAWC+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{pages}{1}
+    \field{title}{Copy number signatures and mutational processes in ovarian
+  carcinoma}
+    \field{journaltitle}{Nature genetics}
+    \field{year}{2018}
+  \endentry
+
+  \entry{pawlowsky2015modeling}{book}{}
+    \name{author}{3}{}{%
+      {{hash=PGV}{%
+         family={Pawlowsky-Glahn},
+         familyi={P\bibinitperiod-G\bibinitperiod},
+         given={Vera},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=EJJ}{%
+         family={Egozcue},
+         familyi={E\bibinitperiod},
+         given={Juan\bibnamedelima Jos{\'e}},
+         giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=TDR}{%
+         family={Tolosana-Delgado},
+         familyi={T\bibinitperiod-D\bibinitperiod},
+         given={Raimon},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {John Wiley \& Sons}%
+    }
+    \strng{namehash}{PGVEJJTDR1}
+    \strng{fullhash}{PGVEJJTDR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{title}{Modeling and analysis of compositional data}
+    \field{year}{2015}
+  \endentry
+\endsortlist
+\endinput

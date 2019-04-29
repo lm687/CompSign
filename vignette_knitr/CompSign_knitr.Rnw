@@ -1,63 +1,153 @@
 \documentclass{article}
 
 \usepackage{hyperref}
+\usepackage[backend=bibtex, maxnames=10]{biblatex}
+\usepackage{xargs}
+\usepackage{xcolor}
+\usepackage{soul}
 
 \title{Package \textbf{CompSign}}
 \author{Lena Morrill}
 \date{October 2017}
 
+\bibliography{../../CDA_in_Cancer/text/progress_text/bibliography.bib}
+
+\newcommandx{\myemph}[2][1=]{\begin{center}\hl{#1}\end{center}}
+
 \begin{document}
 
 \maketitle
 
-\textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
+\textbf{CompSign} is a toolkit for the analysis of mutational signatures with an emphasis on the compositional analysis of exposures. An overview of the compositional nature of the exposures to mutational signatures, which has been often overlooked, is found elsewhere\footnote{cite myself}.
 
-\tableofcontents
+% The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
 
-<<>>=
+% \tableofcontents
+
+<<include=FALSE>>=
 knitr::opts_chunk$set(cache = FALSE)
 @
 
-<<>>=
-## This chunk was last ran in
-timestamp()
+\section{Installation}
+\texttt{CompSign} can be installed as usual from github:
 
-## install latest version
+<<include=TRUE, eval=FALSE>>=
 library(devtools)
-#devtools::install_github("lm687/CompSign")
+devtools::install_github("lm687/CompSign")
+@
+
+<<eval=TRUE, include=TRUE, message=FALSE, warning=FALSE>>=
 library(CompSign)
 library(compositions)
 @
 
+\clearpage
+\section{Datasets}
 <<>>=
 ## if the folder data/ is not in github
 for(i in list.files("../data/", pattern = "*rda", full.names = TRUE)){load(i)}
 @
 
+The package contains several datasets of exposures to mutational signatures and metadata of the corresponding samples. These datasets are:
+\begin{itemize}
+\item SNV signatures
+\begin{itemize}
+\item Data for 560 breast cancer patients
+
 <<>>=
-## This chunk was last ran in
-timestamp()
-
-##########################
-####### Dummy data #######
-##########################
-
-### Example of matrix transformed into sign object
-input_dummy <- matrix(runif(100), 4)
-colnames(input_dummy) <- paste0('s', 1:25); rownames(input_dummy) <- paste0('sam', 1:4)
-sign_dummy <- to_sign(input_dummy)
-
+# data("Breast560")
+dim(metadata(Breast560))
+dim(count_matrix(Breast560))
 @
 
-\section{Summarise the signature matrix}
-<<>>=
-## This chunk was last ran in
-timestamp()
+\item Pan-cancer from EMu\cite{fischer2013emu} (cite dataset)
+\end{itemize}
+\item Copy Number signatures
+\begin{itemize}
+\item Ovarian cancer-derived signatures, as described in \cite{macintyre2018copy}. It contains data for 12k TCGA samples.
 
-add_together_matrix(sign_dummy)
-results_sumarise <- summarise(add_together_matrix(sign_dummy))
-results_sumarise$General
+<<>>=
+#data("CNA_12K_TCGA")
+dim(metadata(CNA_12K_TCGA))
+dim(count_matrix(CNA_12K_TCGA))
 @
+
+\item Pan-cancer copy number signatures
+\end{itemize}
+\item Synthetic data
+<<>>=
+dim(metadata(two_normal_pops))
+dim(count_matrix(two_normal_pops))
+#data(two_normal_pops)
+@
+\end{itemize}
+
+Data can be visualised as follows \hl{add this to the functions of the package}
+
+<<message=FALSE, warning=FALSE, fig.height=2>>=
+source("../../CDA_in_Cancer/code/functions/meretricious/pretty_plots/prettySignatures.R", print.eval = TRUE)
+createBarplot(count_matrix(Breast560), remove_labels = TRUE,
+              order = names(sort(count_matrix(Breast560)[,1])))
+@
+
+
+\section{Create a \texttt{CompSign} object}
+This is a minimal example for transforming a matrix into a \emph{sign} object
+<<>>=
+basic_matrix <- matrix(runif(12), nrow = 4)
+colnames(basic_matrix) <- paste0('s', 1:3)
+rownames(basic_matrix) <- paste0('Sample ', 1:4)
+basic_sign <- to_sign(basic_matrix)
+basic_sign
+@
+
+A \emph{sign} object can be summarised as follows:
+
+\hl{add\_together\_matrix?? what is this?}
+
+<<>>=
+results_sumarise <- summarise(add_together_matrix(basic_sign))
+results_sumarise
+@
+
+\clearpage
+\section{Battery of tests}
+This section takes largely from Aitchison's pioneering work\cite{aitchison1982statistical} and its succession\cite{pawlowsky2015modeling}.
+
+\subsection{Test for normality}
+<<>>=
+par(mfrow=c(1,2))
+qqnorm.acomp(acomp(two_normal_pops@count_matrix), pch=19, cex=0.2)
+qqnorm.acomp(acomp(two_normal_pops@count_matrix[1:1000,]), pch=19, cex=0.2, plot.it=FALSE)
+@
+
+\subsection{Test for equality}
+Test for equality of means.
+<<warning=FALSE, message=FALSE>>=
+compare_populations(predictors = count_matrix(Breast560),
+                    response = as.numeric(as.factor(metadata(Breast560)$final.ER)))
+@
+
+<<eval=FALSE, include=FALSE>>=
+##' Older version (?)
+# comp.test(x = count_matrix(Breast560),
+#                               ina = as.numeric(as.factor(metadata(Breast560)$final.ER)),
+#                               test = "james", R = 0)
+@
+
+
+\clearpage
+\printbibliography
+
+\clearpage
+\section{Session info}
+<<>>=
+  sessionInfo()
+@
+
+
+
+\end{document}
 
 \section{Linear model for numerical predictors}
 <<>>=
@@ -82,19 +172,6 @@ biplot(princomp(acomp(MCMCpack::rdirichlet(30, rep(1, 4)))))
 
 @
 
-\section{Other}
-\begin{enumerate}
-\item Test for normality as follows:
-<<>>=
-## This chunk was last ran in
-timestamp()
-
-data(two_normal_pops)
-par(mfrow=c(1,2))
-qqnorm.acomp(acomp(two_normal_pops@count_matrix), pch=19, cex=0.2)
-qqnorm.acomp(acomp(two_normal_pops@count_matrix[1:1000,]), pch=19, cex=0.2, plot.it=FALSE)
-@
-\end{enumerate}
 
 \section{Clustering of samples}
 
@@ -148,15 +225,6 @@ x
 
 @
 
-\section{Datasets}
-\subsection{Data for 560 breast cancer patients}
-Data from 560 breast cancer patients is available as part of the document as well:
-
-<<>>=
-data("Breast560")
-metadata(Breast560)[1:4,1:5]
-count_matrix(Breast560)[1:4,1:5]
-@
 
 Not sure if this is correct
 <<fig.width=3.5,fig.height=5>>=
@@ -165,24 +233,7 @@ plotPCA(ilr(count_matrix(Breast560)), pch=4, col='blue')
 @
 
 
-\subsection{Data for 12k TCGA samples, with ovarian cancer-derived CNA signatures}
-
-<<>>=
-timestamp()
-data("CNA_12K_TCGA")
-
-dim(metadata(CNA_12K_TCGA))
-dim(count_matrix(CNA_12K_TCGA))
-@
-
 \section{Battery of tests}
-\subsection{(ongoing) test for equality}
-
-<<>>=
-comp.test(x = count_matrix(Breast560),
-                              ina = as.numeric(as.factor(metadata(Breast560)$final.ER)),
-                              test = "james", R = 0)
-@
 
 
 \subsection{Logistic regression}
@@ -309,4 +360,3 @@ ggplot(molten_pvals, aes(x=interaction(variable,signature), y=-log(value), col=s
 
 @
 
-\end{document}
