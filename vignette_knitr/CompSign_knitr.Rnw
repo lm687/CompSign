@@ -56,8 +56,9 @@ The package contains several datasets of exposures to mutational signatures and 
 
 <<>>=
 # data("Breast560")
-dim(metadata(Breast560))
-dim(count_matrix(Breast560))
+metadataBreast560 <- metadata(Breast560)
+exposuresBreast560 <- count_matrix(Breast560)
+dim(metadataBreast560); dim(exposuresBreast560)
 @
 
 \item Pan-cancer from EMu\cite{fischer2013emu} (cite dataset)
@@ -68,8 +69,8 @@ dim(count_matrix(Breast560))
 
 <<>>=
 #data("CNA_12K_TCGA")
-dim(metadata(CNA_12K_TCGA))
-dim(count_matrix(CNA_12K_TCGA))
+metadataCNA_12K_TCGA <- metadata(CNA_12K_TCGA)
+exposuresCNA_12K_TCGA <- count_matrix(CNA_12K_TCGA)
 @
 
 \item Pan-cancer copy number signatures
@@ -140,8 +141,14 @@ compare_populations(predictors = count_matrix(Breast560),
 \section{Clustering of samples}
 Samples can simply be clustered by the cosine similarity of their exposures, as done in Ren et al.
 
-<<>>=
-outerCosineSimilarity(Breast560, Breast560, verbose=FALSE)
+<<cache=TRUE>>=
+res_outerCosineSimilaritySNV <- outerCosineSimilarity(exposuresBreast560, exposuresBreast560, verbose=FALSE)
+ComplexHeatmap::Heatmap(res_outerCosineSimilaritySNV)
+
+# res_outerCosineSimilarityCNA <- outerCosineSimilarity(exposuresCNA_12K_TCGA[metadataCNA_12K_TCGA$project_id %in% c("TCGA-BRCA", "TCGA-SKCM"),],
+#                                                       exposuresCNA_12K_TCGA[metadataCNA_12K_TCGA$project_id %in% c("TCGA-BRCA", "TCGA-SKCM"),],
+#                                                       verbose=FALSE)
+# ComplexHeatmap::Heatmap(res_outerCosineSimilarityCNA)
 @
 
 \clearpage
@@ -158,205 +165,205 @@ outerCosineSimilarity(Breast560, Breast560, verbose=FALSE)
 
 
 \end{document}
-
-\section{Linear model for numerical predictors}
-<<>>=
-## This chunk was last ran in
-timestamp()
-
-tmp_merged_compositional <- new("merged_compositional",
-                                id='adas',
-                                id_samples=paste0("sam", 1:30),
-                                id_signatures= c('s1', 's2', 's3', 's4'), ## signature names
-                                count_matrix=MCMCpack::rdirichlet(30, c(1,1,1,1)),
-                                df=data.frame(a=sample(1:1e4, 30), b=rep(10, 30)))
-comp_lm(tmp_merged_compositional)
-@
-
-\section{Importing data}
-<<>>=
-## This chunk was last ran in
-timestamp()
-
-biplot(princomp(acomp(MCMCpack::rdirichlet(30, rep(1, 4)))))
-
-@
-
-\subsection{Testing hypotheses about two populations}
-We might have our samples split into two categories; e.g. sex. As in Aithison 1986\cite{}, I follow a hierarchy of alternative hypotheses, from least to most complex.
-
-Our first question is whether two populations have the same covariance and structure and center (i.e. if there is any distributional difference)
-
-<<>>=
-## This chunk was last ran in
-timestamp()
-##TODO!!
-@
-
-The next is whether the populations have a different center:
-
-<<>>=
-## This chunk was last ran in
-timestamp()
-## This dataset includes the two components above, as well as four others
-## (a total of seven)
-data("two_normal_pops_extended")
-
-## Data from the Landscape... paper
-data("Breast560")
-
-wrapper_compare_populations <- function(predictors, response, ...){
-  if(length(unique(response)) == 2){
-    tmp <- compare_populations(predictors, response, ...)
-    tmp <- tmp$info[1:2]
-    tmp
-  }
-}
-
-x <- do.call('rbind', lapply(1:ncol(metadata(Breast560)),
-       function(k){
-         wrapper_compare_populations(predictors = count_matrix(Breast560),
-                                     response = metadata(Breast560)[,k])
-         }
-       ))
-
-
-x
-
-@
-
-
-Not sure if this is correct
-<<fig.width=3.5,fig.height=5>>=
-source("../../CDA_in_Cancer/code/functions/basic_functions.R")
-plotPCA(ilr(count_matrix(Breast560)), pch=4, col='blue')
-@
-
-
-\section{Battery of tests}
-
-
-\subsection{Logistic regression}
-Based on ACDWR pg 200
-
-<<>>=
-#setwd("~/Documents/PhD/CompSign/vignette_knitr/")
-load("../data/two_normal_pops_extended.rda")
-load("../data/two_normal_pops_extended.rda")
-load("../data/CNA_12K_TCGA.rda")
-
-## avoid perfect separation
-L <- length((as.numeric(metadata(two_normal_pops_extended)[,1])))
-scramble <- sample(1:L, floor(L*0.05), replace = FALSE)
-
-scrambled_labels <- (as.numeric(metadata(two_normal_pops_extended)[,1]))
-scrambled_labels[scramble] <- 1-scrambled_labels[scramble]
-
-auxcomp <- scale(ilr(count_matrix(two_normal_pops_extended)),
-                 center = TRUE, scale = FALSE)
-
-summary(glm(formula = scrambled_labels ~ ilr(acomp(count_matrix(two_normal_pops_extended))),
-            family = binomial(link = "logit")))
-
-res <- comp_logistic(count_matrix(two_normal_pops), scrambled_labels)
-res
-
-resB <- comp_logistic(count_matrix(two_normal_pops_extended), scrambled_labels)
-resB
-
-resCNA_gender <- comp_logistic(count_matrix(cleanObject(CNA_12K_TCGA, 'gender')),
-                              metadata(cleanObject(CNA_12K_TCGA, 'gender'))[,'gender'])
-resCNA_gender
-
-## below: incorrect
-resCNA_race <- comp_logistic(count_matrix(cleanObject(CNA_12K_TCGA, 'race')),
-                              metadata(cleanObject(CNA_12K_TCGA, 'race'))[,'race'], relax_binary_assumption = TRUE)
-
-resCNA_race
-
-@
-
-With data from 560 BRCA:
-
-<<>>=
-load("../data/Breast560.rda")
-
-resBRCA_finalER <- comp_logistic(count_matrix(cleanObject(Breast560, 'final.ER')),
-                              metadata(cleanObject(Breast560, 'final.ER'))[,'final.ER'])
-resBRCA_finalER
-resBRCA_finalPR <- comp_logistic(count_matrix(cleanObject(Breast560, 'final.PR')),
-                                 metadata(cleanObject(Breast560, 'final.PR'))[,'final.PR'])
-resBRCA_finalPR
-@
-
-How to get p-values? I don't think the below is correct
-<<>>=
-give_pval <- function(summary_obj){
-  z <- summary_obj$coefficients/summary_obj$standard.errors
-  # 2-tailed Wald z tests to test significance of coefficients
-  p <- (1 - pnorm(abs(z), 0, 1)) * 2
-  p
-}
-
-give_pval(res$summary)             ## 1 and two are; the third one too (higher p-val) (third one wasn't expected, as far as I know?)
-give_pval(resB$summary)            ## 1 and two are; the rest are not (as expected)
-give_pval(resCNA_gender$summary)   ## are are statistically significant for the copy number signatures
-give_pval(resBRCA_finalER$summary) ## signature 1 significant
-give_pval(resBRCA_finalPR$summary) ## none are statistically significant
-give_pval(resCNA_race$summary)     ## some statistically significant
-@
-
-<<>>=
-wrapper_single_logReg <- function(colname, Ddd){
-    print('asdsd2')
-    print(head(metadata((Ddd))))
-    Ddd <- cleanObject(Ddd, colname)
-    compData = count_matrix(Ddd)
-    binaryLabels = metadata(Ddd)[,colname]
-
-    tmp <- comp_logistic(compData = compData,
-                         binaryLabels = binaryLabels,
-                         relax_binary_assumption = TRUE)
-#    give_pval(tmp$summary)
-    print(give_pval(tmp$summary))
-    cbind.data.frame(rep(colname, nrow( give_pval(tmp$summary))), give_pval(tmp$summary))
-    cbind.data.frame(rep(colname, nrow( give_pval(tmp$summary))), give_pval(tmp$summary))
-}
-wrapper_multiple_logReg <- function(dataset, colnames){
-  print('asdsd')
-  head(metadata(dataset))
-  do.call('rbind', lapply(colnames, function(X) wrapper_single_logReg(colname = X, Ddd = dataset)))
-}
-
-wrapper_single_logReg('race', CNA_12K_TCGA)
-all_cna <- wrapper_multiple_logReg(dataset = CNA_12K_TCGA,
-                                 colnames = c('race', 'ethnicity', 'gender', 'alcohol_history'))
-
-all_cna_coefs <- lapply(c('race', 'ethnicity', 'gender', 'alcohol_history'), function(lab){
-  comp_logistic(compData = count_matrix(cleanObject(CNA_12K_TCGA)),
-                binaryLabels = metadata(cleanObject(CNA_12K_TCGA))[,lab],
-                relax_binary_assumption = TRUE)
-  })
-## cont...
-
-## 'tissue_or_organ_of_origin':  too many (1260) weights
-
-library(pheatmap)
-source("../../CDA_in_Cancer/code/functions/WrapperlikeFunctions.R")
-pheatmap0(all_cna[,-1], nonames = FALSE, annotation_row = data.frame(all_cna[,1], row.names = rownames(all_cna[,-1])))
-@
-
-<<>>=
-require(reshape2)
-require(ggplot2)
-molten_pvals <- melt(all_cna)
-colnames(molten_pvals) <- c('variable', 'signature', 'value')
-ggplot(molten_pvals, aes(x=interaction(variable,signature), y=-log(value), col=signature))+
-  geom_point()+
-  geom_hline(aes(yintercept=-log(0.05)))
-
-
-## if I want a sort of volcano plot I need the coefs (continue all_cna_coefs)
-
-@
-
+%
+% \section{Linear model for numerical predictors}
+% <<>>=
+% ## This chunk was last ran in
+% timestamp()
+%
+% tmp_merged_compositional <- new("merged_compositional",
+%                                 id='adas',
+%                                 id_samples=paste0("sam", 1:30),
+%                                 id_signatures= c('s1', 's2', 's3', 's4'), ## signature names
+%                                 count_matrix=MCMCpack::rdirichlet(30, c(1,1,1,1)),
+%                                 df=data.frame(a=sample(1:1e4, 30), b=rep(10, 30)))
+% comp_lm(tmp_merged_compositional)
+% @
+%
+% \section{Importing data}
+% <<>>=
+% ## This chunk was last ran in
+% timestamp()
+%
+% biplot(princomp(acomp(MCMCpack::rdirichlet(30, rep(1, 4)))))
+%
+% @
+%
+% \subsection{Testing hypotheses about two populations}
+% We might have our samples split into two categories; e.g. sex. As in Aithison 1986\cite{}, I follow a hierarchy of alternative hypotheses, from least to most complex.
+%
+% Our first question is whether two populations have the same covariance and structure and center (i.e. if there is any distributional difference)
+%
+% <<>>=
+% ## This chunk was last ran in
+% timestamp()
+% ##TODO!!
+% @
+%
+% The next is whether the populations have a different center:
+%
+% <<>>=
+% ## This chunk was last ran in
+% timestamp()
+% ## This dataset includes the two components above, as well as four others
+% ## (a total of seven)
+% data("two_normal_pops_extended")
+%
+% ## Data from the Landscape... paper
+% data("Breast560")
+%
+% wrapper_compare_populations <- function(predictors, response, ...){
+%   if(length(unique(response)) == 2){
+%     tmp <- compare_populations(predictors, response, ...)
+%     tmp <- tmp$info[1:2]
+%     tmp
+%   }
+% }
+%
+% x <- do.call('rbind', lapply(1:ncol(metadata(Breast560)),
+%        function(k){
+%          wrapper_compare_populations(predictors = count_matrix(Breast560),
+%                                      response = metadata(Breast560)[,k])
+%          }
+%        ))
+%
+%
+% x
+%
+% @
+%
+%
+% Not sure if this is correct
+% <<fig.width=3.5,fig.height=5>>=
+% source("../../CDA_in_Cancer/code/functions/basic_functions.R")
+% plotPCA(ilr(count_matrix(Breast560)), pch=4, col='blue')
+% @
+%
+%
+% \section{Battery of tests}
+%
+%
+% \subsection{Logistic regression}
+% Based on ACDWR pg 200
+%
+% <<>>=
+% #setwd("~/Documents/PhD/CompSign/vignette_knitr/")
+% load("../data/two_normal_pops_extended.rda")
+% load("../data/two_normal_pops_extended.rda")
+% load("../data/CNA_12K_TCGA.rda")
+%
+% ## avoid perfect separation
+% L <- length((as.numeric(metadata(two_normal_pops_extended)[,1])))
+% scramble <- sample(1:L, floor(L*0.05), replace = FALSE)
+%
+% scrambled_labels <- (as.numeric(metadata(two_normal_pops_extended)[,1]))
+% scrambled_labels[scramble] <- 1-scrambled_labels[scramble]
+%
+% auxcomp <- scale(ilr(count_matrix(two_normal_pops_extended)),
+%                  center = TRUE, scale = FALSE)
+%
+% summary(glm(formula = scrambled_labels ~ ilr(acomp(count_matrix(two_normal_pops_extended))),
+%             family = binomial(link = "logit")))
+%
+% res <- comp_logistic(count_matrix(two_normal_pops), scrambled_labels)
+% res
+%
+% resB <- comp_logistic(count_matrix(two_normal_pops_extended), scrambled_labels)
+% resB
+%
+% resCNA_gender <- comp_logistic(count_matrix(cleanObject(CNA_12K_TCGA, 'gender')),
+%                               metadata(cleanObject(CNA_12K_TCGA, 'gender'))[,'gender'])
+% resCNA_gender
+%
+% ## below: incorrect
+% resCNA_race <- comp_logistic(count_matrix(cleanObject(CNA_12K_TCGA, 'race')),
+%                               metadata(cleanObject(CNA_12K_TCGA, 'race'))[,'race'], relax_binary_assumption = TRUE)
+%
+% resCNA_race
+%
+% @
+%
+% With data from 560 BRCA:
+%
+% <<>>=
+% load("../data/Breast560.rda")
+%
+% resBRCA_finalER <- comp_logistic(count_matrix(cleanObject(Breast560, 'final.ER')),
+%                               metadata(cleanObject(Breast560, 'final.ER'))[,'final.ER'])
+% resBRCA_finalER
+% resBRCA_finalPR <- comp_logistic(count_matrix(cleanObject(Breast560, 'final.PR')),
+%                                  metadata(cleanObject(Breast560, 'final.PR'))[,'final.PR'])
+% resBRCA_finalPR
+% @
+%
+% How to get p-values? I don't think the below is correct
+% <<>>=
+% give_pval <- function(summary_obj){
+%   z <- summary_obj$coefficients/summary_obj$standard.errors
+%   # 2-tailed Wald z tests to test significance of coefficients
+%   p <- (1 - pnorm(abs(z), 0, 1)) * 2
+%   p
+% }
+%
+% give_pval(res$summary)             ## 1 and two are; the third one too (higher p-val) (third one wasn't expected, as far as I know?)
+% give_pval(resB$summary)            ## 1 and two are; the rest are not (as expected)
+% give_pval(resCNA_gender$summary)   ## are are statistically significant for the copy number signatures
+% give_pval(resBRCA_finalER$summary) ## signature 1 significant
+% give_pval(resBRCA_finalPR$summary) ## none are statistically significant
+% give_pval(resCNA_race$summary)     ## some statistically significant
+% @
+%
+% <<>>=
+% wrapper_single_logReg <- function(colname, Ddd){
+%     print('asdsd2')
+%     print(head(metadata((Ddd))))
+%     Ddd <- cleanObject(Ddd, colname)
+%     compData = count_matrix(Ddd)
+%     binaryLabels = metadata(Ddd)[,colname]
+%
+%     tmp <- comp_logistic(compData = compData,
+%                          binaryLabels = binaryLabels,
+%                          relax_binary_assumption = TRUE)
+% #    give_pval(tmp$summary)
+%     print(give_pval(tmp$summary))
+%     cbind.data.frame(rep(colname, nrow( give_pval(tmp$summary))), give_pval(tmp$summary))
+%     cbind.data.frame(rep(colname, nrow( give_pval(tmp$summary))), give_pval(tmp$summary))
+% }
+% wrapper_multiple_logReg <- function(dataset, colnames){
+%   print('asdsd')
+%   head(metadata(dataset))
+%   do.call('rbind', lapply(colnames, function(X) wrapper_single_logReg(colname = X, Ddd = dataset)))
+% }
+%
+% wrapper_single_logReg('race', CNA_12K_TCGA)
+% all_cna <- wrapper_multiple_logReg(dataset = CNA_12K_TCGA,
+%                                  colnames = c('race', 'ethnicity', 'gender', 'alcohol_history'))
+%
+% all_cna_coefs <- lapply(c('race', 'ethnicity', 'gender', 'alcohol_history'), function(lab){
+%   comp_logistic(compData = count_matrix(cleanObject(CNA_12K_TCGA)),
+%                 binaryLabels = metadata(cleanObject(CNA_12K_TCGA))[,lab],
+%                 relax_binary_assumption = TRUE)
+%   })
+% ## cont...
+%
+% ## 'tissue_or_organ_of_origin':  too many (1260) weights
+%
+% library(pheatmap)
+% source("../../CDA_in_Cancer/code/functions/WrapperlikeFunctions.R")
+% pheatmap0(all_cna[,-1], nonames = FALSE, annotation_row = data.frame(all_cna[,1], row.names = rownames(all_cna[,-1])))
+% @
+%
+% <<>>=
+% require(reshape2)
+% require(ggplot2)
+% molten_pvals <- melt(all_cna)
+% colnames(molten_pvals) <- c('variable', 'signature', 'value')
+% ggplot(molten_pvals, aes(x=interaction(variable,signature), y=-log(value), col=signature))+
+%   geom_point()+
+%   geom_hline(aes(yintercept=-log(0.05)))
+%
+%
+% ## if I want a sort of volcano plot I need the coefs (continue all_cna_coefs)
+%
+% @
+%
