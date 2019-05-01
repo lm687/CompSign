@@ -118,7 +118,7 @@ This section takes largely from Aitchison's pioneering work\cite{aitchison1982st
 <<>>=
 par(mfrow=c(1,2))
 qqnorm.acomp(acomp(two_normal_pops@count_matrix), pch=19, cex=0.2)
-qqnorm.acomp(acomp(two_normal_pops@count_matrix[1:1000,]), pch=19, cex=0.2, plot.it=FALSE)
+qqnorm.acomp(acomp(two_normal_pops@count_matrix[1:1000,]), pch=19, cex=0.2)
 @
 
 \subsection{Test for equality}

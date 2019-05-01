@@ -221,11 +221,11 @@ This is a minimal example for transforming a matrix into a \emph{sign} object
 ## [1] "s1" "s2" "s3"
 ## 
 ## Slot "count_matrix":
-##                 s1        s2        s3
-## Sample 1 0.1191255 0.2755550 0.3405389
-## Sample 2 0.3432147 0.7431099 0.5742050
-## Sample 3 0.4394857 0.3200496 0.7337152
-## Sample 4 0.9333408 0.1272246 0.1070315
+##                  s1        s2        s3
+## Sample 1 0.13926142 0.5198324 0.5174250
+## Sample 2 0.42400842 0.8544927 0.4685633
+## Sample 3 0.16872963 0.5792168 0.7455903
+## Sample 4 0.07882638 0.4622990 0.7878428
 ## 
 ## Slot "modified":
 ## [1] FALSE
@@ -254,14 +254,14 @@ A \emph{sign} object can be summarised as follows:
 ## [1] 4
 ## 
 ## $`Geometric means of signatures`
-##        s1        s3        s2 
-## 0.3598644 0.3520207 0.3021777 
+##        s3        s2        s1 
+## 0.6143118 0.5872648 0.1674045 
 ## 
 ## $Covariance
 ##             s1          s2          s3
-## s1  0.11810025 -0.04176255 -0.04846927
-## s2 -0.04176255  0.06983879  0.04187211
-## s3 -0.04846927  0.04187211  0.07501169
+## s1  0.02316684  0.02639018 -0.01735497
+## s2  0.02639018  0.03017472 -0.01873159
+## s3 -0.01735497 -0.01873159  0.02567011
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -280,87 +280,9 @@ This section takes largely from Aitchison's pioneering work\cite{aitchison1982st
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-1} 
 \begin{kframe}\begin{alltt}
-\hlkwd{qqnorm.acomp}\hlstd{(}\hlkwd{acomp}\hlstd{(two_normal_pops}\hlopt{@}\hlkwc{count_matrix}\hlstd{[}\hlnum{1}\hlopt{:}\hlnum{1000}\hlstd{,]),} \hlkwc{pch}\hlstd{=}\hlnum{19}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{0.2}\hlstd{,} \hlkwc{plot.it}\hlstd{=}\hlnum{FALSE}\hlstd{)}
+\hlkwd{qqnorm.acomp}\hlstd{(}\hlkwd{acomp}\hlstd{(two_normal_pops}\hlopt{@}\hlkwc{count_matrix}\hlstd{[}\hlnum{1}\hlopt{:}\hlnum{1000}\hlstd{,]),} \hlkwc{pch}\hlstd{=}\hlnum{19}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{0.2}\hlstd{)}
 \end{alltt}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy.coords(x, y), type = type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.window(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in plot.xy(xy, type, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in title(...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in axis(side = side, at = at, labels = labels, ...): "{}plot.it"{} is not a graphical parameter}}\end{kframe}
+\end{kframe}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-2} 
 
 \end{knitrout}
@@ -481,7 +403,7 @@ Samples can simply be clustered by the cosine similarity of their exposures, as 
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed May  1 15:40:54 2019 ------##
+## ##------ Wed May  1 15:49:33 2019 ------##
 \end{verbatim}
 \begin{alltt}
 \hlstd{tmp_merged_compositional} \hlkwb{<-} \hlkwd{new}\hlstd{(}\hlstr{"merged_compositional"}\hlstd{,}
@@ -501,21 +423,21 @@ Samples can simply be clustered by the cosine similarity of their exposures, as 
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.6792 -0.5372  0.4192  0.8920  2.2667 
+## -2.8357 -0.6080  0.1479  0.5847  1.8347 
 ## 
 ## Coefficients: (1 not defined because of singularities)
-##                                          Estimate Std. Error t value
-## (Intercept)                             5.356e-02  5.994e-01   0.089
-## as.matrix((x@df)[, indices_predictor])a 6.359e-05  9.924e-05   0.641
-## as.matrix((x@df)[, indices_predictor])b        NA         NA      NA
+##                                           Estimate Std. Error t value
+## (Intercept)                             -3.324e-01  4.092e-01  -0.812
+## as.matrix((x@df)[, indices_predictor])a  7.323e-05  6.608e-05   1.108
+## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.929
-## as.matrix((x@df)[, indices_predictor])a    0.527
+## (Intercept)                                0.424
+## as.matrix((x@df)[, indices_predictor])a    0.277
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.602 on 28 degrees of freedom
-## Multiple R-squared:  0.01445,	Adjusted R-squared:  -0.02074 
-## F-statistic: 0.4106 on 1 and 28 DF,  p-value: 0.5269
+## Residual standard error: 1.094 on 28 degrees of freedom
+## Multiple R-squared:  0.04201,	Adjusted R-squared:  0.0078 
+## F-statistic: 1.228 on 1 and 28 DF,  p-value: 0.2772
 ## 
 ## 
 ## Response Y2 :
@@ -524,22 +446,22 @@ Samples can simply be clustered by the cosine similarity of their exposures, as 
 ## lm(formula = Y2 ~ as.matrix((x@df)[, indices_predictor]))
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.66622 -0.78687  0.05811  0.65760  2.14189 
+##     Min      1Q  Median      3Q     Max 
+## -3.4537 -0.4513 -0.0891  0.6863  2.5242 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              6.712e-01  4.470e-01   1.501
-## as.matrix((x@df)[, indices_predictor])a -1.058e-04  7.402e-05  -1.429
+## (Intercept)                              1.211e-01  4.701e-01   0.258
+## as.matrix((x@df)[, indices_predictor])a -4.750e-06  7.592e-05  -0.063
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.144
-## as.matrix((x@df)[, indices_predictor])a    0.164
+## (Intercept)                                0.799
+## as.matrix((x@df)[, indices_predictor])a    0.951
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.195 on 28 degrees of freedom
-## Multiple R-squared:  0.06801,	Adjusted R-squared:  0.03472 
-## F-statistic: 2.043 on 1 and 28 DF,  p-value: 0.1639
+## Residual standard error: 1.257 on 28 degrees of freedom
+## Multiple R-squared:  0.0001398,	Adjusted R-squared:  -0.03557 
+## F-statistic: 0.003915 on 1 and 28 DF,  p-value: 0.9506
 ## 
 ## 
 ## Response Y3 :
@@ -549,21 +471,21 @@ Samples can simply be clustered by the cosine similarity of their exposures, as 
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -4.4017 -1.1024  0.3723  0.8181  2.3505 
+## -3.5544 -0.5730  0.0571  0.5497  2.5797 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -3.326e-02  6.122e-01  -0.054
-## as.matrix((x@df)[, indices_predictor])a  5.891e-05  1.014e-04   0.581
+## (Intercept)                             -1.824e-01  4.400e-01  -0.415
+## as.matrix((x@df)[, indices_predictor])a  4.670e-05  7.105e-05   0.657
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.957
-## as.matrix((x@df)[, indices_predictor])a    0.566
+## (Intercept)                                0.682
+## as.matrix((x@df)[, indices_predictor])a    0.516
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.637 on 28 degrees of freedom
-## Multiple R-squared:  0.01192,	Adjusted R-squared:  -0.02337 
-## F-statistic: 0.3377 on 1 and 28 DF,  p-value: 0.5658
+## Residual standard error: 1.176 on 28 degrees of freedom
+## Multiple R-squared:  0.0152,	Adjusted R-squared:  -0.01997 
+## F-statistic: 0.4321 on 1 and 28 DF,  p-value: 0.5163
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -576,7 +498,7 @@ Samples can simply be clustered by the cosine similarity of their exposures, as 
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed May  1 15:40:54 2019 ------##
+## ##------ Wed May  1 15:49:33 2019 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{biplot}\hlstd{(}\hlkwd{princomp}\hlstd{(}\hlkwd{acomp}\hlstd{(MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{4}\hlstd{)))))}
@@ -598,7 +520,7 @@ Our first question is whether two populations have the same covariance and struc
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed May  1 15:40:54 2019 ------##
+## ##------ Wed May  1 15:49:33 2019 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##TODO!!}
@@ -615,7 +537,7 @@ The next is whether the populations have a different center:
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Wed May  1 15:40:54 2019 ------##
+## ##------ Wed May  1 15:49:33 2019 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## This dataset includes the two components above, as well as four others}
@@ -707,36 +629,36 @@ Based on ACDWR pg 200
 ##     family = binomial(link = "logit"))
 ## 
 ## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -2.8892  -0.3248   0.1483   0.3149   3.0288  
+##      Min        1Q    Median        3Q       Max  
+## -2.93179  -0.31197  -0.01131   0.30817   2.99319  
 ## 
 ## Coefficients:
-##                                                     Estimate Std. Error
-## (Intercept)                                          0.49406    0.29857
-## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.13446    0.08000
-## ilr(acomp(count_matrix(two_normal_pops_extended)))2 -0.15745    0.20584
-## ilr(acomp(count_matrix(two_normal_pops_extended)))3 -0.14823    0.13542
-## ilr(acomp(count_matrix(two_normal_pops_extended)))4 -0.07288    0.11831
-## ilr(acomp(count_matrix(two_normal_pops_extended)))5 -0.10663    0.10926
-## ilr(acomp(count_matrix(two_normal_pops_extended)))6 -0.12304    0.09924
-## ilr(acomp(count_matrix(two_normal_pops_extended)))7 -0.09365    0.09904
+##                                                      Estimate Std. Error
+## (Intercept)                                          0.802648   0.308277
+## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.201914   0.084256
+## ilr(acomp(count_matrix(two_normal_pops_extended)))2 -0.157229   0.211020
+## ilr(acomp(count_matrix(two_normal_pops_extended)))3  0.084332   0.138743
+## ilr(acomp(count_matrix(two_normal_pops_extended)))4  0.008519   0.120413
+## ilr(acomp(count_matrix(two_normal_pops_extended)))5  0.174958   0.109950
+## ilr(acomp(count_matrix(two_normal_pops_extended)))6  0.066602   0.104698
+## ilr(acomp(count_matrix(two_normal_pops_extended)))7  0.025447   0.100848
 ##                                                     z value Pr(>|z|)    
-## (Intercept)                                           1.655    0.098 .  
-## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.682   <2e-16 ***
-## ilr(acomp(count_matrix(two_normal_pops_extended)))2  -0.765    0.444    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))3  -1.095    0.274    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))4  -0.616    0.538    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))5  -0.976    0.329    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))6  -1.240    0.215    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))7  -0.946    0.344    
+## (Intercept)                                           2.604  0.00922 ** 
+## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.134  < 2e-16 ***
+## ilr(acomp(count_matrix(two_normal_pops_extended)))2  -0.745  0.45622    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))3   0.608  0.54330    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))4   0.071  0.94360    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))5   1.591  0.11155    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))6   0.636  0.52468    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))7   0.252  0.80079    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 2772.46  on 1999  degrees of freedom
-## Residual deviance:  839.68  on 1992  degrees of freedom
-## AIC: 855.68
+##     Null deviance: 2772.59  on 1999  degrees of freedom
+## Residual deviance:  815.45  on 1992  degrees of freedom
+## AIC: 831.45
 ## 
 ## Number of Fisher Scoring iterations: 6
 \end{verbatim}
@@ -748,7 +670,9 @@ Based on ACDWR pg 200
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: nnet}}\begin{verbatim}
 ## # weights:  5 (4 variable)
 ## initial  value 1386.294361 
-## final  value 443.341841 
+## iter  10 value 443.372363
+## iter  10 value 443.372363
+## final  value 443.372363 
 ## converged
 \end{verbatim}
 \begin{alltt}
@@ -757,7 +681,7 @@ Based on ACDWR pg 200
 \begin{verbatim}
 ## $coefTransformed
 ## (Intercept)          X1          X2          X3 
-##   0.4036146  -7.0242184   8.1051953  -0.6773624 
+##   0.4105960  -6.8850118   8.2068850  -0.9112772 
 ## 
 ## $summary
 ## Call:
@@ -765,13 +689,13 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ##                 Values Std. Err.
-## (Intercept)  0.4036146 0.1363508
-## X1          -7.0242184 0.3894933
-## X2           8.1051953 0.4014707
-## X3          -0.6773624 0.4315879
+## (Intercept)  0.4105960 0.1359131
+## X1          -6.8850118 0.3860814
+## X2           8.2068850 0.4036297
+## X3          -0.9112772 0.4325981
 ## 
-## Residual Deviance: 886.6837 
-## AIC: 892.6837 
+## Residual Deviance: 886.7447 
+## AIC: 892.7447 
 ## 
 ## $res
 ## Call:
@@ -779,16 +703,16 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ## (Intercept)          X1          X2          X3 
-##   0.4036146  -7.0242184   8.1051953  -0.6773624 
+##   0.4105960  -6.8850118   8.2068850  -0.9112772 
 ## 
-## Residual Deviance: 886.6837 
-## AIC: 892.6837 
+## Residual Deviance: 886.7447 
+## AIC: 892.7447 
 ## 
 ## [[4]]
 ##    FP_FN_table
 ##       0   1
-##   0 946  46
-##   1  54 954
+##   0 950  50
+##   1  51 949
 \end{verbatim}
 \begin{alltt}
 \hlstd{resB} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(two_normal_pops_extended), scrambled_labels)}
@@ -796,7 +720,7 @@ Based on ACDWR pg 200
 \begin{verbatim}
 ## # weights:  10 (9 variable)
 ## initial  value 1386.294361 
-## final  value 454.019348 
+## final  value 433.774043 
 ## converged
 \end{verbatim}
 \begin{alltt}
@@ -804,48 +728,48 @@ Based on ACDWR pg 200
 \end{alltt}
 \begin{verbatim}
 ## $coefTransformed
-##  (Intercept)           X1           X2           X3           X4 
-##   0.51686787 -14.25855543  16.15930874  -1.64231937  -0.02158575 
-##           X5           X6           X7           X8 
-##   0.05490541   0.68247121  -0.67198430   0.21462735 
+## (Intercept)          X1          X2          X3          X4          X5 
+##   0.3953736 -14.9806032  16.3645448  -1.1862548  -0.2759244  -1.6724171 
+##          X6          X7          X8 
+##   1.5801382   0.3922696   0.1736205 
 ## 
 ## $summary
 ## Call:
 ## multinom(formula = as.formula(frm), data = dat)
 ## 
 ## Coefficients:
-##                   Values Std. Err.
-## (Intercept)   0.51686787 0.1600932
-## X1          -14.25855543 0.7263656
-## X2           16.15930874 0.7678407
-## X3           -1.64231937 0.8915583
-## X4           -0.02158575 0.8961944
-## X5            0.05490541 0.8740857
-## X6            0.68247121 0.8776382
-## X7           -0.67198430 0.9105010
-## X8            0.21462735 0.8604837
+##                  Values Std. Err.
+## (Intercept)   0.3953736 0.1649131
+## X1          -14.9806032 0.7802004
+## X2           16.3645448 0.7727567
+## X3           -1.1862548 0.9198555
+## X4           -0.2759244 0.9204119
+## X5           -1.6724171 0.9029128
+## X6            1.5801382 0.9013416
+## X7            0.3922696 0.9306306
+## X8            0.1736205 0.8819257
 ## 
-## Residual Deviance: 908.0387 
-## AIC: 922.0387 
+## Residual Deviance: 867.5481 
+## AIC: 881.5481 
 ## 
 ## $res
 ## Call:
 ## multinom(formula = as.formula(frm), data = dat)
 ## 
 ## Coefficients:
-##  (Intercept)           X1           X2           X3           X4 
-##   0.51686787 -14.25855543  16.15930874  -1.64231937  -0.02158575 
-##           X5           X6           X7           X8 
-##   0.05490541   0.68247121  -0.67198430   0.21462735 
+## (Intercept)          X1          X2          X3          X4          X5 
+##   0.3953736 -14.9806032  16.3645448  -1.1862548  -0.2759244  -1.6724171 
+##          X6          X7          X8 
+##   1.5801382   0.3922696   0.1736205 
 ## 
-## Residual Deviance: 908.0387 
-## AIC: 922.0387 
+## Residual Deviance: 867.5481 
+## AIC: 881.5481 
 ## 
 ## [[4]]
 ##    FP_FN_table
 ##       0   1
-##   0 946  46
-##   1  54 954
+##   0 950  50
+##   1  50 950
 \end{verbatim}
 \begin{alltt}
 \hlstd{resCNA_gender} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'gender'}\hlstd{)),}
@@ -1182,16 +1106,16 @@ How to get p-values? I don't think the below is correct
 \end{alltt}
 \begin{verbatim}
 ## (Intercept)          X1          X2          X3 
-## 0.003075197 0.000000000 0.000000000 0.116539511
+## 0.002519254 0.000000000 0.000000000 0.035159082
 \end{verbatim}
 \begin{alltt}
 \hlkwd{give_pval}\hlstd{(resB}\hlopt{$}\hlstd{summary)}            \hlcom{## 1 and two are; the rest are not (as expected)}
 \end{alltt}
 \begin{verbatim}
 ## (Intercept)          X1          X2          X3          X4          X5 
-## 0.001244227 0.000000000 0.000000000 0.065463845 0.980784000 0.949914077 
+##  0.01650892  0.00000000  0.00000000  0.19718616  0.76434226  0.06399041 
 ##          X6          X7          X8 
-## 0.436791603 0.460491378 0.803030968
+##  0.07958557  0.67338315  0.84393300
 \end{verbatim}
 \begin{alltt}
 \hlkwd{give_pval}\hlstd{(resCNA_gender}\hlopt{$}\hlstd{summary)}   \hlcom{## are are statistically significant for the copy number signatures}

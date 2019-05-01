@@ -79,7 +79,7 @@ wrapperCosineSimilarity <- Vectorize(function(X, Y, matrixA, matrixB, verbose=TR
   cosineSimilarity(matrixA[X,], matrixB[Y,], verbose)
 }, vectorize.args = c('X', 'Y'))
 
-outerCosineSimilarity <- function(matrixA, matrixB){
+outerCosineSimilarity <- function(matrixA, matrixB,  verbose=TRUE){
   ## given two matrices, where the rows are the signatures and the columns the categories of mutations
   ## with which we define the signatures, output a matrix which has the cosine similarity for any pair
   ## of mutational signatures
@@ -88,7 +88,7 @@ outerCosineSimilarity <- function(matrixA, matrixB){
   if(ncol(matrixA) != ncol(matrixB)){stop('Matrices need to have the same number of columns')}
   return(outer(1:nrow(matrixA),
                1:nrow(matrixB),
-               (wrapperCosineSimilarity), matrixA=matrixA, matrixB=matrixB ))
+               (wrapperCosineSimilarity), matrixA=matrixA, matrixB=matrixB, verbose=verbose ))
 }
 
 
