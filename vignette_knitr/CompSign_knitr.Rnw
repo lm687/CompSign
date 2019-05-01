@@ -136,6 +136,16 @@ compare_populations(predictors = count_matrix(Breast560),
 @
 
 
+
+\section{Clustering of samples}
+Samples can simply be clustered by the cosine similarity of their exposures
+<<>>=
+WrapperlikeFunctions_copy.R
+
+@
+
+\clearpage
+
 \clearpage
 \printbibliography
 
@@ -171,16 +181,6 @@ timestamp()
 biplot(princomp(acomp(MCMCpack::rdirichlet(30, rep(1, 4)))))
 
 @
-
-
-\section{Clustering of samples}
-
-<<>>=
-
-
-@
-
-\clearpage
 
 \subsection{Testing hypotheses about two populations}
 We might have our samples split into two categories; e.g. sex. As in Aithison 1986\cite{}, I follow a hierarchy of alternative hypotheses, from least to most complex.
