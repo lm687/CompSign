@@ -67,16 +67,16 @@ sequential_to_original <- function(list_pairs){
   list_pairs_new
 }
 
-cosineSimilarity <- (function(A, B, verbatim=TRUE){
+cosineSimilarity <- (function(A, B, verbose=TRUE){
   A <- as.vector(A); B <- as.vector(B)
-  if(verbatim) cat('Note that previous versions of the code might have been erroneous for input vectors of class <acomp>\n')
+  if(verbose) cat('Note that previous versions of the code might have been erroneous for input vectors of class <acomp>\n')
   ## A, B vectors
   sum(A*B)/sqrt(sum(A^2)*sum(B^2))
 })
 
-wrapperCosineSimilarity <- Vectorize(function(X, Y, matrixA, matrixB){
+wrapperCosineSimilarity <- Vectorize(function(X, Y, matrixA, matrixB, verbose=TRUE){
   ## X, Y indices
-  cosineSimilarity(matrixA[X,], matrixB[Y,])
+  cosineSimilarity(matrixA[X,], matrixB[Y,], verbose)
 }, vectorize.args = c('X', 'Y'))
 
 outerCosineSimilarity <- function(matrixA, matrixB){
@@ -99,5 +99,5 @@ outerNNLS <- function(matrixA, matrixB){
   require(nnls)
   if(ncol(matrixA) != ncol(matrixB)){stop('Matrices need to have the same number of columns')}
   return(do.call('rbind', lapply(1:nrow(matrixB),
-               function(Y) coef(nnls::nnls(t(matrixA), matrixB[Y,]) ))))
+                                 function(Y) coef(nnls::nnls(t(matrixA), matrixB[Y,]) ))))
 }

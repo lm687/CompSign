@@ -138,10 +138,10 @@ compare_populations(predictors = count_matrix(Breast560),
 
 
 \section{Clustering of samples}
-Samples can simply be clustered by the cosine similarity of their exposures
-<<>>=
-WrapperlikeFunctions_copy.R
+Samples can simply be clustered by the cosine similarity of their exposures, as done in Ren et al.
 
+<<>>=
+outerCosineSimilarity(Breast560, Breast560, verbose=FALSE)
 @
 
 \clearpage

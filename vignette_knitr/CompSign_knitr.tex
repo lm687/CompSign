@@ -221,11 +221,11 @@ This is a minimal example for transforming a matrix into a \emph{sign} object
 ## [1] "s1" "s2" "s3"
 ## 
 ## Slot "count_matrix":
-##                   s1        s2        s3
-## Sample 1 0.300802582 0.2539395 0.7916191
-## Sample 2 0.007940389 0.1755893 0.9641138
-## Sample 3 0.977974179 0.2364882 0.6105332
-## Sample 4 0.776641885 0.9092960 0.8120827
+##                 s1        s2        s3
+## Sample 1 0.1191255 0.2755550 0.3405389
+## Sample 2 0.3432147 0.7431099 0.5742050
+## Sample 3 0.4394857 0.3200496 0.7337152
+## Sample 4 0.9333408 0.1272246 0.1070315
 ## 
 ## Slot "modified":
 ## [1] FALSE
@@ -254,14 +254,14 @@ A \emph{sign} object can be summarised as follows:
 ## [1] 4
 ## 
 ## $`Geometric means of signatures`
-##        s3        s2        s1 
-## 0.7843114 0.3129218 0.2063801 
+##        s1        s3        s2 
+## 0.3598644 0.3520207 0.3021777 
 ## 
 ## $Covariance
-##             s1           s2            s3
-## s1  0.19526291 0.0675491810 -0.0553196690
-## s2  0.06754918 0.1192200062  0.0004651162
-## s3 -0.05531967 0.0004651162  0.0209766812
+##             s1          s2          s3
+## s1  0.11810025 -0.04176255 -0.04846927
+## s2 -0.04176255  0.06983879  0.04187211
+## s3 -0.04846927  0.04187211  0.07501169
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -397,6 +397,22 @@ Test for equality of means.
 
 
 
+
+\section{Clustering of samples}
+Samples can simply be clustered by the cosine similarity of their exposures, as done in Ren et al.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{outerCosineSimilarity}\hlstd{(Breast560, Breast560,} \hlkwc{verbose}\hlstd{=}\hlnum{FALSE}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in outerCosineSimilarity(Breast560, Breast560, verbose = FALSE): unused argument (verbose = FALSE)}}\end{kframe}
+\end{knitrout}
+
+\clearpage
+
 \clearpage
 \printbibliography
 
@@ -425,7 +441,7 @@ Test for equality of means.
 ## other attached packages:
 ##  [1] Compositional_3.4   RColorBrewer_1.1-2  reshape2_1.4.3     
 ##  [4] ggthemr_1.1.0       ggplot2_3.1.1       MCMCpack_1.4-4     
-##  [7] MASS_7.3-51.1       coda_0.19-2         compositions_1.40-2
+##  [7] MASS_7.3-51.4       coda_0.19-2         compositions_1.40-2
 ## [10] bayesm_3.1-1        energy_1.7-5        robustbase_0.93-4  
 ## [13] tensorA_0.36.1      CompSign_0.1.0      knitr_1.22         
 ## 
@@ -435,16 +451,16 @@ Test for equality of means.
 ##  [7] plyr_1.8.4         MatrixModels_0.4-1 RcppZiggurat_0.1.5
 ## [10] stats4_3.5.1       evaluate_0.13      spam_2.2-2        
 ## [13] highr_0.8          pillar_1.3.1       rlang_0.3.4       
-## [16] lazyeval_0.2.2     SparseM_1.77       Matrix_1.2-16     
+## [16] lazyeval_0.2.2     SparseM_1.77       Matrix_1.2-17     
 ## [19] labeling_0.3       stringr_1.4.0      emplik_1.0-4.3    
 ## [22] munsell_0.5.0      compiler_3.5.1     numDeriv_2016.8-1 
-## [25] xfun_0.5           pkgconfig_2.0.2    mnormt_1.5-5      
+## [25] xfun_0.6           pkgconfig_2.0.2    mnormt_1.5-5      
 ## [28] mcmc_0.9-6         tidyselect_0.2.5   tibble_2.1.1      
 ## [31] codetools_0.2-16   crayon_1.3.4       dplyr_0.8.0.1     
 ## [34] withr_2.1.2        grid_3.5.1         gtable_0.3.0      
 ## [37] magrittr_1.5       scales_1.0.0       Rfast_1.9.3       
 ## [40] stringi_1.4.3      sn_1.5-3           doParallel_1.0.14 
-## [43] boot_1.3-20        iterators_1.0.10   tools_3.5.1       
+## [43] boot_1.3-22        iterators_1.0.10   tools_3.5.1       
 ## [46] glue_1.3.1         DEoptimR_1.0-8     purrr_0.3.2       
 ## [49] maps_3.3.0         fields_9.7         parallel_3.5.1    
 ## [52] mixture_1.5        colorspace_1.4-1   dotCall64_1.0-0   
@@ -465,7 +481,7 @@ Test for equality of means.
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Thu Apr 25 12:57:43 2019 ------##
+## ##------ Wed May  1 15:40:54 2019 ------##
 \end{verbatim}
 \begin{alltt}
 \hlstd{tmp_merged_compositional} \hlkwb{<-} \hlkwd{new}\hlstd{(}\hlstr{"merged_compositional"}\hlstd{,}
@@ -485,21 +501,21 @@ Test for equality of means.
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.8528 -0.5506  0.1283  0.4883  2.3322 
+## -3.6792 -0.5372  0.4192  0.8920  2.2667 
 ## 
 ## Coefficients: (1 not defined because of singularities)
-##                                           Estimate Std. Error t value
-## (Intercept)                             -5.910e-02  3.650e-01  -0.162
-## as.matrix((x@df)[, indices_predictor])a  8.259e-05  6.782e-05   1.218
-## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
+##                                          Estimate Std. Error t value
+## (Intercept)                             5.356e-02  5.994e-01   0.089
+## as.matrix((x@df)[, indices_predictor])a 6.359e-05  9.924e-05   0.641
+## as.matrix((x@df)[, indices_predictor])b        NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.873
-## as.matrix((x@df)[, indices_predictor])a    0.233
+## (Intercept)                                0.929
+## as.matrix((x@df)[, indices_predictor])a    0.527
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 0.9454 on 28 degrees of freedom
-## Multiple R-squared:  0.05029,	Adjusted R-squared:  0.01638 
-## F-statistic: 1.483 on 1 and 28 DF,  p-value: 0.2335
+## Residual standard error: 1.602 on 28 degrees of freedom
+## Multiple R-squared:  0.01445,	Adjusted R-squared:  -0.02074 
+## F-statistic: 0.4106 on 1 and 28 DF,  p-value: 0.5269
 ## 
 ## 
 ## Response Y2 :
@@ -508,22 +524,22 @@ Test for equality of means.
 ## lm(formula = Y2 ~ as.matrix((x@df)[, indices_predictor]))
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -4.2867 -0.5890  0.1019  0.6377  1.7267 
+##      Min       1Q   Median       3Q      Max 
+## -2.66622 -0.78687  0.05811  0.65760  2.14189 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                              4.849e-01  5.049e-01    0.96
-## as.matrix((x@df)[, indices_predictor])a -6.093e-05  9.381e-05   -0.65
+## (Intercept)                              6.712e-01  4.470e-01   1.501
+## as.matrix((x@df)[, indices_predictor])a -1.058e-04  7.402e-05  -1.429
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.345
-## as.matrix((x@df)[, indices_predictor])a    0.521
+## (Intercept)                                0.144
+## as.matrix((x@df)[, indices_predictor])a    0.164
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.308 on 28 degrees of freedom
-## Multiple R-squared:  0.01484,	Adjusted R-squared:  -0.02034 
-## F-statistic: 0.4219 on 1 and 28 DF,  p-value: 0.5213
+## Residual standard error: 1.195 on 28 degrees of freedom
+## Multiple R-squared:  0.06801,	Adjusted R-squared:  0.03472 
+## F-statistic: 2.043 on 1 and 28 DF,  p-value: 0.1639
 ## 
 ## 
 ## Response Y3 :
@@ -533,21 +549,21 @@ Test for equality of means.
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.6712 -0.9675  0.3252  0.7976  1.7726 
+## -4.4017 -1.1024  0.3723  0.8181  2.3505 
 ## 
 ## Coefficients: (1 not defined because of singularities)
 ##                                           Estimate Std. Error t value
-## (Intercept)                             -2.961e-01  4.993e-01  -0.593
-## as.matrix((x@df)[, indices_predictor])a  1.309e-05  9.277e-05   0.141
+## (Intercept)                             -3.326e-02  6.122e-01  -0.054
+## as.matrix((x@df)[, indices_predictor])a  5.891e-05  1.014e-04   0.581
 ## as.matrix((x@df)[, indices_predictor])b         NA         NA      NA
 ##                                         Pr(>|t|)
-## (Intercept)                                0.558
-## as.matrix((x@df)[, indices_predictor])a    0.889
+## (Intercept)                                0.957
+## as.matrix((x@df)[, indices_predictor])a    0.566
 ## as.matrix((x@df)[, indices_predictor])b       NA
 ## 
-## Residual standard error: 1.293 on 28 degrees of freedom
-## Multiple R-squared:  0.0007105,	Adjusted R-squared:  -0.03498 
-## F-statistic: 0.01991 on 1 and 28 DF,  p-value: 0.8888
+## Residual standard error: 1.637 on 28 degrees of freedom
+## Multiple R-squared:  0.01192,	Adjusted R-squared:  -0.02337 
+## F-statistic: 0.3377 on 1 and 28 DF,  p-value: 0.5658
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -560,22 +576,15 @@ Test for equality of means.
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Thu Apr 25 12:57:43 2019 ------##
+## ##------ Wed May  1 15:40:54 2019 ------##
 \end{verbatim}
 \begin{alltt}
 \hlkwd{biplot}\hlstd{(}\hlkwd{princomp}\hlstd{(}\hlkwd{acomp}\hlstd{(MCMCpack}\hlopt{::}\hlkwd{rdirichlet}\hlstd{(}\hlnum{30}\hlstd{,} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{4}\hlstd{)))))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-16-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-17-1} 
 
 \end{knitrout}
-
-
-\section{Clustering of samples}
-
-
-
-\clearpage
 
 \subsection{Testing hypotheses about two populations}
 We might have our samples split into two categories; e.g. sex. As in Aithison 1986\cite{}, I follow a hierarchy of alternative hypotheses, from least to most complex.
@@ -589,7 +598,7 @@ Our first question is whether two populations have the same covariance and struc
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Thu Apr 25 12:57:43 2019 ------##
+## ##------ Wed May  1 15:40:54 2019 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{##TODO!!}
@@ -606,7 +615,7 @@ The next is whether the populations have a different center:
 \hlkwd{timestamp}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## ##------ Thu Apr 25 12:57:43 2019 ------##
+## ##------ Wed May  1 15:40:54 2019 ------##
 \end{verbatim}
 \begin{alltt}
 \hlcom{## This dataset includes the two components above, as well as four others}
@@ -699,35 +708,35 @@ Based on ACDWR pg 200
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -2.9889  -0.2887  -0.1244   0.3399   2.9367  
+## -2.8892  -0.3248   0.1483   0.3149   3.0288  
 ## 
 ## Coefficients:
-##                                                       Estimate Std. Error
-## (Intercept)                                          0.2291758  0.3007235
-## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.1790481  0.0832272
-## ilr(acomp(count_matrix(two_normal_pops_extended)))2 -0.0531453  0.2065535
-## ilr(acomp(count_matrix(two_normal_pops_extended)))3 -0.0001603  0.1363011
-## ilr(acomp(count_matrix(two_normal_pops_extended)))4 -0.1059098  0.1210142
-## ilr(acomp(count_matrix(two_normal_pops_extended)))5 -0.2222432  0.1115794
-## ilr(acomp(count_matrix(two_normal_pops_extended)))6 -0.1488437  0.1008784
-## ilr(acomp(count_matrix(two_normal_pops_extended)))7 -0.0337739  0.1002323
+##                                                     Estimate Std. Error
+## (Intercept)                                          0.49406    0.29857
+## ilr(acomp(count_matrix(two_normal_pops_extended)))1  2.13446    0.08000
+## ilr(acomp(count_matrix(two_normal_pops_extended)))2 -0.15745    0.20584
+## ilr(acomp(count_matrix(two_normal_pops_extended)))3 -0.14823    0.13542
+## ilr(acomp(count_matrix(two_normal_pops_extended)))4 -0.07288    0.11831
+## ilr(acomp(count_matrix(two_normal_pops_extended)))5 -0.10663    0.10926
+## ilr(acomp(count_matrix(two_normal_pops_extended)))6 -0.12304    0.09924
+## ilr(acomp(count_matrix(two_normal_pops_extended)))7 -0.09365    0.09904
 ##                                                     z value Pr(>|z|)    
-## (Intercept)                                           0.762   0.4460    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.182   <2e-16 ***
-## ilr(acomp(count_matrix(two_normal_pops_extended)))2  -0.257   0.7970    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))3  -0.001   0.9991    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))4  -0.875   0.3815    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))5  -1.992   0.0464 *  
-## ilr(acomp(count_matrix(two_normal_pops_extended)))6  -1.475   0.1401    
-## ilr(acomp(count_matrix(two_normal_pops_extended)))7  -0.337   0.7361    
+## (Intercept)                                           1.655    0.098 .  
+## ilr(acomp(count_matrix(two_normal_pops_extended)))1  26.682   <2e-16 ***
+## ilr(acomp(count_matrix(two_normal_pops_extended)))2  -0.765    0.444    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))3  -1.095    0.274    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))4  -0.616    0.538    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))5  -0.976    0.329    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))6  -1.240    0.215    
+## ilr(acomp(count_matrix(two_normal_pops_extended)))7  -0.946    0.344    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 2772.1  on 1999  degrees of freedom
-## Residual deviance:  826.7  on 1992  degrees of freedom
-## AIC: 842.7
+##     Null deviance: 2772.46  on 1999  degrees of freedom
+## Residual deviance:  839.68  on 1992  degrees of freedom
+## AIC: 855.68
 ## 
 ## Number of Fisher Scoring iterations: 6
 \end{verbatim}
@@ -739,7 +748,7 @@ Based on ACDWR pg 200
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: nnet}}\begin{verbatim}
 ## # weights:  5 (4 variable)
 ## initial  value 1386.294361 
-## final  value 447.178605 
+## final  value 443.341841 
 ## converged
 \end{verbatim}
 \begin{alltt}
@@ -748,7 +757,7 @@ Based on ACDWR pg 200
 \begin{verbatim}
 ## $coefTransformed
 ## (Intercept)          X1          X2          X3 
-##   0.1367010  -7.3280799   7.7678830  -0.3031021 
+##   0.4036146  -7.0242184   8.1051953  -0.6773624 
 ## 
 ## $summary
 ## Call:
@@ -756,13 +765,13 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ##                 Values Std. Err.
-## (Intercept)  0.1367010 0.1342114
-## X1          -7.3280799 0.4214446
-## X2           7.7678830 0.3703522
-## X3          -0.3031021 0.4312107
+## (Intercept)  0.4036146 0.1363508
+## X1          -7.0242184 0.3894933
+## X2           8.1051953 0.4014707
+## X3          -0.6773624 0.4315879
 ## 
-## Residual Deviance: 894.3572 
-## AIC: 900.3572 
+## Residual Deviance: 886.6837 
+## AIC: 892.6837 
 ## 
 ## $res
 ## Call:
@@ -770,16 +779,16 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ## (Intercept)          X1          X2          X3 
-##   0.1367010  -7.3280799   7.7678830  -0.3031021 
+##   0.4036146  -7.0242184   8.1051953  -0.6773624 
 ## 
-## Residual Deviance: 894.3572 
-## AIC: 900.3572 
+## Residual Deviance: 886.6837 
+## AIC: 892.6837 
 ## 
 ## [[4]]
 ##    FP_FN_table
 ##       0   1
-##   0 958  58
-##   1  42 942
+##   0 946  46
+##   1  54 954
 \end{verbatim}
 \begin{alltt}
 \hlstd{resB} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(two_normal_pops_extended), scrambled_labels)}
@@ -787,8 +796,7 @@ Based on ACDWR pg 200
 \begin{verbatim}
 ## # weights:  10 (9 variable)
 ## initial  value 1386.294361 
-## iter  10 value 432.901441
-## final  value 432.900948 
+## final  value 454.019348 
 ## converged
 \end{verbatim}
 \begin{alltt}
@@ -797,9 +805,9 @@ Based on ACDWR pg 200
 \begin{verbatim}
 ## $coefTransformed
 ##  (Intercept)           X1           X2           X3           X4 
-##   0.03334086 -15.95577196  15.62501953   0.34742286   1.25056827 
+##   0.51686787 -14.25855543  16.15930874  -1.64231937  -0.02158575 
 ##           X5           X6           X7           X8 
-##  -0.54866982  -0.77879194  -0.29782226   0.39138617 
+##   0.05490541   0.68247121  -0.67198430   0.21462735 
 ## 
 ## $summary
 ## Call:
@@ -807,18 +815,18 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ##                   Values Std. Err.
-## (Intercept)   0.03334086 0.1637080
-## X1          -15.95577196 0.8575790
-## X2           15.62501953 0.7090152
-## X3            0.34742286 0.9196285
-## X4            1.25056827 0.9247634
-## X5           -0.54866982 0.8987120
-## X6           -0.77879194 0.8939545
-## X7           -0.29782226 0.9351710
-## X8            0.39138617 0.8886918
+## (Intercept)   0.51686787 0.1600932
+## X1          -14.25855543 0.7263656
+## X2           16.15930874 0.7678407
+## X3           -1.64231937 0.8915583
+## X4           -0.02158575 0.8961944
+## X5            0.05490541 0.8740857
+## X6            0.68247121 0.8776382
+## X7           -0.67198430 0.9105010
+## X8            0.21462735 0.8604837
 ## 
-## Residual Deviance: 865.8019 
-## AIC: 879.8019 
+## Residual Deviance: 908.0387 
+## AIC: 922.0387 
 ## 
 ## $res
 ## Call:
@@ -826,18 +834,18 @@ Based on ACDWR pg 200
 ## 
 ## Coefficients:
 ##  (Intercept)           X1           X2           X3           X4 
-##   0.03334086 -15.95577196  15.62501953   0.34742286   1.25056827 
+##   0.51686787 -14.25855543  16.15930874  -1.64231937  -0.02158575 
 ##           X5           X6           X7           X8 
-##  -0.54866982  -0.77879194  -0.29782226   0.39138617 
+##   0.05490541   0.68247121  -0.67198430   0.21462735 
 ## 
-## Residual Deviance: 865.8019 
-## AIC: 879.8019 
+## Residual Deviance: 908.0387 
+## AIC: 922.0387 
 ## 
 ## [[4]]
 ##    FP_FN_table
 ##       0   1
-##   0 958  58
-##   1  42 942
+##   0 946  46
+##   1  54 954
 \end{verbatim}
 \begin{alltt}
 \hlstd{resCNA_gender} \hlkwb{<-} \hlkwd{comp_logistic}\hlstd{(}\hlkwd{count_matrix}\hlstd{(}\hlkwd{cleanObject}\hlstd{(CNA_12K_TCGA,} \hlstr{'gender'}\hlstd{)),}
@@ -1174,16 +1182,16 @@ How to get p-values? I don't think the below is correct
 \end{alltt}
 \begin{verbatim}
 ## (Intercept)          X1          X2          X3 
-##   0.3084170   0.0000000   0.0000000   0.4821121
+## 0.003075197 0.000000000 0.000000000 0.116539511
 \end{verbatim}
 \begin{alltt}
 \hlkwd{give_pval}\hlstd{(resB}\hlopt{$}\hlstd{summary)}            \hlcom{## 1 and two are; the rest are not (as expected)}
 \end{alltt}
 \begin{verbatim}
 ## (Intercept)          X1          X2          X3          X4          X5 
-##   0.8386188   0.0000000   0.0000000   0.7055895   0.1762757   0.5415261 
+## 0.001244227 0.000000000 0.000000000 0.065463845 0.980784000 0.949914077 
 ##          X6          X7          X8 
-##   0.3836579   0.7501298   0.6596423
+## 0.436791603 0.460491378 0.803030968
 \end{verbatim}
 \begin{alltt}
 \hlkwd{give_pval}\hlstd{(resCNA_gender}\hlopt{$}\hlstd{summary)}   \hlcom{## are are statistically significant for the copy number signatures}
