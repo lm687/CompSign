@@ -39,6 +39,8 @@ devtools::install_github("lm687/CompSign")
 <<eval=TRUE, include=TRUE, message=FALSE, warning=FALSE>>=
 library(CompSign)
 library(compositions)
+library(MCMCpack)      ## for sampling from Dirichlet
+library(ggplot2)
 @
 
 \clearpage
@@ -163,6 +165,59 @@ ComplexHeatmap::Heatmap(res_outerCosineSimilaritySNV)
 @
 
 
+\section{Optimal selection of partition}
+
+<<fig.height=4, fig.width=6>>=
+set.seed(1234)
+
+## simulated data
+Nsig <- 5; Nsamp <- 100
+props <- MCMCpack::rdirichlet(Nsamp, c(rep(1,Nsig)))
+colnames(props) <- paste0('Sig', 1:Nsig)
+rownames(props) <- paste0('Sam ', 1:Nsamp)
+## increase exposure to signature 1 in the first
+## Nsamp/2, and re-normalise (two groups)
+props[1:floor(Nsamp/2), 1] <- props[1:floor(Nsamp/2), 1] + 1.5
+props <- sweep(props, 1, rowSums(props), '/')
+createBarplot(props, remove_labels = TRUE)
+
+## corresponds to partitioning as follows:
+##(s1, s2, s3) vs (s4, s5)
+V <- c(1, 1, 1, -1, -1)
+# plot(density(ilr(props, V = V)))
+boxplot(ilr(props, V = V)[1:floor(Nsamp/2)],
+        ilr(props, V = V)[(floor(Nsamp/2)+1):Nsamp], main = 'Comparison of ilr of (s1, s2, s3) vs (s4, s5) for the two groups')
+
+
+t.test(ilr(props, V = V)[1:floor(Nsamp/2)],
+       ilr(props, V = V)[(floor(Nsamp/2)+1):Nsamp])$p.value
+
+
+it_partitions <- c()
+if(Nsig > 8){warning('Large number of signatures')}
+for(k in 1:floor(Nsig/2)){
+  it_partitions <- c(it_partitions, lapply(1:ncol(combn(1:Nsig, k)), function(x) combn(1:Nsig, k)[,x]))
+}
+pvals <- rep(NA, length(it_partitions))
+ict <- 1
+for(i in it_partitions){
+  V <- rep(-1, Nsig)
+  V[i] <- 1
+  pvals[ict] <- t.test(ilr(props, V = V)[1:floor(Nsamp/2)],
+         ilr(props, V = V)[(floor(Nsamp/2)+1):Nsamp])$p.value
+  ict <- ict + 1
+}
+
+groups <- sapply(it_partitions, paste0, collapse='_')
+ggplot(data.frame(pval=pvals, group=groups),
+       aes(x=factor(group, levels=groups[order(pvals)]), y=log(pval)))+
+  geom_point() + ggtitle('P value for comparing a group (x-axis)\nto its complementary')+
+  labs(x='Group')
+##' We expected 1 to be the one with lowest p-val
+##' as this is how we created the dataset.
+##' Groups containing signature 1 follow.
+
+@
 
 \end{document}
 %
