@@ -27,7 +27,7 @@
 % \tableofcontents
 
 <<include=FALSE>>=
-knitr::opts_chunk$set(cache = FALSE)
+knitr::opts_chunk$set(cache = TRUE)
 @
 
 \section{Installation}
@@ -273,6 +273,14 @@ ggplot(data.frame(pval=pvals, group=groups),
 
 @
 
+\clearpage
+\section{Dimensionality reduction: PCA}
+PCA is insensitive to the irl basis, so one can just use the default contrast matrix and run it with ilr, e.g.
+
+<<PCA>>=
+plotPCA(compositions::ilr(exposuresBreast560),
+        groups = metadataBreast560$final.ER)
+@
 
 \clearpage
 \printbibliography

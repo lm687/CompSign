@@ -16,3 +16,6 @@ ggplot2
 ggthemr
 reshape2
 RColorBrewer
+gridExtra
+ComplexHeatmap
+circlize
