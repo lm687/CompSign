@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548334037186.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4017080936",
+    "id" : "550F73FA",
+    "lastKnownWriteTime" : 1548350756,
+    "last_content_update" : 1548350756177,
+    "path" : "~/Documents/PhD/CDA_in_Cancer/code/general/general_cda_programming/ilr_basic.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "23,9",
+        "scrollLine" : "0",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

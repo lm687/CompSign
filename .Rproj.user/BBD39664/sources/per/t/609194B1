@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548069747513.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4178459735",
+    "id" : "609194B1",
+    "lastKnownWriteTime" : 1548070928,
+    "last_content_update" : 1548070928769,
+    "path" : "~/Documents/PhD/CDA_in_Cancer/code/simulations/comparing_test_untransformed/comparing_test_untransformed_equality.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "14,51",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,46 @@
+## 1. Simulate signatures
+
+##      this might be redundant. check simulate_exposures.Rnw
+rm(list = ls())
+setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
+library(MCMCpack)
+library(signeR)
+library(reshape2)
+source("../../../code/functions/SimFunctions.R")
+
+cat_mut <- create_catMut()
+Ncat <- length(cat_mut)
+
+## Create signatures
+sign <- list()
+for(k in 1:10){
+  sign[[k]] <- MCMCpack::rdirichlet(n = 1,
+                                    alpha = rep(1, length(cat_mut)))
+}
+
+ggplot(melt((sign[[1]])), aes(x=Var2,y=value))+
+  geom_bar(stat = 'identity')
+
+ggplot(melt((sign[[1]])), aes(x=Var2,y=value))+
+  geom_bar(stat = 'identity')
+
+## low exposure
+#' k= index of mutational signature to simulate
+#' col= colour to plot everything
+sim_and_give_ggplot <- function(k, col, name){
+  sample_10 <- table(factor(sample(size = 10, x = 1:length(sign[[k]]), replace = TRUE, prob = sign[[k]]), levels = 1:97))
+  sample_100 <- table(factor(sample(size = 100, x = 1:length(sign[[k]]), replace = TRUE, prob = sign[[k]]), levels = 1:97))
+  sample_1e4 <- table(factor(sample(size = 1e4, x = 1:length(sign[[k]]), replace = TRUE, prob = sign[[k]]), levels = 1:97))
+
+  ggplot(melt(list(sample_10, sample_100, sample_1e4)), aes(x=Var1,y=value))+
+    geom_bar(stat = 'identity', fill=col)+
+    facet_wrap(.~L1, ncol=1, scales = "free_y")+
+    labs(x='Mutational category', y='Count')+
+    ggtitle(name)
+}
+
+sim_and_give_ggplot(1, col='blue', name='Mutational category 1')
+ggsave("../../../text/progress_text/figures/introductory_figures/mutsig_counts1.png")
+sim_and_give_ggplot(2, col='red', name='Mutational category 2')
+ggsave("../../../text/progress_text/figures/introductory_figures/mutsig_counts2.png")

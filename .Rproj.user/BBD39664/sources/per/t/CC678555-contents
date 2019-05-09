@@ -1,0 +1,270 @@
+#########################
+## Logistic regression ##
+#########################
+
+#' Predictors are compositional
+#' The response is vital status: dead/alive
+#'
+# 'This code should be a merge of the following files
+#'
+#' * tmp_A0.R
+#' * test_for_equality.R
+#' * ROO_signatures.R
+#'
+#' in an attempt to unify/tidy up the code
+#'
+#' Other related analyses one might be interested in
+#' - test for equality of populations (in tmp_A0.R)
+#' - SVM (in tmp_A0.R)
+#' - SVM in 4_classification.R
+
+rm(list = ls())
+setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
+library(compositions)
+library(CompSign)
+#library(parallel)
+library(e1071)
+library(caret)
+library(nnet)
+
+library(scales)
+library(combinat)
+library(reshape2)
+library(ggplot2)
+library(ggthemr)
+library(ggtern)
+library(RColorBrewer)
+#library(Compositional)
+
+signary = t(matrix(  c(1,   1,   1,  1,   1,   1,  -1,
+                       1,   1,  -1, -1,  -1,  -1,   0,
+                       1,  -1,   0,  0,   0,   0,   0,
+                       0,   0,  -1,  1,  -1,  -1,   0,
+                       0,   0,   1,  0,  -1,   1,   0,
+                       0,   0,   1,  0,   0,  -1,   0), ncol=7,nrow=6,byrow=TRUE))
+
+for(i in list.files("../../../../CompSign/data", pattern = "*rda", full.names = TRUE)){load(i)}
+
+dataset <- list(CNA_12K_TCGA=CNA_12K_TCGA,
+                CNA_12K_TCGA_v2_QP=CNA_12K_TCGA_v2_QP,
+                CNA_12K_TCGA_v2_YAPSA=CNA_12K_TCGA_v2_YAPSA)
+## string to append to pictures, etc.
+append_results <- list(CNA_12K_TCGA='_v1',
+                       CNA_12K_TCGA_v2_QP='_v2_QP',
+                       CNA_12K_TCGA_v2_YAPSA='_v2_YAPSA')
+
+version_dataset <- 'CNA_12K_TCGA_v2_QP'
+#version_dataset <- 'CNA_12K_TCGA_v2_YAPSA'
+append_name_results <- append_results[[version_dataset]]
+
+metadata_tmp <- metadata(dataset[[version_dataset]])
+exposures_tmp <- count_matrix(dataset[[version_dataset]])
+
+ilr_known_basis <- ilr(exposures_tmp, V = signary)
+
+predictors <- list()
+response <- list()
+subtypes <- list()
+confusionMatrices <- list()
+
+subtypes[['vital_status']] <- c("alive", "dead")
+
+type <- 'vital_status'
+
+predictors[[type]] = exposures_tmp[metadata_tmp[,type] %in% subtypes[[type]],]
+response[[type]] = metadata_tmp[,type][metadata_tmp[,type] %in% subtypes[[type]]]
+
+if(length(unique(response[[type]]))>2){stop('Only two categories in response')}
+response[[type]] <- factor(response[[type]])
+levels(response[[type]]) <- c(0,1)
+
+#' 1. Version one of logistic regression: with glm()
+fit_logistic_v1 <- glm(response[[type]] ~ ilr(predictors[[type]], V = signary),
+            family=binomial(link='logit'))
+summary(fit_logistic_v1)  # ilr  2, 5, 6 are statistically significant
+
+#' 2. Version two of logistic regression: with multinom()
+#' (alternative logistic regression as shown in the
+#' Van Der Boogaard book)
+auxcomp <- scale(ilr(predictors[[type]], V = signary),
+                 center=TRUE, scale=FALSE)
+fit_logistic_v2 <- multinom(formula = response[[type]]~auxcomp)
+coef(fit_logistic_v2)
+res_clr <- ilr2clr(coef(fit_logistic_v2)[-1], x=predictors[[type]])
+plot(res_clr, type='l')
+
+## the coefficients are the same either way
+ilr2clr(coefficients(fit_logistic_v1)[-1], x=predictors[[type]]) ## using glm()
+res_clr                                              ## using multinom()
+
+
+## How to interpret these results?
+## These are the balances
+
+if(version_dataset == 'CNA_12K_TCGA'){
+  df_balances <- melt(lapply(c(0, 1), function(x) (ilr_known_basis[response[[type]] == x,])))
+  df_balances[,'col'] <- 'nonsignif'
+  df_balances[df_balances$Var2 %in% c(2,5,6), 'col'] <- 'signif'
+  df_balances$Var2 <- paste0('ilr_', df_balances$Var2)
+  df_balances$L1[df_balances$L1 == 1] <- 'dead'
+  df_balances$L1[df_balances$L1 == 2] <- 'alive'
+}else{
+  stop('Need to check results from logistic regression for v2 exposures')
+}
+
+ggthemr('fresh')
+ggplot(df_balances, aes(y=value, x=L1, group=L1, fill=col))+
+  geom_violin()+
+  facet_wrap(.~Var2, nrow=1)
+## ## ggsave('../../../results/real/CNA12kTCGA/vital_status_boxplotilr.png', width = 10, height = 2)
+
+## Plot in ternary diagram
+exposures_tmp_clean <- exposures_tmp[!apply(exposures_tmp, 1, function(x) any(x ==0)),]
+## The three signatures with highest coefficients are
+order(abs(res_clr))[(length(res_clr)-2):length(res_clr)]
+ggthemr('earth')
+theme_set(theme_gray())
+ggtern(data=data.frame(clo(acomp(exposures_tmp)[,c(3,6,7)]),
+                       vital_status=metadata_tmp$vital_status),
+       aes(x=s3,y=s6,z=s7,fill=vital_status)) +
+  geom_point(size=2,shape=21, alpha=0.2)
+## no difference whatsoever that I can see
+## the ternary diagrams of all combinations doesn't show anything either
+
+## the three ilr which are statistically significant
+plot3D(ilr(predictors[[type]])[,c(2,5,6)],
+       col=alpha(c('red', '#008365')[as.factor(response[[type]])], 0.2),
+       pch=19)
+## the three signatures with highest |coefficients|
+plot3D(predictors[[type]][,c(3,6,7)],
+       col=alpha(c('red', '#008365')[as.factor(response[[type]])], 0.2),
+       pch=19)
+
+#' density plots for ilr, in the two groups
+ggthemr('dust')
+ggplot(df_balances, aes(x=value, col=interaction(L1, col), stat = 'identity'))+
+  geom_density()+
+  facet_wrap(.~Var2, scales = "free")
+
+
+## Prediction with logistic regression ##
+training_idx <- sample(1:length(response[[type]]), size = ceiling(0.7*length(response[[type]])), FALSE)
+validation_idx <- (1:length(response[[type]]))[!(1:length(response[[type]]) %in% training_idx) ]
+all(sort(c(training_idx, validation_idx)) == (1:length(response[[type]])))
+sapply(list(training_idx, validation_idx), length)
+## [1] 7609 3261
+
+df_logistic_fit_training <- data.frame(response[[type]][training_idx],
+                                       ilr(predictors[[type]], V = signary)[training_idx,])
+colnames(df_logistic_fit_training) <- c('vital_status', paste0('ilr', 1:6))
+fit_logistic_training <- glm( df_logistic_fit_training,
+                              formula = vital_status~ilr1+ilr2+ilr3+ilr4+ilr5+ilr6,
+                              family=binomial(link='logit'))
+summary(fit_logistic_training)
+
+df_logistic_fit_predict <- data.frame(ilr(predictors[[type]],
+                                          V = signary)[validation_idx,])
+colnames(df_logistic_fit_predict) <- paste0('ilr', 1:6)
+
+prediction_logistic <- predict(fit_logistic_training,
+                               newdata = df_logistic_fit_predict)
+hist(prediction_logistic, breaks = 100) ## why is it predicting negative numbers?
+
+par(mfrow=c(1,1))
+plot(prediction_logistic, (as.numeric(as.factor(response[[type]][training_idx]))-1)[validation_idx],
+     col=alpha('black', 0.2))
+
+
+### this doesn't look like what it should at all
+par(mfrow=c(2,3))
+plot(prediction_logistic~df_logistic_fit_predict$ilr1[validation_idx],col="red4")
+plot(prediction_logistic~df_logistic_fit_predict$ilr2[validation_idx],col="red4")
+plot(prediction_logistic~df_logistic_fit_predict$ilr3[validation_idx],col="red4")
+plot(prediction_logistic~df_logistic_fit_predict$ilr4[validation_idx],col="red4")
+plot(prediction_logistic~df_logistic_fit_predict$ilr5[validation_idx],col="red4")
+plot(prediction_logistic~df_logistic_fit_predict$ilr6[validation_idx],col="red4")
+
+#' Inconclusive. What does it mean that it's statistically significant
+#' when it's so difficut to see any difference between groups?
+
+#' ANALYSIS WITH ALR
+#' With respect to signature 7
+alr_transformation <- alr(addPseudoCounts(exposures_tmp, 1e-7))[metadata_tmp[,type] %in% subtypes[[type]],]
+summary(glm(response[[type]] ~ alr_transformation,
+            family=binomial(link='logit')))
+df_alr <- melt(lapply(c(0, 1), function(x) (alr_transformation[response[[type]] == x,])))
+df_alr[,'col'] <- 'nonsignif'
+df_alr[df_alr$Var2 %in% c(2,4,5,6), 'col'] <- 'signif'
+df_alr$Var2 <- paste0('ilr_', df_alr$Var2)
+df_alr$L1[df_alr$L1 == 1] <- 'dead'
+df_alr$L1[df_alr$L1 == 2] <- 'alive'
+theme_set(theme_gray())
+ggplot(df_alr, aes(y=value, x=L1, group=L1))+
+  geom_violin(aes(col=col))+
+  facet_wrap(.~Var2, nrow=1)+
+  scale_colour_manual(values = rev(brewer.pal(3,"Spectral")))+
+  ggtitle('Note that this has been created with Pseudocounts!')
+
+## Fitted values vs true values
+dev.off()
+plot(fit_logistic_training$fitted.values, response[[type]][training_idx])
+
+
+## Example of a case in which it works
+library(nnet)
+dat <- ilr(acomp(two_normal_pops_extended@count_matrix))
+groups <- two_normal_pops_extended@df[,1]
+auxcomp <- scale(dat, center=TRUE, scale=FALSE)
+res <- multinom(formula = groups~auxcomp)
+coef(res)
+res_clr <- ilr2clr(coef(res)[-1], x=acomp(two_normal_pops_extended@count_matrix))
+plot(res_clr, type='l')
+# prediction is perfect
+table(groups, fitted(res))
+
+#' Find the balance that gives the best separation for vital status
+#' possible separations: 1 vs all, 2 vs all, etc.
+#'                       1+2 vs all, 1+3 vs all, etc.
+#'                       1+2+3 vs all, etc.
+#'                       the rest are the same (i.e. group of 4 is same as some group of 3)
+
+clean_exposures_tmp <- exposures_tmp[metadata_tmp[,type] %in% subtypes[[type]],]
+deviance <- list()
+for(i in c(lapply(combn(1:7, 1) ,function(x) as.vector(x)),
+           lapply(1:ncol(combn(1:7, 2)), function(x) combn(1:7, 2)[,x]),
+           lapply(1:ncol(combn(1:7, 3)), function(x) combn(1:7, 3)[,x]))){
+  it_signary <- rep(-1, 7)
+  it_signary[i] <- 1
+  it_ilr_known_basis <- ilr(clean_exposures_tmp, V = it_signary)
+  it_res <- multinom(formula = response[[type]]~it_ilr_known_basis)
+  deviance[[paste0(i, collapse = '+')]] <- it_res$deviance
+}
+which.min(deviance)
+
+##      AIC IS NOT EXACTLY WHAT WE WANT! WE WANT TO MINIMISE THE RESIDUALS.
+ggplot(data.frame(x=factor(names(sort(unlist(deviance))), levels=names(sort(unlist(deviance)))),
+                  deviance=sort(unlist(deviance))), aes(x=x, y=deviance, group=rep(1,length(deviance))))+
+  geom_line()+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  labs(x='Signatures in group A (group B is inverse)')
+
+if(version_dataset == 'CNA_12kOV'){
+df_optimal_balance <- melt(lapply(c(0, 1), function(x) (ilr(clean_exposures_tmp, V = c(-1,-1,1,1,1,-1,-1))[response[[type]] == x,])))
+}else if(version_dataset == "CNA_12K_TCGA_v2_YAPSA"){
+  df_optimal_balance <- melt(lapply(c(0, 1), function(x) (ilr(clean_exposures_tmp, V = c(1,-1,-1,-1,-1,-1,-1))[response[[type]] == x,])))
+}else if(version_dataset == "CNA_12K_TCGA_v2_QP"){
+  df_optimal_balance <- melt(lapply(c(0, 1), function(x) (ilr(clean_exposures_tmp, V = c(-1,-1,1,1,-1,-1,1))[response[[type]] == x,])))
+}
+df_optimal_balance$L1[df_optimal_balance$L1 == 1] <- 'dead'
+df_optimal_balance$L1[df_optimal_balance$L1 == 2] <- 'alive'
+ggplot(df_optimal_balance, aes(y=value, x=L1, group=L1))+
+  geom_violin()+
+  ggtitle('Optimal separation (based on AIC)')
+  # geom_boxplot()
+
+
+#' comp_logistic() is a function of my CompSign package.
+#' It probably is work in progress
+comp_logistic(compData = clean_exposures_tmp, binaryLabels = response[[type]])
+#' I don't think it adds much to what is already created

@@ -1,0 +1,69 @@
+#' What happens if we perform a test for equality of populations
+#' using ilr vs using raw, untransformed, CD?
+
+rm(list = ls())
+setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
+library(compositions)
+library(CompSign)
+library(Hotelling)
+library(reshape2)
+library(ggplot2)
+data("two_normal_pops_extended")
+data("two_normal_pops_extended")
+
+plot(acomp(count_matrix(two_normal_pops_extended)))
+
+dat <- ilr(acomp(two_normal_pops_extended@count_matrix))
+dat_untransformed <- two_normal_pops_extended@count_matrix
+groups <- two_normal_pops_extended@df[,1]
+dat_g1 <- dat[groups == unique(groups)[1],]
+dat_g2 <- dat[groups == unique(groups)[2],]
+dat_g1_ut <- dat_untransformed[groups == unique(groups)[1],]
+dat_g2_ut <- dat_untransformed[groups == unique(groups)[2],]
+
+rbind(colMeans(dat_g1),
+      colMeans(dat_g2))
+
+par(mfrow=c(1,2))
+image(cov(dat_g1))
+image(cov(dat_g2))
+
+## distrib of ilr:
+plot(density(dat[,1]))
+plot(density(dat[,2]))
+plot(density(dat[,3]))
+
+## pg 63 http://www.compositionaldata.com/material/others/Lecture_notes_11.pdf
+a <- hotelling.test(dat_g1,
+                    dat_g2)
+a
+
+hotelling.test(dat_g1_ut[,-1],
+               dat_g2_ut[,-1])
+## hmm it's singular
+
+t.test(dat_g1_ut[,1], dat_g2_ut[,1])
+t.test(dat_g1_ut[,2], dat_g2_ut[,2])
+t.test(dat_g1_ut[,3], dat_g2_ut[,3])
+
+#
+library(Compositional)
+tmp_feed_compositional <- as.matrix(two_normal_pops_extended@count_matrix)
+groups <- as.integer(groups)
+groups <- groups+1
+colnames(tmp_feed_compositional) <- paste0('Sign', 1:ncol(tmp_feed_compositional))
+res_compostional <- Compositional::comp.test(x = tmp_feed_compositional[,-1],
+                                             ina = groups,
+                                             test = "james", R = 0)
+
+res_compostional <- comp.test(x = tmp_feed_compositional[1:10,1:3],
+                              ina = groups[1:10],
+                              test = "james", R = 0)
+
+ina <- rep(1:2, each = 50)
+comp.test( as.matrix(iris[1:100, 1:4]), ina, test = "james", R = 0 )
+comp.test( ilr(as.matrix(tmp_feed_compositional)), groups, test = "james", R = 0 )
+
+par(mfrow=c(1,1))
+hotel2T2(dat_g1, dat_g2, a = 0.05, R = 999, graph = TRUE)

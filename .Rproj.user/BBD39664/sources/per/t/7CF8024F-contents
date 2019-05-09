@@ -1,0 +1,128 @@
+##       simulation       ##
+
+rm(list = ls())
+setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
+library(fields)
+
+#' (FM) This paper by Susan Holmes has a simulation strategy
+#' that we should adopt. Where they use mibrobiome data,
+#' we use signatures from PCAWG (for SNVs) or TCGA (for CNs).
+#'
+#' (paper) Observed samples are generated through multinomial
+#' sampling.
+#' we created two microbiome simulation workflows based on
+#' repeated subsampling from empirical data.
+
+#' The way I see it, this might be relevant for discrete mutational
+#' categories such as those of SNPs, but not for Copy Number.
+
+sig_data <- read.table("../../../../CDA_in_Cancer/data/ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/mutational_catalogs/exomes/tmp/all_exomes.txt",
+                       stringsAsFactors = FALSE, sep = '\t', fill = TRUE, header = TRUE)
+cancer_types <- readLines("../../../../CDA_in_Cancer/data/ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/mutational_catalogs/exomes/tmp/all_exomes_cancertypes.txt")
+cancer_types <- strsplit(cancer_types, '\t')[[1]]
+rownames(sig_data) <- make.names(sig_data[,1], unique = TRUE); sig_data <- sig_data[,-1]
+
+sig_data <- t(sig_data)
+## we select samples of two types of cancer (this is the equivalent to Breast and Melanoma)
+unique(cancer_types)
+Breast <- sig_data[,cancer_types == 'Breast']
+Melanoma <- sig_data[,cancer_types == 'Melanoma']
+Breast_orig <- Breast
+Melanoma_orig <- Melanoma
+Breast <- rowSums(Breast)
+Melanoma <- rowSums(Melanoma)
+
+## equivalence
+## here we're not looking at mutational signatures yet... I think    
+## medium (Breast/Melanoma)       cancer type (breast/melanoma)
+## OTU                        mutational categories
+## samples                    samples
+
+createSim <- function(ntop=3){
+
+  ## select mutational categories with most counts
+  BreastTop <- names(sort(Breast, decreasing=TRUE)[1:ntop])
+  MelanomaTop <- names(sort(Melanoma, decreasing=TRUE)[1:ntop])
+  ## all mutational categories, only samples of thew two groups
+  BothMat <- sig_data[,cancer_types %in% c('Breast', 'Melanoma')]
+  dim(BothMat)
+  ## select only mutational categories which have most counts
+  BothMat <- BothMat[rownames(BothMat) %in% c(BreastTop, MelanomaTop),]
+  dim(BothMat)
+  BreastVec <- matrix(rowSums(BothMat[,colnames(BothMat) %in% colnames(sig_data)[cancer_types == 'Breast']]))
+  rownames(BreastVec) <- rownames(BothMat) ## I think??
+  MelanomaVec <- matrix(rowSums(BothMat[,colnames(BothMat) %in% colnames(sig_data)[cancer_types == 'Melanoma']]))
+  rownames(MelanomaVec) <- rownames(BothMat) ## I think??
+  #' here we have put all samples together for breast cancer and for melanoma, and we have only selected the
+  #' three mutational categories with most counts per each cancer type
+
+  # (paper) Mix each multinomial by adding total/EffectSize counts from the other.
+  # (paper) Create mixed multinomial by adding counts from the other in precise proportion,
+  # (paper) a total of Library Size / Effect Size
+  EffectSize = 10
+  addToBreast = round(sum(BreastVec) * MelanomaVec / (sum(MelanomaVec) * EffectSize), 0)
+  addToMelanoma = round(sum(MelanomaVec) * BreastVec / (sum(BreastVec) * EffectSize), 0)
+  # Add them together to create "dirty" multinomial
+  dirtyBreast = addToBreast + BreastVec
+  dirtyMelanoma = addToMelanoma + MelanomaVec
+  # Write the dirty multinomials
+  #(commented-out LM) write.csv(dirtyBreast, file="dirty-Breast-multinomial.csv", col.names=FALSE, row.names=FALSE)
+  #(commented-out LM) write.csv(dirtyMelanoma, file="dirty-Melanoma-multinomial.csv", col.names=FALSE, row.names=FALSE)
+  # Example of "simulated" count matrix with 5 columns/samples each class
+  J = 5
+  # are we sampling samples here?
+  NLBreast = sample(colSums(BothMat), size=J, replace=TRUE)
+  NLMelanoma = sample(colSums(BothMat), size=J, replace=TRUE)
+  # Simulate Breast
+  BreastSim = sapply(NLBreast, function(NL, dirtyBreast){
+    table(sample(rownames(dirtyBreast), NL, replace=TRUE, prob=dirtyBreast))[rownames(dirtyBreast)]
+  }, dirtyBreast)
+  # Simulate Melanoma
+  MelanomaSim = sapply(NLMelanoma, function(NL, dirtyMelanoma){
+    table(sample(rownames(dirtyMelanoma), NL, replace=TRUE, prob=dirtyMelanoma))[rownames(dirtyMelanoma)]
+  }, dirtyMelanoma)
+  # Convert NA to zero
+  BreastSim[is.na(BreastSim)] <- 0L
+  MelanomaSim[is.na(MelanomaSim)] <- 0L
+
+  #' okay, now in theory I've got a simulation of counts for two cancer types
+  #' What are we doing with that?
+  #' "Perform clustering; evaluate accuracy"
+  return(list(Breast=BreastSim,
+              Melanoma=MelanomaSim))
+}
+#' Need to read the whole paper again
+
+par(mfrow=c(4,2))
+for(r in 1:4){
+  tmp_sim <- createSim(ntop = 30)
+  image.plot(tmp_sim[['Breast']], main='Sim Breast')
+  image.plot(tmp_sim[['Melanoma']], main='Sim Melanoma')
+}
+
+#' looks like simulations have absolutely nothing in common
+
+#' okay maybe now I could compare these simulations to the original dataset
+#' Let's compare the ilr of the original with the ilr of the new simulation
+#' we have to take into account that we have selected not all of the mutational
+#' categories
+#' Hey but no-where here we are using signatures - just counts!
+#' maybe compare which signatures are extracted in each case?
+#' I have no idea what I am meant to do here
+Breast_orig
+Melanoma_orig
+
+
+#' what is our error like? is it negative binomial?
+#' (how on earth can I know that?)
+par(mfrow=c(1,1), mar=c(3,3,3,3))
+max_counts_cat_breast <- Breast_orig[which.max(rowSums(Breast_orig)),]
+hist(max_counts_cat_breast, breaks=100)
+hist(max_counts_cat_breast[max_counts_cat_breast>0], breaks=100)
+
+## differential expression analysis
+#' we are comparing the counts for each mutational signature,
+#' for different types of cancer
+
+

@@ -1,0 +1,32 @@
+psi_1 <- matrix(c(1, 1,-1, -1, -1, -1, -1,
+                  -1, 1, 0, 0, 0, 0, 0,
+                  0, 0, 1, -1, 1, -1, -1,
+                  0, 0, 1, 0, -1, 0, 0,
+                  0, 0, 0, -1, 0, 1, 1,
+                  0, 0, 0, 0, 0, -1, 1), byrow = TRUE, ncol=7)
+
+
+
+give_balancing_element <- function(row){
+  new <- rep(0, length(row))
+  r = sum(row == 1)
+  s = sum(row == -1)
+  new[row == 1] <- 1/r*sqrt((r*s)/(r+s))
+  new[row == -1] <- -1/s*sqrt((r*s)/(r+s))
+  new
+  #b = sqrt((r*s)/(r+s))*log(exp(mean(log(row[row == 1])))/exp(mean(log(row[row == -1]))))
+}
+give_balancing_element(psi_1[1,])
+psi_2 <- t(apply(psi_1, 1, give_balancing_element))
+
+image(psi_1%*% t(psi_1))
+
+## this s
+image(psi_2 %*% t(psi_2))
+
+x <- MCMCpack::rdirichlet(1, runif(7))
+log(x) * psi_2[1]
+compositions::clr(x)[1,] * psi_2[1]
+
+image(outer(1:6, 1:6, Vectorize(function(X,Y) sum(psi_2[X,]*psi_2[Y,]))))
+

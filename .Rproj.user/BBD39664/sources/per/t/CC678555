@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548068070574.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "933837282",
+    "id" : "CC678555",
+    "lastKnownWriteTime" : 1548062798,
+    "last_content_update" : 1548062798,
+    "path" : "~/Documents/PhD/CDA_in_Cancer/code/exploratory/ov12k/ordered_analyses/2_logistic_regression.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "10,24",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
