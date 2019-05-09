@@ -163,6 +163,7 @@ ComplexHeatmap::Heatmap(res_outerCosineSimilaritySNV)
 @
 
 
+\hl{Add symmetric balances}
 
 \end{document}
 %
