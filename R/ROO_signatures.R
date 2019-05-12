@@ -427,6 +427,14 @@ createDendrogram <- function(merged_object, name_clinical, bool_comparison, ...)
   }
 }
 
+
+#' exposures: matrix of exposures, with exposures in the columns and samples in rows
+#' keep_cols: columns to keep
+close_data <- function(exposures, keep_cols){
+  .exposures <- exposures[,keep_cols]
+  sweep(.exposures, 1, rowSums(.exposures), '/')
+}
+
 #########################################
 ############### DEBUGGING ###############
 #########################################
