@@ -1,3 +1,0 @@
-library(CompSign)
-
-data(CNA_12K_TCGA)

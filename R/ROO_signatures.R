@@ -427,12 +427,42 @@ createDendrogram <- function(merged_object, name_clinical, bool_comparison, ...)
   }
 }
 
+##' Plot ggtern (ternary plot)
+plot_ggtern <- function(exposures, colours, title='CNA_12K_TCGA'){
+  require(ggtern)
+  stopifnot(nrow(exposures) == nrow(colours))
+  stopifnot(ncol(exposures) == 3)
+  tmp_df <- cbind.data.frame(exposures,
+                             col=colours)
+  if(is.null(colnames(exposures))){
+    lab1 <- paste0('S', 1); lab2 <- paste0('S', 2); lab3 <- paste0('S', 3)
+  }else{
+    lab1 <- colnames(exposures)[1]; lab2 <- colnames(exposures)[2]; lab3 <- colnames(exposures)[3]
+  }
+  names(tmp_df) <- c('s1', 's2', 's3', 'grp')
+  ggtern(data=tmp_df,
+         aes(x=s1, y=s2, z=s3, grp=as.numeric(grp)), aes(x,y,z)) +
+    geom_point(aes(color=grp),shape=20, alpha=1)+
+    labs(x=lab1, y=lab2, z=lab3)#+
+  # scale_fill_gradient(low = "blue", high="gold",
+  #                     space = "Lab", na.value = "white", guide = "colourbar",
+  #                     aesthetics = "colour")
+  #ggtitle(paste("Cancer type: ",cancer_type, "\nSignatures: ", paste0(c(sig1, sig2, sig3), collapse=', '),
+  #              "\nColour: immune score for ", gsub('_', ' ', col_immune), "\n"))
+}
 
 #' exposures: matrix of exposures, with exposures in the columns and samples in rows
 #' keep_cols: columns to keep
 close_data <- function(exposures, keep_cols){
   .exposures <- exposures[,keep_cols]
   sweep(.exposures, 1, rowSums(.exposures), '/')
+}
+
+#' Transform an acomp object to a matrix
+acomp_to_matrix <- function(acomp_object){
+  .ncol <- ncol(acomp_object)
+  .res <- matrix(acomp_object, ncol=.ncol)
+  .res
 }
 
 ###################################################################
@@ -497,8 +527,6 @@ plotcomputeclrcor <- function(x, pseudocount = 0, names_sigs, column_title=''){
                           column_title = column_title)
 }
 
-
->>>>>>> 1f8eaaaaab1352994079cc7ab5c69dc527eb8884
 #########################################
 ############### DEBUGGING ###############
 #########################################
