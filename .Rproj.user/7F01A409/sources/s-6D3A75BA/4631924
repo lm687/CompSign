@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540374873920.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4631924",
+    "lastKnownWriteTime" : 1540466058,
+    "last_content_update" : 1540466058400,
+    "path" : "~/Documents/CantabPhD/CompSign/vignette_knitr/CompSign_knitr.Rnw",
+    "project_path" : "vignette_knitr/CompSign_knitr.Rnw",
+    "properties" : {
+        "cursorPosition" : "19,29",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "sweave"
+}

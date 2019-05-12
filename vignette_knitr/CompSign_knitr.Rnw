@@ -20,12 +20,14 @@
 
 \textbf{CompSign} is a toolkit for the analysis of mutational signatures with an emphasis on the compositional analysis of exposures. An overview of the compositional nature of the exposures to mutational signatures, which has been often overlooked, is found elsewhere\footnote{cite myself}.
 
+\tableofcontents
+
 % The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
 
 % \tableofcontents
 
 <<include=FALSE>>=
-knitr::opts_chunk$set(cache = FALSE)
+knitr::opts_chunk$set(cache = TRUE)
 @
 
 \section{Installation}
@@ -41,6 +43,9 @@ library(CompSign)
 library(compositions)
 library(MCMCpack)      ## for sampling from Dirichlet
 library(ggplot2)
+library(gridExtra)
+library(ComplexHeatmap)
+library(circlize)
 @
 
 \clearpage
@@ -120,7 +125,7 @@ This section takes largely from Aitchison's pioneering work\cite{aitchison1982st
 \subsection{Test for normality}
 <<>>=
 par(mfrow=c(1,2))
-qqnorm.acomp(acomp(two_normal_pops@count_matrix), pch=19, cex=0.2)
+# qqnorm.acomp(acomp(two_normal_pops@count_matrix), pch=19, cex=0.2)
 qqnorm.acomp(acomp(two_normal_pops@count_matrix[1:1000,]), pch=19, cex=0.2)
 @
 
@@ -154,16 +159,65 @@ ComplexHeatmap::Heatmap(res_outerCosineSimilaritySNV)
 @
 
 \clearpage
+\section{Symmetric balances for correlation between signatures}
+Pearson pointed out (\cite{pearson1897mathematical}) that spurious correlations appear when closed, compositional, data, are analysed. Therefore normal correlation coefficients can be ruled out of our analysis.
 
-\clearpage
-\printbibliography
+I implement a correlation coefficient based on symmetric balances as introduced in \cite{kynvclova2017correlation}.
 
-\clearpage
-\section{Session info}
-<<>>=
-  sessionInfo()
+\begin{center}
+\hl{Code not shown because it's quite messy and under development, but check function \texttt{plotcomputeRho()}}
+\end{center}
+
+<<symmetric_balances_cor, echo=FALSE, fig.height=8>>=
+
+for(i in list.files("../../CompSign/data", pattern = "*rda", full.names = TRUE)){load(i)}
+dataset <- list(CNA_12K_TCGA=CNA_12K_TCGA,
+                CNA_12K_TCGA_v2_QP=CNA_12K_TCGA_v2_QP,
+                CNA_12K_TCGA_v2_YAPSA=CNA_12K_TCGA_v2_YAPSA)
+version_dataset <- 'CNA_12K_TCGA_v2_QP'
+exposures_tmp <- count_matrix(dataset[[version_dataset]])
+
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(nr = 3, nc = 2)))
+pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 1))
+draw(plotcomputeRho(x = exposures_tmp, pseudocount =  1e-7,
+               names_sigs = paste0('s', 1:7),
+               column_title='CNA TCGA QP dataset - rho'), ## why is it all so extremely high?
+     newpage = FALSE)
+upViewport()
+
+pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 2))
+draw(plotcomputeclrcor(x = exposures_tmp, pseudocount =  1e-7,
+               names_sigs = paste0('s', 1:7),
+               column_title='CNA TCGA QP dataset - cor clr'),
+     newpage = FALSE)
+upViewport()
+
+pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 1))
+Ncomp <- 5
+Nsamps <- 100
+X <- MCMCpack::rdirichlet(Nsamps, rep(1,Ncomp))
+draw(plotcomputeRho(X, names_sigs = paste0('S', 1:Ncomp),
+      column_title='CNA TCGA QP dataset - rho'), newpage = FALSE)
+upViewport()
+pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 2))
+draw(plotcomputeclrcor(X, names_sigs = paste0('S', 1:Ncomp),
+      column_title='CNA TCGA QP dataset - cor clr'), newpage = FALSE)
+upViewport()
+
+pushViewport(viewport(layout.pos.row = 3, layout.pos.col = 1))
+draw(plotcomputeRho(count_matrix(Breast560), pseudocount = 1e-7,
+               names_sigs = colnames(count_matrix(Breast560)),
+               column_title = '560 Breast cancers (Nik-Zainal) - rho'), newpage = FALSE)
+upViewport()
+pushViewport(viewport(layout.pos.row = 3, layout.pos.col = 2))
+draw(plotcomputeclrcor(count_matrix(Breast560), pseudocount = 1e-7,
+                  names_sigs = colnames(count_matrix(Breast560)),
+                  column_title = '560 Breast cancers (Nik-Zainal) - cor clr'), newpage = FALSE)
+upViewport()
+
 @
-
+\clearpage
 
 \section{Optimal selection of partition}
 
@@ -217,6 +271,24 @@ ggplot(data.frame(pval=pvals, group=groups),
 ##' as this is how we created the dataset.
 ##' Groups containing signature 1 follow.
 
+@
+
+\clearpage
+\section{Dimensionality reduction: PCA}
+PCA is insensitive to the irl basis, so one can just use the default contrast matrix and run it with ilr, e.g.
+
+<<PCA>>=
+plotPCA(compositions::ilr(exposuresBreast560),
+        groups = metadataBreast560$final.ER)
+@
+
+\clearpage
+\printbibliography
+
+\clearpage
+\section{Session info}
+<<>>=
+  sessionInfo()
 @
 
 \end{document}

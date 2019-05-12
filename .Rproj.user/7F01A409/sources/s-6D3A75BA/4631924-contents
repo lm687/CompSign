@@ -1,0 +1,155 @@
+\documentclass{article}
+
+\usepackage{hyperref}
+
+\title{Package \textbf{CompSign}}
+\author{Lena Morrill}
+\date{October 2017}
+
+\begin{document}
+
+\maketitle
+
+\textbf{CompSign} is a package for yadayada... overlooked that mutational signatures are compositional in nature yadayada. The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
+
+<<>>=
+knitr::opts_chunk$set(cache = TRUE)
+@
+
+<<>>=
+## This chunk was last ran in
+timestamp()
+
+## install latest version
+library(devtools)
+devtools::install_github("lm687/CompSign")
+library(CompSign)
+library(compositions)
+@
+
+<<>>=
+## This chunk was last ran in
+timestamp()
+
+##########################
+####### Dummy data #######
+##########################
+
+### Example of matrix transformed into sign object
+input_dummy <- matrix(runif(100), 4)
+colnames(input_dummy) <- paste0('s', 1:25); rownames(input_dummy) <- paste0('sam', 1:4)
+sign_dummy <- to_sign(input_dummy)
+
+@
+
+\section{Summarise the signature matrix}
+<<>>=
+## This chunk was last ran in
+timestamp()
+
+add_together_matrix(sign_dummy)
+results_sumarise <- summarise(add_together_matrix(sign_dummy))
+results_sumarise$General
+@
+
+\section{Linear model for numerical predictors}
+<<>>=
+## This chunk was last ran in
+timestamp()
+
+tmp_merged_compositional <- new("merged_compositional",
+                                id='adas',
+                                id_samples=paste0("sam", 1:30),
+                                id_signatures= c('s1', 's2', 's3', 's4'), ## signature names
+                                count_matrix=MCMCpack::rdirichlet(30, c(1,1,1,1)),
+                                df=data.frame(a=sample(1:1e4, 30), b=rep(10, 30)))
+comp_lm(tmp_merged_compositional)
+@
+
+\section{Importing data}
+<<>>=
+## This chunk was last ran in
+timestamp()
+
+biplot(princomp(acomp(MCMCpack::rdirichlet(30, rep(1, 4)))))
+
+@
+
+\section{Other}
+\begin{enumerate}
+\item Test for normality as follows:
+<<>>=
+## This chunk was last ran in
+timestamp()
+
+data(two_normal_pops)
+par(mfrow=c(1,2))
+qqnorm.acomp(acomp(two_normal_pops@count_matrix), pch=19, cex=0.2)
+qqnorm.acomp(acomp(two_normal_pops@count_matrix[1:1000,]), pch=19, cex=0.2, plot.it=FALSE)
+@
+\end{enumerate}
+
+\section{Clustering of samples}
+
+<<>>=
+
+
+@
+
+\clearpage
+
+\subsection{Testing hypotheses about two populations}
+We might have our samples split into two categories; e.g. sex. As in Aithison 1986\cite{}, I follow a hierarchy of alternative hypotheses, from least to most complex.
+
+Our first question is whether two populations have the same covariance and structure and center (i.e. if there is any distributional difference)
+
+<<>>=
+## This chunk was last ran in
+timestamp()
+##TODO!!
+@
+
+The next is whether the populations have a different center:
+
+<<>>=
+## This chunk was last ran in
+timestamp()
+## This dataset includes the two components above, as well as four others
+## (a total of seven)
+data("two_normal_pops_extended")
+
+## Data from the Landscape... paper
+data("Breast560")
+
+wrapper_compare_populations <- function(predictors, response, ...){
+  if(length(unique(response)) == 2){
+    tmp <- compare_populations(predictors, response, ...)
+    tmp <- tmp$info[1:2]
+    tmp
+  }
+}
+
+x <- do.call('rbind', lapply(1:ncol(metadata(Breast560)),
+       function(k){
+         wrapper_compare_populations(predictors = count_matrix(Breast560),
+                                     response = metadata(Breast560)[,k])
+         }
+       ))
+
+
+x
+
+@
+
+
+\section{Data for 560 breast cancer patients}
+Data from 560 breast cancer patients is available as part of the document as well:
+
+<<>>=
+#data("Breast560")
+#metadata(Breast560)[1:4,1:5]
+#count_matrix(Breast560)[1:4,1:5]
+@
+
+
+\end{document}

@@ -435,6 +435,70 @@ close_data <- function(exposures, keep_cols){
   sweep(.exposures, 1, rowSums(.exposures), '/')
 }
 
+###################################################################
+## Functions 6 Equivalent of cor coef with symmetric balances    ##
+###################################################################
+
+#' Compute a coefficient based on D which is used for
+#' both compute_z1s() and compute_z2s()
+coef_D <- function(D){
+  sqrt( ((D-1)+sqrt(D*(D-2)))/(2*D) )
+}
+
+#' x: compositional vector
+#' idx1: index of the first component
+#' idx2: index of the second component
+compute_zs <- function(x, idx1, idx2){
+  ## equation 13 of Kynclova et al.
+  .D <- ncol(x)
+  .notidx <- (1:.D)[!((1:.D) %in% c(idx1, idx2))]
+  coef <- coef_D(.D)
+
+  ## exponents
+  .expnt_a <- 1/((.D-1)+sqrt(.D*(.D-2)))
+  .expnt_b <- ( sqrt(.D-2)+sqrt(.D) ) / ( sqrt(.D-2)*(.D - 1 + sqrt(.D*(.D-2))) )
+  ## denominator
+  denom <- ( (x[,idx2]**.expnt_a) * (apply(x[,.notidx], 1, prod))**.expnt_b )
+
+  return(coef*log(x[idx1]/denom))
+}
+
+computeRho <- function(z1s, z2s){
+  return(cov(z1s, z2s)/(sqrt(var(z1s)*var(z2s))))
+}
+
+#' x: compositional vector
+#' computes the matrix of rhos for all pairwise
+#' combinations
+computeRhoWrapper <- function(x){
+  .D <- ncol(x)
+  outer(1:.D, 1:.D, Vectorize(function(i,j){
+    z1s <- compute_zs(x = x, idx1 = i, idx2 = j)
+    z2s <- compute_zs(x, j, i)
+    computeRho(z1s, z2s)
+  }))
+}
+
+#' Compute rho and plot the heatmap
+plotcomputeRho <- function(x, pseudocount = 0, names_sigs, column_title=''){
+  .mat <- computeRhoWrapper(addPseudoCounts(x, pseudocount = pseudocount))
+  colnames(.mat) <- rownames(.mat) <- names_sigs
+  ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
+                          column_title = column_title)
+}
+
+#' Compute clr correlation and plot the heatmap
+plotcomputeclrcor <- function(x, pseudocount = 0, names_sigs, column_title=''){
+  .mat <- compositions::clr(addPseudoCounts(x, pseudocount = pseudocount))
+  .mat <- matrix(.mat, ncol = ncol(x))
+  .mat <- cor(.mat)
+  colnames(.mat) <- rownames(.mat) <- names_sigs
+  ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
+                          column_title = column_title)
+}
+
+
+>>>>>>> 1f8eaaaaab1352994079cc7ab5c69dc527eb8884
 #########################################
 ############### DEBUGGING ###############
 #########################################
@@ -489,3 +553,4 @@ close_data <- function(exposures, keep_cols){
 #                                 count_matrix=MCMCpack::rdirichlet(3, c(1,1,1,1)),
 #                                 df=data.frame(a=c(3,4,1), b=c(10, 10, 10)))
 # comp_lm(tmp_merged_compositional)
+

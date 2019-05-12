@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 2.8 $
+% $ biblatex bbl format version 2.9 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -16,7 +16,7 @@
   {}
 \endgroup
 
-\sortlist[entry]{nty/global/}
+\datalist[entry]{nty/global//global/global}
   \entry{aitchison1982statistical}{article}{}
     \name{author}{1}{}{%
       {{hash=AJ}{%
@@ -85,6 +85,45 @@
     \field{volume}{14}
     \field{journaltitle}{Genome biology}
     \field{year}{2013}
+  \endentry
+
+  \entry{kynvclova2017correlation}{article}{}
+    \name{author}{3}{}{%
+      {{hash=KP}{%
+         family={Kyn{\v{c}}lov{\'a}},
+         familyi={K\bibinitperiod},
+         given={Petra},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=HK}{%
+         family={Hron},
+         familyi={H\bibinitperiod},
+         given={Karel},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=FP}{%
+         family={Filzmoser},
+         familyi={F\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{KPHKFP1}
+    \strng{fullhash}{KPHKFP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{number}{6}
+    \field{pages}{777\bibrangedash 796}
+    \field{title}{Correlation between compositional parts based on symmetric
+  balances}
+    \field{volume}{49}
+    \field{journaltitle}{Mathematical Geosciences}
+    \field{year}{2017}
   \endentry
 
   \entry{macintyre2018copy}{article}{}
@@ -200,5 +239,33 @@
     \field{title}{Modeling and analysis of compositional data}
     \field{year}{2015}
   \endentry
-\endsortlist
+
+  \entry{pearson1897mathematical}{article}{}
+    \name{author}{1}{}{%
+      {{hash=PK}{%
+         family={Pearson},
+         familyi={P\bibinitperiod},
+         given={Karl},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {The Royal Society London}%
+    }
+    \strng{namehash}{PK1}
+    \strng{fullhash}{PK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{number}{359-367}
+    \field{pages}{489\bibrangedash 498}
+    \field{title}{Mathematical contributions to the theory of evolution.—on a
+  form of spurious correlation which may arise when indices are used in the
+  measurement of organs}
+    \field{volume}{60}
+    \field{journaltitle}{Proceedings of the royal society of london}
+    \field{year}{1897}
+  \endentry
+\enddatalist
 \endinput

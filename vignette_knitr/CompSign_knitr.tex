@@ -70,6 +70,8 @@
 
 \textbf{CompSign} is a toolkit for the analysis of mutational signatures with an emphasis on the compositional analysis of exposures. An overview of the compositional nature of the exposures to mutational signatures, which has been often overlooked, is found elsewhere\footnote{cite myself}.
 
+\tableofcontents
+
 % The reference manual can be found \href{https://github.com/lm687/CompSign/blob/master/CompSign.pdf}{here}.
 
 % \tableofcontents
@@ -95,6 +97,9 @@
 \hlkwd{library}\hlstd{(compositions)}
 \hlkwd{library}\hlstd{(MCMCpack)}      \hlcom{## for sampling from Dirichlet}
 \hlkwd{library}\hlstd{(ggplot2)}
+\hlkwd{library}\hlstd{(gridExtra)}
+\hlkwd{library}\hlstd{(ComplexHeatmap)}
+\hlkwd{library}\hlstd{(circlize)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -212,11 +217,11 @@ This is a minimal example for transforming a matrix into a \emph{sign} object
 ## [1] "s1" "s2" "s3"
 ## 
 ## Slot "count_matrix":
-##                 s1         s2        s3
-## Sample 1 0.4518026 0.16322933 0.6123104
-## Sample 2 0.7720006 0.98059998 0.2178652
-## Sample 3 0.5882031 0.72776198 0.7582357
-## Sample 4 0.5280328 0.08958892 0.3338896
+##                 s1        s2        s3
+## Sample 1 0.3038001 0.5133714 0.9359289
+## Sample 2 0.3554818 0.4216384 0.8309738
+## Sample 3 0.5588399 0.9809409 0.1313172
+## Sample 4 0.5800957 0.2018036 0.1685508
 ## 
 ## Slot "modified":
 ## [1] FALSE
@@ -245,14 +250,14 @@ A \emph{sign} object can be summarised as follows:
 ## [1] 4
 ## 
 ## $`Geometric means of signatures`
-##        s1        s3        s2 
-## 0.5737050 0.4286883 0.3196196 
+##        s2        s1        s3 
+## 0.4549733 0.4325617 0.3622185 
 ## 
 ## $Covariance
-##             s1          s2          s3
-## s1  0.01865543  0.05294645 -0.01914269
-## s2  0.05294645  0.18810895 -0.01572702
-## s3 -0.01914269 -0.01572702  0.06166089
+##              s1           s2          s3
+## s1  0.019692778  0.006351886 -0.05941119
+## s2  0.006351886  0.107692674 -0.03351665
+## s3 -0.059411195 -0.033516650  0.18141621
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -266,15 +271,11 @@ This section takes largely from Aitchison's pioneering work\cite{aitchison1982st
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{))}
-\hlkwd{qqnorm.acomp}\hlstd{(}\hlkwd{acomp}\hlstd{(two_normal_pops}\hlopt{@}\hlkwc{count_matrix}\hlstd{),} \hlkwc{pch}\hlstd{=}\hlnum{19}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{0.2}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-1} 
-\begin{kframe}\begin{alltt}
+\hlcom{# qqnorm.acomp(acomp(two_normal_pops@count_matrix), pch=19, cex=0.2)}
 \hlkwd{qqnorm.acomp}\hlstd{(}\hlkwd{acomp}\hlstd{(two_normal_pops}\hlopt{@}\hlkwc{count_matrix}\hlstd{[}\hlnum{1}\hlopt{:}\hlnum{1000}\hlstd{,]),} \hlkwc{pch}\hlstd{=}\hlnum{19}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{0.2}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-2} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-1} 
 
 \end{knitrout}
 
@@ -338,63 +339,30 @@ Samples can simply be clustered by the cosine similarity of their exposures, as 
 \end{knitrout}
 
 \clearpage
+\section{Symmetric balances for correlation between signatures}
+Pearson pointed out (\cite{pearson1897mathematical}) that spurious correlations appear when closed, compositional, data, are analysed. Therefore normal correlation coefficients can be ruled out of our analysis.
 
-\clearpage
-\printbibliography
+I implement a correlation coefficient based on symmetric balances as introduced in \cite{kynvclova2017correlation}.
 
-\clearpage
-\section{Session info}
+\begin{center}
+\hl{Code not shown because it's quite messy and under development, but check function \texttt{plotcomputeRho()}}
+\end{center}
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-  \hlkwd{sessionInfo}\hlstd{()}
-\end{alltt}
 \begin{verbatim}
-## R version 3.5.1 (2018-07-02)
-## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS  10.14.4
-## 
-## Matrix products: default
-## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
-## 
-## locale:
-## [1] C/zh_CN.UTF-8/C/C/C/C
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] Compositional_3.4   RColorBrewer_1.1-2  reshape2_1.4.3     
-##  [4] ggthemr_1.1.0       ggplot2_3.1.1       MCMCpack_1.4-4     
-##  [7] MASS_7.3-51.4       coda_0.19-2         compositions_1.40-2
-## [10] bayesm_3.1-1        energy_1.7-5        robustbase_0.93-4  
-## [13] tensorA_0.36.1      CompSign_0.1.0      knitr_1.22         
-## 
-## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.1         lattice_0.20-38    assertthat_0.2.1  
-##  [4] digest_0.6.18      foreach_1.4.4      R6_2.4.0          
-##  [7] plyr_1.8.4         MatrixModels_0.4-1 RcppZiggurat_0.1.5
-## [10] stats4_3.5.1       evaluate_0.13      spam_2.2-2        
-## [13] highr_0.8          pillar_1.3.1       rlang_0.3.4       
-## [16] lazyeval_0.2.2     SparseM_1.77       Matrix_1.2-17     
-## [19] labeling_0.3       stringr_1.4.0      emplik_1.0-4.3    
-## [22] munsell_0.5.0      compiler_3.5.1     numDeriv_2016.8-1 
-## [25] xfun_0.6           pkgconfig_2.0.2    mnormt_1.5-5      
-## [28] mcmc_0.9-6         tidyselect_0.2.5   tibble_2.1.1      
-## [31] codetools_0.2-16   crayon_1.3.4       dplyr_0.8.0.1     
-## [34] withr_2.1.2        grid_3.5.1         gtable_0.3.0      
-## [37] magrittr_1.5       scales_1.0.0       Rfast_1.9.3       
-## [40] stringi_1.4.3      sn_1.5-3           doParallel_1.0.14 
-## [43] boot_1.3-22        iterators_1.0.10   tools_3.5.1       
-## [46] glue_1.3.1         DEoptimR_1.0-8     purrr_0.3.2       
-## [49] maps_3.3.0         fields_9.7         parallel_3.5.1    
-## [52] mixture_1.5        colorspace_1.4-1   dotCall64_1.0-0   
-## [55] quantreg_5.38
+## Pseudocount of 1e-07 added
+## Pseudocount of 1e-07 added
+## Pseudocount of 0 added
+## Pseudocount of 0 added
+## Pseudocount of 1e-07 added
+## Pseudocount of 1e-07 added
 \end{verbatim}
 \end{kframe}
-\end{knitrout}
+\includegraphics[width=\maxwidth]{figure/symmetric_balances_cor-1} 
 
+\end{knitrout}
+\clearpage
 
 \section{Optimal selection of partition}
 
@@ -418,7 +386,7 @@ Samples can simply be clustered by the cosine similarity of their exposures, as 
 ## Creating plot... it might take some time if the data are large. Number of samples: 100
 \end{verbatim}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-16-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-15-1} 
 \begin{kframe}\begin{alltt}
 \hlcom{## corresponds to partitioning as follows:}
 \hlcom{##(s1, s2, s3) vs (s4, s5)}
@@ -428,7 +396,7 @@ Samples can simply be clustered by the cosine similarity of their exposures, as 
         \hlkwd{ilr}\hlstd{(props,} \hlkwc{V} \hlstd{= V)[(}\hlkwd{floor}\hlstd{(Nsamp}\hlopt{/}\hlnum{2}\hlstd{)}\hlopt{+}\hlnum{1}\hlstd{)}\hlopt{:}\hlstd{Nsamp],} \hlkwc{main} \hlstd{=} \hlstr{'Comparison of ilr of (s1, s2, s3) vs (s4, s5) for the two groups'}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-16-2} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-15-2} 
 \begin{kframe}\begin{alltt}
 \hlkwd{t.test}\hlstd{(}\hlkwd{ilr}\hlstd{(props,} \hlkwc{V} \hlstd{= V)[}\hlnum{1}\hlopt{:}\hlkwd{floor}\hlstd{(Nsamp}\hlopt{/}\hlnum{2}\hlstd{)],}
        \hlkwd{ilr}\hlstd{(props,} \hlkwc{V} \hlstd{= V)[(}\hlkwd{floor}\hlstd{(Nsamp}\hlopt{/}\hlnum{2}\hlstd{)}\hlopt{+}\hlnum{1}\hlstd{)}\hlopt{:}\hlstd{Nsamp])}\hlopt{$}\hlstd{p.value}
@@ -459,12 +427,92 @@ Samples can simply be clustered by the cosine similarity of their exposures, as 
   \hlkwd{labs}\hlstd{(}\hlkwc{x}\hlstd{=}\hlstr{'Group'}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-16-3} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-15-3} 
 \begin{kframe}\begin{alltt}
 \hlcom{##' We expected 1 to be the one with lowest p-val}
 \hlcom{##' as this is how we created the dataset.}
 \hlcom{##' Groups containing signature 1 follow.}
 \end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\clearpage
+\section{Dimensionality reduction: PCA}
+PCA is insensitive to the irl basis, so one can just use the default contrast matrix and run it with ilr, e.g.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{plotPCA}\hlstd{(compositions}\hlopt{::}\hlkwd{ilr}\hlstd{(exposuresBreast560),}
+        \hlkwc{groups} \hlstd{= metadataBreast560}\hlopt{$}\hlstd{final.ER)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/PCA-1} 
+
+\end{knitrout}
+
+\clearpage
+\printbibliography
+
+\clearpage
+\section{Session info}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlkwd{sessionInfo}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## R version 3.5.1 (2018-07-02)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS High Sierra 10.13.6
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+## 
+## attached base packages:
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+##  [1] circlize_0.4.6        ComplexHeatmap_1.20.0 gridExtra_2.3        
+##  [4] RColorBrewer_1.1-2    reshape2_1.4.3        ggthemr_1.1.0        
+##  [7] ggplot2_3.1.1         MCMCpack_1.4-4        MASS_7.3-51.4        
+## [10] coda_0.19-2           Compositional_3.4     compositions_1.40-2  
+## [13] bayesm_3.1-1          energy_1.7-5          robustbase_0.93-4    
+## [16] tensorA_0.36.1        CompSign_0.1.0        usethis_1.4.0        
+## [19] devtools_2.0.2        knitr_1.22           
+## 
+## loaded via a namespace (and not attached):
+##  [1] mcmc_0.9-6          fs_1.2.7            doParallel_1.0.14  
+##  [4] rprojroot_1.3-2     numDeriv_2016.8-1   tools_3.5.1        
+##  [7] backports_1.1.3     mixture_1.5         R6_2.4.0           
+## [10] lazyeval_0.2.2      colorspace_1.4-1    sn_1.5-3           
+## [13] GetoptLong_0.1.7    withr_2.1.2         tidyselect_0.2.5   
+## [16] prettyunits_1.0.2   mnormt_1.5-5        processx_3.3.0     
+## [19] compiler_3.5.1      cli_1.1.0           quantreg_5.38      
+## [22] SparseM_1.77        desc_1.2.0          labeling_0.3       
+## [25] scales_1.0.0        DEoptimR_1.0-8      callr_3.2.0        
+## [28] stringr_1.4.0       digest_0.6.18       pkgconfig_2.0.2    
+## [31] sessioninfo_1.1.1   highr_0.8           maps_3.3.0         
+## [34] rlang_0.3.4         GlobalOptions_0.1.0 rstudioapi_0.10    
+## [37] shape_1.4.4         dplyr_0.8.0.1       magrittr_1.5       
+## [40] dotCall64_1.0-0     Matrix_1.2-17       Rcpp_1.0.1         
+## [43] munsell_0.5.0       RcppZiggurat_0.1.5  stringi_1.4.3      
+## [46] pkgbuild_1.0.3      plyr_1.8.4          parallel_3.5.1     
+## [49] crayon_1.3.4        lattice_0.20-38     emplik_1.0-4.3     
+## [52] ps_1.3.0            pillar_1.3.1        boot_1.3-20        
+## [55] rjson_0.2.20        codetools_0.2-16    stats4_3.5.1       
+## [58] pkgload_1.0.2       glue_1.3.1          evaluate_0.13      
+## [61] remotes_2.0.2       spam_2.2-2          foreach_1.4.4      
+## [64] testthat_2.0.1      MatrixModels_0.4-1  gtable_0.3.0       
+## [67] purrr_0.3.2         assertthat_0.2.1    xfun_0.6           
+## [70] Rfast_1.9.3         tibble_2.1.1        iterators_1.0.10   
+## [73] memoise_1.1.0       fields_9.7
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
 
