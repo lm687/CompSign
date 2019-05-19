@@ -462,6 +462,12 @@ close_data <- function(exposures, keep_cols){
 acomp_to_matrix <- function(acomp_object){
   .ncol <- ncol(acomp_object)
   .res <- matrix(acomp_object, ncol=.ncol)
+  if(!is.null(colnames(acomp_object))){
+    colnames(.res) <- colnames(acomp_object)
+  }
+  if(!is.null(rownames(acomp_object))){
+    rownames(.res) <- rownames(acomp_object)
+  }
   .res
 }
 
@@ -526,6 +532,37 @@ plotcomputeclrcor <- function(x, pseudocount = 0, names_sigs, column_title=''){
   ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
                           column_title = column_title)
 }
+
+
+#' Compute matrix of total variation
+total_variation <- function(x, pseudocount = 0, remove_zeroes=FALSE){
+  x <- addPseudoCounts(x, pseudocount)
+  r <- outer(1:ncol(x), 1:ncol(x), Vectorize(function(i,j){
+    if(remove_zeroes){
+      which_keep <- which(apply(x[,c(i,j)], 1, function(k) all(k > 0)))
+      if(length(which_keep) < 2){
+        NA
+      }else{
+        subsetx <- x[which_keep,]
+        var(log(subsetx[,i]/subsetx[,j]))
+      }
+    }else{
+      var(log(x[,i]/x[,j]))
+    }
+  }))
+  colnames(r) <- rownames(r) <- colnames(x)
+  r
+}
+
+#' Remove columns and rows which contain all NA in a matrix
+remove_na_columns <- function(x){
+  which_rm_col <- apply(x, 2, function(i) all(is.na(i)))
+  x <- x[,!which_rm_col]
+  which_rm_row <- apply(x, 1, function(i) all(is.na(i)))
+  x <- x[!which_rm_col,]
+  x
+}
+
 
 #########################################
 ############### DEBUGGING ###############
