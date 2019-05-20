@@ -516,21 +516,29 @@ computeRhoWrapper <- function(x){
 }
 
 #' Compute rho and plot the heatmap
-plotcomputeRho <- function(x, pseudocount = 0, names_sigs, column_title=''){
+plotcomputeRho <- function(x, pseudocount = 0, names_sigs, column_title='',  return_mat=FALSE){
   .mat <- computeRhoWrapper(addPseudoCounts(x, pseudocount = pseudocount))
   colnames(.mat) <- rownames(.mat) <- names_sigs
-  ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
-                          column_title = column_title)
+  if(return_mat){
+    .mat
+  }else{
+    ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
+                            column_title = column_title)
+  }
 }
 
 #' Compute clr correlation and plot the heatmap
-plotcomputeclrcor <- function(x, pseudocount = 0, names_sigs, column_title=''){
+plotcomputeclrcor <- function(x, pseudocount = 0, names_sigs, column_title='', return_mat=FALSE){
   .mat <- compositions::clr(addPseudoCounts(x, pseudocount = pseudocount))
   .mat <- matrix(.mat, ncol = ncol(x))
   .mat <- cor(.mat)
   colnames(.mat) <- rownames(.mat) <- names_sigs
-  ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
-                          column_title = column_title)
+  if(return_mat){
+    .mat
+  }else{
+    ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
+                            column_title = column_title)
+  }
 }
 
 

@@ -221,6 +221,9 @@ draw(plotcomputeclrcor(count_matrix(Breast560), pseudocount = 1e-7,
 upViewport()
 
 @
+
+ADD THE RAW VERSION
+
 \clearpage
 
 \section{Optimal selection of partition}
