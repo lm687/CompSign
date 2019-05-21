@@ -472,11 +472,11 @@ computeRhoWrapper <- function(x){
 }
 
 #' Compute rho and plot the heatmap
-plotcomputeRho <- function(x, pseudocount = 0, names_sigs, column_title=''){
+plotcomputeRho <- function(x, pseudocount = 0, names_sigs, column_title='', ...){
   .mat <- computeRhoWrapper(addPseudoCounts(x, pseudocount = pseudocount))
   colnames(.mat) <- rownames(.mat) <- names_sigs
   ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
-                          column_title = column_title)
+                          column_title = column_title, ...)
 }
 
 #' Compute clr correlation and plot the heatmap
@@ -487,6 +487,26 @@ plotcomputeclrcor <- function(x, pseudocount = 0, names_sigs, column_title=''){
   colnames(.mat) <- rownames(.mat) <- names_sigs
   ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
                           column_title = column_title)
+}
+
+give_all_combinat <- function(Nsig, exclude_complement){
+  require(combinat)
+  it_partitions <- c()
+  if(exclude_complement){
+    for(k in 1:floor(Nsig/2)){
+      it_partitions <- c(it_partitions, lapply(1:ncol(combinat::combn(1:Nsig, k)), function(x) combinat::combn(1:Nsig, k)[,x]))
+    }
+  }else{
+    stop('Not implemented yet')
+  }
+  it_partitions
+}
+
+remove_some_signature <- function(mat, which_sig=1){
+  if(which_sig != 'None'){
+    mat <- mat[,-which_sig]
+  }
+  sweep(mat, 1, rowSums(mat), '/')
 }
 
 
