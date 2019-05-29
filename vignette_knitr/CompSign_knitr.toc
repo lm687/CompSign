@@ -1,6 +1,6 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1}Installation}{1}{section.1}
+\contentsline {section}{\numberline {1}Installation}{2}{section.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2}Datasets}{3}{section.2}
 \defcounter {refsection}{0}\relax 
@@ -20,4 +20,10 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {8}Dimensionality reduction: PCA}{14}{section.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Session info}{16}{section.9}
+\contentsline {section}{\numberline {9}Plotting}{14}{section.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.1}Barplots}{14}{subsection.9.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.2}Ternary diagrams}{14}{subsection.9.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10}Session info}{17}{section.10}

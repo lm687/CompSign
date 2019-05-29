@@ -18,5 +18,6 @@ Imports:
     MCMCpack,
     nnet,
     dendextend,
-    Compositional
+    Compositional,
+    usedist
 RoxygenNote: 6.1.1

@@ -18,6 +18,10 @@
 
 \maketitle
 
+\begin{center}
+\textbf{Important note: }{\verb|V=V| needs to be changed to \verb|V=gsi.buildilrBase(V)| everywhere.}
+\end{center}
+
 \textbf{CompSign} is a toolkit for the analysis of mutational signatures with an emphasis on the compositional analysis of exposures. An overview of the compositional nature of the exposures to mutational signatures, which has been often overlooked, is found elsewhere\footnote{cite myself}.
 
 \tableofcontents
@@ -217,6 +221,9 @@ draw(plotcomputeclrcor(count_matrix(Breast560), pseudocount = 1e-7,
 upViewport()
 
 @
+
+ADD THE RAW VERSION
+
 \clearpage
 
 \section{Optimal selection of partition}
@@ -280,6 +287,17 @@ PCA is insensitive to the irl basis, so one can just use the default contrast ma
 <<PCA>>=
 plotPCA(compositions::ilr(exposuresBreast560),
         groups = metadataBreast560$final.ER)
+@
+
+\section{Plotting}
+
+\subsection{Barplots}
+As seen before
+
+\subsection{Ternary diagrams}
+<<>>=
+plot_ggtern(close_data(exposuresCNA_12K_TCGA, c('s1', 's2', 's6')),
+            colours = factor(metadataCNA_12K_TCGA$project_id))
 @
 
 \clearpage

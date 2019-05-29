@@ -427,6 +427,50 @@ createDendrogram <- function(merged_object, name_clinical, bool_comparison, ...)
   }
 }
 
+##' Plot ggtern (ternary plot)
+plot_ggtern <- function(exposures, colours, title='CNA_12K_TCGA'){
+  require(ggtern)
+  stopifnot(nrow(exposures) == nrow(colours))
+  stopifnot(ncol(exposures) == 3)
+  tmp_df <- cbind.data.frame(exposures,
+                             col=colours)
+  if(is.null(colnames(exposures))){
+    lab1 <- paste0('S', 1); lab2 <- paste0('S', 2); lab3 <- paste0('S', 3)
+  }else{
+    lab1 <- colnames(exposures)[1]; lab2 <- colnames(exposures)[2]; lab3 <- colnames(exposures)[3]
+  }
+  names(tmp_df) <- c('s1', 's2', 's3', 'grp')
+  ggtern(data=tmp_df,
+         aes(x=s1, y=s2, z=s3, grp=as.numeric(grp)), aes(x,y,z)) +
+    geom_point(aes(color=grp),shape=20, alpha=1)+
+    labs(x=lab1, y=lab2, z=lab3)#+
+  # scale_fill_gradient(low = "blue", high="gold",
+  #                     space = "Lab", na.value = "white", guide = "colourbar",
+  #                     aesthetics = "colour")
+  #ggtitle(paste("Cancer type: ",cancer_type, "\nSignatures: ", paste0(c(sig1, sig2, sig3), collapse=', '),
+  #              "\nColour: immune score for ", gsub('_', ' ', col_immune), "\n"))
+}
+
+#' exposures: matrix of exposures, with exposures in the columns and samples in rows
+#' keep_cols: columns to keep
+close_data <- function(exposures, keep_cols){
+  .exposures <- exposures[,keep_cols]
+  sweep(.exposures, 1, rowSums(.exposures), '/')
+}
+
+#' Transform an acomp object to a matrix
+acomp_to_matrix <- function(acomp_object){
+  .ncol <- ncol(acomp_object)
+  .res <- matrix(acomp_object, ncol=.ncol)
+  if(!is.null(colnames(acomp_object))){
+    colnames(.res) <- colnames(acomp_object)
+  }
+  if(!is.null(rownames(acomp_object))){
+    rownames(.res) <- rownames(acomp_object)
+  }
+  .res
+}
+
 ###################################################################
 ## Functions 6 Equivalent of cor coef with symmetric balances    ##
 ###################################################################
@@ -472,21 +516,60 @@ computeRhoWrapper <- function(x){
 }
 
 #' Compute rho and plot the heatmap
-plotcomputeRho <- function(x, pseudocount = 0, names_sigs, column_title='', ...){
+
+plotcomputeRho <- function(x, pseudocount = 0, names_sigs, column_title='',  return_mat=FALSE){
   .mat <- computeRhoWrapper(addPseudoCounts(x, pseudocount = pseudocount))
   colnames(.mat) <- rownames(.mat) <- names_sigs
-  ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
-                          column_title = column_title, ...)
+  if(return_mat){
+    .mat
+  }else{
+    ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
+                            column_title = column_title)
+  }
 }
 
 #' Compute clr correlation and plot the heatmap
-plotcomputeclrcor <- function(x, pseudocount = 0, names_sigs, column_title=''){
+plotcomputeclrcor <- function(x, pseudocount = 0, names_sigs, column_title='', return_mat=FALSE){
   .mat <- compositions::clr(addPseudoCounts(x, pseudocount = pseudocount))
   .mat <- matrix(.mat, ncol = ncol(x))
   .mat <- cor(.mat)
   colnames(.mat) <- rownames(.mat) <- names_sigs
-  ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
-                          column_title = column_title)
+  if(return_mat){
+    .mat
+  }else{
+    ComplexHeatmap::Heatmap(.mat,  col = circlize::colorRamp2(c(min(.mat), median(.mat), max(.mat)), c("#e6cb1f", "white", "#921fe6")),
+                            column_title = column_title)
+  }
+}
+
+
+#' Compute matrix of total variation
+total_variation <- function(x, pseudocount = 0, remove_zeroes=FALSE){
+  x <- addPseudoCounts(x, pseudocount)
+  r <- outer(1:ncol(x), 1:ncol(x), Vectorize(function(i,j){
+    if(remove_zeroes){
+      which_keep <- which(apply(x[,c(i,j)], 1, function(k) all(k > 0)))
+      if(length(which_keep) < 2){
+        NA
+      }else{
+        subsetx <- x[which_keep,]
+        var(log(subsetx[,i]/subsetx[,j]))
+      }
+    }else{
+      var(log(x[,i]/x[,j]))
+    }
+  }))
+  colnames(r) <- rownames(r) <- colnames(x)
+  r
+}
+
+#' Remove columns and rows which contain all NA in a matrix
+remove_na_columns <- function(x){
+  which_rm_col <- apply(x, 2, function(i) all(is.na(i)))
+  x <- x[,!which_rm_col]
+  which_rm_row <- apply(x, 1, function(i) all(is.na(i)))
+  x <- x[!which_rm_col,]
+  x
 }
 
 give_all_combinat <- function(Nsig, exclude_complement){
@@ -509,6 +592,16 @@ remove_some_signature <- function(mat, which_sig=1){
   sweep(mat, 1, rowSums(mat), '/')
 }
 
+aitch_distance <- function(x, y){
+  d <- length(x) # same as y
+  tmp <- outer(1:d, 1:d, function(i, j) (log(x[i]/x[j]) - log(y[i]/y[j]) )**2 )
+  (sum(tmp[upper.tri(tmp)]))**(1/2)
+}
+
+dist_Aitch <- function(x){
+  require(usedist)
+  dist_make(x, aitch_distance, "Aitchison Distance")
+}
 
 #########################################
 ############### DEBUGGING ###############
