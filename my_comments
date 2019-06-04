@@ -1,2 +1,0 @@
-roxygen2::roxygenise() 
-R CMD Rd2pdf --pdf --title='CompSign: Analysis of Mutational Signatures' -o CompSign.pdf man/*.Rd
