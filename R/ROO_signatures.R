@@ -592,15 +592,28 @@ remove_some_signature <- function(mat, which_sig=1){
   sweep(mat, 1, rowSums(mat), '/')
 }
 
-aitch_distance <- function(x, y){
+# aitch_distance <- function(x, y){
+#   d <- length(x) # same as y
+#   tmp <- outer(1:d, 1:d, function(i, j) (log(x[i]/x[j]) - log(y[i]/y[j]) )**2 )
+#   (sum(tmp[upper.tri(tmp)]))**(1/2)
+# }
+
+aitch_distance <- function(x, y, verbose=TRUE){
+  if(verbose) 'Previous results were off by a constant'
   d <- length(x) # same as y
-  tmp <- outer(1:d, 1:d, function(i, j) (log(x[i]/x[j]) - log(y[i]/y[j]) )**2 )
-  (sum(tmp[upper.tri(tmp)]))**(1/2)
+  dist(rbind(compositions::clr(x), compositions::clr(y)), method = 'euclidean')
 }
 
 dist_Aitch <- function(x){
   require(usedist)
   dist_make(x, aitch_distance, "Aitchison Distance")
+}
+
+AitchDist = function(physeq, ...){
+  physeq <- t(physeq)
+  x = physeq
+  dd = dist_Aitch(x, ...)
+  return(dd)
 }
 
 #########################################
