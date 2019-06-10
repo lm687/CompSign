@@ -2,48 +2,48 @@
 ## Copied on 12 April 2019
 
 #' vector_dim: which dimensions to plot
-plotPCA <- function(df, groups=NA, labels=FALSE, vector_dim=c(1,2), ...){
-  require(stats); require(ggplot2)
-  if(labels) require(ggrepel)
-
-  zeroes <- which(rowSums(df) == 0)
-  nan <- apply(df, 1, function(a) any(is.nan(a)))
-  if(length(zeroes)>0 | sum(nan) > 0){
-    cat('Removing rows ', zeroes, 'which only contain zeroes\n')
-    df <- df[-zeroes,]
-    cat('Removing rows ', which(nan), 'which only contain NaNs\n')
-    df <- df[!nan,]
-  }
-
-  pca <- prcomp(df,
-                center = TRUE,
-                scale. = TRUE)
-  xlabel <- paste0('PC', vector_dim[1], ' (', round(pca$sdev[vector_dim[1]]**2/sum(pca$sdev**2), 3)*100, '%)')
-  ylabel <- paste0('PC', vector_dim[2],' (', round(pca$sdev[vector_dim[2]]**2/sum(pca$sdev**2), 3)*100, '%)')
-  if(!all(is.na(groups))){
-
-    if(length(unique(groups))> 8){
-      library(RColorBrewer)
-      n <- 60
-      qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
-      col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
-      col_vector = unique(col_vector)
-      set_swatch(col_vector)
-    }
-
-    df_plot <- data.frame(PC1=pca$x[,vector_dim[1]], PC2=pca$x[,vector_dim[2]], groups=groups)
-    out <- ggplot(data = df_plot, aes(x=PC1, y=PC2, col=groups, label=groups))+
-      geom_point()+
-      labs(x=xlabel,
-           y=ylabel)
-    if(labels) out + geom_text_repel(aes(label=groups))
-    else out
-  }else{
-    plot(pca$x[,vector_dim],
-         xlab=xlabel,
-         ylab=ylabel, ...)
-  }
-}
+# plotPCA <- function(df, groups=NA, labels=FALSE, vector_dim=c(1,2), ...){
+#   require(stats); require(ggplot2)
+#   if(labels) require(ggrepel)
+#
+#   zeroes <- which(rowSums(df) == 0)
+#   nan <- apply(df, 1, function(a) any(is.nan(a)))
+#   if(length(zeroes)>0 | sum(nan) > 0){
+#     cat('Removing rows ', zeroes, 'which only contain zeroes\n')
+#     df <- df[-zeroes,]
+#     cat('Removing rows ', which(nan), 'which only contain NaNs\n')
+#     df <- df[!nan,]
+#   }
+#
+#   pca <- prcomp(df,
+#                 center = TRUE,
+#                 scale. = TRUE)
+#   xlabel <- paste0('PC', vector_dim[1], ' (', round(pca$sdev[vector_dim[1]]**2/sum(pca$sdev**2), 3)*100, '%)')
+#   ylabel <- paste0('PC', vector_dim[2],' (', round(pca$sdev[vector_dim[2]]**2/sum(pca$sdev**2), 3)*100, '%)')
+#   if(!all(is.na(groups))){
+#
+#     if(length(unique(groups))> 8){
+#       library(RColorBrewer)
+#       n <- 60
+#       qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+#       col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+#       col_vector = unique(col_vector)
+#       set_swatch(col_vector)
+#     }
+#
+#     df_plot <- data.frame(PC1=pca$x[,vector_dim[1]], PC2=pca$x[,vector_dim[2]], groups=groups)
+#     out <- ggplot(data = df_plot, aes(x=PC1, y=PC2, col=groups, label=groups))+
+#       geom_point()+
+#       labs(x=xlabel,
+#            y=ylabel)
+#     if(labels) out + geom_text_repel(aes(label=groups))
+#     else out
+#   }else{
+#     plot(pca$x[,vector_dim],
+#          xlab=xlabel,
+#          ylab=ylabel, ...)
+#   }
+# }
 
 #' Select at random
 giveTree <- function(nleaves){
