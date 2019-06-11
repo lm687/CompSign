@@ -603,6 +603,18 @@ dist_Aitch <- function(x){
   dist_make(x, aitch_distance, "Aitchison Distance")
 }
 
+AitchDistphyloseq = function(physeq, ...){
+  require(phyloseq)
+  # PoiClaClu expects samples as rows and taxa/variables as columns
+  if(taxa_are_rows(physeq)){
+    physeq <- t(physeq)
+  }
+  x = as(phyloseq::otu_table(physeq), "matrix")
+  dd = usedist::dist_make(x = x, distance_fcn = CompSign::aitch_distance, method = "euclidean")
+  attributes(dd)$Labels <- sample_names(physeq)
+  return(dd)
+}
+
 #########################################
 ############### DEBUGGING ###############
 #########################################
