@@ -1,7 +1,7 @@
 <!---
 ![logo simplex](logo.png ""))
 --->
-**under development**   CompSign: R package for compositional analysis of mutational signatures
+CompSign: R package for compositional analysis of mutational signatures
 
 # Installation
 
