@@ -628,6 +628,32 @@ AitchDist = function(physeq, ...){
   return(dd)
 }
 
+tomatrix <- function(mat){
+  .ncol <- ncol(mat)
+  .bool_row <- !is.null(rownames(mat))
+  .bool_col <- !is.null(colnames(mat))
+  if(.bool_row)  .tmp_rownames <- rownames(mat)
+  if(.bool_col)  .tmp_colnames <- colnames(mat)
+  mat <- matrix(sapply(mat, as.numeric), ncol=.ncol)
+  if(.bool_row)  rownames(mat) <- .tmp_rownames
+  if(.bool_col)  colnames(mat) <- .tmp_colnames
+  mat
+}
+
+amalgamate <- function(x, which_to_amalgamate, shorten_name=FALSE, length_shorten=4){
+  stopifnot(sapply(rowSums(x), all.equal, target = 1))
+  require(compositions) ## tomatrix
+  .cnames <- colnames(x)
+  .xtmp <- cbind(x[,-which_to_amalgamate], rowSums(x[,which_to_amalgamate]))
+  name_amalg <- paste0(.cnames[which_to_amalgamate], collapse = '+')
+  if(shorten_name){
+    name_amalg <- substr(name_amalg, 1, length_shorten)
+  }
+  colnames(.xtmp) <- c(.cnames[-which_to_amalgamate],
+                       name_amalg)
+  .xtmp
+}
+
 #########################################
 ############### DEBUGGING ###############
 #########################################
