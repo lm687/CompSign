@@ -716,6 +716,6 @@ normalise_rw <- function(x){
 
 normalise_cl <- function(x){
   ## normalise col-wise
-  sweep(x, 2, colSums(x), '/')
+  t(sweep(x, 2, colSums(x), '/'))
 }
 
