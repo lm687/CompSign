@@ -709,3 +709,13 @@ amalgamate <- function(x, which_to_amalgamate, shorten_name=FALSE, length_shorte
 #                                 df=data.frame(a=c(3,4,1), b=c(10, 10, 10)))
 # comp_lm(tmp_merged_compositional)
 
+normalise_rw <- function(x){
+  ## normalise row-wise
+  sweep(x, 1, rowSums(x), '/')
+}
+
+normalise_cl <- function(x){
+  ## normalise col-wise
+  sweep(x, 2, colSums(x), '/')
+}
+
