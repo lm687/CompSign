@@ -580,9 +580,13 @@ give_all_combinat <- function(Nsig, exclude_complement){
       it_partitions <- c(it_partitions, lapply(1:ncol(combinat::combn(1:Nsig, k)), function(x) combinat::combn(1:Nsig, k)[,x]))
     }
   }else{
-    stop('Not implemented yet')
+#    stop('Not implemented yet')
+    for(k in 1:floor(Nsig/2)){
+      it_partitions <- c(it_partitions, lapply(1:ncol(combinat::combn(1:Nsig, k)), function(x) combinat::combn(1:Nsig, k)[,x]))
+    }
+    it_partitions <- c(it_partitions, sapply(it_partitions, function(i) list(c(1:Nsig)[!(1:Nsig %in% i)])))
   }
-  it_partitions
+  c(list(1:Nsig), unique(it_partitions)) ## sloppy. there are duplicates if Nsig is even (not if odd)
 }
 
 remove_some_signature <- function(mat, which_sig=1){
