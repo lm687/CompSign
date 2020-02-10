@@ -723,3 +723,94 @@ normalise_cl <- function(x){
   t(sweep(x, 2, colSums(x), '/'))
 }
 
+giveTree <- function(nleaves){
+  current_tree <- lapply(1:nleaves, function(x) x)
+  current_row_signary <- lapply(1:nleaves, function(x) rep(0, nleaves))
+  while(length(current_tree) > 1){
+    idx <- sample(1:length(current_tree), 2)
+    current_tree <- c(current_tree,
+                      paste0('(', current_tree[idx[1]],
+                             ',', current_tree[idx[2]], ')'))
+    if(is.integer(current_tree[[idx[1]]]) & is.integer(current_tree[[idx[2]]])){
+      for(j in 1:2){
+        current_row_signary[[idx[j]]][idx[1]] <- 1
+        current_row_signary[[idx[j]]][idx[2]] <- -1
+      }
+    }else{
+      
+    }
+    
+    current_tree[idx] <- NULL
+  }
+  current_tree[[1]]
+}
+
+createSignary <- function(nleaves, tree=NULL){
+  
+  if(is.null(tree)){
+    tmp_tree <- giveTree(nleaves)
+  }else{
+    tmp_tree <- tree
+  }
+  signary <- matrix(NA, ncol = nleaves, nrow = (nleaves-1))
+  ct <- 1
+  
+  tmp_split <- strsplit(tmp_tree, "(?=[/(|/)/,])", perl = TRUE)[[1]]
+  idx_open <- which(tmp_split == "(")
+  idx_close <- which(tmp_split == ")")
+  if(length(idx_close) != length(idx_open)){stop('This is not a tree')}
+  
+  ## find those four indices apart
+  idx_immeditely <- which(outer(idx_close, idx_open, "-") == 4, arr.ind = TRUE)[1,]    
+  
+  while(is.na(sum(rowSums(signary)))){ ## while the signary is not completed
+    ## create signary for all of these cases
+    ## (whenever there is a (x,y) tree, just put 1 -1 and 0 elsewhere)
+    
+    X <- idx_immeditely[1];  Y <- idx_immeditely[2]
+    
+    tmp_group <- c(tmp_split[idx_open[Y]+1], tmp_split[idx_close[X]-1])
+    signary[ct,] <- 0
+    ifill <- -1
+    for(i in tmp_group){
+      if(nchar(i)==(1)){
+        signary[ct,as.numeric(i)] <- ifill
+      }else{ ## merged nodes
+        signary[ct,as.numeric(strsplit(i, '&')[[1]])] <- ifill
+      }
+      ifill <- 1
+    }
+    
+    if(is.na(sum(rowSums(signary)))){
+      ## merge together and repeat
+      if((idx_close[X]+1) > length(tmp_split)){
+        ## last round
+        tmp_split <- c(tmp_split[1:(idx_open[Y]-1)], paste(tmp_group, collapse = "&"), tmp_split[length(tmp_split)])
+      }else{
+        tmp_split <- c(tmp_split[1:(idx_open[Y]-1)], paste(tmp_group, collapse = "&"), tmp_split[(idx_close[X]+1):length(tmp_split)])
+      }
+      
+      idx_open <- which(tmp_split == "(")
+      idx_close <- which(tmp_split == ")")
+      
+      idx_immeditely <- which(outer(idx_close, idx_open, "-") == 4, arr.ind = TRUE)[1,]
+      inverse = FALSE
+      
+      ct <- ct+1
+    }
+    
+  }
+  signary[nrow(signary):1,]
+}
+
+tomatrix <- function(mat){
+  .ncol <- ncol(mat)
+  .bool_row <- !is.null(rownames(mat))
+  .bool_col <- !is.null(colnames(mat))
+  if(.bool_row)  .tmp_rownames <- rownames(mat)
+  if(.bool_col)  .tmp_colnames <- colnames(mat)
+  mat <- matrix(sapply(mat, as.numeric), ncol=.ncol)
+  if(.bool_row)  rownames(mat) <- .tmp_rownames
+  if(.bool_col)  colnames(mat) <- .tmp_colnames
+  mat
+}
