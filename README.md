@@ -7,3 +7,8 @@ CompSign: An R package for differential abundace of compositional mutational sig
 
     library(devtools)
     devtools::install_github("lm687/CompSign")
+
+
+# Display
+## Display A: files that contain exposures
+X, Z matrices
