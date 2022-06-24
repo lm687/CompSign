@@ -1,4 +1,4 @@
-![logo simplex](compsign.png ""))
+![logo simplex](compsign2.png ""))
 
 CompSign: An R package for differential abundace of compositional mutational signatures
 
