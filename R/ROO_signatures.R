@@ -803,6 +803,125 @@ createSignary <- function(nleaves, tree=NULL){
   signary[nrow(signary):1,]
 }
 
+give_labels_tree= function(tree){
+ .x =  strsplit(tree, "(?=[/(|/)/,])", perl = TRUE)[[1]]
+ .x
+}
+
+give_idx_binary_split = function(split_labels_tree){
+  ## to find where it ends, count the number of parentehesis that open and stop where the number of parenthesis that close matches it
+  num_close = 0; num_open = 1; idx = 2 ## init
+  while(num_close != num_open & idx <= length(split_labels_tree) ){
+    .label_it = split_labels_tree[idx]
+    if(.label_it == ")"){
+      num_close = num_close + 1
+    }else if(.label_it == "("){
+      num_open = num_open + 1
+    }
+    idx = idx + 1
+  }
+  idx
+}
+
+## as_numeric_bool: are the labels numeric?
+standardise_tree = function(tree, as_numeric_bool){
+  stop('Deprecated. See <standardise_list_tree>')
+#   ## put trees in a common shape, i.e. sorted, so that two trees can be easily compared
+#   split_labels_tree = give_labels_tree(tree)
+#   num_labels_tree = sum(!(split_labels_tree %in% c(")", "(", ",")))
+#   num_labels_tree
+#   
+#   if(num_labels_tree > 2){
+#     ## continue splitting further
+#     
+#     ## remove outer parentheses
+#     split_labels_tree = split_labels_tree[-c(1, length(split_labels_tree))]
+#     
+#     ## open the first parenthesis, and split into two
+#     idx_split = give_idx_binary_split(split_labels_tree)
+#     
+#     if(idx_split == (length(split_labels_tree)+1) | idx_split == (length(split_labels_tree))){
+#       ## it's 1 vs all others
+#       split_labels_tree_naked = split_labels_tree
+#       idx_comma = which(c(split_labels_tree_naked[2], split_labels_tree_naked[length(split_labels_tree_naked)-1]) == ",")
+#       part_a_full = c("(", split_labels_tree[1:(idx_comma)], ")") #paste0(c(paste0(split_labels_tree[1:(idx_comma+1)], collapse = ""),  ")"), collapse = "")
+#       part_b_full = c("(", split_labels_tree[(idx_comma+3):length(split_labels_tree)], ")")
+#     }else{
+#       part_a_full = split_labels_tree[1:(idx_split-1)]
+#       part_b_full = split_labels_tree[(idx_split+1):length(split_labels_tree)]
+#     }
+#     
+#     ## change the order depending on where is the smallest
+#     part_a = part_a_full[! (part_a_full %in% c(")", "(", ","))]
+#     part_b = part_b_full[! (part_b_full %in% c(")", "(", ","))]
+#     if(as_numeric_bool){
+#       bool_min_in_a = min(as.numeric(part_a)) < min(as.numeric(part_b))
+#     }else{
+#       bool_min_in_a = min((part_a)) < min((part_b))
+#     }
+#     
+#     cat(part_a_full, '\t\t', part_b_full, '\n')
+#     
+#     ## we'll make part a be the one with smallest labels
+#     if(!bool_min_in_a){
+#       ## need to change it
+#       a = standardise_tree(paste0(part_b_full, collapse = ""), as_numeric_bool)
+#       b = standardise_tree(paste0(part_a_full, collapse = ""), as_numeric_bool)
+#     }else{
+#       ## good as it is
+#       a = standardise_tree(paste0(part_a_full, collapse = ""), as_numeric_bool)
+#       b = standardise_tree(paste0(part_b_full, collapse = ""), as_numeric_bool)
+#     }
+#     
+#     return(paste0(a,b, collapse=""))
+# 
+#   }else{
+#     ## end
+#     if(num_labels_tree == 1){
+#       return(tree)
+#     }else if(num_labels_tree == 2){
+#       ## sort it. Here we know what the indices are as it's always in the format "(X,Y)"
+#       part_a = split_labels_tree[2]
+#       part_b = split_labels_tree[4]
+#       if(as_numeric_bool){
+#         bool_min_in_a = min(as.numeric(part_a)) < min(as.numeric(part_b))
+#       }else{
+#         bool_min_in_a = min((part_a)) < min((part_b))
+#       }
+#       
+#       if(!bool_min_in_a){
+#         ## change it
+#         return(paste0("(", split_labels_tree[4], ",", split_labels_tree[2], ")"))
+#       }else{
+#         ## leave it as it is
+#         return(tree)
+#       }
+#       
+#     }
+#   }
+}
+
+standardise_list_tree = function(list_tree){
+  if(length(list_tree[[1]]) == 2 | length(list_tree[[2]]) == 2){ ## tree continues
+    null_bool = sapply(list_tree, is.null)
+    if(sum(!null_bool) == 2){
+      .idx_change = (which.min(sapply(list_tree, function(i) min(unlist(i)))))-1
+      return(list(standardise_list_tree(list_tree[[.idx_change+1]]), standardise_list_tree(list_tree[[(1-.idx_change)+1]])))
+    }else{
+      return(list_tree)
+    }
+  }else{
+    ## it's not a list, just a value
+    null_bool = sapply(list_tree, is.null)
+    if(sum(!null_bool) == 2){
+      .idx_change = (which.min(sapply(list_tree, function(i) min(unlist(i)))))-1
+      return(list(list_tree[[.idx_change+1]], list_tree[[(1-.idx_change)+1]]))
+    }else{
+      return(list_tree)
+    }
+  }
+}
+
 tomatrix <- function(mat){
   .ncol <- ncol(mat)
   .bool_row <- !is.null(rownames(mat))
@@ -813,4 +932,13 @@ tomatrix <- function(mat){
   if(.bool_row)  rownames(mat) <- .tmp_rownames
   if(.bool_col)  colnames(mat) <- .tmp_colnames
   mat
+}
+
+give_orthonormal_basis_rw <- function(signary_rw){
+  r = sum(signary_rw == 1)
+  s = sum(signary_rw == (-1))
+  x = sqrt((r*s)/(r+s))
+  signary_rw[signary_rw == 1] = 1/r*x
+  signary_rw[signary_rw == -1] = -1/s*x
+  signary_rw
 }
