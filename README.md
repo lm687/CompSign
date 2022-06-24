@@ -1,5 +1,5 @@
 <!-- ![logo simplex](compsign2.png "") -->
-<img src="compsign2.png" alt="logo" width="200"/>
+<img src="compsign2.png" alt="logo" width="400"/>
 
 CompSign: An R package for differential abundace of compositional mutational signatures
 
