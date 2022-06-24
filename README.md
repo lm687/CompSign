@@ -1,5 +1,5 @@
 <!---
-![logo simplex](logo.png ""))
+![logo simplex](compsign.png ""))
 --->
 CompSign: R package for compositional analysis of mutational signatures
 
