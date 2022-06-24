@@ -1,7 +1,6 @@
-<!---
-![logo simplex](logo.png ""))
---->
-CompSign: R package for compositional analysis of mutational signatures
+![logo simplex](compsign.png ""))
+
+CompSign: An R package for differential abundace of compositional mutational signatures
 
 # Installation
 
