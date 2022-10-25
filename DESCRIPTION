@@ -20,4 +20,6 @@ Imports:
     dendextend,
     Compositional,
     usedist
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.2
+Depends: TMB, RcppEigen
+LinkingTo: TMB, RcppEigen

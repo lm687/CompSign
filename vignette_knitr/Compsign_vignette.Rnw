@@ -1,0 +1,93 @@
+\documentclass{article}
+
+\usepackage{hyperref}
+\usepackage[backend=bibtex, maxnames=10]{biblatex}
+\usepackage{xargs}
+\usepackage{xcolor}
+\usepackage{soul}
+
+\title{Package \textbf{CompSign}}
+\author{Lena Morrill}
+\date{October 2022}
+
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{-0.1in}
+\setlength{\textheight}{8.6in}
+\setlength{\topmargin}{-0.4in}
+
+\begin{document}
+
+\maketitle
+
+\textbf{CompSign} is a toolkit for differential abundance analysis of mutational signatures using a mixed effects Dirichlet-multinominal model (or simpler variations). The compositional nature of mutational signature exposures has often been overlooked but has important implications, as the analyses must be done in relative terms.
+
+\tableofcontents
+
+\section{Installation}
+\texttt{CompSign} can be installed as usual from github:
+
+<<include=TRUE, eval=FALSE>>=
+library(devtools)
+devtools::install_github("lm687/CompSign")
+@
+
+<<include=TRUE, eval=TRUE>>=
+library(CompSign)
+library(gridExtra)
+library(TMB)
+# setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
+@
+
+\section{Datasets}
+<<>>=
+## if the folder data/ is not in github
+for(i in list.files("../inst/extdata/", pattern = "*RDA", full.names = TRUE)){load(i)}
+@
+
+The package contains the following datasets of exposures of mutational signatures and metadata of the corresponding samples. These datasets are:
+\begin{itemize}
+\item \verb|PancEndocrine_signaturesMSE|: Signature exposures for early and late mutations, in the PCAWG Panc-Endocrine cohort
+\item  \verb|ProstAdenoCA_chrom|: Signature exposures for each chromosome, in the PCAWG Prost-AdenoCA cohort
+\end{itemize}
+
+\verb|PancEndocrine_signaturesMSE| is an object of class \verb|sign|
+
+<<loading_panc-endocrine>>=
+PancEndocrine_signaturesMSE = load_PCAWG("../inst/extdata/roo/Panc-Endocrine_signaturesMSE_ROO.RDS",
+                                         read_directly = T,
+                                         typedata = "signaturesMSE", override_warning_X_Z = T)
+PancEndocrine_signaturesMSE_v2 = load_PCAWG(ct = "Panc-Endocrine", typedata = "signaturesMSE", path_to_data = "../inst/extdata/", load_all_sigs = F, override_warning_X_Z = T)
+
+@
+
+<<panc-endocrine>>=
+# PancEndocrine_signaturesMSE
+@
+
+<<>>=
+do.call('grid.arrange', lapply(split_matrix_in_half(PancEndocrine_signaturesMSE$Y), function(i) createBarplot(normalise_rw(i), remove_labels = T)))
+@
+
+<<panc-endocrine2>>=
+
+createBarplot(normalise_rw(non_duplicated_rows(PancEndocrine_signaturesMSE$Y)),
+              order_labels = names(sort(non_duplicated_rows(PancEndocrine_signaturesMSE$Y)[,'SBS3'],
+                                        decreasing = F)), remove_labels=T)+ggtitle('Sorted by SBS3')
+
+@
+
+<<panc-endocrine3>>=
+
+TMB::compile("../R/mm_multinomial/fullRE_ME_dirichletmultinomial.cpp",  "-std=gnu++17")
+dyn.load(dynlib("../R/mm_multinomial/fullRE_ME_dirichletmultinomial"))
+
+
+fullDM_no_small_sigs <- wrapper_run_TMB(object = give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,
+                           sigs_to_remove = c('SBS13', 'SBS17a', 'SBS17b', 'SBS30')),
+                                        model = "fullRE_DM", use_nlminb=T, smart_init_vals=F)
+@
+
+
+\end{document}
+% ProstAdenoCA_chrom = readRDS("../inst/extdata/roo/ProstAdenoCA_chrom.RDS")

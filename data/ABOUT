@@ -2,4 +2,5 @@
   Datasets
 ------------
 
-three_comp_linear_relation.rda: created with simulatedata.R from CDA_for_Cancer
+PancEndocrine_signaturesMSE.RDA	Signature exposures for early and late mutations, in the PCAWG Panc-Endocrine cohort 
+ProstAdenoCA_chrom.RDA	Signature exposures for each chromosome, in the PCAWG Prost-AdenoCA cohort
