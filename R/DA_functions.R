@@ -38,11 +38,10 @@ sort_columns_TMB_SBS1 = function(object){
 #' @param smart_init_vals: boolean, whether a fixed-effects multinomial regression should be run first to get initial estimates
 #' @param use_nlminb: boolean, whether <nlminb> should be used for estimation. Alternatively, <optim> is used
 #' @param initial_params: (optional) list of initial parameters for estimation
-#' @useDynLib diagRE_dirichletmultinomial_single_lambda.cpp
-#' @useDynLib diagRE_ME_dirichletmultinomial.cpp
-#' @useDynLib diagRE_ME_dirichletmultinomialreducedmodel.cpp
-#' @useDynLib diagRE_ME_multinomial.cpp
-#' @useDynLib FE_dirichletmultinomial_single_lambda copy.cpp
+#' @useDynLib diagRE_dirichletmultinomial_single_lambda
+#' @useDynLib diagRE_ME_dirichletmultinomial
+#' @useDynLib diagRE_ME_dirichletmultinomialreducedmodel
+#' @useDynLib diagRE_ME_multinomial
 #' @useDynLib FE_dirichletmultinomial_single_lambda.cpp
 #' @useDynLib FE_dirichletmultinomial.cpp
 #' @useDynLib FE_multinomial.cpp
@@ -54,7 +53,7 @@ sort_columns_TMB_SBS1 = function(object){
 #' @useDynLib fullRE_ME_dirichletmultinomial_onefixedlambda3.cpp
 #' @useDynLib fullRE_ME_dirichletmultinomial_sparsecov.cpp
 #' @useDynLib fullRE_ME_dirichletmultinomial_sparsecov2.cpp
-#' @useDynLib fullRE_ME_dirichletmultinomial.cpp
+#' @useDynLib fullRE_ME_dirichletmultinomial
 #' @useDynLib fullRE_ME_dirichletmultinomialnoscaling.cpp
 #' @useDynLib fullRE_ME_halfdirichletmultinomial.cpp
 #' @useDynLib fullRE_ME_multinomial_REv2.cpp
@@ -63,6 +62,7 @@ sort_columns_TMB_SBS1 = function(object){
 #' @useDynLib functions.hpp
 #' @useDynLib ME_dirichletmultinomial_single_lambda.cpp
 #' @useDynLib singleRE_dirichlet_multinomial.cpp
+#' @importFrom Rcpp evalCpp
 wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, initial_params=NULL){
   ## sort_columns=F, 
   

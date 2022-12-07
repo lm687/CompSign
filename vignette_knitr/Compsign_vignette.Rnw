@@ -26,7 +26,11 @@
 \section{Installation}
 \texttt{CompSign} can be installed as usual from github:
 
-<<include=TRUE, eval=FALSE>>=
+<<>>=
+# setwd("~/Documents/PhD/CompSign/vignette_knitr/")
+@
+
+<<include=TRUE, eval=TRUE>>=
 library(devtools)
 devtools::install_github("lm687/CompSign")
 @
@@ -79,8 +83,8 @@ createBarplot(normalise_rw(non_duplicated_rows(PancEndocrine_signaturesMSE$Y)),
 
 <<panc-endocrine3>>=
 
-TMB::compile("../R/mm_multinomial/fullRE_ME_dirichletmultinomial.cpp",  "-std=gnu++17")
-dyn.load(dynlib("../R/mm_multinomial/fullRE_ME_dirichletmultinomial"))
+# TMB::compile("../R/mm_multinomial/fullRE_ME_dirichletmultinomial.cpp",  "-std=gnu++17")
+# dyn.load(dynlib("../R/mm_multinomial/fullRE_ME_dirichletmultinomial"))
 
 
 fullDM_no_small_sigs <- wrapper_run_TMB(object = give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,

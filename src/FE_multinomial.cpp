@@ -15,7 +15,6 @@ Type objective_function<Type>::operator() ()
   DATA_MATRIX(x);
   PARAMETER_MATRIX(beta);
   int d_min1 = d - 1;
-  int d_min2 = d - 2;
 
   matrix<Type> theta_prime(n,d_min1); // The probabilities of each event (in ALR)
   theta_prime = x * beta;

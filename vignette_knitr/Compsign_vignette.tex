@@ -80,21 +80,34 @@
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(devtools)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: usethis}}\begin{alltt}
 \hlstd{devtools}\hlopt{::}\hlkwd{install_github}\hlstd{(}\hlstr{"lm687/CompSign"}\hlstd{)}
 \end{alltt}
-\end{kframe}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Skipping install of 'CompSign' from a github remote, the SHA1 (723e4ee3) has not changed since last install.\\\#\# \ \ Use `force = TRUE` to force installation}}\end{kframe}
 \end{knitrout}
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(CompSign)}
-\hlkwd{library}\hlstd{(gridExtra)}
-\hlkwd{library}\hlstd{(TMB)}
 \end{alltt}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'TMB' was built under R version 4.0.5}}\end{kframe}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: TMB}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'TMB' was built under R version 4.0.5}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: RcppEigen}}\begin{alltt}
+\hlkwd{library}\hlstd{(gridExtra)}
+\hlkwd{library}\hlstd{(TMB)}
+\hlcom{# setwd(dirname(rstudioapi::getSourceEditorContext()$path))}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 
 \section{Datasets}
@@ -176,6 +189,10 @@ The package contains the following datasets of exposures of mutational signature
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
+\hlcom{# TMB::compile("../R/mm_multinomial/fullRE_ME_dirichletmultinomial.cpp",  "-std=gnu++17")}
+\hlcom{# dyn.load(dynlib("../R/mm_multinomial/fullRE_ME_dirichletmultinomial"))}
+
+
 \hlstd{fullDM_no_small_sigs} \hlkwb{<-} \hlkwd{wrapper_run_TMB}\hlstd{(}\hlkwc{object} \hlstd{=} \hlkwd{give_subset_sigs_TMBobj}\hlstd{(PancEndocrine_signaturesMSE,}
                            \hlkwc{sigs_to_remove} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{'SBS13'}\hlstd{,} \hlstr{'SBS17a'}\hlstd{,} \hlstr{'SBS17b'}\hlstd{,} \hlstr{'SBS30'}\hlstd{)),}
                                         \hlkwc{model} \hlstd{=} \hlstr{"fullRE_DM"}\hlstd{,} \hlkwc{use_nlminb}\hlstd{=T,} \hlkwc{smart_init_vals}\hlstd{=F)}
