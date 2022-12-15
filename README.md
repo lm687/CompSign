@@ -8,18 +8,6 @@ CompSign: An R package for differential abundace of compositional mutational sig
     library(devtools)
     devtools::install_github("lm687/CompSign")
 
-
-
-setwd("/Users/morril01/Documents/PhD/CompSign")
-setwd("/Users/morril01/Documents/PhD/")
-system("R CMD build CompSign/")
-system("R CMD check CompSign_0.1.0.tar.gz")
-system("R CMD INSTALL CompSign_0.1.0.tar.gz")
-
-# Display
-## Display A: files that contain exposures
-X, Z matrices
-
 # Variations of the models
 
 The first row is the `<model>` argument in the function `wrapper_run_TMB()`.
