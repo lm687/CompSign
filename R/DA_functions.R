@@ -40,28 +40,15 @@ sort_columns_TMB_SBS1 = function(object){
 #' @param initial_params: (optional) list of initial parameters for estimation
 #' @useDynLib diagRE_dirichletmultinomial_single_lambda
 #' @useDynLib diagRE_ME_dirichletmultinomial
-#' @useDynLib diagRE_ME_dirichletmultinomialreducedmodel
 #' @useDynLib diagRE_ME_multinomial
-#' @useDynLib FE_dirichletmultinomial_single_lambda.cpp
-#' @useDynLib FE_dirichletmultinomial.cpp
-#' @useDynLib FE_multinomial.cpp
-#' @useDynLib fullRE_dirichletmultinomial_single_lambda_REv2.cpp
-#' @useDynLib fullRE_dirichletmultinomial_single_lambda.cpp
-#' @useDynLib fullRE_dirichletmultinomial_single_lambda2.cpp
-#' @useDynLib fullRE_ME_dirichletmultinomial_onefixedlambda.cpp
-#' @useDynLib fullRE_ME_dirichletmultinomial_onefixedlambda2.cpp
-#' @useDynLib fullRE_ME_dirichletmultinomial_onefixedlambda3.cpp
-#' @useDynLib fullRE_ME_dirichletmultinomial_sparsecov.cpp
-#' @useDynLib fullRE_ME_dirichletmultinomial_sparsecov2.cpp
+#' @useDynLib FE_dirichletmultinomial_single_lambda
+#' @useDynLib FE_dirichletmultinomial
+#' @useDynLib fullRE_dirichletmultinomial_single_lambda
+#' @useDynLib fullRE_ME_dirichletmultinomial_onefixedlambda
 #' @useDynLib fullRE_ME_dirichletmultinomial
-#' @useDynLib fullRE_ME_dirichletmultinomialnoscaling.cpp
-#' @useDynLib fullRE_ME_halfdirichletmultinomial.cpp
-#' @useDynLib fullRE_ME_multinomial_REv2.cpp
-#' @useDynLib fullRE_ME_multinomial.cpp
-#' @useDynLib fullRE_ME_singlelambda_dirichletmultinomial.cpp
+#' @useDynLib fullRE_ME_multinomial
+#' @useDynLib singleRE_dirichlet_multinomial
 #' @useDynLib functions.hpp
-#' @useDynLib ME_dirichletmultinomial_single_lambda.cpp
-#' @useDynLib singleRE_dirichlet_multinomial.cpp
 #' @importFrom Rcpp evalCpp
 wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, initial_params=NULL){
   ## sort_columns=F, 
@@ -127,28 +114,6 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     parameters <- c(parameters,list(log_lambda = matrix(c(2))))
     dll_name <- "fullRE_ME_dirichletmultinomial_onefixedlambda"
     rdm_vec <- "u_large"
-  }else if(model == "fullRE_DMonefixedlambda2"){
-    ## fixing one of the overdispersion parameters
-    data$num_individuals = n
-    data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
-    parameters <- c(parameters,list(log_lambda = matrix(c(2))))
-    dll_name <- "fullRE_ME_dirichletmultinomial_onefixedlambda2"
-    rdm_vec <- "u_large"
-  }else if(model == "fullRE_DMonefixedlambda3"){
-    ## fixing one of the overdispersion parameters
-    data$num_individuals = n
-    data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
-    parameters <- c(parameters,list(log_lambda = matrix(c(2))))
-    dll_name <- "fullRE_ME_dirichletmultinomial_onefixedlambda3"
-    rdm_vec <- "u_large"
-  }else if(model == "fullREDMnoscaling"){
-    data$num_individuals = n
-    data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
-    parameters <- c(parameters, log_lambda = list(matrix(c(2,2))))
-    parameters$logs_sd_RE = NULL
-    print(parameters)
-    dll_name <- "fullRE_ME_dirichletmultinomialnoscaling"
-    rdm_vec <- "u_large"
   }else if(model == "diagRE_DM"){
     data$num_individuals = n
     data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
@@ -182,13 +147,6 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     parameters <- list(parameters, log_lambda = 1.1)
     rdm_vec <- "u_large"
     dll_name <- "CHANGETHIS"
-  }else if(model == "fullREDMsinglelambda2"){
-    data$num_individuals = n
-    data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
-    
-    parameters <- list(parameters, log_lambda = 1.1)
-    rdm_vec <- "u_large"
-    dll_name <- "fullRE_dirichletmultinomial_single_lambda2"
   }else if(model == "diagREDMsinglelambda"){
     data$num_individuals = n
     data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
@@ -221,20 +179,6 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     
     dll_name <- "FE_dirichletmultinomial_single_lambda"
     rdm_vec <- NULL
-    
-  }else if(model == "fullRE_dirichletmultinomial_singlelambda_REv2"){
-    data$num_individuals = n
-    
-    parameters$u_large = NULL
-    parameters <- list(parameters,
-                       u_large1 = matrix(runif(n)),
-                       u_large2 = matrix(runif(n)),
-                       u_large3 = matrix(runif(n)),
-                       u_large4 = matrix(runif(n)),
-                       log_lambda=1.2)
-    
-    rdm_vec <- c("u_large1", "u_large2","u_large3", "u_large4")
-    dll_name <- "fullRE_dirichletmultinomial_single_lambda_REv2"
     
   }else if(model == "fullRE_multinomial_REv2"){
     data$num_individuals = n

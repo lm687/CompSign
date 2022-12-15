@@ -27,12 +27,13 @@
 \texttt{CompSign} can be installed as usual from github:
 
 <<>>=
-# setwd("~/Documents/PhD/CompSign/vignette_knitr/")
+rm(list = ls())
+setwd("~/Documents/PhD/CompSign/vignette_knitr/")
 @
 
 <<include=TRUE, eval=TRUE>>=
-library(devtools)
-devtools::install_github("lm687/CompSign")
+# library(devtools)
+# devtools::install_github("lm687/CompSign")
 @
 
 <<include=TRUE, eval=TRUE>>=
@@ -87,9 +88,41 @@ createBarplot(normalise_rw(non_duplicated_rows(PancEndocrine_signaturesMSE$Y)),
 # dyn.load(dynlib("../R/mm_multinomial/fullRE_ME_dirichletmultinomial"))
 
 
-fullDM_no_small_sigs <- wrapper_run_TMB(object = give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,
-                           sigs_to_remove = c('SBS13', 'SBS17a', 'SBS17b', 'SBS30')),
-                                        model = "fullRE_DM", use_nlminb=T, smart_init_vals=F)
+# fullDM_no_small_sigs <- wrapper_run_TMB(object = give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,
+#                            sigs_to_remove = c('SBS13', 'SBS17a', 'SBS17b', 'SBS30')),
+#                                         model = "fullRE_DM", use_nlminb=T, smart_init_vals=F)
+# 
+# diagDM_no_small_sigs <- wrapper_run_TMB(object = give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,
+#                            sigs_to_remove = c('SBS13', 'SBS17a', 'SBS17b', 'SBS30')),
+#                                         model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
+
+diagDM_no_small_sigs <- wrapper_run_TMB(object = give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,
+                                                                         sigs_to_remove = c('SBS13', 'SBS17a', 'SBS17b', 'SBS30')),
+                                        model = "diagREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
+
+
+
+res <- wrapper_run_TMB(object = dataset_subset,
+                       model = "diagRE_dirichletmultinomial_single_lambda", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = dataset_subset,
+                       model = "diagRE_ME_dirichletmultinomial", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = dataset_subset,
+                       model = "diagRE_ME_multinomial", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = dataset_subset,
+                       model = "FE_dirichletmultinomial_single_lambda", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = dataset_subset,
+                       model = "FE_dirichletmultinomial", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = dataset_subset,
+                       model = "fullRE_dirichletmultinomial_single_lambda", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = dataset_subset,
+                       model = "fullRE_ME_dirichletmultinomial_onefixedlambda", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = dataset_subset,
+                       model = "fullRE_ME_dirichletmultinomial", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = dataset_subset,
+                       model = "fullRE_ME_multinomial", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = dataset_subset,
+                       model = "singleRE_dirichlet_multinomial", use_nlminb=T, smart_init_vals=F)
+
 @
 
 

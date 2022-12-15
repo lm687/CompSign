@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.8.1)  5 DEC 2022 09:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.8.1)  15 DEC 2022 21:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -547,45 +547,38 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 82.
-
-Overfull \hbox (7.99084pt too wide) in paragraph at lines 91--91
-[]\OT1/cmtt/m/it/10 ## Skipping install of 'CompSign' from a github remote, the
- SHA1 (723e4ee3) has not changed
- []
-
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 118
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 121
 .
+
 (/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/omscmtt.fd
 File: omscmtt.fd 
 )
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 118.
-
-[1
-
-{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 125.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 121.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 128.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 125.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 128.
+ [1
 
-Overfull \hbox (55.24043pt too wide) in paragraph at lines 134--134
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (55.24043pt too wide) in paragraph at lines 137--137
 [][]\OT1/cmtt/m/n/10 PancEndocrine_signaturesMSE[] []=[] []load_PCAWG[][]([][]"
 ../inst/extdata/roo/Panc-Endocrine_signaturesMSE_ROO.RDS"[][],[][] 
  []
 
 
-Overfull \hbox (23.7407pt too wide) in paragraph at lines 136--136
+Overfull \hbox (23.7407pt too wide) in paragraph at lines 139--139
 []                                         []\OT1/cmtt/m/n/10 typedata[] []=[] 
 []"signaturesMSE"[][],[] []override_warning_X_Z[] []= T)[][] 
  []
 
 
-Overfull \hbox (443.73705pt too wide) in paragraph at lines 143--143
+Overfull \hbox (443.73705pt too wide) in paragraph at lines 146--146
 [][]\OT1/cmtt/m/n/10 PancEndocrine_signaturesMSE_v2[] []=[] []load_PCAWG[][]([]
 []ct[] []=[] []"Panc-Endocrine"[][],[] []typedata[] []=[] []"signaturesMSE"[][]
 ,[] []path_to_data[] []=[] []"../inst/extdata/"[][],[] []load_all_sigs[] []= F,
@@ -593,32 +586,32 @@ Overfull \hbox (443.73705pt too wide) in paragraph at lines 143--143
  []
 
 
-Overfull \hbox (301.98828pt too wide) in paragraph at lines 159--159
+Overfull \hbox (301.98828pt too wide) in paragraph at lines 162--162
 [][]\OT1/cmtt/m/n/10 do.call[][]([][]^^Mgrid.arrange^^M[][],[] []lapply[][]([][
 ]split_matrix_in_half[][](PancEndocrine_signaturesMSE[][]$[][]Y),[] []function[
 ][]([][]i[][])[] []createBarplot[][]([][]normalise_rw[][](i),[] []remove_labels
 [] []= T)))[][] 
  []
 
-<figure/unnamed-chunk-4-1.pdf, id=27, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-4-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-4-1.pdf  used on input line 172.
+<figure/unnamed-chunk-5-1.pdf, id=28, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-5-1.pdf  used on input line 175.
 (pdftex.def)             Requested size: 469.75499pt x 469.76265pt.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 172--174
+Overfull \hbox (15.0pt too wide) in paragraph at lines 175--177
 [][]
  []
 
 [2]
-Overfull \hbox (55.24043pt too wide) in paragraph at lines 179--179
+Overfull \hbox (55.24043pt too wide) in paragraph at lines 182--182
 []              []\OT1/cmtt/m/n/10 order_labels[] []=[] []names[][]([][]sort[][
 ]([][]non_duplicated_rows[][](PancEndocrine_signaturesMSE[][]$[][]Y)[,[][]^^MSB
 S3^^M[][]],[][] 
  []
 
 
-Overfull \hbox (55.24043pt too wide) in paragraph at lines 180--180
+Overfull \hbox (55.24043pt too wide) in paragraph at lines 183--183
 []                                        []\OT1/cmtt/m/n/10 decreasing[] []= F
 )),[] []remove_labels[][]=T)[][]+[][]ggtitle[][]([][]^^MSorted by SBS3^^M[][])[
 ][] 
@@ -627,52 +620,204 @@ Overfull \hbox (55.24043pt too wide) in paragraph at lines 180--180
 <figure/panc-endocrine2-1.pdf, id=33, 505.89pt x 505.89pt>
 File: figure/panc-endocrine2-1.pdf Graphic file (type pdf)
 <use figure/panc-endocrine2-1.pdf>
-Package pdftex.def Info: figure/panc-endocrine2-1.pdf  used on input line 186.
+Package pdftex.def Info: figure/panc-endocrine2-1.pdf  used on input line 189.
 (pdftex.def)             Requested size: 469.75499pt x 469.76265pt.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 186--188
+Overfull \hbox (15.0pt too wide) in paragraph at lines 189--191
 [][]
  []
 
-[3 <./figure/unnamed-chunk-4-1.pdf>]
-Overfull \hbox (60.49039pt too wide) in paragraph at lines 196--196
-[][]\OT1/cmtt/m/n/10 fullDM_no_small_sigs[] []<-[] []wrapper_run_TMB[][]([][]ob
+[3 <./figure/unnamed-chunk-5-1.pdf>]
+Overfull \hbox (72.72641pt too wide) in paragraph at lines 199--199
+[][]\OT1/cmtt/m/it/10 # fullDM_no_small_sigs <- wrapper_run_TMB(object = give_s
+ubset_sigs_TMBobj(PancEndocrine_signaturesMSE,[][] 
+ []
+
+
+Overfull \hbox (30.72678pt too wide) in paragraph at lines 201--201
+[][]\OT1/cmtt/m/it/10 #                                         model = "fullRE
+_DM", use_nlminb=T, smart_init_vals=F)[][] 
+ []
+
+
+Overfull \hbox (72.72641pt too wide) in paragraph at lines 203--203
+[][]\OT1/cmtt/m/it/10 # diagDM_no_small_sigs <- wrapper_run_TMB(object = give_s
+ubset_sigs_TMBobj(PancEndocrine_signaturesMSE,[][] 
+ []
+
+
+Overfull \hbox (30.72678pt too wide) in paragraph at lines 205--205
+[][]\OT1/cmtt/m/it/10 #                                         model = "diagRE
+_DM", use_nlminb=T, smart_init_vals=F)[][] 
+ []
+
+
+Overfull \hbox (60.49039pt too wide) in paragraph at lines 207--207
+[][]\OT1/cmtt/m/n/10 diagDM_no_small_sigs[] []<-[] []wrapper_run_TMB[][]([][]ob
 ject[] []=[] []give_subset_sigs_TMBobj[][](PancEndocrine_signaturesMSE,[][] 
  []
 
 
-Overfull \hbox (18.49075pt too wide) in paragraph at lines 198--198
-[]                                        []\OT1/cmtt/m/n/10 model[] []=[] []"f
-ullRE_DM"[][],[] []use_nlminb[][]=T,[] []smart_init_vals[][]=F)[][] 
+Overfull \hbox (217.98901pt too wide) in paragraph at lines 208--208
+[]                                                                         []\O
+T1/cmtt/m/n/10 sigs_to_remove[] []=[] []c[][]([][]^^MSBS13^^M[][],[] []^^MSBS17
+a^^M[][],[] []^^MSBS17b^^M[][],[] []^^MSBS30^^M[][])),[][] 
  []
 
 
-Overfull \hbox (34.24062pt too wide) in paragraph at lines 202--202
-[]\OT1/cmtt/m/n/10 ## Error in .Call("getParameterOrder", data, parameters, new
-.env(), NULL, : "getParameterOrder"
+Overfull \hbox (76.24025pt too wide) in paragraph at lines 209--209
+[]                                        []\OT1/cmtt/m/n/10 model[] []=[] []"d
+iagREDMsinglelambda"[][],[] []use_nlminb[][]=T,[] []smart_init_vals[][]=F)[][] 
+
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 206.
-[4 <./figure/panc-endocrine2-1.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
+
+Underfull \vbox (badness 1394) detected at line 1074
+ []
+
+[4 <./figure/panc-endocrine2-1.pdf>] [5]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[6]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[7]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[8]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[9]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[10]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[11]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[12]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[13]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[14]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[15]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[16]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[17]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[18]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[19]
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1074
+ []
+
+[20]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1078.
+ [21]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1078.
  (./Compsign_vignette.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1078.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1078.
+
 Package rerunfilecheck Info: File `Compsign_vignette.out' has not changed.
 (rerunfilecheck)             Checksum: E8FFFF36A310676AC8E181B3A61F3A84;90.
 Package logreq Info: Writing requests to 'Compsign_vignette.run.xml'.
 \openout1 = `Compsign_vignette.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1078.
  ) 
 Here is how much of TeX's memory you used:
- 12527 strings out of 492616
- 210549 string characters out of 6129482
- 675441 words of memory out of 5000000
- 16326 multiletter control sequences out of 15000+600000
+ 12543 strings out of 492616
+ 210645 string characters out of 6129482
+ 776441 words of memory out of 5000000
+ 16325 multiletter control sequences out of 15000+600000
  8544 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,6n,44p,940b,789s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,6n,50p,940b,789s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb>
@@ -681,10 +826,10 @@ usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
 local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
 ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Compsign_vignette.pdf (4 pages, 140857 bytes).
+Output written on Compsign_vignette.pdf (21 pages, 157030 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
- 8 named destinations out of 1000 (max. 500000)
+ 159 PDF objects out of 1000 (max. 8388607)
+ 122 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
  27 words of extra memory for PDF output out of 10000 (max. 10000000)
 
