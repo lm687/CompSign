@@ -1,7 +1,8 @@
 <!-- ![logo simplex](compsign2.png "") -->
 <img src="compsign3.png" alt="logo" width="400"/>
 
-CompSign: An R package for differential abundace of compositional mutational signatures
+CompSign: An R package for differential abundance of compositional mutational signatures
+Lena Morrill 2022
 
 # Installation
 
