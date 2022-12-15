@@ -101,28 +101,26 @@ diagDM_no_small_sigs <- wrapper_run_TMB(object = give_subset_sigs_TMBobj(PancEnd
                                         model = "diagREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
 
 
-
 res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "diagRE_dirichletmultinomial_single_lambda", use_nlminb=T, smart_init_vals=F)
+                       model = "diagREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "diagRE_ME_dirichletmultinomial", use_nlminb=T, smart_init_vals=F)
+                       model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "diagRE_ME_multinomial", use_nlminb=T, smart_init_vals=F)
+                       model = "diagRE_M", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "FE_dirichletmultinomial_single_lambda", use_nlminb=T, smart_init_vals=F)
+                       model = "FEDMsinglelambda", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "FE_dirichletmultinomial", use_nlminb=T, smart_init_vals=F)
+                       model = "FE_DM", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "fullRE_dirichletmultinomial_single_lambda", use_nlminb=T, smart_init_vals=F)
+                       model = "fullREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "fullRE_ME_dirichletmultinomial_onefixedlambda", use_nlminb=T, smart_init_vals=F)
+                       model = "fullRE_DMonefixedlambda", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "fullRE_ME_dirichletmultinomial", use_nlminb=T, smart_init_vals=F)
+                       model = "fullRE_DM", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "fullRE_ME_multinomial", use_nlminb=T, smart_init_vals=F)
+                       model = "fullRE_M", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "singleRE_dirichlet_multinomial", use_nlminb=T, smart_init_vals=F)
-
+                       model = "singleRE_DM", use_nlminb=T, smart_init_vals=F)
 @
 
 
