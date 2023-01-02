@@ -10,7 +10,7 @@ Description: It is generally overlooked that mutational signatures are compositi
     can be subject to descriptive analysis, ... (cont.)
 License: What license is it under?
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 Imports:
     ggplot2,
     compositions,
