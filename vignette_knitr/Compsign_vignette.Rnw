@@ -8,7 +8,7 @@
 
 \title{Package \textbf{CompSign}}
 \author{Lena Morrill}
-\date{October 2022}
+\date{2022}
 
 \setlength{\textwidth}{6.5in}
 \setlength{\oddsidemargin}{-0.1in}
@@ -16,6 +16,7 @@
 \setlength{\topmargin}{-0.4in}
 
 \begin{document}
+% \SweaveOpts{concordance=TRUE}
 
 \maketitle
 
@@ -26,14 +27,10 @@
 \section{Installation}
 \texttt{CompSign} can be installed as usual from github:
 
-<<>>=
-rm(list = ls())
-setwd("~/Documents/PhD/CompSign/vignette_knitr/")
-@
 
-<<include=TRUE, eval=TRUE>>=
-# library(devtools)
-# devtools::install_github("lm687/CompSign")
+<<include=TRUE, eval=FALSE>>=
+library(devtools)
+devtools::install_github("lm687/CompSign")
 @
 
 <<include=TRUE, eval=TRUE>>=
@@ -41,13 +38,13 @@ library(CompSign)
 library(gridExtra)
 library(TMB)
 # setwd(dirname(rstudioapi::getSourceEditorContext()$path))
-
 @
 
+\clearpage
 \section{Datasets}
 <<>>=
 ## if the folder data/ is not in github
-for(i in list.files("../inst/extdata/", pattern = "*RDA", full.names = TRUE)){load(i)}
+# for(i in list.files("../inst/extdata/", pattern = "*RDA", full.names = TRUE)){load(i)}
 @
 
 The package contains the following datasets of exposures of mutational signatures and metadata of the corresponding samples. These datasets are:
@@ -58,7 +55,7 @@ The package contains the following datasets of exposures of mutational signature
 
 \verb|PancEndocrine_signaturesMSE| is an object of class \verb|sign|
 
-<<loading_panc-endocrine>>=
+<<loading_panc-endocrine, message=FALSE, results='hide'>>=
 PancEndocrine_signaturesMSE = load_PCAWG("../inst/extdata/roo/Panc-Endocrine_signaturesMSE_ROO.RDS",
                                          read_directly = T,
                                          typedata = "signaturesMSE", override_warning_X_Z = T)
@@ -66,15 +63,9 @@ PancEndocrine_signaturesMSE_v2 = load_PCAWG(ct = "Panc-Endocrine", typedata = "s
 
 @
 
-<<panc-endocrine>>=
-# PancEndocrine_signaturesMSE
-@
 
-<<>>=
-do.call('grid.arrange', lapply(split_matrix_in_half(PancEndocrine_signaturesMSE$Y), function(i) createBarplot(normalise_rw(i), remove_labels = T)))
-@
-
-<<panc-endocrine2>>=
+All samples - clonal and subclonal - sorted by increasing SBS3 exposure:
+<<panc-endocrine2, fig.height=2.5, message=FALSE, results='hide'>>=
 
 createBarplot(normalise_rw(non_duplicated_rows(PancEndocrine_signaturesMSE$Y)),
               order_labels = names(sort(non_duplicated_rows(PancEndocrine_signaturesMSE$Y)[,'SBS3'],
@@ -82,47 +73,71 @@ createBarplot(normalise_rw(non_duplicated_rows(PancEndocrine_signaturesMSE$Y)),
 
 @
 
-<<panc-endocrine3>>=
-
-# TMB::compile("../R/mm_multinomial/fullRE_ME_dirichletmultinomial.cpp",  "-std=gnu++17")
-# dyn.load(dynlib("../R/mm_multinomial/fullRE_ME_dirichletmultinomial"))
-
-
-# fullDM_no_small_sigs <- wrapper_run_TMB(object = give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,
-#                            sigs_to_remove = c('SBS13', 'SBS17a', 'SBS17b', 'SBS30')),
-#                                         model = "fullRE_DM", use_nlminb=T, smart_init_vals=F)
-# 
-# diagDM_no_small_sigs <- wrapper_run_TMB(object = give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,
-#                            sigs_to_remove = c('SBS13', 'SBS17a', 'SBS17b', 'SBS30')),
-#                                         model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
-
-diagDM_no_small_sigs <- wrapper_run_TMB(object = give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,
-                                                                         sigs_to_remove = c('SBS13', 'SBS17a', 'SBS17b', 'SBS30')),
-                                        model = "diagREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
-
-
-res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "diagREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "diagRE_M", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "FEDMsinglelambda", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "FE_DM", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "fullREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "fullRE_DMonefixedlambda", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "fullRE_DM", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "fullRE_M", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = dataset_subset,
-                       model = "singleRE_DM", use_nlminb=T, smart_init_vals=F)
+We create a simplified object containing exposures of fewer signatures (i.e. a subcomposition of the original signature vectors):
+<<simplify_object>>=
+simplified_object <- give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,
+                                             sigs_to_remove = c('SBS13', 'SBS17a', 'SBS17b', 'SBS30'))
 @
 
+The clonal and subclonal exposures are, respectively, the two barplots below:
+<<simplify_object2, fig.height=3>>=
+do.call('grid.arrange', list(grobs=lapply(split_matrix_in_half(simplified_object$Y), function(i) createBarplot(normalise_rw(i), remove_labels = T)), nrow=1))
+@
+
+
+\section{Running the model for differential abundance}
+
+Running the model \texttt{diagREDMsinglelambda} with the dataset \texttt{simplified\_object}.
+
+<<panc-endocrine3, message=FALSE, echo=TRUE, results='hide'>>=
+diagDM_no_small_sigs <- wrapper_run_TMB(object = simplified_object,
+                                        model = "diagREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
+
+@
+
+These are the resulting object with the estimates and their standard deviations
+
+<<TMB_output_example>>=
+diagDM_no_small_sigs
+@
+
+These are the betas for this model
+<<plot_betas_example, results='hide', fig.height=2.5>>=
+plot_betas(diagDM_no_small_sigs)
+@
+
+and the p-value indicating differential abundance
+
+<<wald_test>>=
+wald_TMB_wrapper(diagDM_no_small_sigs)
+@
+
+\subsection{Other models}
+Other models can be run as follows:
+
+<<eval=FALSE, echo=TRUE>>=
+
+res <- wrapper_run_TMB(object = simplified_object,
+                       model = "diagREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = simplified_object,
+                       model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = simplified_object,
+                       model = "diagRE_M", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = simplified_object,
+                       model = "FEDMsinglelambda", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = simplified_object,
+                       model = "FE_DM", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = simplified_object,
+                       model = "fullREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = simplified_object,
+                       model = "fullRE_DMonefixedlambda", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = simplified_object,
+                       model = "fullRE_DM", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = simplified_object,
+                       model = "fullRE_M", use_nlminb=T, smart_init_vals=F)
+res <- wrapper_run_TMB(object = simplified_object,
+                       model = "singleRE_DM", use_nlminb=T, smart_init_vals=F)
+@
 
 \end{document}
 % ProstAdenoCA_chrom = readRDS("../inst/extdata/roo/ProstAdenoCA_chrom.RDS")

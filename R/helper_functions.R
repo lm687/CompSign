@@ -570,6 +570,8 @@ give_amalgamated_exposures_TMBobj = function(sig_obj, list_groupings){
 
 
 give_subset_sigs_TMBobj = function(sig_obj, sigs_to_remove, remove_zero_rows=T){
+  cl <- colnames(sig_obj$Y)
+  cl <- cl[!(colnames(sig_obj$Y) %in% sigs_to_remove)]
   sig_obj$Y = sig_obj$Y[,!(colnames(sig_obj$Y) %in% sigs_to_remove)]
   if(remove_zero_rows){
     keep_obs = rowSums(sig_obj$Y) > 0
@@ -577,6 +579,7 @@ give_subset_sigs_TMBobj = function(sig_obj, sigs_to_remove, remove_zero_rows=T){
     keep_obs <- 1:nrow(sig_obj$Y)
   }
   sig_obj$Y = sig_obj$Y[keep_obs,]
+  colnames(sig_obj$Y) <- cl
   sig_obj$d = ncol(sig_obj$Y) ## 20220222
   sig_obj$x = sig_obj$x[keep_obs,]
   sig_obj$z = sig_obj$z[keep_obs,]
