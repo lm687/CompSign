@@ -9,6 +9,10 @@ Lena Morrill 2022
 
     library(devtools)
     devtools::install_github("lm687/CompSign")
+    
+# Vignette
+
+`vignette('CompSign')`
 
 # Variations of the model
 
