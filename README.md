@@ -8,7 +8,7 @@ Lena Morrill 2022
 # Installation
 
     library(devtools)
-    devtools::install_github("lm687/CompSign")
+    devtools::install_github("lm687/CompSign", build_vignettes = TRUE)
     
 # Vignette
 
