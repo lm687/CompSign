@@ -1,3 +1,7 @@
+.onLoad <- function(lib, pkg){
+  data("PancEndocrine_signaturesMSE", package = "CompSign")
+}
+
 #' Compute the softmax-transformed version of a vector or a matrix. Reminder: if x is an ALR-transformed compositional vector, you want to append 0 as the final element of the vector (if x is a vector), or a final column of zeros (if x is a matrix)
 #' @param x: a vector or a matrix
 #' @return the softmax-transformed x
