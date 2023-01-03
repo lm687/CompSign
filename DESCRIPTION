@@ -23,3 +23,7 @@ Imports:
 RoxygenNote: 7.1.2
 Depends: TMB, RcppEigen
 LinkingTo: TMB, RcppEigen
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
