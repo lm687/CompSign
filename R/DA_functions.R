@@ -38,6 +38,7 @@ sort_columns_TMB_SBS1 = function(object){
 #' @param smart_init_vals: boolean, whether a fixed-effects multinomial regression should be run first to get initial estimates
 #' @param use_nlminb: boolean, whether <nlminb> should be used for estimation. Alternatively, <optim> is used
 #' @param initial_params: (optional) list of initial parameters for estimation
+#' @param return_opt: boolean, indicating whether only the report from TMB (return_opt=F), or the unabridged output from TMB (return_opt=T) should be returned
 #' @useDynLib diagRE_dirichletmultinomial_single_lambda
 #' @useDynLib diagRE_ME_dirichletmultinomial
 #' @useDynLib diagRE_ME_multinomial
@@ -48,9 +49,11 @@ sort_columns_TMB_SBS1 = function(object){
 #' @useDynLib fullRE_ME_dirichletmultinomial
 #' @useDynLib fullRE_ME_multinomial
 #' @useDynLib singleRE_dirichlet_multinomial
+#' @useDynLib diagREpatientlambda_ME_dirichletmultinomial
+#' @useDynLib fullREpatientlambda_ME_dirichletmultinomial
 #' @useDynLib functions.hpp
 #' @importFrom Rcpp evalCpp
-wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, initial_params=NULL){
+wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, initial_params=NULL, return_opt=F){
   ## sort_columns=F, 
   
   ## if the object of data and covariates is an argument
@@ -191,6 +194,14 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     
     dll_name <- "fullRE_ME_multinomial_REv2"
     rdm_vec <- c("u_large1", "u_large2","u_large3", "u_large4")
+  }else if(model == "diagDMpatientlambda"){
+    parameters$log_lambda = matrix(rep(0, data$num_individuals))
+    dll_name <- "diagREpatientlambda_ME_dirichletmultinomial"
+    rdm_vec <- "u_large"
+  }else if(model == "fullDMpatientlambda"){
+    parameters$log_lambda = matrix(rep(0, data$num_individuals))
+    dll_name <- "fullREpatientlambda_ME_dirichletmultinomial"
+    rdm_vec <- "u_large"
   }else{
     stop('Specify correct <model>\n')
   }
@@ -221,9 +232,23 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     opt
     opt$hessian ## <-- FD hessian from optim
   }
+
   return_report <- sdreport(obj)
   
-  return(return_report)
+  # if(model %in% "diagDMpatientlambda"){
+  #   cat('Scaling back log lambda values')
+  #  ## scaled parameters were estimated; scale them back
+  #   return_report$par.fixed
+  #   # log(exp(python_like_select_name(return_report$par.fixed, 'log_lambda'))/1000)
+  #   return_report$par.fixed[names(return_report$par.fixed) == 'log_lambda'] = python_like_select_name(return_report$par.fixed, 'log_lambda') - log(1000)
+  # }
+
+  
+  if(return_opt){
+    return(list(opt=opt, return_report=return_report))
+  }else{
+    return(return_report)
+  }
 }
 
 

@@ -1,4 +1,4 @@
-all: diagRE_dirichletmultinomial_single_lambda.so diagRE_ME_dirichletmultinomial.so diagRE_ME_multinomial.so FE_dirichletmultinomial_single_lambda.so FE_dirichletmultinomial.so fullRE_dirichletmultinomial_single_lambda.so fullRE_ME_dirichletmultinomial_onefixedlambda.so fullRE_ME_dirichletmultinomial.so fullRE_ME_multinomial.so singleRE_dirichlet_multinomial.so
+all: diagRE_dirichletmultinomial_single_lambda.so diagRE_ME_dirichletmultinomial.so diagRE_ME_multinomial.so FE_dirichletmultinomial_single_lambda.so FE_dirichletmultinomial.so fullRE_dirichletmultinomial_single_lambda.so fullRE_ME_dirichletmultinomial_onefixedlambda.so fullRE_ME_dirichletmultinomial.so fullRE_ME_multinomial.so singleRE_dirichlet_multinomial.so diagREpatientlambda_ME_dirichletmultinomial.so fullREpatientlambda_ME_dirichletmultinomial.so
 
 
 diagRE_dirichletmultinomial_single_lambda.so: diagRE_dirichletmultinomial_single_lambda.cpp
@@ -30,6 +30,13 @@ fullRE_ME_multinomial.so: fullRE_ME_multinomial.cpp
 
 singleRE_dirichlet_multinomial.so: singleRE_dirichlet_multinomial.cpp
 	Rscript --vanilla -e "TMB::compile('singleRE_dirichlet_multinomial.cpp')"
+
+diagREpatientlambda_ME_dirichletmultinomial.so: diagREpatientlambda_ME_dirichletmultinomial.cpp
+        Rscript --vanilla -e "TMB::compile('diagREpatientlambda_ME_dirichletmultinomial.cpp')"
+
+fullREpatientlambda_ME_dirichletmultinomial.so: fullREpatientlambda_ME_dirichletmultinomial.cpp
+        Rscript --vanilla -e "TMB::compile('fullREpatientlambda_ME_dirichletmultinomial.cpp')"
+
 
 clean:
 	rm -rf *o
