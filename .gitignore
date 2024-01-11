@@ -2,6 +2,7 @@
 CompSign.Rproj
 CompSign.pdf
 vignette_knitr/
+vignettes/Compsign_cache/
 vignette_knitr/Compsign_vignette-blx.bib
 vignette_knitr/Compsign_vignette-concordance.tex
 vignette_knitr/Compsign_vignette.log
