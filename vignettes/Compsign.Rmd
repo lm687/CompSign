@@ -6,13 +6,13 @@ vignette: >
   %\VignetteIndexEntry{my-vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-date: "2023"
+date: "2024"
 ---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  cache = TRUE,
+  cache = FALSE,
   comment = "#>"
 )
 ```
@@ -32,10 +32,14 @@ These are the libraries used in this vignette:
 library(CompSign)
 library(gridExtra)
 library(TMB)
+library(HMP)
+library(gridExtra)
+library(ggplot2)
+theme_set(theme_bw())
 ```
 
 ## Datasets
-Two datasets can be loaded as follows using the `data()` function:
+Several datasets and objects can be loaded as follows using the `data()` function:
 
 ```{r, load_data}
 data(PancEndocrine_signaturesMSE)
@@ -51,7 +55,9 @@ The package contains the following datasets of exposures of mutational signature
 ## Example workflow
 In this example workflow we determine differential abundance between clonal and subclonal mutations in Pancreatic neuroendocrine tumors.
 
-`PancEndocrine_signaturesMSE` is an object of class `sign`
+
+### `sign` objects: how to load them
+`PancEndocrine_signaturesMSE` is an S4 object of class `sign`. `sign` objects include all information about the name of the samples, the mutation signature exposures (of all signatures, or only of the subset of active signatures as determined by Alexandrov et al. 2020). However, the use of these S4 objects is not necessary for running the models of differential abundance, which instead take a list as argument for the input data.
 
 ```{r loading_panc-endocrine, message=FALSE, results='hide'}
 PancEndocrine_signaturesMSE = load_PCAWG("../inst/extdata/roo/Panc-Endocrine_signaturesMSE_ROO.RDS",
@@ -60,14 +66,18 @@ PancEndocrine_signaturesMSE = load_PCAWG("../inst/extdata/roo/Panc-Endocrine_sig
 PancEndocrine_signaturesMSE_v2 = load_PCAWG(ct = "Panc-Endocrine", typedata = "signaturesMSE", path_to_data = "../inst/extdata/", load_all_sigs = F, override_warning_X_Z = T)
 ```
 
+### Visualisation of mutational signature exposures
 All samples - clonal and subclonal - sorted by increasing SBS3 exposure:
-```{r panc-endocrine2, fig.height=3.5, fig.width=5, message=FALSE, results='hide'}
+```{r panc-endocrine2, fig.height=3.5, fig.width=6, message=FALSE, results='hide'}
 
 createBarplot(normalise_rw(non_duplicated_rows(PancEndocrine_signaturesMSE$Y)),
               order_labels = names(sort(non_duplicated_rows(PancEndocrine_signaturesMSE$Y)[,'SBS3'],
-                                        decreasing = F)), remove_labels=T)+ggtitle('Sorted by SBS3')
+                                        decreasing = F)), remove_labels=T,
+              custom_color_palette=color_list)+ggtitle('Sorted by SBS3')
 
 ```
+
+### Subsetting the exposures
 
 We create a simplified object containing exposures of fewer signatures (i.e. a subcomposition of the original signature vectors):
 ```{r simplify_object}
@@ -75,14 +85,51 @@ simplified_object <- give_subset_sigs_TMBobj(PancEndocrine_signaturesMSE,
                                              sigs_to_remove = c('SBS13', 'SBS17a', 'SBS17b', 'SBS30'))
 ```
 
+In which `simplified_object` is a list containing `simplified_object$x`, `simplified_object$z`, `simplified_object$Y`, `simplified_object$d` (see *Input dataset* section below)
+
 The clonal and subclonal exposures are, respectively, the two barplots below:
 ```{r simplify_object2, fig.height=3, fig.width=7, message=FALSE}
-do.call('grid.arrange', list(grobs=lapply(split_matrix_in_half(simplified_object$Y), function(i) createBarplot(normalise_rw(i), remove_labels = T)), nrow=1))
+do.call('grid.arrange', list(grobs=lapply(split_matrix_in_half(simplified_object$Y), function(i) createBarplot(normalise_rw(i), remove_labels = T, custom_color_palette=color_list)), nrow=1))
 ```
 
 ## Running the model for differential abundance
 
-Running the model `diagREDMsinglelambda` with the dataset `simplified_object`:
+### Variations of the model
+
+There are several variations on the model, each with a particular combination of the following:
+- Base model: Dirichlet-multinomial in most cases, but two simpler models -- multinomial models `diagRE_M` and `fullRE_M` are implemented for comparison.
+- Random effects: correlated or not (e.g. uncorrelated in `diagRE_DM`, correlated in `fullRE_DM`).
+- Number of dispersion parameters: generally one per group (e.g. in `diagRE_DM`), but possibly fewer or more if specified in the name (e.g. one single dipersion parameter in `diagREDMsinglelambda`, one dispersion parameter per patient in `diagDMpatientlambda`).
+
+| name of model (for user) | description  |cpp file (no need to use)   |
+|---|---|---|
+| diagREDMsinglelambda  | DM with independent RE and one lambda  | diagRE_dirichletmultinomial_single_lambda  |
+| diagRE_DM  | DM with independent RE and two lambdas  | diagRE_ME_dirichletmultinomial  |
+| diagRE_M  | M with independent RE  | diagRE_ME_multinomial  |
+| FEDMsinglelambda  | DM with no RE and one lambda  | FE_dirichletmultinomial_single_lambda  |
+| FE_DM  | DM with no RE and two lambdas  | FE_dirichletmultinomial  |
+| fullREDMsinglelambda  | DM with independent RE and two lambdas  | fullRE_dirichletmultinomial_single_lambda  |
+| fullRE_DMonefixedlambda  | DM assuming that there is no overdispersion in the first group (fixed lambda=1)  | fullRE_ME_dirichletmultinomial_onefixedlambda  |
+| fullRE_DM  | DM with correlated RE and two lambdas  | fullRE_ME_dirichletmultinomial  |
+| fullRE_M  | M with correlated RE  | fullRE_ME_multinomial  |
+| singleRE_DM  | DM with a single RE intercept and two lambdas  | singleRE_dirichlet_multinomial  |
+| diagDMpatientlambda  | DM with independent RE and one lambda for each patient  | diagREpatientlambda_ME_dirichletmultinomial  |
+| fullDMpatientlambda  | DM with correlated RE and one lambda for each patient  | fullREpatientlambda_ME_dirichletmultinomial  |
+
+### Input dataset
+
+The input dataset is the argument `object`, which is a list with the following structure:
+
+- `x`: covariate matrix (`p x n`)
+- `z`: matrix of random effects indicating which patient-specific subsample belongs to which patient (`n x N`)
+- `Y` (`n x d`)
+- `d`
+
+### Minimal example
+
+The first row is the `<model>` argument in the function `wrapper_run_TMB()`.
+
+We run the model `diagREDMsinglelambda` with the dataset `simplified_object`:
 
 ```{r panc-endocrine3, message=FALSE, echo=TRUE, results='hide'}
 diagDM_no_small_sigs <- wrapper_run_TMB(object = simplified_object,
@@ -95,19 +142,21 @@ This is the resulting object with the estimates and their standard deviations:
 diagDM_no_small_sigs
 ```
 
-These are the betas for this model
+We can see how in this case we only have a single estimate for the dispersion parameter (`log_lambda`). The number of $\beta$ (20) corresonds to $2*(d-1)$ where $d$ is the number of mutations in the object (11, as seen in the bar plots above). The last signature or category, SBS39, is used as baseline signature in the ALR transformation. All beta parameters are in ALR-transformed space, using SBS39 as baseline. $\beta_0$ and $\beta_1$ results are intercalated, i.e. the $\beta$ in the first row corresponds to the $\beta_0$ of SBS1 wrt (with respect to) SBS39, the $\beta$ in the third row corresponds to the $\beta_0$ of SBS2 wrt (with respect to) SBS39, the $\beta$ in the first row corresponds to the $\beta_0$ of SBS1 wrt (with respect to) SBS39, etc.
+
+These $\beta$ estimates can be plotted as follows:
 ```{r plot_betas_example, results='hide', fig.height=2.5, fig.width=5}
 plot_betas(diagDM_no_small_sigs)
 ```
 
-and the p-value indicating differential abundance
+and the p-value indicating differential abundance can be extracted:
 
 ```{r, wald_test}
 wald_TMB_wrapper(diagDM_no_small_sigs)
 ```
 
 ## Other models
-Other models can be run as follows:
+Other models can be run similarly:
 
 ```{r, eval=FALSE, echo=TRUE}
 res <- wrapper_run_TMB(object = simplified_object,
@@ -135,25 +184,9 @@ res <- wrapper_run_TMB(object = simplified_object,
 ## Patient-specific dispersion parameters
 In a scenario where we have several samples for each patient, which can still be grouped in two or more groups (fixed effects), we might be interested in patient-specific dispersion parameters, besides the patient-specific intercepts that we had. This has been implemented:
 
-```{r}
-library(TMB)
-library(HMP)
-library(ggplot2)
-theme_set(theme_bw())
-library(gridExtra)
-# library(CompSign)  ## replace this once this is done using the package
-# source("../R/helper_functions.R") ## replace this once this is done using the package
-# source("../R/DA_functions.R") ## replace this once this is done using the package
+### Simulating data
 
-##-----------------------------------------------------------------------------------------------------##
-
-##-----------------------------------------------------------------------------------------------------##
-## replace this once this is done using the package
-# TMB::compile("../src/diagREpatientlambda_ME_dirichletmultinomial.cpp",  "-std=gnu++17")
-# dyn.load(dynlib("../src/diagREpatientlambda_ME_dirichletmultinomial"))
-##-----------------------------------------------------------------------------------------------------##
-
-##-----------------------------------------------------------------------------------------------------##
+```{r, patient_dispersion, eval=FALSE}
 
 n <- 40 ## patients
 num_samples_per_patient = 30
@@ -169,14 +202,12 @@ fixed_effects <- matrix(runif(2*(d-1)), nrow=2, ncol=d-1)
 
 alpha_mat <- x %*% fixed_effects + z %*% random_effects
 alpha_mat_softmax = softmax( cbind(alpha_mat, 0) )
-rowSums(alpha_mat_softmax)
 
 ## lambda per patient
 log_lambda_vec = runif(n, 3, 4)
 
 ## get patient-specific overdispersions
 log_lambda_vec_per_obs <- z %*% log_lambda_vec
-log_lambda_vec_per_obs
 
 ## simulate counts
 Nm = rep(1000, n*num_samples_per_patient) ## fixed number of mutations
@@ -187,49 +218,67 @@ for(l in 1:(n*num_samples_per_patient)){
   y[l,] = HMP::Dirichlet.multinomial(Nrs = Nm[l], shape = alpha_l)
   
 }
-y
-##-----------------------------------------------------------------------------------------------------##
 
-##-----------------------------------------------------------------------------------------------------##
+```
+
+```{r, patient_dispersion_inference_list, eval=FALSE}
 ##' create object with information about covariates, which observations correspond
 ##' to which patients, and the input (counts)
 obj_multilambda <- list(Y = y, x=x, z = z, num_individuals = n)
-## obj_multilambda <- readRDS("../data/example_diagDMpatientlambda_dataset.RDS")
-# data(obj_multilambda)
+```
 
-##-----------------------------------------------------------------------------------------------------##
-
-##-----------------------------------------------------------------------------------------------------##
 ## Estimate parameters
+```{r, patient_dispersion_inference, eval=FALSE}
+res_patient_lambda <- wrapper_run_TMB(obj_multilambda, model = 'diagDMpatientlambda')
+```
 
-## res_patient_lambda <- wrapper_run_TMB(obj_multilambda, model = 'diagDMpatientlambda')
-# res_patient_lambda <- readRDS("../data/res_patient_lambda.RDS")
+```{r, patient_dispersion_inference_res}
 data(res_patient_lambda)
-##-----------------------------------------------------------------------------------------------------##
+data(obj_multilambda)
+data(obj_multilambda_parameters)
+```
 
 
-##-----------------------------------------------------------------------------------------------------##
-## compare the parameters to the parameters used for the simulation 
+## Compare the estimates to the ground truth
+
+The true parameters used for the simulation are found in the object `obj_multilambda_parameters`.
+
+We can see how the parameters of interest are well recovered:
+
+  - $\beta_1$
+  - $\log(\lambda)$
+
+and two additional sets of parameters suffer from a bias due to having used the uncorrelated version of the model (i.e. `diagDMpatientlambda` instead of `fullDMpatientlambda`):
+
+  - $\beta_0$
+  - Random intercepts for each patient
+Note that in the current setting the number of parameters to estimate is already large, and this is why `diagDMpatientlambda` is used.
+
+```{r, include=F, eval=TRUE}
+appender <- function(string){
+    sapply(string, function(stringb){
+      if(stringb == 'Intercept'){
+        TeX(paste("$\\beta_0$")) 
+      }else if (stringb == 'Slope'){
+        TeX(paste("$\\beta_1$")) 
+      }
+    })
+}
+```
+
+```{r, patient_dispersion_inference_analysis, fig.width=7}
 fixed_effects_estimate <- matrix(python_like_select_name(res_patient_lambda$par.fixed, 'beta'), nrow=2)
-fixed_effects
-
-plot(as.vector(fixed_effects), as.vector(fixed_effects_estimate))
-plot((fixed_effects[2,]), (fixed_effects_estimate[2,]))
-
-random_effects_estimate <- matrix(res_patient_lambda$par.random, ncol=(d-1))
-plot(as.vector(random_effects), as.vector(random_effects_estimate))
-
+random_effects_estimate <- matrix(res_patient_lambda$par.random, ncol=ncol(obj_multilambda_parameters$fixed_effects))
 log_lambda_vec_estimate <- python_like_select_name(res_patient_lambda$par.fixed, 'log_lambda')
-plot(as.vector(log_lambda_vec), as.vector(log_lambda_vec_estimate))
 
 list_comparisons_true_and_estimate = list(
-  all_betas = data.frame(x = as.vector(fixed_effects),
+  all_betas = data.frame(x = as.vector(obj_multilambda_parameters$fixed_effects),
                          y  = as.vector(fixed_effects_estimate)),
-  beta_1 =  data.frame(x = fixed_effects[2,],
+  beta_1 =  data.frame(x = obj_multilambda_parameters$fixed_effects[2,],
                        y  = fixed_effects_estimate[2,]),
-  random_intercepts = data.frame(x = as.vector(random_effects), 
+  random_intercepts = data.frame(x = as.vector(obj_multilambda_parameters$random_effects), 
                                  y = as.vector(random_effects_estimate)),
-  log_lambda =  data.frame(x = as.vector(log_lambda_vec), 
+  log_lambda =  data.frame(x = as.vector(obj_multilambda_parameters$log_lambda_vec), 
                            y = as.vector(log_lambda_vec_estimate)))
 
 plots_comparisons_true_and_estimate <- lapply(1:length(list_comparisons_true_and_estimate), function(i){
@@ -239,5 +288,6 @@ plots_comparisons_true_and_estimate <- lapply(1:length(list_comparisons_true_and
     ggtitle(gsub('_', ' ', names(list_comparisons_true_and_estimate)[i]))+
     labs(x='True value', y='Estimate')
 })
-do.call('grid.arrange', plots_comparisons_true_and_estimate)
+do.call('grid.arrange', c(plots_comparisons_true_and_estimate, nrow=1))
 ```
+

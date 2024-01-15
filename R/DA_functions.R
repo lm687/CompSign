@@ -33,7 +33,7 @@ sort_columns_TMB_SBS1 = function(object){
 }
 
 #' Function to run the model using TMB
-#' @param model: name of model
+#' @param model: name of model. Options: {fullRE_M, diagRE_M, FE_DM, fullRE_DM, fullRE_DMonefixedlambda, diagRE_DM, fullREDMsinglelambda, fullREDMsinglelambda, singleRE_DM, fullREhalfDM, diagREDMsinglelambda, FEDMsinglelambda, fullRE_multinomial_REv2, diagDMpatientlambda, fullDMpatientlambda}
 #' @param object: object of type exposures_inputTMB (including X, Y, Z)
 #' @param smart_init_vals: boolean, whether a fixed-effects multinomial regression should be run first to get initial estimates
 #' @param use_nlminb: boolean, whether <nlminb> should be used for estimation. Alternatively, <optim> is used

@@ -32,10 +32,10 @@ singleRE_dirichlet_multinomial.so: singleRE_dirichlet_multinomial.cpp
 	Rscript --vanilla -e "TMB::compile('singleRE_dirichlet_multinomial.cpp')"
 
 diagREpatientlambda_ME_dirichletmultinomial.so: diagREpatientlambda_ME_dirichletmultinomial.cpp
-        Rscript --vanilla -e "TMB::compile('diagREpatientlambda_ME_dirichletmultinomial.cpp')"
+	Rscript --vanilla -e "TMB::compile('diagREpatientlambda_ME_dirichletmultinomial.cpp')"
 
 fullREpatientlambda_ME_dirichletmultinomial.so: fullREpatientlambda_ME_dirichletmultinomial.cpp
-        Rscript --vanilla -e "TMB::compile('fullREpatientlambda_ME_dirichletmultinomial.cpp')"
+	Rscript --vanilla -e "TMB::compile('fullREpatientlambda_ME_dirichletmultinomial.cpp')"
 
 
 clean:

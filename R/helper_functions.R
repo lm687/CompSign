@@ -663,107 +663,6 @@ give_barplot = function(ct, typedata, simulation=F, title='', legend_on=F, ...){
   grid.arrange(a, b, c, d, top=title)
 }
 
-# wrapper_run_TMB_debug = function(object, model = "fullRE_DM", return_report=F, iter.max=150, init_log_lambda = 2, idx_cov_to_fill){
-#   dim(object$Y)
-#   # sort_columns=T
-#   smart_init_vals=T
-#   
-#   data = object
-#   
-#   # if(sort_columns){
-#   #   data$Y = data$Y[,order(colSums(data$Y), decreasing = F)]
-#   # }
-#   
-#   data$Y = matrix(data$Y, nrow=nrow(data$Y))
-#   data$x = (matrix(data$x, ncol=2))
-#   
-#   d <- ncol(data$Y)
-#   n <- ncol(data$z) ## number of INDIVIDUALS, not samples
-#   
-#   data$num_individuals = n
-#   data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
-#   
-#   if(smart_init_vals){
-#     require(nnet)
-#     .x_multinom = multinom(data$Y ~ data$x[,2])
-#     beta_init = t(coef(.x_multinom))
-#   }else{
-#     beta_init = (matrix(rep(runif(1, min = -4, max = 4), 2*(d-1)),
-#                         nrow = 2, byrow=TRUE))
-#   }
-#   
-#   parameters <- list(
-#     beta = beta_init,
-#     u_large = matrix(runif(min = -0.3, max = 0.3, n = (d-1)*n), nrow=n),
-#     logs_sd_RE=rep(1, d-1),
-#     # cov_par_RE = rep(1, ((d-1)*(d-1)-(d-1))/2),
-#     cov_par_RE = runif(min = -1, max = 1, n = ((d-1)*(d-1)-(d-1))/2),
-#     log_lambda = matrix(c(init_log_lambda,init_log_lambda))
-#   )
-#   if(model == "fullRE_DM"){
-#     obj <- MakeADFun(data, parameters, DLL="fullRE_ME_dirichletmultinomial", random = "u_large")
-#   }else if(model == "diagRE_DM"){
-#     parameters$cov_par_RE = NULL
-#     obj <- MakeADFun(data, parameters, DLL="diagRE_ME_dirichletmultinomial", random = "u_large")
-#   }else if(model == "fullREDMsinglelambda"){
-#     parameters$log_lambda = 2
-#     obj <- MakeADFun(data, parameters, DLL="fullRE_dirichletmultinomial_single_lambda", random = "u_large")
-#   }else if(model == "diagREDMsinglelambda"){
-#     parameters$cov_par_RE = NULL
-#     parameters$log_lambda = 2
-#     obj <- MakeADFun(data, parameters, DLL="diagRE_dirichletmultinomial_single_lambda", random = "u_large")
-#   }else if(model == "sparseRE_DM"){
-#     if(is.null(idx_cov_to_fill)){stop("Add <idx_cov_to_fill>")}
-#     parameters$cov_par_RE = NULL
-#     parameters$cov_RE_part = (rep(1, length(idx_cov_to_fill)))
-#     data$idx_params_to_infer = (idx_cov_to_fill)
-#     if(length(idx_cov_to_fill) > 1){
-#       obj <- MakeADFun(data, parameters, DLL="sparseRE_ME_dirichletmultinomial", random = "u_large")
-#     }else{
-#       obj <- MakeADFun(data, parameters, DLL="sparseRE_ME_dirichletmultinomial_single", random = "u_large")
-#     }
-#   }else if(model == "sparseRE_DMSL"){
-#     if(is.null(idx_cov_to_fill)){stop("Add <idx_cov_to_fill>")}
-#     parameters$log_lambda = 2
-#     parameters$cov_par_RE = NULL
-#     parameters$cov_RE_part = (rep(1, length(idx_cov_to_fill)))
-#     data$idx_params_to_infer = (idx_cov_to_fill)
-#     if(length(idx_cov_to_fill) > 1){
-#       obj <- MakeADFun(data, parameters, DLL="sparseRE_ME_dirichletmultinomialsinglelambda", random = "u_large")
-#     }else{
-#       stop()
-#     }
-#   }else if(model == "sparseRE_DMSL2"){
-#     if(is.null(idx_cov_to_fill)){stop("Add <idx_cov_to_fill>")}
-#     parameters$log_lambda = 2
-#     parameters$cov_par_RE = NULL
-#     parameters$cov_RE_part = (rep(1, length(idx_cov_to_fill)))
-#     data$idx_params_to_infer = (idx_cov_to_fill)
-#     if(length(idx_cov_to_fill) > 1){
-#       obj <- MakeADFun(data, parameters, DLL="sparseRE_ME_dirichletmultinomialsinglelambda2", random = "u_large")
-#     }else{
-#       stop()
-#     }
-#   }else if(model == "sparseRE_DMSL2"){
-#     if(is.null(idx_cov_to_fill)){stop("Add <idx_cov_to_fill>")}
-#     parameters$log_lambda = 2
-#     parameters$cov_par_RE = NULL
-#     parameters$cov_RE_part = (rep(1, length(idx_cov_to_fill)))
-#     data$idx_params_to_infer = (idx_cov_to_fill)
-#     if(length(idx_cov_to_fill) > 1){
-#       obj <- MakeADFun(data, parameters, DLL="sparseRE_ME_dirichletmultinomialsinglelambda2", random = "u_large")
-#     }else{
-#       stop()
-#     }
-#   } else{
-#     stop("Incorrect <model>")
-#   }
-# 
-#   opt = nlminb(start = obj$par, obj = obj$fn, gr = obj$gr, iter.max=iter.max, trace=T)
-#   
-#   if(return_report)  return(sdreport(obj))
-#   return(opt)
-# }
 
 is_slope = function(v){
   bool_isbetaslope = rep(F, length(v))
@@ -971,6 +870,7 @@ give_betas <- function(TMB_obj){
 plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remove_SBS=T, only_slope=F, return_df=F, plot=T,
                        line_zero=T, add_confint=F, return_plot=T, return_ggplot=F, title=NULL, add_median=F, sort_by_slope=F,
                        size_title=NULL, size_logR=NULL, xlab=NULL, betas_are_only_slope=F, input_is_summary=F){
+  require(latex2exp)
   if(typeof(TMB_obj) == 'character'){
     .summary_betas <- NA
     if(theme_bw){
@@ -1000,7 +900,9 @@ plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remo
     if(only_slope){
       .summary_betas <- .summary_betas[.summary_betas$type_beta == 'Slope',]
     }
+    ##--------------------------------------------------------------------------------##
     
+    ##--------------------------------------------------------------------------------##
     if(!is.null(names_cats)){
       if(remove_SBS){
         names_cats <- gsub("SBS", "", names_cats) 
@@ -1015,16 +917,33 @@ plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remo
                                      levels=.summary_betas[.summary_betas$type_beta == 'Slope','LogR'][order(.summary_betas[.summary_betas$type_beta == 'Slope','Estimate'])])
     }
     plt <- ggplot(.summary_betas, aes(x=LogR, y=`Estimate`))
+    ##--------------------------------------------------------------------------------##
     
+    ##--------------------------------------------------------------------------------##
     if(line_zero) plt <- plt + geom_hline(yintercept = 0, lty='dashed', col='blue')
     if(add_median) { plt <- plt +
       geom_hline(yintercept = median(c(0,.summary_betas$Estimate[.summary_betas$type_beta == 'Slope'])),
                  lty='dashed', col='red') }
+    ##--------------------------------------------------------------------------------##
     
+    ##--------------------------------------------------------------------------------##
+    appender <- function(string){
+      sapply(string, function(stringb){
+        if(stringb == 'Intercept'){
+          TeX(paste("$\\beta_0$")) 
+        }else if (stringb == 'Slope'){
+          TeX(paste("$\\beta_1$")) 
+        }
+      })
+    }
+    ##--------------------------------------------------------------------------------##
+    
+    ##--------------------------------------------------------------------------------##
     plt <- plt +
       geom_point()+
       geom_errorbar(aes(ymin=`Estimate`-`Std. Error`, ymax=`Estimate`+`Std. Error`), width=.1)+
-      facet_wrap(.~type_beta, scales = "free") #ggtitle('Slopes')
+      facet_wrap(.~type_beta, scales = "free", labeller = as_labeller(appender, 
+                                                                     default = label_parsed)) #ggtitle('Slopes')
     
     if(theme_bw){
       plt <- plt + theme_bw()
@@ -1065,6 +984,7 @@ plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remo
     cat('Changing x axis label\n')
     plt <- plt+labs(x=xlab)
   }
+  
   
   if(return_df){
     .summary_betas
@@ -1441,7 +1361,8 @@ split_matrix_in_half <- function(x){
 
 createBarplot <- function(matrix_exposures, angle_rotation_axis = 0, order_labels=NULL,
                           remove_labels=FALSE, levels_signatures=NULL, includeMelt=NULL,
-                          Melt=NULL, verbose=TRUE, arg_title='Signature', reorder_sigs=NULL){
+                          Melt=NULL, verbose=TRUE, arg_title='Signature', reorder_sigs=NULL,
+                          custom_color_palette=NULL){
   #' error due to it not being a matrix:  
   #'    No id variables; using all as measure variables
   #'    Rerun with Debug
@@ -1465,14 +1386,19 @@ createBarplot <- function(matrix_exposures, angle_rotation_axis = 0, order_label
   }else{
     levels_signatures <- colnames(matrix_exposures)
   }
-  n <- 60
-  qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
-  col_vector = unique(unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals))))
-  col_vector <- c(col_vector[c(T,F)], col_vector[c(F,T)])
   
-  myColors <- col_vector[1:length(levels_signatures)]
-  names(myColors) <- levels_signatures
-  myColors <- myColors[levels_signatures %in% unique(colnames(matrix_exposures))]
+  if(is.null(custom_color_palette)){
+    n <- 60
+    qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+    col_vector = unique(unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals))))
+    col_vector <- c(col_vector[c(T,F)], col_vector[c(F,T)])
+    
+    myColors <- col_vector[1:length(levels_signatures)]
+    names(myColors) <- levels_signatures
+    myColors <- myColors[levels_signatures %in% unique(colnames(matrix_exposures))]
+  }else{
+    myColors <- custom_color_palette
+  }
   if(is.null(order_labels)) order_labels = rownames(matrix_exposures)
   if(!is.null(includeMelt)){
     cat('For whatever reason sometimes the melt does not work. Here it is passed as argument.')
@@ -1911,3 +1837,26 @@ adjust_all <- function(i, new_version=F, method='BH'){
   }
 }
 
+color_list <- c("dodgerblue2", "coral2", "burlywood2", "blue1", "darkseagreen1", "firebrick", "goldenrod1", "firebrick3", "darkolivegreen3",
+"darkmagenta", "white", "darkolivegreen2", "antiquewhite", "antiquewhite1", "antiquewhite2", "antiquewhite3", "antiquewhite4",
+"aquamarine", "aquamarine1", "aquamarine2", "aquamarine3", "aquamarine4", "azure", "azure1",  
+"azure2", "azure3", "azure4", "beige", "bisque", "bisque1", "bisque2",
+"bisque3", "bisque4", "black", "blanchedalmond", "blue", "blue1", "blue2")
+# [29] "blue3", "blue4", "blueviolet"      "brown", "brown1", "brown2", "brown3", "aliceblue"
+# [36] "brown4", "burlywood"       "burlywood1", "burlywood3"      "burlywood4"      "cadetblue",
+# [43] "cadetblue1"      "cadetblue2"      "cadetblue3", "cadetblue4", "chartreuse", "chartreuse1", "chartreuse2",
+# [50] "chartreuse3"     "chartreuse4", "chocolate", "chocolate1", "chocolate2", "chocolate3", "chocolate4",
+# [57] "coral", "coral1"          "coral2", "coral3", "coral4", "cornflowerblue"  "cornsilk",
+# [64] "cornsilk1", "cornsilk2", "cornsilk3", "cornsilk4"       "cyan", "cyan1", "cyan2",
+# [71] "cyan3", "cyan4", "darkblue", "darkcyan", "darkgoldenrod"   "darkgoldenrod1"  "darkgoldenrod2",
+# [78] "darkgoldenrod3"  "darkgoldenrod4"  "darkgray"        "darkgreen"       "darkgrey"        "darkkhaki",
+# [85] "darkolivegreen"  "darkolivegreen1"  "darkolivegreen4" "darkorange"      "darkorange1",
+# [92] "darkorange2", "darkorange3", "darkorange4", "darkorchid"      "darkorchid1"     "darkorchid2"     "darkorchid3",
+# [99] "darkorchid4"     "darkred", "darksalmon", "darkseagreen"    ""   "darkseagreen2"   "darkseagreen3",
+# [106] "darkseagreen4"   "darkslateblue"   "darkslategray"   "darkslategray1"  "darkslategray2"  "darkslategray3"  "darkslategray4",
+# [113] "darkslategrey"   "darkturquoise"   "darkviolet", "deeppink", "deeppink1"       "deeppink2"       "deeppink3",
+# [120] "deeppink4", "deepskyblue"     "deepskyblue1", "deepskyblue2", "deepskyblue3"    "deepskyblue4"    "dimgray",
+# [127] "dimgrey", "dodgerblue", "dodgerblue1", "dodgerblue2"     "dodgerblue3"     "dodgerblue4"     "firebrick",
+# [134] "firebrick2", "firebrick4"      "floralwhite"     "forestgreen"     "gainsboro",
+# [141] "ghostwhite"      "gold"            "gold1"           "gold2"           "gold3"           "gold4"           "goldenrod",
+# [148] "goldenrod1"      "goldenrod2"      "goldenrod3"      "goldenrod4"      "gray"            "gray0")

@@ -14,7 +14,7 @@ You can install the package as follows:
 # Vignette
 Several examples of input data, how to run the models, and how to interpret the results are found in the vignette:
 
-    vignette('CompSign')
+    browseVignettes("CompSign")
 
 This package as, applied to study the differences in mutational signatures between clonal and subclonal mutations in the PCAWG dataset. The github repository reproducing these results can be [found here](https://github.com/lm687/CompSign-results).
 
@@ -29,9 +29,10 @@ The function `wrapper_run_TMB()` is used to run all variations of the model.
 ### Input dataset
 
 The input dataset is the argument `object`, which is a list with the following structure:
-- x: covariate matrix ($p x $)
-- z: matrix of random effects indicating which patient-specific subsample belongs to which patient
-- y
+- `x`: covariate matrix (`p x n`)
+- `z`: matrix of random effects indicating which patient-specific subsample belongs to which patient (`n x N`)
+- `Y` (`n x d`)
+- `d`
 
 ### Estimating the parameters
 
@@ -39,8 +40,12 @@ The input dataset is the argument `object`, which is a list with the following s
 
 A minimal example is:
 
+```
 diagDM_no_small_sigs <- wrapper_run_TMB(object = simplified_object,
                                         model = "diagREDM", use_nlminb=T, smart_init_vals=F)
+```
+
+in which `simplified_object` is a list containing `simplified_object$x`, `simplified_object$z`, `simplified_object$Y`, `simplified_object$d`.
 
 ### Variations of the model
 
@@ -58,6 +63,8 @@ The first row is the `<model>` argument in the function `wrapper_run_TMB()`.
 | fullRE_DM  | DM with correlated RE and two lambdas  | fullRE_ME_dirichletmultinomial  |
 | fullRE_M  | M with correlated RE  | fullRE_ME_multinomial  |
 | singleRE_DM  | DM with a single RE intercept and two lambdas  | singleRE_dirichlet_multinomial  |
+| diagDMpatientlambda  | DM with independent RE and one lambda for each patient  | diagREpatientlambda_ME_dirichletmultinomial  |
+| fullDMpatientlambda  | DM with correlated RE and one lambda for each patient  | fullREpatientlambda_ME_dirichletmultinomial  |
 
 ### Results
 

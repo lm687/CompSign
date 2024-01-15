@@ -1,0 +1,5 @@
+load("/Users/lenamorrill/Documents/other/PhD/DM/CompSign/data/res_patient_lambda.rda")
+res_patient_lambda
+library(TMB)
+res_patient_lambda
+q()
