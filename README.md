@@ -5,24 +5,24 @@
 
 Lena Morrill Gavarró 2024
 
-# Installation
+## Installation
 You can install the package as follows:
 
     library(devtools)
     devtools::install_github("lm687/CompSign", build_vignettes = TRUE)
 
-# Vignette
+## Vignette
 Several examples of input data, how to run the models, and how to interpret the results are found in the vignette:
 
     browseVignettes("CompSign")
 
 This package as, applied to study the differences in mutational signatures between clonal and subclonal mutations in the PCAWG dataset. The github repository reproducing these results can be [found here](https://github.com/lm687/CompSign-results).
 
-# Brief summary of the package
+## Brief summary of the package
 We refer to the vignettes for a more in-depth explanation of models and the functioning of the package, but a minimal example is found here:
 
 
-## How to run the model
+### How to run the model
 
 The function `wrapper_run_TMB()` is used to run all variations of the model.
 
