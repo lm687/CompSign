@@ -66,6 +66,3 @@ The first row is the `<model>` argument in the function `wrapper_run_TMB()`.
 | diagDMpatientlambda  | DM with independent RE and one lambda for each patient  | diagREpatientlambda_ME_dirichletmultinomial  |
 | fullDMpatientlambda  | DM with correlated RE and one lambda for each patient  | fullREpatientlambda_ME_dirichletmultinomial  |
 
-### Results
-
-### How to plot results
