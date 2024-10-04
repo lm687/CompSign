@@ -7,9 +7,11 @@ Lena Morrill Gavarró 2024
 
 ## Installation
 You can install the package as follows:
+```
     ## install.packages(devtools)
     library(devtools)
     devtools::install_github("lm687/CompSign", build_vignettes = TRUE)
+```
 
 ## Vignette
 Several examples of input data, how to run the models, and how to interpret the results are found in the vignette:
