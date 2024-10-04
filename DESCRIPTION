@@ -19,7 +19,9 @@ Imports:
     nnet,
     dendextend,
     Compositional,
-    usedist
+    usedist,
+    HMP,
+    latex2exp
 RoxygenNote: 7.1.2
 Depends: TMB, RcppEigen
 LinkingTo: TMB, RcppEigen
