@@ -6,7 +6,8 @@
 Lena Morrill Gavarró 2024
 
 ## Installation
-You can install the package as follows:
+
+[Pandoc](https://pandoc.org/installing.html) is required to build R Markdown vignettes - please install it before installing the package as follows:
 
     install.packages('devtools') ## if needed
     library(devtools)
