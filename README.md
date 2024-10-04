@@ -7,7 +7,7 @@ Lena Morrill Gavarró 2024
 
 ## Installation
 You can install the package as follows:
-
+    ## install.packages(devtools)
     library(devtools)
     devtools::install_github("lm687/CompSign", build_vignettes = TRUE)
 
