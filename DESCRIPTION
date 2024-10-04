@@ -22,7 +22,8 @@ Imports:
     Compositional,
     usedist,
     HMP,
-    latex2exp
+    latex2exp,
+    reshape2
 RoxygenNote: 7.1.2
 Depends: TMB, RcppEigen
 LinkingTo: TMB, RcppEigen
