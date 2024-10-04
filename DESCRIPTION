@@ -6,8 +6,9 @@ Author: Lena Morrill
 Maintainer: The package maintainer <lm687@cam.ac.uk>
 Description: It is generally overlooked that mutational signatures are compositional in
     nature. It follows that their analysis warrants techniques alternative to euclidean
-    space multivariate analysis. In this package a matrix of signatures of type 'sign'
-    can be subject to descriptive analysis, ... (cont.)
+    space multivariate analysis. In this package we provide methods for testing for
+    differential abundance in a variety of regression settings by using a Dirichlet-
+    multinomial model with multivariate random effects.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
