@@ -58,6 +58,12 @@ To test for differential abundance, a generalised Wald test can be used with the
 wald_TMB_wrapper(diagDM_no_small_sigs)
 ```
 
+The estimated coefficients can be visualised as follows:
+```
+library(ggplot2)
+plot_betas(diagDM_no_small_sigs, return_ggplot = T)
+```
+
 ### Variations of the model
 
 
