@@ -49,6 +49,7 @@ diagDM_no_small_sigs <- wrapper_run_TMB(object = simplified_object,
 in which `simplified_object` is a list containing `simplified_object$x`, `simplified_object$z`, `simplified_object$Y`. In particular, `simplified_object` corresponds to the nucleotide changes in the Bladder-TCC cohort. You can load `simplified_object`, as well as several other example datasets:
 ```
 data(package='CompSign')
+data(simplified_object)
 ```
 
 To test for differential abundance, a generalised Wald test can be used with the function `wald_TMB_wrapper`, which gives a p-value as output:
