@@ -36,18 +36,20 @@ The input dataset is the argument `object`, which is a list with the following s
 - `Y` (`n x d`)
 - `d`
 
+
 ### Estimating the parameters
-
-
 
 A minimal example is:
 
 ```
 diagDM_no_small_sigs <- wrapper_run_TMB(object = simplified_object,
-                                        model = "diagREDM", use_nlminb=T, smart_init_vals=F)
+                                        model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
 ```
 
-in which `simplified_object` is a list containing `simplified_object$x`, `simplified_object$z`, `simplified_object$Y`, `simplified_object$d`.
+in which `simplified_object` is a list containing `simplified_object$x`, `simplified_object$z`, `simplified_object$Y`. In particular, `simplified_object` corresponds to the nucleotide changes in the Bladder-TCC cohort. You can load `simplified_object`, as well as several other example datasets:
+```
+data(package='CompSign')
+```
 
 To test for differential abundance, a generalised Wald test can be used with the function `wald_TMB_wrapper`, which gives a p-value as output:
 
