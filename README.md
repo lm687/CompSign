@@ -46,7 +46,7 @@ diagDM_no_small_sigs <- wrapper_run_TMB(object = simplified_object,
                                         model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
 ```
 
-in which `simplified_object` is a list containing `simplified_object$x`, `simplified_object$z`, `simplified_object$Y`. In particular, `simplified_object` corresponds to the nucleotide changes in the Bladder-TCC cohort. You can load `simplified_object`, as well as several other example datasets:
+in which `simplified_object` is a list containing `simplified_object$x`, `simplified_object$z`, `simplified_object$Y`. In particular, `simplified_object` corresponds to the nucleotide changes in the Lung-AdenoCA cohort. You can load `simplified_object`, as well as several other example datasets:
 ```
 data(package='CompSign')
 data(simplified_object)
