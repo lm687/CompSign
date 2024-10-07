@@ -13,9 +13,9 @@ wrapper_run_TMB(
 )
 }
 \arguments{
-\item{model:}{name of model}
+\item{model:}{name of model: Options: {fullRE_M, diagRE_M, FE_DM, fullRE_DM, fullRE_DMonefixedlambda, diagRE_DM, fullREDMsinglelambda, fullREDMsinglelambda, singleRE_DM, fullREhalfDM, diagREDMsinglelambda, FEDMsinglelambda, fullRE_multinomial_REv2, diagDMpatientlambda, fullDMpatientlambda}}
 
-\item{object:}{object of type exposures_inputTMB (including X, Y, Z)}
+\item{object:}{object of type exposures_inputTMB (including X, Y, Z). See <simplified_object> as an example.}
 
 \item{smart_init_vals:}{boolean, whether a fixed-effects multinomial regression should be run first to get initial estimates}
 
