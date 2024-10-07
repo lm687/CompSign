@@ -266,7 +266,7 @@ appender <- function(string){
 }
 ```
 
-```{r, patient_dispersion_inference_analysis, fig.width=7}
+```{r, patient_dispersion_inference_analysis, fig.width=10}
 fixed_effects_estimate <- matrix(python_like_select_name(res_patient_lambda$par.fixed, 'beta'), nrow=2)
 random_effects_estimate <- matrix(res_patient_lambda$par.random, ncol=ncol(obj_multilambda_parameters$fixed_effects))
 log_lambda_vec_estimate <- python_like_select_name(res_patient_lambda$par.fixed, 'log_lambda')
