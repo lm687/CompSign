@@ -13,7 +13,7 @@ Lena Morrill Gavarró 2024
     library(devtools)
     devtools::install_github("lm687/CompSign", build_vignettes = TRUE)
 
-## Vignette
+## Vignettes
 Several examples of input data, how to run the models, and how to interpret the results are found in the vignette:
 
     browseVignettes("CompSign")
@@ -24,7 +24,7 @@ This package as, applied to study the differences in mutational signatures betwe
 We refer to the vignettes for a more in-depth explanation of models and the functioning of the package, but a minimal example is found here:
 
 
-### How to run the model
+## How to run the model
 
 The function `wrapper_run_TMB()` is used to run all variations of the model.
 
