@@ -243,6 +243,9 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
   #   return_report$par.fixed[names(return_report$par.fixed) == 'log_lambda'] = python_like_select_name(return_report$par.fixed, 'log_lambda') - log(1000)
   # }
 
+  ## add name of betas and vars in output object
+  names(return_report$par.fixed)[grepl('beta', names(return_report$par.fixed))] <- paste0(rep(c('beta0_', 'beta1_'), d-1), paste0(colnames(simplified_object$Y), '_wrt_', colnames(simplified_object$Y)[d])[1:(d-1)])
+  names(return_report$par.fixed)[grepl('logs_sd_RE', names(return_report$par.fixed))] <- paste0(rep('logs_sd_RE_', d-1), paste0(colnames(simplified_object$Y), '_wrt_', colnames(simplified_object$Y)[d])[1:(d-1)])
   
   if(return_opt){
     return(list(opt=opt, return_report=return_report))
