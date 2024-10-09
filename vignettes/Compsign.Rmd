@@ -45,16 +45,41 @@ Several datasets and objects can be loaded as follows using the `data()` functio
 data(PancEndocrine_signaturesMSE)
 data(ProstAdenoCA_chrom)
 data(res_patient_lambda)
+data(simplified_object)
 ```
 
 The package contains the following datasets of exposures of mutational signatures and metadata of the corresponding samples. These datasets are:
 
 - `PancEndocrine_signaturesMSE`: Signature exposures for early and late mutations, in the PCAWG Panc-Endocrine cohort
 - `ProstAdenoCA_chrom`: Signature exposures for each chromosome, in the PCAWG Prost-AdenoCA cohort
+- `simplified_object`: Nucleotide changes in clonal and subclonal mutations in the Lung-AdenoCA cohort
+
+## Minimal example workflow
+
+A minimal example of the main function `wrapper_run_TMB` is:
+
+```
+diagDM_no_small_sigs <- wrapper_run_TMB(object = simplified_object,
+                                        model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
+```
+
+in which `simplified_object` is a list containing `simplified_object$x`, `simplified_object$z`, `simplified_object$Y`.
+
+To test for differential abundance, a generalised Wald test can be used with the function `wald_TMB_wrapper`, which gives a p-value as output:
+
+```
+wald_TMB_wrapper(diagDM_no_small_sigs)
+```
+
+The estimated coefficients can be visualised as follows:
+```
+library(ggplot2)
+plot_betas(diagDM_no_small_sigs, return_ggplot = T)
+```
+
 
 ## Example workflow
 In this example workflow we determine differential abundance between clonal and subclonal mutations in Pancreatic neuroendocrine tumors.
-
 
 ### `sign` objects: how to load them
 `PancEndocrine_signaturesMSE` is an S4 object of class `sign`. `sign` objects include all information about the name of the samples, the mutation signature exposures (of all signatures, or only of the subset of active signatures as determined by Alexandrov et al. 2020). However, the use of these S4 objects is not necessary for running the models of differential abundance, which instead take a list as argument for the input data.
