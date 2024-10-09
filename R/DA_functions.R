@@ -33,7 +33,7 @@ sort_columns_TMB_SBS1 = function(object){
 }
 
 #' Function to run the model using TMB
-#' @param model: name of model; Options: {fullRE_M, diagRE_M, FE_DM, fullRE_DM, fullRE_DMonefixedlambda, diagRE_DM, fullREDMsinglelambda, fullREDMsinglelambda, singleRE_DM, fullREhalfDM, diagRE_DM_singlelambda, FEDMsinglelambda, fullRE_multinomial_REv2, diagDMpatientlambda, fullDMpatientlambda}
+#' @param model: name of model; Options: {fullRE_M, diagRE_M, FE_DM, fullRE_DM, fullRE_DMonefixedlambda, diagRE_DM, fullRE_DM_singlelambda, singleRE_DM, fullREhalfDM, diagRE_DM_singlelambda, FEDMsinglelambda, fullRE_multinomial_REv2, diagRE_DM_patientlambda, fullRE_DM_patientlambda}
 #' @param object: object of type exposures_inputTMB (including X, Y, Z)
 #' @param smart_init_vals: boolean, whether a fixed-effects multinomial regression should be run first to get initial estimates
 #' @param use_nlminb: boolean, whether <nlminb> should be used for estimation. Alternatively, <optim> is used
@@ -124,7 +124,7 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     parameters$cov_par_RE = NULL
     dll_name <- "diagRE_ME_dirichletmultinomial"
     rdm_vec <- "u_large"
-  }else if(model  == "fullREDMsinglelambda"){
+  }else if(model  == "fullRE_DM_singlelambda"){
     data$num_individuals = n
     parameters$log_lambda = 1.1
     rdm_vec <- "u_large"
@@ -150,7 +150,7 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     parameters <- list(parameters, log_lambda = 1.1)
     rdm_vec <- "u_large"
     dll_name <- "CHANGETHIS"
-  }else if(model == "diagREDMsinglelambda"){
+  }else if(model == "diagRE_DM_singlelambda"){
     data$num_individuals = n
     data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
     
@@ -173,7 +173,7 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     rdm_vec <- "u_large"
     
     # obj <- MakeADFun(data, parameters, DLL="", random = "")
-  }else if(model == "FEDMsinglelambda"){
+  }else if(model == "FE_DM_singlelambda"){
     data$num_individuals = NULL
     parameters$u_large = NULL
     parameters$logs_sd_RE = NULL
@@ -194,11 +194,11 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     
     dll_name <- "fullRE_ME_multinomial_REv2"
     rdm_vec <- c("u_large1", "u_large2","u_large3", "u_large4")
-  }else if(model == "diagDMpatientlambda"){
+  }else if(model == "diagRE_DM_patientlambda"){
     parameters$log_lambda = matrix(rep(0, data$num_individuals))
     dll_name <- "diagREpatientlambda_ME_dirichletmultinomial"
     rdm_vec <- "u_large"
-  }else if(model == "fullDMpatientlambda"){
+  }else if(model == "fullRE_DM_patientlambda"){
     parameters$log_lambda = matrix(rep(0, data$num_individuals))
     dll_name <- "fullREpatientlambda_ME_dirichletmultinomial"
     rdm_vec <- "u_large"
@@ -234,14 +234,6 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
   }
 
   return_report <- sdreport(obj)
-  
-  # if(model %in% "diagDMpatientlambda"){
-  #   cat('Scaling back log lambda values')
-  #  ## scaled parameters were estimated; scale them back
-  #   return_report$par.fixed
-  #   # log(exp(python_like_select_name(return_report$par.fixed, 'log_lambda'))/1000)
-  #   return_report$par.fixed[names(return_report$par.fixed) == 'log_lambda'] = python_like_select_name(return_report$par.fixed, 'log_lambda') - log(1000)
-  # }
 
   ## add name of betas and vars in output object
   names(return_report$par.fixed)[grepl('beta', names(return_report$par.fixed))] <- paste0(rep(c('beta0_', 'beta1_'), d-1), paste0(colnames(simplified_object$Y), '_wrt_', colnames(simplified_object$Y)[d])[1:(d-1)])
