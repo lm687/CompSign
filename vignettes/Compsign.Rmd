@@ -124,11 +124,13 @@ do.call('grid.arrange', list(grobs=lapply(split_matrix_in_half(simplified_object
 There are several variations on the model, each with a particular combination of the following:
 - Base model: Dirichlet-multinomial in most cases, but two simpler models -- multinomial models `diagRE_M` and `fullRE_M` are implemented for comparison.
 - Random effects: correlated or not (e.g. uncorrelated in `diagRE_DM`, correlated in `fullRE_DM`).
-- Number of dispersion parameters: generally one per group (e.g. in `diagRE_DM`), but possibly fewer or more if specified in the name (e.g. one single dipersion parameter in `diagREDMsinglelambda`, one dispersion parameter per patient in `diagDMpatientlambda`).
+- Number of dispersion parameters: generally one per group (e.g. in `diagRE_DM`), but possibly fewer or more if specified in the name (e.g. one single dipersion parameter in `diagRE_DM_singlelambda`, one dispersion parameter per patient in `diagDMpatientlambda`).
+
+The names of the model correspond to `{random effects}_{base model}_{particularities of the dispersion parameter, if any}`.
 
 | name of model (for user) | description  |cpp file (no need to use)   |
 |---|---|---|
-| diagREDMsinglelambda  | DM with independent RE and one lambda  | diagRE_dirichletmultinomial_single_lambda  |
+| diagRE_DM_singlelambda  | DM with independent RE and one lambda  | diagRE_dirichletmultinomial_single_lambda  |
 | diagRE_DM  | DM with independent RE and two lambdas  | diagRE_ME_dirichletmultinomial  |
 | diagRE_M  | M with independent RE  | diagRE_ME_multinomial  |
 | FEDMsinglelambda  | DM with no RE and one lambda  | FE_dirichletmultinomial_single_lambda  |
@@ -138,8 +140,8 @@ There are several variations on the model, each with a particular combination of
 | fullRE_DM  | DM with correlated RE and two lambdas  | fullRE_ME_dirichletmultinomial  |
 | fullRE_M  | M with correlated RE  | fullRE_ME_multinomial  |
 | singleRE_DM  | DM with a single RE intercept and two lambdas  | singleRE_dirichlet_multinomial  |
-| diagDMpatientlambda  | DM with independent RE and one lambda for each patient  | diagREpatientlambda_ME_dirichletmultinomial  |
-| fullDMpatientlambda  | DM with correlated RE and one lambda for each patient  | fullREpatientlambda_ME_dirichletmultinomial  |
+| diagRE_DM_patientlambda  | DM with independent RE and one lambda for each patient  | diagREpatientlambda_ME_dirichletmultinomial  |
+| fullRE_DM_patientlambda  | DM with correlated RE and one lambda for each patient  | fullREpatientlambda_ME_dirichletmultinomial  |
 
 ### Input dataset
 
@@ -154,11 +156,11 @@ The input dataset is the argument `object`, which is a list with the following s
 
 The first row is the `<model>` argument in the function `wrapper_run_TMB()`.
 
-We run the model `diagREDMsinglelambda` with the dataset `simplified_object`:
+We run the model `diagRE_DM_singlelambda` with the dataset `simplified_object`:
 
 ```{r panc-endocrine3, message=FALSE, echo=TRUE, results='hide'}
 diagDM_no_small_sigs <- wrapper_run_TMB(object = simplified_object,
-                                        model = "diagREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
+                                        model = "diagRE_DM_singlelambda", use_nlminb=T, smart_init_vals=F)
 ```
 
 This is the resulting object with the estimates and their standard deviations:
@@ -185,17 +187,17 @@ Other models can be run similarly:
 
 ```{r, eval=FALSE, echo=TRUE}
 res <- wrapper_run_TMB(object = simplified_object,
-                       model = "diagREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
+                       model = "diagRE_DM_singlelambda", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = simplified_object,
                        model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = simplified_object,
                        model = "diagRE_M", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = simplified_object,
-                       model = "FEDMsinglelambda", use_nlminb=T, smart_init_vals=F)
+                       model = "FE_DM_singlelambda", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = simplified_object,
                        model = "FE_DM", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = simplified_object,
-                       model = "fullREDMsinglelambda", use_nlminb=T, smart_init_vals=F)
+                       model = "fullRE_DM_singlelambda", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = simplified_object,
                        model = "fullRE_DMonefixedlambda", use_nlminb=T, smart_init_vals=F)
 res <- wrapper_run_TMB(object = simplified_object,
@@ -254,7 +256,7 @@ obj_multilambda <- list(Y = y, x=x, z = z, num_individuals = n)
 
 ## Estimate parameters
 ```{r, patient_dispersion_inference, eval=FALSE}
-res_patient_lambda <- wrapper_run_TMB(obj_multilambda, model = 'diagDMpatientlambda')
+res_patient_lambda <- wrapper_run_TMB(obj_multilambda, model = 'diagRE_DM_patientlambda')
 ```
 
 ```{r, patient_dispersion_inference_res}
@@ -273,11 +275,11 @@ We can see how the parameters of interest are well recovered:
   - $\beta_1$
   - $\log(\lambda)$
 
-and two additional sets of parameters suffer from a bias due to having used the uncorrelated version of the model (i.e. `diagDMpatientlambda` instead of `fullDMpatientlambda`):
+and two additional sets of parameters suffer from a bias due to having used the uncorrelated version of the model (i.e. `diagRE_DM_patientlambda` instead of `fullDMpatientlambda`):
 
   - $\beta_0$
   - Random intercepts for each patient
-Note that in the current setting the number of parameters to estimate is already large, and this is why `diagDMpatientlambda` is used.
+Note that in the current setting the number of parameters to estimate is already large, and this is why `diagRE_DM_patientlambda` is used.
 
 ```{r, include=F, eval=TRUE}
 appender <- function(string){
