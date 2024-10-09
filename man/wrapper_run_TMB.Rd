@@ -13,7 +13,7 @@ wrapper_run_TMB(
 )
 }
 \arguments{
-\item{model:}{name of model: Options: {fullRE_M, diagRE_M, FE_DM, fullRE_DM, fullRE_DMonefixedlambda, diagRE_DM, fullREDMsinglelambda, fullREDMsinglelambda, singleRE_DM, fullREhalfDM, diagRE_DM_singlelambda, FEDMsinglelambda, fullRE_multinomial_REv2, diagDMpatientlambda, fullDMpatientlambda}}
+\item{model:}{name of model: Options: {fullRE_M, diagRE_M, FE_DM, fullRE_DM, fullRE_DMonefixedlambda, diagRE_DM, fullRE_DM_singlelambda, singleRE_DM, fullREhalfDM, diagRE_DM_singlelambda, FE_DM_singlelambda, fullRE_multinomial_REv2, diagRE_DM_patientlambda, fullRE_DM_patientlambda}}
 
 \item{object:}{object of type exposures_inputTMB (including X, Y, Z). See <simplified_object> as an example.}
 
