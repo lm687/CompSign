@@ -389,7 +389,38 @@ fill_covariance_matrix = function(arg_d, arg_entries_var, arg_entries_cov, verbo
   return(.sigma)
 }
 
-extract_sigs_TMB_obj <- function(dataset_obj_trinucleotide, subset_signatures, signature_version='v3', signature_definition=NULL){
+extract_sigs <- function(W_muts, signature_definitions, W=NULL, fitWsubsetsigs=F, subset_sigs=NULL){
+  ## W_muts: trinucleotide counts, with samples as rows and trinucleotide categories in the columns
+  ## W: signature matrix - not used
+  
+  stopifnot(rownames(signature_definitions) == colnames(W_muts))
+
+  if(is.null(subset_sigs)){
+    if(fitWsubsetsigs){
+      subset_sigs = colnames(W)
+    }else{
+      subset_sigs = colnames(signature_definitions)
+    }
+  }
+  ## else, subset_sigs is kept as indicated
+
+  ## extract signatures for each sample (on the rows of W_muts)
+  W_QP = t(sapply(1:nrow(W_muts), function(i){
+    QPsig(signatures.ref = signature_definitions[,subset_sigs], tumour.ref = rep(colnames(W_muts), W_muts[i,]))
+  }))
+  W_QP[W_QP<0] <- 0 ## some values migth be extremely low but negative
+
+  ## get new exposures
+  W_QP = t(sapply(1:nrow(W_QP), function(j) table(factor(sample(x = 1:ncol(W_QP), size = rowSums(W_muts)[j], replace = T, prob = W_QP[j,]),
+                                                         levels=1:ncol(W_QP)))))
+  colnames(W_QP) <- subset_sigs
+
+  stopifnot(rowSums(W_QP) == rowSums(W_muts))
+  return(W_QP)
+}
+
+extract_sigs_TMB_obj <- function(dataset_obj_trinucleotide, subset_signatures, signature_version='v3',
+                                 signature_definition=NULL, signature_fitting_method='mutSigExtractor'){
   require(mutSigExtractor)
   
   if(!is.null(signature_definition)){
@@ -422,10 +453,18 @@ extract_sigs_TMB_obj <- function(dataset_obj_trinucleotide, subset_signatures, s
     rownames(sigdefs_subset) <- colnames(dataset_obj_trinucleotide$Y)
   }
   
-  sigs <- fitToSignatures(
-    mut.context.counts=(dataset_obj_trinucleotide$Y), 
-    signature.profiles=sigdefs_subset
-  )
+  ## Quadratic programming for signature extraction
+  sigs <-  #extract_sigs(W_muts = dataset_obj_trinucleotide$Y, )
+  if(signature_fitting_method=='mutSigExtractor'){
+    sigs <- fitToSignatures(
+      mut.context.counts=(dataset_obj_trinucleotide$Y), 
+      signature.profiles=sigdefs_subset
+    )
+  }else if(signature_fitting_method=='QP'){
+    sigs <- extract_sigs(W_muts = dataset_obj_trinucleotide$Y, signature_definitions = sigdefs_subset, subset_sigs = colnames(sigdefs_subset))
+  }else{
+    stop('<signature_fitting_method> not implemented')
+  }
   
   dataset_obj_new <- dataset_obj_trinucleotide
   dataset_obj_new$Y = round(sigs)
