@@ -64,6 +64,8 @@ library(ggplot2)
 plot_betas(diagDM_no_small_sigs, return_ggplot = T)
 ```
 
+If signatures have not yet been extracted, this can be done with the wrapper function `extract_sigs_TMB_obj` and using as input a mutation matrix (commonly, a matrix with trinucleotide mutations; see more details in the Vignette).
+
 ### Variations of the model
 
 
