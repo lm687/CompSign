@@ -46,6 +46,9 @@ data(PancEndocrine_signaturesMSE)
 data(ProstAdenoCA_chrom)
 data(res_patient_lambda)
 data(simplified_object)
+data(ProstAdenoCA_trinucleotide)
+data(obj_multilambda)
+data(obj_multilambda_parameters)
 ```
 
 The package contains the following datasets of exposures of mutational signatures and metadata of the corresponding samples. These datasets are:
@@ -53,6 +56,7 @@ The package contains the following datasets of exposures of mutational signature
 - `PancEndocrine_signaturesMSE`: Signature exposures for early and late mutations, in the PCAWG Panc-Endocrine cohort
 - `ProstAdenoCA_chrom`: Signature exposures for each chromosome, in the PCAWG Prost-AdenoCA cohort
 - `simplified_object`: Nucleotide changes in clonal and subclonal mutations in the Lung-AdenoCA cohort
+- `ProstAdenoCA_trinucleotide`: Trinucleotide abundandances for clonal and subclonal mutations in the PCAWG Prost-AdenoCA cohort
 
 ## Minimal example workflow
 
@@ -89,6 +93,22 @@ PancEndocrine_signaturesMSE = load_PCAWG("../inst/extdata/roo/Panc-Endocrine_sig
                                          read_directly = T,
                                          typedata = "signaturesMSE", override_warning_X_Z = T)
 PancEndocrine_signaturesMSE_v2 = load_PCAWG(ct = "Panc-Endocrine", typedata = "signaturesMSE", path_to_data = "../inst/extdata/", load_all_sigs = F, override_warning_X_Z = T)
+```
+
+### Signature extraction
+If signature extraction has not been performed, the wrapper function `extract_sigs_TMB_obj` outputs signature exposures from a matrix of trinucleotide abundances. We use the trinucleotide abundances from the object `ProstAdenoCA_trinucleotide`. In this wrapper function two methods for signature extraction are implemented: mutSigExtractor and quadratic programming (QP); this can be specified in the `signature_fitting_method` argument. The version of signature definitions matrix can be specified in the argument `signature_version` (which can be `v2` or `v3` of the COSMIC signatures. Alternatively, any signature definition matrix can be specified in the `signature_definition`, where the signature definition should be a `F x K` signature definition matrix, where `K` is the number of signatures and `F` the number of features (for COSMIC signatures, `F=96`). The active signature list can be specified in `subset_signatures`.
+
+```{r signature_extraction}
+active_sigs_in_ct <- c("SBS1", "SBS2", "SBS3", "SBS5", "SBS8", "SBS13", "SBS18", "SBS37", "SBS40", "SBS41")
+exposures_from_mutSigExtractor <- extract_sigs_TMB_obj(dataset_obj_trinucleotide=ProstAdenoCA_trinucleotide,
+                             subset_signatures = active_sigs_in_ct,
+                             signature_version=NULL, signature_fitting_method = 'mutSigExtractor')
+
+exposures_from_QP <- extract_sigs_TMB_obj(dataset_obj_trinucleotide=ProstAdenoCA_trinucleotide,
+                              subset_signatures =active_sigs_in_ct,
+                              signature_version=NULL, signature_fitting_method = 'QP')
+
+plot(log(as.vector(exposures_from_mutSigExtractor$Y)), log(as.vector(exposures_from_QP$Y)))
 ```
 
 ### Visualisation of mutational signature exposures
