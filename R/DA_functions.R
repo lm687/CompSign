@@ -58,6 +58,7 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
   
   ## if the object of data and covariates is an argument
   data = object
+  colnamesY = colnames(data$Y)
   
   # if(sort_columns){
   #   order_cats = order(colSums(data$Y), decreasing = T)
@@ -88,7 +89,7 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
   
   ## used in several models, e.g. diaRE_DM
   creating_lambda_accessory_mat = apply(data$x, 1, paste0, collapse='')
-  creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i) which(unique(uniq_x) == i))
+  creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i) which(unique(creating_lambda_accessory_mat) == i))
   creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i){x = rep(0, ncol(data$x)); x[i]=1; x})
   
   
@@ -101,10 +102,13 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     dll_name <- "diagRE_ME_multinomial"
     rdm_vec <- "u_large"
   }else if(model == "FE_DM"){
+    # if(ncol(data$x) != 2){
+    #   stop('Expecting two columns in x from input object\n')
+    # }
     # data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
     data$lambda_accessory_mat = t(creating_lambda_accessory_mat) # cbind(data$x[,2], 1-data$x[,2])
     
-    parameters <- c(parameters, list(log_lambda = matrix(c(2,2))))
+    parameters <- c(parameters, list(log_lambda = matrix(rep(2,ncol(data$x)))))
     parameters$u_large = NULL
     parameters$logs_sd_RE = NULL
     parameters$cov_par_RE = NULL
@@ -220,8 +224,8 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
   return_report <- sdreport(obj)
 
   ## add name of betas and vars in output object
-  names(return_report$par.fixed)[grepl('beta', names(return_report$par.fixed))] <- paste0(rep(c('beta0_', 'beta1_'), d-1), paste0(colnames(simplified_object$Y), '_wrt_', colnames(simplified_object$Y)[d])[1:(d-1)])
-  names(return_report$par.fixed)[grepl('logs_sd_RE', names(return_report$par.fixed))] <- paste0(rep('logs_sd_RE_', d-1), paste0(colnames(simplified_object$Y), '_wrt_', colnames(simplified_object$Y)[d])[1:(d-1)])
+  names(return_report$par.fixed)[grepl('beta', names(return_report$par.fixed))] <- paste0(rep(paste0('beta', (1:ncol(data$x))-1, '_'), d-1), paste0(colnamesY, '_wrt_', colnamesY[d])[1:(d-1)])
+  names(return_report$par.fixed)[grepl('logs_sd_RE', names(return_report$par.fixed))] <- paste0(rep('logs_sd_RE_', d-1), paste0(colnamesY, '_wrt_', colnamesY[d])[1:(d-1)])
   
   if(return_opt){
     return(list(opt=opt, return_report=return_report))
