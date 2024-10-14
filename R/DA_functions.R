@@ -65,7 +65,7 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
   # }
   
   data$Y = matrix(data$Y, nrow=nrow(data$Y))
-  data$x = (matrix(data$x, ncol=2))
+  data$x = (matrix(data$x, ncol=ncol(data$x)))
   
   d <- ncol(data$Y) ## number of signatures
   n <- ncol(data$z) ## number of INDIVIDUALS, not samples
@@ -75,8 +75,8 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     .x_multinom = multinom(data$Y ~ data$x[,2])
     beta_init = t(coef(.x_multinom))
   }else{
-    beta_init = (matrix(rep(runif(1, min = -4, max = 4), 2*(d-1)),
-                        nrow = 2, byrow=TRUE))
+    beta_init = (matrix(rep(runif(1, min = -4, max = 4), ncol(data$x)*(d-1)),
+                        nrow = ncol(data$x), byrow=TRUE))
   }
   
   parameters <- list(
@@ -119,8 +119,11 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     rdm_vec <- "u_large"
   }else if(model == "diagRE_DM"){
     data$num_individuals = n
-    data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
-    parameters$log_lambda = matrix(c(2,2))
+    uniq_x = apply(data$x, 1, paste0, collapse='')
+    uniq_x = sapply(uniq_x, function(i) which(unique(uniq_x) == i))
+    uniq_x = sapply(uniq_x, function(i){x = rep(0, ncol(data$x)); x[i]=1; x})
+    data$lambda_accessory_mat = t(uniq_x) #(cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
+    parameters$log_lambda = matrix(rep(2,ncol(data$x)))
     parameters$cov_par_RE = NULL
     dll_name <- "diagRE_ME_dirichletmultinomial"
     rdm_vec <- "u_large"
@@ -140,7 +143,7 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     parameters$logs_sd_RE = NULL
     parameters$cov_par_RE = NULL
     parameters$logSigma_RE <- 1.1
-    parameters <- c(parameters,list(log_lambda = matrix(c(2,2))))
+    parameters <- c(parameters,list(log_lambda = matrix(rep(2,ncol(data$x)))))
     rdm_vec <- "u_random_effects"
     dll_name <- "singleRE_dirichlet_multinomial"
   }else if(model == "fullREhalfDM"){
