@@ -86,6 +86,12 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     cov_par_RE = rep(1, ((d-1)*(d-1)-(d-1))/2)
   )
   
+  ## used in several models, e.g. diaRE_DM
+  creating_lambda_accessory_mat = apply(data$x, 1, paste0, collapse='')
+  creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i) which(unique(uniq_x) == i))
+  creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i){x = rep(0, ncol(data$x)); x[i]=1; x})
+  
+  
   if(model == "fullRE_M"){
     data$num_individuals = n
     dll_name <- "fullRE_ME_multinomial"
@@ -96,7 +102,7 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     rdm_vec <- "u_large"
   }else if(model == "FE_DM"){
     # data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
-    data$lambda_accessory_mat = cbind(data$x[,2], 1-data$x[,2])
+    data$lambda_accessory_mat = t(creating_lambda_accessory_mat) # cbind(data$x[,2], 1-data$x[,2])
     
     parameters <- c(parameters, list(log_lambda = matrix(c(2,2))))
     parameters$u_large = NULL
@@ -106,23 +112,20 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     rdm_vec <- NULL
   }else if(model == "fullRE_DM"){
     data$num_individuals = n
-    data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
+    data$lambda_accessory_mat = t(creating_lambda_accessory_mat) #(cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
     parameters <- c(parameters,list(log_lambda = matrix(c(2,2))))
     dll_name <- "fullRE_ME_dirichletmultinomial"
     rdm_vec <- "u_large"
   }else if(model == "fullRE_DMonefixedlambda"){
     ## fixing one of the overdispersion parameters
     data$num_individuals = n
-    data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
+    data$lambda_accessory_mat = t(creating_lambda_accessory_mat) #(cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
     parameters <- c(parameters,list(log_lambda = matrix(c(2))))
     dll_name <- "fullRE_ME_dirichletmultinomial_onefixedlambda"
     rdm_vec <- "u_large"
   }else if(model == "diagRE_DM"){
     data$num_individuals = n
-    uniq_x = apply(data$x, 1, paste0, collapse='')
-    uniq_x = sapply(uniq_x, function(i) which(unique(uniq_x) == i))
-    uniq_x = sapply(uniq_x, function(i){x = rep(0, ncol(data$x)); x[i]=1; x})
-    data$lambda_accessory_mat = t(uniq_x) #(cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
+    data$lambda_accessory_mat = t(creating_lambda_accessory_mat) #(cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
     parameters$log_lambda = matrix(rep(2,ncol(data$x)))
     parameters$cov_par_RE = NULL
     dll_name <- "diagRE_ME_dirichletmultinomial"
@@ -137,7 +140,7 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     cat('single value for RE, shared for all log-ratios\n')
     data$num_individuals = n
     print(parameters)
-    data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
+    data$lambda_accessory_mat = t(creating_lambda_accessory_mat) #(cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
     parameters$u_random_effects = as(parameters$u_large[,1], 'matrix')
     parameters$u_large = NULL
     parameters$logs_sd_RE = NULL
@@ -146,36 +149,14 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     parameters <- c(parameters,list(log_lambda = matrix(rep(2,ncol(data$x)))))
     rdm_vec <- "u_random_effects"
     dll_name <- "singleRE_dirichlet_multinomial"
-  }else if(model == "fullREhalfDM"){
-    stop("fullREhalfDM used to be done with  fullRE_dirichletmultinomial_single_lambda")
-    data$num_individuals = n
-    
-    parameters <- list(parameters, log_lambda = 1.1)
-    rdm_vec <- "u_large"
-    dll_name <- "CHANGETHIS"
   }else if(model == "diagRE_DM_singlelambda"){
     data$num_individuals = n
-    data$lambda_accessory_mat = (cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
+    data$lambda_accessory_mat = t(creating_lambda_accessory_mat) #(cbind(c(rep(1,n),rep(0,n)), c(rep(0,n),rep(1,n))))
     
     parameters <- c(parameters, log_lambda = 1.1)
     parameters$cov_par_RE = NULL
-    
-    # Error below indicates   <parameters> list not being created correcty
-    # Error in MakeADFun(data = Data, parameters = Parameters, random = Random)
-    # :
-    #   Only numeric matrices, vectors, arrays or factors can be interfaced
-    # 
-    # 
-    # parameters <- list(
-    #   beta = beta_init,
-    #   u_large = matrix(rep(1, (d-1)*n), nrow=n),
-    #   logs_sd_RE=rep(1, d-1),
-    #   log_lambda = 2
-    # )
     dll_name <- "diagRE_dirichletmultinomial_single_lambda"
     rdm_vec <- "u_large"
-    
-    # obj <- MakeADFun(data, parameters, DLL="", random = "")
   }else if(model == "FE_DM_singlelambda"){
     data$num_individuals = NULL
     parameters$u_large = NULL
