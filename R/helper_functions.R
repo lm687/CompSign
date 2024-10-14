@@ -908,7 +908,8 @@ give_betas <- function(TMB_obj){
 
 plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remove_SBS=T, only_slope=F, return_df=F, plot=T,
                        line_zero=T, add_confint=F, return_plot=T, return_ggplot=F, title=NULL, add_median=F, sort_by_slope=F,
-                       size_title=NULL, size_logR=NULL, xlab=NULL, betas_are_only_slope=F, input_is_summary=F){
+                       size_title=NULL, size_logR=NULL, xlab=NULL, betas_are_only_slope=F, input_is_summary=F, num_covariates=2,
+                       labels_betas=NULL, keep_order_signatures=F, keep_order_covariates=F){
   require(latex2exp)
   if(typeof(TMB_obj) == 'character'){
     .summary_betas <- NA
@@ -925,8 +926,17 @@ plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remo
     }else{
       .summary_betas <- TMB_obj
     }
+    if(is.null(labels_betas)){
+      if(num_covariates == 2){
+        labels_betas = c('Intercept', 'Slope')
+      }else{
+        labels_betas = paste0('B', 1:num_covariates)
+      }
+    }else{
+      labels_betas = rep(labels_betas, nrow(.summary_betas)/length(labels_betas))
+    }
     if(betas_are_only_slope){
-      .extra_beta <- matrix(NA, nrow=nrow(python_like_select_rownames(.summary_betas, 'beta')), ncol=2)
+      .extra_beta <- matrix(NA, nrow=nrow(python_like_select_rownames(.summary_betas, 'beta')), ncol=num_covariates)
       .summary_betas
       .extra_beta <- do.call('rbind', lapply(1:nrow(.extra_beta), function(i) rbind(.extra_beta[i,], .summary_betas[i,])))
       rownames(.extra_beta) <- rep('beta', nrow(.extra_beta))
@@ -934,8 +944,11 @@ plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remo
       .summary_betas <- rbind(.extra_beta, .summary_betas)
     }
     .summary_betas <- cbind.data.frame(python_like_select_rownames(.summary_betas, 'beta'),
-                                       type_beta=rep(c('Intercept', 'Slope')),
-                                       LogR=rep(1:(nrow(python_like_select_rownames(.summary_betas, 'beta'))/2), each=2))
+                                       type_beta=rep(labels_betas),
+                                       LogR=rep(1:(nrow(python_like_select_rownames(.summary_betas, 'beta'))/num_covariates), each=num_covariates))
+    if(keep_order_covariates){
+      .summary_betas$type_beta <- factor(.summary_betas$type_beta, levels=unique(.summary_betas$type_beta))
+    }
     if(only_slope){
       .summary_betas <- .summary_betas[.summary_betas$type_beta == 'Slope',]
     }
@@ -950,6 +963,9 @@ plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remo
         stop('Number of beta slope/intercept pairs should be the same as the length of the name of the categories')
       }
       .summary_betas$LogR = names_cats[.summary_betas$LogR]
+      if(keep_order_signatures){
+        .summary_betas$LogR = factor(.summary_betas$LogR, levels=unique(.summary_betas$LogR))
+      }
     }
     if(sort_by_slope){
       .summary_betas$LogR <- factor( .summary_betas$LogR,
@@ -967,13 +983,19 @@ plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remo
     
     ##--------------------------------------------------------------------------------##
     appender <- function(string){
-      sapply(string, function(stringb){
-        if(stringb == 'Intercept'){
-          TeX(paste("$\\beta_0$")) 
-        }else if (stringb == 'Slope'){
-          TeX(paste("$\\beta_1$")) 
-        }
-      })
+      if(num_covariates == 2){
+        sapply(string, function(stringb){
+          if(stringb == 'Intercept'){
+            TeX(paste("$\\beta_0$")) 
+          }else if (stringb == 'Slope'){
+            TeX(paste("$\\beta_1$")) 
+          }
+        })
+      }else{
+        sapply(string, function(stringb){
+            TeX(gsub("B", "$\\beta_$", string)) 
+        })
+      }
     }
     ##--------------------------------------------------------------------------------##
     
@@ -981,8 +1003,7 @@ plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remo
     plt <- plt +
       geom_point()+
       geom_errorbar(aes(ymin=`Estimate`-`Std. Error`, ymax=`Estimate`+`Std. Error`), width=.1)+
-      facet_wrap(.~type_beta, scales = "free", labeller = as_labeller(appender, 
-                                                                     default = label_parsed)) #ggtitle('Slopes')
+      facet_wrap(.~type_beta, scales = "free", labeller = as_labeller(appender, default = label_parsed))
     
     if(theme_bw){
       plt <- plt + theme_bw()
@@ -1294,7 +1315,7 @@ give_sim_from_estimates <- function(ct, typedata = "signatures", sigs_to_remove=
 
 select_self <- function(i) i[i]
 
-vector_cats_to_logR <- function(i){paste0(i[-length(i)], '/', i[length(i)])}
+vector_cats_to_logR <- function(i, sep='/'){paste0(i[-length(i)], sep, i[length(i)])}
 
 non_duplicated_rows <- function(i){
   rownames(i)[duplicated(rownames(i))] = paste0(rownames(i)[duplicated(rownames(i))], "_2")
