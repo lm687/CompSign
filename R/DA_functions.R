@@ -249,7 +249,7 @@ wald_TMB_wrapper = function(i, verbatim=TRUE, fail_non_converged=T){
   if(typeof(i) == "character"){
     return(NA)
   }else{
-    idx_beta = select_slope_2(which(names(i$par.fixed) == "beta"), verbatim=verbatim)
+    idx_beta = select_slope_2(which(grepl('^beta', names(i$par.fixed))), verbatim=verbatim)
     if(!i$pdHess & fail_non_converged){
       ## didn't converge
       NA
