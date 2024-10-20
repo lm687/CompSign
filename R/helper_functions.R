@@ -949,6 +949,7 @@ plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remo
                        line_zero=T, add_confint=F, return_plot=T, return_ggplot=F, title=NULL, add_median=F, sort_by_slope=F,
                        size_title=NULL, size_logR=NULL, xlab=NULL, betas_are_only_slope=F, input_is_summary=F, num_covariates=2,
                        labels_betas=NULL, keep_order_signatures=F, keep_order_covariates=F){
+  require(ggplot2)
   require(latex2exp)
   if(typeof(TMB_obj) == 'character'){
     .summary_betas <- NA

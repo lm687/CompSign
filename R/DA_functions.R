@@ -89,16 +89,19 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
   if( (ncol(data$x) == 1) | grepl('singlelambda', model)){
     creating_lambda_accessory_mat = matrix(0, nrow(data$x))
   }else if(ncol(data$x) > 1){
-    creating_lambda_accessory_mat = apply(data$x, 1, paste0, collapse='')
-    combinations_covariates <- unique(creating_lambda_accessory_mat)
-    creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i) which(combinations_covariates == i))
-    creating_lambda_accessory_mat = lapply(creating_lambda_accessory_mat, function(i){
+    ## assuming second column are the groups
+    combinations_covariates <- unique(data$x[,2])
+    print(combinations_covariates)
+    creating_lambda_accessory_mat = sapply(data$x[,2], function(i) which(combinations_covariates == i))
+    # creating_lambda_accessory_mat = apply(data$x, 1, paste0, collapse='')
+    # combinations_covariates <- unique(creating_lambda_accessory_mat)
+    # creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i) which(combinations_covariates == i))
+    creating_lambda_accessory_mat = t(do.call('rbind', lapply(creating_lambda_accessory_mat, function(i){
       x = rep(0, length(combinations_covariates)); x[i]=1; x
-    })
+    })))
   }else{
     stop()
   }
-  print(head(creating_lambda_accessory_mat))
   
   if(model == "fullRE_M"){
     data$num_individuals = n
