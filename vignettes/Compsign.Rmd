@@ -58,16 +58,44 @@ The package contains the following datasets of exposures of mutational signature
 - `simplified_object`: Nucleotide changes in clonal and subclonal mutations in the Lung-AdenoCA cohort
 - `ProstAdenoCA_trinucleotide`: Trinucleotide abundandances for clonal and subclonal mutations in the PCAWG Prost-AdenoCA cohort
 
-## Minimal example workflow
+## Minimal example workflow (Example 1)
 
-A minimal example of the main function `wrapper_run_TMB` is:
+This is a minimal example for running the model and extracting the estimated coefficients.
+
+### Input dataset
+
+The input dataset is the argument `object`, which is a list with the following structure:
+- `x`: covariate matrix (`p x n`)
+- `z`: matrix of random effects indicating which patient-specific subsample belongs to which patient (`n x N`)
+- `Y` (`n x d`)
+- `d`
+
+### Fitting the model
+
+The function `wrapper_run_TMB()` is used to run all variations of the model.
+
+A minimal example is:
 
 ```
 diagDM_no_small_sigs <- wrapper_run_TMB(object = simplified_object,
                                         model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
 ```
 
-in which `simplified_object` is a list containing `simplified_object$x`, `simplified_object$z`, `simplified_object$Y`.
+in which `simplified_object` is a list containing `simplified_object$x`, `simplified_object$z`, `simplified_object$Y`. The `object` input for `wrapper_run_TMB` is always a list containing a matrix of covariates `x`, a matrix of observations `Y` and a matrix matching observations patients and the labels corresponding to the random effects. All three matrices should have the same number of rows - the number of observations. In this case, `simplified_object` corresponds to the nucleotides abundances in clonal and subclonal mutations in the Lung-AdenoCA cohort. `simplified_object$x`, contains two columns (a column of 1 for the intercept and a column of 0 and 1 indicating whether the observation corresponds to clonal (0) or subclonal (1) mutations. `simplified_object$z` contains a matrix where each observation is paired with its corresponding patient, `simplified_object$Y` is a matrix of counts for the nucleotide abundances for each patient and (clonal/subclonal) group.
+
+Here we are using the model `diagRE_DM`, which is a mixed-effect Dirichlet-multinomial model with non-correlated random effects and two dispersion parameters (one per group). See below for the list of alternative models available.
+
+### Data included in CompSign
+You can load `simplified_object`, as well as several other example datasets, using the `data` funtion:
+
+```
+data(package='CompSign')
+data(simplified_object)
+```
+
+### Testing for differential abundance
+
+Depending on the model, the output of `wrapper_run_TMB` contains the estimated values of different coefficients. The parameters of interest are `beta_0`, `beta_1` and `lambda`. Both `beta` are values in log-ratio space in with respect to the last category included in the input `object` for `wrapper_run_TMB` (i.e. the last colun of `object$Y`). `beta_0` indicates the coefficient for the baseline - in the two-group example of `simplified_object`, this baseline reflects the abundance in the first (clonal) group. `beta_1` indicates the cofficient for the second column - here representing the difference between clonal and subclonal mutations. If `beta_1` is a vector of 0, this indicates that none of the log-ratios of abundances have changed between the two groups, and hence that there is no differential abundance.
 
 To test for differential abundance, a generalised Wald test can be used with the function `wald_TMB_wrapper`, which gives a p-value as output:
 
@@ -75,14 +103,21 @@ To test for differential abundance, a generalised Wald test can be used with the
 wald_TMB_wrapper(diagDM_no_small_sigs)
 ```
 
-The estimated coefficients can be visualised as follows:
+### Visualising the output
+
+The estimated `beta` coefficients can be visualised as follows:
+
 ```
 library(ggplot2)
 plot_betas(diagDM_no_small_sigs, return_ggplot = T)
 ```
 
+These `beta` coefficients are in log-ratio space with respect to a common category (the last column of `object$Y`). Therefore, it is difficult to determine which of the abundances changed in absolute terms. Assuming most categories do not change (i.e. assuming minimal perturbation), we can detect which categories deviate from the general `beta_1` value. Without being able to draw any conclusion about the baseline category, as we do not have standard error values for it, we can detect for which categories in the numerator their `beta_1` has extreme values: this can be done as follows with the `plot_betas` function:
+```
+plot_betas(diagDM_no_small_sigs, return_ggplot = T, add_median = T, line_zero = F, add_confint = T)
+```
 
-## Example workflow
+## Workflow with mutational signatures (example 2)
 In this example workflow we determine differential abundance between clonal and subclonal mutations in Pancreatic neuroendocrine tumors.
 
 ### `sign` objects: how to load them
@@ -137,44 +172,32 @@ The clonal and subclonal exposures are, respectively, the two barplots below:
 do.call('grid.arrange', list(grobs=lapply(split_matrix_in_half(simplified_object$Y), function(i) createBarplot(normalise_rw(i), remove_labels = T, custom_color_palette=color_list)), nrow=1))
 ```
 
-## Running the model for differential abundance
-
 ### Variations of the model
 
 There are several variations on the model, each with a particular combination of the following:
 - Base model: Dirichlet-multinomial in most cases, but two simpler models -- multinomial models `diagRE_M` and `fullRE_M` are implemented for comparison.
 - Random effects: correlated or not (e.g. uncorrelated in `diagRE_DM`, correlated in `fullRE_DM`).
-- Number of dispersion parameters: generally one per group (e.g. in `diagRE_DM`), but possibly fewer or more if specified in the name (e.g. one single dipersion parameter in `diagRE_DM_singlelambda`, one dispersion parameter per patient in `diagDMpatientlambda`).
+- Number of dispersion parameters: generally one per group (e.g. in `diagRE_DM`), but possibly fewer or more if specified in the name (e.g. one single dipersion parameter in `diagRE_DM_singlelambda`, one dispersion parameter per patient in `diagRE_DM_patientlambda`).
 
 The names of the model correspond to `{random effects}_{base model}_{particularities of the dispersion parameter, if any}`.
 
-| name of model (for user) | description  |cpp file (no need to use)   |
-|---|---|---|
-| diagRE_DM_singlelambda  | DM with independent RE and one lambda  | diagRE_dirichletmultinomial_single_lambda  |
-| diagRE_DM  | DM with independent RE and two lambdas  | diagRE_ME_dirichletmultinomial  |
-| diagRE_M  | M with independent RE  | diagRE_ME_multinomial  |
-| FEDMsinglelambda  | DM with no RE and one lambda  | FE_dirichletmultinomial_single_lambda  |
-| FE_DM  | DM with no RE and two lambdas  | FE_dirichletmultinomial  |
-| fullREDMsinglelambda  | DM with independent RE and two lambdas  | fullRE_dirichletmultinomial_single_lambda  |
-| fullRE_DMonefixedlambda  | DM assuming that there is no overdispersion in the first group (fixed lambda=1)  | fullRE_ME_dirichletmultinomial_onefixedlambda  |
-| fullRE_DM  | DM with correlated RE and two lambdas  | fullRE_ME_dirichletmultinomial  |
-| fullRE_M  | M with correlated RE  | fullRE_ME_multinomial  |
-| singleRE_DM  | DM with a single RE intercept and two lambdas  | singleRE_dirichlet_multinomial  |
-| diagRE_DM_patientlambda  | DM with independent RE and one lambda for each patient  | diagREpatientlambda_ME_dirichletmultinomial  |
-| fullRE_DM_patientlambda  | DM with correlated RE and one lambda for each patient  | fullREpatientlambda_ME_dirichletmultinomial  |
+The first column is the `<model>` argument in the function `wrapper_run_TMB()`.
+| Name of model (for user) | Description and usage  |
+|---|---|
+| `FE_DM_singlelambda`  | Dirichlet-multinomial  with no RE and a single `lambda` which can be used in a two-group comparison (if we consider the dipersion to be the same in both groups), a multi-group comparison, or any regression setting.  | 
+| `FE_DM`  | Dirichlet-multinomial  with no random effects and two `lambda`, used for the comparison between two groups in which we want to account for group-specific dispersion. Model slightly more complex than `FE_DM_singlelambda` | 
+| `diagRE_M`  |  Multinomial with non-correlated multivariate effects. Simpler model than `diagRE_DM`, as no dispersion is included | 
+| `diagRE_DM_singlelambda`  |  Dirichlet-multinomial with non-correlated multivariate RE and one: equivalent of diagRE_DM but with a shared . It can be used in a two-group comparison (if we consider the dipersion to be the same in both groups), a multi-group comparison, or any regression setting.  | 
+| `singleRE_DM`  | Dirichlet-multinomial with a single RE intercept and two `lambda`: simple model in which random effects are not multivariate, but where group-specific dispersion is needed, in a two-group comparison. | 
+| `diagRE_DM`  |  Dirichlet-multinomial with independent RE and two `lambda`: used most commonly throughout the paper. The data are matched to warrant multivariate RE, but correlations between categories are not explicitly modelled. Faster than `fullRE_DM` with often comparable results for `beta_1`.   | 
+| `fullRE_DM_singlelambda`  | Dirichlet-multinomial with correlated RE and two lambdab: equivalent of `diagR_DM_singlelambda` that can be used if categories have strong correlations. | 
+| `fullRE_M`  | Multinomial with correlated RE: assuming no overdispersion, it can be used in any regression setting  | 
+| `fullRE_DM`  | Dirichlet-multinomial with correlated RE and two `lambda`: model with multivariate RE with correlations modelled explicitly. As a `(K-1)*(K-1)` covariance matrix is estimated, this model is not recommended where the ratio of signatures to samples is high.  |
+| `diagRE_DM_patientlambda`  | Dirichlet-multinomial with non-correlated RE and one lambda$ per patient: model more complex than `diag_RE_DM` that can be used when there are several observations per patient and we wish to include a patient-specific dispersion parameter  | 
+| `fullRE_DM_patientlambda`  |  Dirichlet-multinomial with correlated RE and one  per patient: equivalent of `diagRE_DM_patientlambda`, but modelling correlations between categories | 
 
-### Input dataset
 
-The input dataset is the argument `object`, which is a list with the following structure:
-
-- `x`: covariate matrix (`p x n`)
-- `z`: matrix of random effects indicating which patient-specific subsample belongs to which patient (`n x N`)
-- `Y` (`n x d`)
-- `d`
-
-### Minimal example
-
-The first row is the `<model>` argument in the function `wrapper_run_TMB()`.
+### Using an alternative model, and parameter interpretation (example 3)
 
 We run the model `diagRE_DM_singlelambda` with the dataset `simplified_object`:
 
@@ -196,39 +219,7 @@ These $\beta$ estimates can be plotted as follows:
 plot_betas(diagDM_no_small_sigs)
 ```
 
-and the p-value indicating differential abundance can be extracted:
-
-```{r, wald_test}
-wald_TMB_wrapper(diagDM_no_small_sigs)
-```
-
-## Other models
-Other models can be run similarly:
-
-```{r, eval=FALSE, echo=TRUE}
-res <- wrapper_run_TMB(object = simplified_object,
-                       model = "diagRE_DM_singlelambda", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = simplified_object,
-                       model = "diagRE_DM", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = simplified_object,
-                       model = "diagRE_M", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = simplified_object,
-                       model = "FE_DM_singlelambda", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = simplified_object,
-                       model = "FE_DM", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = simplified_object,
-                       model = "fullRE_DM_singlelambda", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = simplified_object,
-                       model = "fullRE_DMonefixedlambda", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = simplified_object,
-                       model = "fullRE_DM", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = simplified_object,
-                       model = "fullRE_M", use_nlminb=T, smart_init_vals=F)
-res <- wrapper_run_TMB(object = simplified_object,
-                       model = "singleRE_DM", use_nlminb=T, smart_init_vals=F)
-```
-
-## Patient-specific dispersion parameters
+## Using an alternative model with patient-specific dispersion (example 4)
 In a scenario where we have several samples for each patient, which can still be grouped in two or more groups (fixed effects), we might be interested in patient-specific dispersion parameters, besides the patient-specific intercepts that we had. This has been implemented:
 
 ### Simulating data
@@ -286,7 +277,7 @@ data(obj_multilambda_parameters)
 ```
 
 
-## Compare the estimates to the ground truth
+### Comparison of estimates with ground truth
 
 The true parameters used for the simulation are found in the object `obj_multilambda_parameters`.
 

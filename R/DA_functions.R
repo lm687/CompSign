@@ -32,7 +32,7 @@ sort_columns_TMB_SBS1 = function(object){
   return(object)
 }
 
-#' Function to run the model using TMB
+#' Fit the model using TMB
 #' @param model: name of model; Options: {fullRE_M, diagRE_M, FE_DM, fullRE_DM, diagRE_DM, fullRE_DM_singlelambda, singleRE_DM, diagRE_DM_singlelambda, FE_DM_singlelambda, diagRE_DM_patientlambda, fullRE_DM_patientlambda}
 #' @param object: object of type exposures_inputTMB (including X, Y, Z)
 #' @param smart_init_vals: boolean, whether a fixed-effects multinomial regression should be run first to get initial estimates
@@ -255,7 +255,7 @@ wald_TMB_wrapper = function(i, verbatim=TRUE, fail_non_converged=T){
   if(typeof(i) == "character"){
     return(NA)
   }else{
-    idx_beta = select_slope_2(which(names(i$par.fixed) == "beta"), verbatim=verbatim)
+    idx_beta = select_slope_2(which(grepl('^beta', names(i$par.fixed))), verbatim=verbatim)
     if(!i$pdHess & fail_non_converged){
       ## didn't converge
       NA
