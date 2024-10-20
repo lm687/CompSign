@@ -419,6 +419,31 @@ extract_sigs <- function(W_muts, signature_definitions, W=NULL, fitWsubsetsigs=F
   return(W_QP)
 }
 
+QPsig<-function(tumour.ref = NA,signatures.ref){
+  ## modified from Lynch, 2016
+  # we normalize the observations so that they sum to 1
+  W <- table(factor(tumour.ref, levels = rownames(signatures.ref)))
+  
+  obs<-as.numeric(W/sum(W))
+  # to allow use of the deconstructSigs objects we convert to matrices
+  signatures.ref<-t(as.matrix(signatures.ref))
+  # we use the factorized version of solve.QP -
+  # see the helpfile of that function for details of the required form
+  # otherwise we would set Dmat = signatures.ref %*% t(signatures.ref) as indicated # in the article
+  Rinverse <- backsolve(chol(signatures.ref %*% t(signatures.ref)),
+                        diag(dim(signatures.ref)[1]))
+  # we also need to define the linear part of the function that we are minimizing
+  dvec <- (obs) %*% t(signatures.ref)
+  # we have one constraint that the sum of weights is equal to 1 # we have more constraints that each weight is positive
+  Amat <- cbind(rep(1,dim(Rinverse)[1]), diag(dim(Rinverse)[1]))
+  bvec <- c(1,rep(0,dim(Rinverse)[1]))
+  # we now call the solve.QP function from the quadprog library
+  myQP<-quadprog::solve.QP(Dmat = Rinverse, dvec = dvec, Amat = Amat, bvec = bvec, meq = 1, factorized = TRUE)
+  result <- myQP$solution
+  names(result) <- rownames(signatures.ref)
+  return(result)
+}
+
 extract_sigs_TMB_obj <- function(dataset_obj_trinucleotide, subset_signatures, signature_version='v3',
                                  signature_definition=NULL, signature_fitting_method='mutSigExtractor'){
   require(mutSigExtractor)
