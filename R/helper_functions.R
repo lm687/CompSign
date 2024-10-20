@@ -438,9 +438,14 @@ extract_sigs_TMB_obj <- function(dataset_obj_trinucleotide, subset_signatures, s
     }
   }
   
+  cat('Subsetting to active signatures\n')
+  
   if(length(subset_signatures) == 1){
     sigdefs_subset <- select(sigdefs, subset_signatures)
   }else{
+    if(any(!(subset_signatures %in% colnames(sigdefs)))){
+      stop('These signatures were not found in the signature definition matrix: ', subset_signatures[!(subset_signatures %in% colnames(sigdefs))])
+    }
     sigdefs_subset <- sigdefs[,match(subset_signatures, colnames(sigdefs))]
   }
   dataset_obj_trinucleotide
@@ -453,6 +458,7 @@ extract_sigs_TMB_obj <- function(dataset_obj_trinucleotide, subset_signatures, s
     rownames(sigdefs_subset) <- colnames(dataset_obj_trinucleotide$Y)
   }
   
+  cat('Running signature extraction\n')
   ## Quadratic programming for signature extraction
   sigs <-  #extract_sigs(W_muts = dataset_obj_trinucleotide$Y, )
   if(signature_fitting_method=='mutSigExtractor'){
@@ -465,6 +471,7 @@ extract_sigs_TMB_obj <- function(dataset_obj_trinucleotide, subset_signatures, s
   }else{
     stop('<signature_fitting_method> not implemented')
   }
+  cat('... done.\n')
   
   dataset_obj_new <- dataset_obj_trinucleotide
   dataset_obj_new$Y = round(sigs)
@@ -900,12 +907,18 @@ give_interval_plots_2 = function(df_rank, data_object,loglog=F, title, theme_bw=
   return(a)
 }
 
-give_betas <- function(TMB_obj){
-  matrix(python_like_select_name(TMB_obj$par.fixed, 'beta'), nrow=2)
+give_betas <- function(TMB_obj, num_covariates=2){
+  matrix(python_like_select_name(TMB_obj$par.fixed, 'beta'), nrow=num_covariates)
 }
 
 
-
+#' Function to plot beta estimates for a TMB run
+#' @param TMB_obj: output from TMB run
+#' @param names_cats: names of categories in log. ratio space. E.g. c('SBS1/SBS40', 'SBS5/SBS40')
+#' @param rotate_axis: boolean; if x axis labels should be rotated
+#' @param theme_bw: boolean; if ggplot's theme_bw should be used
+#' @param remove_SBS: boolean; if "SBS" should be removed from the category labels specified in <names_cats>
+#' @param only_slope: boolean; if only beta_1 should be plotted
 plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remove_SBS=T, only_slope=F, return_df=F, plot=T,
                        line_zero=T, add_confint=F, return_plot=T, return_ggplot=F, title=NULL, add_median=F, sort_by_slope=F,
                        size_title=NULL, size_logR=NULL, xlab=NULL, betas_are_only_slope=F, input_is_summary=F, num_covariates=2,
@@ -1058,6 +1071,12 @@ plot_betas <- function(TMB_obj, names_cats=NULL, rotate_axis=T, theme_bw=T, remo
       return(plt)
     }
   }
+}
+
+#' Function to plot beta estimates for a TMB run and andd minimal perturbation information
+#' @param TMB_obj: output from TMB run. See plot_betas() for the rest of the parameters
+plot_betas_minimal_perturbation <- function(...){
+  plot_betas(..., return_ggplot = T, add_median = T, line_zero = F, add_confint = T)
 }
 
 compare_betas_tmb <- function(tmb_obj_1, names_cats1, tmb_obj_2, names_cats2, names_groups=c('Group 1', 'Group 2'),

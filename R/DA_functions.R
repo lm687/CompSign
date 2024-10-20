@@ -33,7 +33,7 @@ sort_columns_TMB_SBS1 = function(object){
 }
 
 #' Function to run the model using TMB
-#' @param model: name of model; Options: {fullRE_M, diagRE_M, FE_DM, fullRE_DM, fullRE_DMonefixedlambda, diagRE_DM, fullRE_DM_singlelambda, singleRE_DM, fullREhalfDM, diagRE_DM_singlelambda, FEDMsinglelambda, fullRE_multinomial_REv2, diagRE_DM_patientlambda, fullRE_DM_patientlambda}
+#' @param model: name of model; Options: {fullRE_M, diagRE_M, FE_DM, fullRE_DM, diagRE_DM, fullRE_DM_singlelambda, singleRE_DM, diagRE_DM_singlelambda, FE_DM_singlelambda, diagRE_DM_patientlambda, fullRE_DM_patientlambda}
 #' @param object: object of type exposures_inputTMB (including X, Y, Z)
 #' @param smart_init_vals: boolean, whether a fixed-effects multinomial regression should be run first to get initial estimates
 #' @param use_nlminb: boolean, whether <nlminb> should be used for estimation. Alternatively, <optim> is used
@@ -88,10 +88,16 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
   )
   
   ## used in several models, e.g. diaRE_DM
-  creating_lambda_accessory_mat = apply(data$x, 1, paste0, collapse='')
-  creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i) which(unique(creating_lambda_accessory_mat) == i))
-  creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i){x = rep(0, ncol(data$x)); x[i]=1; x})
-  
+  if( (ncol(data$x) == 1) | grepl('singlelambda', model)){
+    creating_lambda_accessory_mat = matrix(0, nrow(data$x))
+  }else if(ncol(data$x) > 1){
+    creating_lambda_accessory_mat = apply(data$x, 1, paste0, collapse='')
+    creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i) which(unique(creating_lambda_accessory_mat) == i))
+    creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i){x = rep(0, ncol(data$x)); x[i]=1; x})
+    print(head(creating_lambda_accessory_mat))
+  }else{
+    stop()
+  }
   
   if(model == "fullRE_M"){
     data$num_individuals = n
