@@ -112,6 +112,10 @@ library(ggplot2)
 plot_betas(diagDM_no_small_sigs, return_ggplot = T)
 ```
 
+These `beta` coefficients are in log-ratio space with respect to a common category (the last column of `object$Y`). Therefore, it is difficult to determine which of the abundances changed in absolute terms. Assuming most categories do not change (i.e. assuming minimal perturbation), we can detect which categories deviate from the general `beta_1` value. Without being able to draw any conclusion about the baseline category, as we do not have standard error values for it, we can detect for which categories in the numerator their `beta_1` has extreme values: this can be done as follows with the `plot_betas` function:
+```
+plot_betas(diagDM_no_small_sigs, return_ggplot = T, add_median = T, line_zero = F, add_confint = T)
+```
 
 ## Workflow with mutational signatures (example 2)
 In this example workflow we determine differential abundance between clonal and subclonal mutations in Pancreatic neuroendocrine tumors.
