@@ -137,11 +137,11 @@ If signature extraction has not been performed, the wrapper function `extract_si
 active_sigs_in_ct <- c("SBS1", "SBS2", "SBS3", "SBS5", "SBS8", "SBS13", "SBS18", "SBS37", "SBS40", "SBS41")
 exposures_from_mutSigExtractor <- extract_sigs_TMB_obj(dataset_obj_trinucleotide=ProstAdenoCA_trinucleotide,
                              subset_signatures = active_sigs_in_ct,
-                             signature_version=NULL, signature_fitting_method = 'mutSigExtractor')
+                             signature_definition=NULL, signature_fitting_method = 'mutSigExtractor')
 
 exposures_from_QP <- extract_sigs_TMB_obj(dataset_obj_trinucleotide=ProstAdenoCA_trinucleotide,
-                              subset_signatures =active_sigs_in_ct,
-                              signature_version=NULL, signature_fitting_method = 'QP')
+                              subset_signatures = active_sigs_in_ct,
+                              signature_definition=NULL, signature_fitting_method = 'QP')
 
 plot(log(as.vector(exposures_from_mutSigExtractor$Y)), log(as.vector(exposures_from_QP$Y)))
 ```

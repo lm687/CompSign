@@ -422,6 +422,7 @@ extract_sigs <- function(W_muts, signature_definitions, W=NULL, fitWsubsetsigs=F
 extract_sigs_TMB_obj <- function(dataset_obj_trinucleotide, subset_signatures, signature_version='v3',
                                  signature_definition=NULL, signature_fitting_method='mutSigExtractor'){
   require(mutSigExtractor)
+  print(signature_version)
   
   if(!is.null(signature_definition)){
     cat('Using specified signature definitions\n')
