@@ -89,14 +89,14 @@ The first row is the `<model>` argument in the function `wrapper_run_TMB()`.
 | `diagRE_DM_singlelambda`  |  Dirichlet-multinomial with non-correlated multivariate RE and one: equivalent of diagRE_DM but with a shared . It can be used in a two-group comparison (if we consider the dipersion to be the same in both groups), a multi-group comparison, or any regression setting.  | 
 | `singleRE_DM`  | Dirichlet-multinomial with a single RE intercept and two `lambda`: simple model in which random effects are not multivariate, but where group-specific dispersion is needed, in a two-group comparison. | 
 | `diagRE_DM`  |  Dirichlet-multinomial with independent RE and two `lambda`: used most commonly throughout the paper. The data are matched to warrant multivariate RE, but correlations between categories are not explicitly modelled. Faster than `fullRE_DM` with often comparable results for `beta_1`.   | 
-| `fullRE_DM_singlelambda`  | Dirichlet-multinomial with correlated RE and two $\lambdab$: equivalent of `diagR_DM_singlelambda` that can be used if categories have strong correlations. | 
+| `fullRE_DM_singlelambda`  | Dirichlet-multinomial with correlated RE and two lambdab: equivalent of `diagR_DM_singlelambda` that can be used if categories have strong correlations. | 
 | `fullRE_M`  | Multinomial with correlated RE: assuming no overdispersion, it can be used in any regression setting  | 
 | `fullRE_DM`  | Dirichlet-multinomial with correlated RE and two `lambda`: model with multivariate RE with correlations modelled explicitly. As a `(K-1)*(K-1)` covariance matrix is estimated, this model is not recommended where the ratio of signatures to samples is high.  |
 | `diagRE_DM_patientlambda`  | Dirichlet-multinomial with non-correlated RE and one lambda$ per patient: model more complex than `diag_RE_DM` that can be used when there are several observations per patient and we wish to include a patient-specific dispersion parameter  | 
 | `fullRE_DM_patientlambda`  |  Dirichlet-multinomial with correlated RE and one  per patient: equivalent of `diagRE_DM_patientlambda`, but modelling correlations between categories | 
 
 
-
+<!---
 [comment]: <>  |---|---|---|
 [comment]: <>  diagREDMsinglelambda  | DM with independent RE and one lambda  | diagRE_dirichletmultinomial_single_lambda  |
 [comment]: <> | diagRE_DM  | DM with independent RE and two lambdas  | diagRE_ME_dirichletmultinomial  |
@@ -110,4 +110,5 @@ The first row is the `<model>` argument in the function `wrapper_run_TMB()`.
 [comment]: <> | singleRE_DM  | DM with a single RE intercept and two lambdas  | singleRE_dirichlet_multinomial  |
 [comment]: <> | diagDMpatientlambda  | DM with independent RE and one lambda for each patient  | diagREpatientlambda_ME_dirichletmultinomial  |
 [comment]: <> | fullDMpatientlambda  | DM with correlated RE and one lambda for each patient  | fullREpatientlambda_ME_dirichletmultinomial  |
+--->
 
