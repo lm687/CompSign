@@ -77,10 +77,17 @@ In the example above, nucleotide abundances are used as input. Alternatively, mu
 
 `CompSign` has been applied to study the differences in mutational signatures between clonal and subclonal mutations in the PCAWG dataset. The github repository reproducing these results can be [found here](https://github.com/lm687/CompSign-results).
 
+
 ### Variations of the model
 
+There are several variations on the model, each with a particular combination of the following:
+- Base model: Dirichlet-multinomial in most cases, but two simpler models -- multinomial models `diagRE_M` and `fullRE_M` are implemented for comparison.
+- Random effects: correlated or not (e.g. uncorrelated in `diagRE_DM`, correlated in `fullRE_DM`).
+- Number of dispersion parameters: generally one per group (e.g. in `diagRE_DM`), but possibly fewer or more if specified in the name (e.g. one single dipersion parameter in `diagRE_DM_singlelambda`, one dispersion parameter per patient in `diagRE_DM_patientlambda`).
 
-The first row is the `<model>` argument in the function `wrapper_run_TMB()`.
+The names of the model correspond to `{random effects}_{base model}_{particularities of the dispersion parameter, if any}`.
+
+The first column is the `<model>` argument in the function `wrapper_run_TMB()`.
 | Name of model (for user) | Description and usage  |
 |---|---|
 | `FE_DM_singlelambda`  | Dirichlet-multinomial  with no RE and a single `lambda` which can be used in a two-group comparison (if we consider the dipersion to be the same in both groups), a multi-group comparison, or any regression setting.  | 
