@@ -27,7 +27,6 @@ The input dataset is the argument `object`, which is a list with the following s
 - `x`: covariate matrix (`p x n`)
 - `z`: matrix of random effects indicating which patient-specific subsample belongs to which patient (`n x N`)
 - `Y` (`n x d`)
-- `d`
 
 ### Fitting the model
 
