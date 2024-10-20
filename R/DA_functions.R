@@ -38,7 +38,6 @@ sort_columns_TMB_SBS1 = function(object){
 #' @param smart_init_vals: boolean, whether a fixed-effects multinomial regression should be run first to get initial estimates
 #' @param use_nlminb: boolean, whether <nlminb> should be used for estimation. Alternatively, <optim> is used
 #' @param initial_params: (optional) list of initial parameters for estimation
-#' @param return_opt: boolean, indicating whether only the report from TMB (return_opt=F), or the unabridged output from TMB (return_opt=T) should be returned
 #' @useDynLib diagRE_dirichletmultinomial_single_lambda
 #' @useDynLib diagRE_ME_dirichletmultinomial
 #' @useDynLib diagRE_ME_multinomial
@@ -54,8 +53,7 @@ sort_columns_TMB_SBS1 = function(object){
 #' @useDynLib functions.hpp
 #' @importFrom Rcpp evalCpp
 wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, initial_params=NULL, return_opt=F){
-  ## sort_columns=F, 
-  
+
   ## if the object of data and covariates is an argument
   data = object
   colnamesY = colnames(data$Y)
@@ -92,12 +90,15 @@ wrapper_run_TMB = function(model, object=NULL, smart_init_vals=T, use_nlminb=F, 
     creating_lambda_accessory_mat = matrix(0, nrow(data$x))
   }else if(ncol(data$x) > 1){
     creating_lambda_accessory_mat = apply(data$x, 1, paste0, collapse='')
-    creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i) which(unique(creating_lambda_accessory_mat) == i))
-    creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i){x = rep(0, ncol(data$x)); x[i]=1; x})
-    print(head(creating_lambda_accessory_mat))
+    combinations_covariates <- unique(creating_lambda_accessory_mat)
+    creating_lambda_accessory_mat = sapply(creating_lambda_accessory_mat, function(i) which(combinations_covariates == i))
+    creating_lambda_accessory_mat = lapply(creating_lambda_accessory_mat, function(i){
+      x = rep(0, length(combinations_covariates)); x[i]=1; x
+    })
   }else{
     stop()
   }
+  print(head(creating_lambda_accessory_mat))
   
   if(model == "fullRE_M"){
     data$num_individuals = n

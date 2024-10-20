@@ -48,7 +48,6 @@ Type objective_function<Type>::operator() ()
   DATA_INTEGER(num_individuals); // number of different indivdiduals (each with a random effect)
   DATA_MATRIX(x); // matrix of covariates for fixed effects
   DATA_MATRIX(z); // matrix for random effects
-  DATA_MATRIX(lambda_accessory_mat); // matrix to get a length 2*n vector lambda from a length 2 vector lambda
   PARAMETER_MATRIX(beta); // coefficients for the fixed effects
   PARAMETER_MATRIX(u_large); // coefficients for the random effects. Even though it is defined as matrix (for TMB matrix multiplication), it is a vector
   PARAMETER_VECTOR(logs_sd_RE); // RE
@@ -58,7 +57,6 @@ Type objective_function<Type>::operator() ()
   // for covariance matrix for random effects
   using namespace density;
 
-  matrix<Type> log_lambda_vec(n, 1);
   matrix<Type> theta_prime(n,d_min1); // The probabilities of each event (in ALR)
   matrix<Type> theta(n,d); // The probabilities of each event
   matrix<Type> Sigma(d_min1,d_min1);
