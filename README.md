@@ -70,6 +70,12 @@ library(ggplot2)
 plot_betas(diagDM_no_small_sigs, return_ggplot = T)
 ```
 
+The interest of the user is generally on which categories increase or decrease in absolute terms. This is not possible in compositional data, but, assuming that the abundance of most categories does not change, we can visualise which categories deviate highly from the median coefficient. This visualisation can be generated with `plot_betas_minimal_perturbation`. The red line is the line of “zero perturbation” and for each estimate its 95% confidence interval is shown in blue. We can consider a signature to be differentially abundant if the line of “zero perturbation” is not included in the confidence interval of its coefficient for differential abundance. Note that we draw conclusions for the signatures included in the numerator of the log-ratios, but we are unable to get equivalent results for the baseline signature (although it is used to compute the line of “zero perturbation”).
+
+```
+plot_betas_minimal_perturbation(diagDM_no_small_sigs)
+```
+
 ### Usage for mutational signatures
 
 In the example above, nucleotide abundances are used as input. Alternatively, mutational signatures (as counts) and be used instead. If signatures have not yet been extracted, this can be done with the wrapper function `extract_sigs_TMB_obj` and using as input a mutation matrix (commonly, a matrix with trinucleotide mutations; see more details in the Vignette).
