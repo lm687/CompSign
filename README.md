@@ -18,6 +18,8 @@ We recommend browing the vignettes for a more in-depth explanation of models and
 
     browseVignettes("CompSign")
 
+or directly [online without need of installing the package](http://rpubs.com/lm687/CompSign).
+
 ## Brief summary of the package
 This is a minimal example for running the model and extracting the estimated coefficients.
 

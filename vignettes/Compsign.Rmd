@@ -19,6 +19,11 @@ knitr::opts_chunk$set(
 
 `CompSign` is a toolkit for differential abundance analysis of mutational signatures using a mixed effects Dirichlet-multinominal model (or simpler variations). The compositional nature of mutational signature exposures has often been overlooked but has important implications, as the analyses must be done in relative terms.
 
+
+```{r, include=T, eval=T, echo=FALSE}
+paste0('Date of compilation: ', Sys.time())
+```
+
 ## Installation 
 `CompSign` can be installed as usual from github:
 
@@ -143,7 +148,9 @@ exposures_from_QP <- extract_sigs_TMB_obj(dataset_obj_trinucleotide=ProstAdenoCA
                               subset_signatures = active_sigs_in_ct,
                               signature_definition=NULL, signature_fitting_method = 'QP')
 
-plot(log(as.vector(exposures_from_mutSigExtractor$Y)), log(as.vector(exposures_from_QP$Y)))
+plot(log(as.vector(exposures_from_mutSigExtractor$Y)), log(as.vector(exposures_from_QP$Y)),
+     xlab='Exposures from mutSigExtractor', ylab='Exposures from quadratic programming')
+abline(coef = c(0,1), lty='dashed')
 ```
 
 ### Visualisation of mutational signature exposures
@@ -182,6 +189,7 @@ There are several variations on the model, each with a particular combination of
 The names of the model correspond to `{random effects}_{base model}_{particularities of the dispersion parameter, if any}`.
 
 The first column is the `<model>` argument in the function `wrapper_run_TMB()`.
+
 | Name of model (for user) | Description and usage  |
 |---|---|
 | `FE_DM_singlelambda`  | Dirichlet-multinomial  with no RE and a single `lambda` which can be used in a two-group comparison (if we consider the dipersion to be the same in both groups), a multi-group comparison, or any regression setting.  | 
@@ -329,3 +337,9 @@ plots_comparisons_true_and_estimate <- lapply(1:length(list_comparisons_true_and
 do.call('grid.arrange', c(plots_comparisons_true_and_estimate, nrow=1))
 ```
 
+
+## Session info
+
+```{r}
+sessionInfo()
+```
